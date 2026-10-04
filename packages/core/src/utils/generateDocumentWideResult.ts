@@ -1,7 +1,7 @@
 import { DiagnosticSeverity } from '@stoplight/types';
 import { IDocument } from '../document';
 import { Document } from '../document';
-import { IRuleResult } from '../types/spectral';
+import { IRuleResult } from '../types/openlint';
 
 export const generateDocumentWideResult = (
   document: IDocument,

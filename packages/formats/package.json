@@ -1,10 +1,10 @@
 {
-  "name": "@stoplight/spectral-formats",
+  "name": "@openlint/openlint-formats",
   "version": "1.9.0",
   "sideEffects": false,
   "homepage": "https://github.com/stoplightio/spectral",
   "bugs": "https://github.com/stoplightio/spectral/issues",
-  "author": "Stoplight <support@stoplight.io>",
+  "author": "OpenLint <info@openlint.org>",
   "repository": {
     "type": "git",
     "url": "https://github.com/stoplightio/spectral"
@@ -19,9 +19,8 @@
     "node": "^16.20 || ^18.18 || >= 20.17"
   },
   "dependencies": {
-    "@scarf/scarf": "^1.4.0",
+    "@openlint/openlint-core": "^1.23.0",
     "@stoplight/json": "^3.17.0",
-    "@stoplight/spectral-core": "^1.23.0",
     "@types/json-schema": "^7.0.7",
     "tslib": "^2.8.1"
   }

@@ -1,5 +1,5 @@
 name: build-binary
-description: 'Build Spectral binary for specified targets and Node.js version'
+description: 'Build openlint binary for specified targets and Node.js version'
 inputs:
   targets:
     required: false
@@ -7,7 +7,7 @@ inputs:
   node-version:
     description: 'Node.js version to build the binary for'
     required: false
-    default: '18'
+    default: '22'
   bytecode:
     description: 'Whether to include bytecode in the binary'
     required: false
@@ -21,13 +21,13 @@ runs:
       key: pkg-cache-${{ inputs.targets }}-${{ inputs.node-version }}
       path: "/tmp/pkg-node-binaries"
       restore-keys: pkg-cache-${{ inputs.targets }}-${{ inputs.node-version }}
-  - name: Create the Spectral Binary Windows
+  - name: Create the openlint Binary Windows
     if: ${{ inputs.targets == 'windows' }}
-    run: yarn workspace @stoplight/spectral-cli pkg . --public --public-packages "*" --targets node${{ inputs.node-version }}-windows --output binaries/spectral
+    run: yarn workspace @openlint/openlint-cli pkg . --public --public-packages "*" --targets node${{ inputs.node-version }}-windows --output binaries/openlint
     env:
       PKG_CACHE_PATH: "/tmp/pkg-node-binaries"
     shell: powershell
-  - name: Create the Spectral Binary Nix
+  - name: Create the openlint Binary Nix
     if: ${{ inputs.targets != 'windows' }}
     run: |-
       NODE_VERSION=$(echo "${{ inputs.node-version }}" | awk -F "." '{ print $1 }')
@@ -36,12 +36,12 @@ runs:
 
       if [ "${{ inputs.bytecode }}" = true ]
       then
-        yarn workspace @stoplight/spectral-cli pkg . --public --public-packages "*" --targets $TARGETS --output binaries/spectral
+        yarn workspace @openlint/openlint-cli pkg . --public --public-packages "*" --targets $TARGETS --output binaries/openlint
       else
-        yarn workspace @stoplight/spectral-cli pkg . --no-bytecode --public --public-packages "*" --targets $TARGETS --output binaries/spectral
+        yarn workspace @openlint/openlint-cli pkg . --no-bytecode --public --public-packages "*" --targets $TARGETS --output binaries/openlint
       fi
 
-      (cd packages/cli/binaries && ls . | sed -n -E 's/^(spectral)-(alpine|linux|macos)$/mv "\1-\2" "\1-\2"-$ARCH/p' | sh)
+      (cd packages/cli/binaries && ls . | sed -n -E 's/^(openlint)-(alpine|linux|macos)$/mv "\1-\2" "\1-\2"-$ARCH/p' | sh)
     env:
       PKG_CACHE_PATH: "/tmp/pkg-node-binaries"
     shell: bash

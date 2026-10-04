@@ -1,5 +1,5 @@
-import { truthy } from '@stoplight/spectral-functions';
-import { oas } from '@stoplight/spectral-rulesets';
+import { truthy } from '@openlint/openlint-functions';
+import { oas } from '@openlint/openlint-rulesets';
 export default {
   extends: [oas],
   aliases: {

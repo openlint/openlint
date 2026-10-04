@@ -1,4 +1,4 @@
-# @stoplight/spectral-ruleset-bundler
+# @openlint/openlint-ruleset-bundler
 
 ## Options
 
@@ -19,13 +19,13 @@
 import * as fs from "node:fs";
 import { fileURLToPath } from "node:url";
 import * as path from "node:path";
-import { Spectral } from "@stoplight/spectral-core";
-import { bundleAndLoadRuleset } from "@stoplight/spectral-ruleset-bundler/with-loader";
-import { fetch } from "@stoplight/spectral-runtime";
+import { OpenLint } from "@openlint/openlint-core";
+import { bundleAndLoadRuleset } from "@openlint/openlint-ruleset-bundler/with-loader";
+import { fetch } from "@openlint/openlint-runtime";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const s = new Spectral();
+const s = new OpenLint();
 s.setRuleset(await bundleAndLoadRuleset(path.join(__dirname, ".spectral.yaml"), { fs, fetch }));
 
 // lint as usual

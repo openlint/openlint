@@ -56,8 +56,8 @@ Loose JSON Schema can be validated
   ]
 }
 ====asset:loose-schema-ruleset====
-const { jsonSchemaLoose } = require('@stoplight/spectral-formats');
-const { falsy, truthy } = require('@stoplight/spectral-functions');
+const { jsonSchemaLoose } = require('@openlint/openlint-formats');
+const { falsy, truthy } = require('@openlint/openlint-functions');
 
 module.exports = {
   "formats": [jsonSchemaLoose],

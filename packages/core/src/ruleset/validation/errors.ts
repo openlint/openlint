@@ -93,7 +93,7 @@ export function convertAjvErrors(
   }
 
   return filteredErrors.flatMap(error => {
-    if (error.keyword === 'x-spectral-runtime') {
+    if (error.keyword === 'x-openlint-runtime') {
       return flatErrors(error.params.errors).map(e => enrichWithLocation(e, sourceContext));
     }
 

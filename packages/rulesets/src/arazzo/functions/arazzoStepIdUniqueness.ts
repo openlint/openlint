@@ -1,4 +1,4 @@
-import { createRulesetFunction, IFunctionResult } from '@stoplight/spectral-core';
+import { createRulesetFunction, IFunctionResult } from '@openlint/openlint-core';
 import type { JsonPath } from '@stoplight/types';
 
 export default createRulesetFunction<{ steps: Array<{ stepId?: string }> }, null>(

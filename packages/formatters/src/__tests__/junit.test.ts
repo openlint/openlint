@@ -23,16 +23,16 @@ describe('JUnit formatter', () => {
             $: {
               errors: '0',
               failures: '3',
-              name: '/home/Stoplight/spectral/src/__tests__/__fixtures__/petstore.invalid-schema.oas3.yaml',
-              package: 'org.spectral',
+              name: '/home/openlint/src/__tests__/__fixtures__/petstore.invalid-schema.oas3.yaml',
+              package: 'org.openlint',
               tests: '3',
               time: '0',
             },
             testcase: [
               {
                 $: {
-                  classname: '/home/Stoplight/spectral/src/__tests__/__fixtures__/petstore.invalid-schema.oas3',
-                  name: 'org.spectral.oas3-schema(#/paths/~1pets/get/responses/200/headers/header-1)',
+                  classname: '/home/openlint/src/__tests__/__fixtures__/petstore.invalid-schema.oas3',
+                  name: 'org.openlint.oas3-schema(#/paths/~1pets/get/responses/200/headers/header-1)',
                   time: '0',
                 },
                 failure: [
@@ -46,8 +46,8 @@ describe('JUnit formatter', () => {
               },
               {
                 $: {
-                  classname: '/home/Stoplight/spectral/src/__tests__/__fixtures__/petstore.invalid-schema.oas3',
-                  name: 'org.spectral.oas3-schema(#/paths/~1pets/get/responses/200/headers/header-1)',
+                  classname: '/home/openlint/src/__tests__/__fixtures__/petstore.invalid-schema.oas3',
+                  name: 'org.openlint.oas3-schema(#/paths/~1pets/get/responses/200/headers/header-1)',
                   time: '0',
                 },
                 failure: [
@@ -61,8 +61,8 @@ describe('JUnit formatter', () => {
               },
               {
                 $: {
-                  classname: '/home/Stoplight/spectral/src/__tests__/__fixtures__/petstore.invalid-schema.oas3',
-                  name: 'org.spectral.oas3-schema(#/paths/~1pets/get/responses/200/headers/header-1)',
+                  classname: '/home/openlint/src/__tests__/__fixtures__/petstore.invalid-schema.oas3',
+                  name: 'org.openlint.oas3-schema(#/paths/~1pets/get/responses/200/headers/header-1)',
                   time: '0',
                 },
                 failure: [
@@ -90,16 +90,16 @@ describe('JUnit formatter', () => {
             $: {
               errors: '0',
               failures: '1',
-              name: '/home/Stoplight/spectral/src/__tests__/__fixtures__/petstore.oas3.json',
-              package: 'org.spectral',
+              name: '/home/openlint/src/__tests__/__fixtures__/petstore.oas3.json',
+              package: 'org.openlint',
               tests: '1',
               time: '0',
             },
             testcase: [
               {
                 $: {
-                  classname: '/home/Stoplight/spectral/src/__tests__/__fixtures__/petstore.oas3',
-                  name: 'org.spectral.info-matches-stoplight(#/info/title)',
+                  classname: '/home/openlint/src/__tests__/__fixtures__/petstore.oas3',
+                  name: 'org.openlint.info-matches-stoplight(#/info/title)',
                   time: '0',
                 },
                 failure: [
@@ -127,16 +127,16 @@ describe('JUnit formatter', () => {
             $: {
               errors: '0',
               failures: '2',
-              name: '/home/Stoplight/spectral/src/__tests__/__fixtures__/petstore.oas3.json',
-              package: 'org.spectral',
+              name: '/home/openlint/src/__tests__/__fixtures__/petstore.oas3.json',
+              package: 'org.openlint',
               tests: '2',
               time: '0',
             },
             testcase: [
               {
                 $: {
-                  classname: '/home/Stoplight/spectral/src/__tests__/__fixtures__/petstore.oas3',
-                  name: 'org.spectral.info-description(#/info)',
+                  classname: '/home/openlint/src/__tests__/__fixtures__/petstore.oas3',
+                  name: 'org.openlint.info-description(#/info)',
                   time: '0',
                 },
                 failure: [
@@ -150,8 +150,8 @@ describe('JUnit formatter', () => {
               },
               {
                 $: {
-                  classname: '/home/Stoplight/spectral/src/__tests__/__fixtures__/petstore.oas3',
-                  name: 'org.spectral.info-matches-stoplight(#/info/title)',
+                  classname: '/home/openlint/src/__tests__/__fixtures__/petstore.oas3',
+                  name: 'org.openlint.info-matches-stoplight(#/info/title)',
                   time: '0',
                 },
                 failure: [
@@ -180,7 +180,7 @@ describe('JUnit formatter', () => {
               errors: '0',
               failures: '2',
               name: '',
-              package: 'org.spectral',
+              package: 'org.openlint',
               tests: '2',
               time: '0',
             },
@@ -188,7 +188,7 @@ describe('JUnit formatter', () => {
               {
                 $: {
                   classname: '',
-                  name: "org.spectral.special-xml-strings(#/root/'/%22/leaf)",
+                  name: "org.openlint.special-xml-strings(#/root/'/%22/leaf)",
                   time: '0',
                 },
                 failure: [
@@ -203,7 +203,7 @@ describe('JUnit formatter', () => {
               {
                 $: {
                   classname: '',
-                  name: 'org.spectral.special-cdata-strings(#/root/%5D%5D%3E/%3C!%5BCDATA%5B/leaf)',
+                  name: 'org.openlint.special-cdata-strings(#/root/%5D%5D%3E/%3C!%5BCDATA%5B/leaf)',
                   time: '0',
                 },
                 failure: [

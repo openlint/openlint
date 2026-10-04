@@ -1,6 +1,6 @@
 import type { JsonPath } from '@stoplight/types';
-import { createRulesetFunction, IFunctionResult } from '@stoplight/spectral-core';
-import { schema } from '@stoplight/spectral-functions';
+import { createRulesetFunction, IFunctionResult } from '@openlint/openlint-core';
+import { schema } from '@openlint/openlint-functions';
 
 export type Options = { type: 'default' | 'examples' };
 

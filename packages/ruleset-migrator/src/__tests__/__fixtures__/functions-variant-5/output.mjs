@@ -1,4 +1,4 @@
-import donothing from '/.tmp/spectral/functions-variant-5/custom-functions/do-nothing.js';
+import donothing from '/.tmp/openlint/functions-variant-5/custom-functions/do-nothing.js';
 export default {
   rules: {
     rule: {

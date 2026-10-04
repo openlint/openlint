@@ -1,5 +1,5 @@
 import { DiagnosticSeverity, Dictionary } from '@stoplight/types';
-import type { IRuleResult } from '@stoplight/spectral-core';
+import type { IRuleResult } from '@openlint/openlint-core';
 
 export const groupBySeverity = (results: IRuleResult[]): Dictionary<IRuleResult[], DiagnosticSeverity> =>
   results.reduce<Dictionary<IRuleResult[], DiagnosticSeverity>>(

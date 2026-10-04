@@ -1,5 +1,5 @@
 {
-  "functionsDir": ".spectral",
+  "functionsDir": ".openlint",
   "functions": [
     "my-fn",
     "upper-case",

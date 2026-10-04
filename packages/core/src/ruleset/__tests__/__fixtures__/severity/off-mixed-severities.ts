@@ -1,4 +1,4 @@
-import { truthy } from '@stoplight/spectral-functions';
+import { truthy } from '@openlint/openlint-functions';
 
 // Test case 2: Mixed severity modifiers followed by off
 // grandparent -> parent (off, re-enables with 'warn') -> child (off)

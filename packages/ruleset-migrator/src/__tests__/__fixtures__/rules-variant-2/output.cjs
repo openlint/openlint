@@ -1,4 +1,4 @@
-const { undefined: undefined$0 } = require('@stoplight/spectral-functions');
+const { undefined: undefined$0 } = require('@openlint/openlint-functions');
 module.exports = {
   rules: {
     'oas3-unused-components': 'error',

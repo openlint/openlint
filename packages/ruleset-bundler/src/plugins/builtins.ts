@@ -1,14 +1,14 @@
-import * as core from '@stoplight/spectral-core';
-import * as formats from '@stoplight/spectral-formats';
-import * as functions from '@stoplight/spectral-functions';
-import * as parsers from '@stoplight/spectral-parsers';
-import * as refResolver from '@stoplight/spectral-ref-resolver';
-import * as rulesets from '@stoplight/spectral-rulesets';
-import * as runtime from '@stoplight/spectral-runtime';
+import * as core from '@openlint/openlint-core';
+import * as formats from '@openlint/openlint-formats';
+import * as functions from '@openlint/openlint-functions';
+import * as parsers from '@openlint/openlint-parsers';
+import * as refResolver from '@openlint/openlint-ref-resolver';
+import * as rulesets from '@openlint/openlint-rulesets';
+import * as runtime from '@openlint/openlint-runtime';
 import type { Plugin, InputOptions } from 'rollup';
 
 type Module = 'core' | 'formats' | 'functions' | 'parsers' | 'ref-resolver' | 'rulesets' | 'runtime';
-type GlobalModules = Record<`@stoplight/spectral-${Module}`, string>;
+type GlobalModules = Record<`@openlint/openlint-${Module}`, string>;
 type Overrides = Record<keyof GlobalModules, Record<string, unknown>>;
 
 const NAME = '@stoplight-spectral/builtins';
@@ -38,13 +38,13 @@ export const builtins = (overrides: Partial<Overrides> = {}): Plugin => {
   const instanceId = Math.round(Math.random() * 1_000_000);
 
   const modules = Object.fromEntries([
-    registerModule(instanceId, '@stoplight/spectral-core', core, overrides),
-    registerModule(instanceId, '@stoplight/spectral-formats', formats, overrides),
-    registerModule(instanceId, '@stoplight/spectral-functions', functions, overrides),
-    registerModule(instanceId, '@stoplight/spectral-parsers', parsers, overrides),
-    registerModule(instanceId, '@stoplight/spectral-ref-resolver', refResolver, overrides),
-    registerModule(instanceId, '@stoplight/spectral-rulesets', rulesets, overrides),
-    registerModule(instanceId, '@stoplight/spectral-runtime', runtime, overrides),
+    registerModule(instanceId, '@openlint/openlint-core', core, overrides),
+    registerModule(instanceId, '@openlint/openlint-formats', formats, overrides),
+    registerModule(instanceId, '@openlint/openlint-functions', functions, overrides),
+    registerModule(instanceId, '@openlint/openlint-parsers', parsers, overrides),
+    registerModule(instanceId, '@openlint/openlint-ref-resolver', refResolver, overrides),
+    registerModule(instanceId, '@openlint/openlint-rulesets', rulesets, overrides),
+    registerModule(instanceId, '@openlint/openlint-runtime', runtime, overrides),
   ]) as GlobalModules;
 
   return {

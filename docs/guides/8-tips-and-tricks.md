@@ -5,7 +5,7 @@
 ### Overriding messages
 
 ```js
-import { oas } from "https://esm.sh/@stoplight/spectral-rulesets";
+import { oas } from "https://esm.sh/@openlint/openlint-rulesets";
 
 const customMessages = {
   "oas3-valid-media-example": "OAS3: Examples must be valid against their defined schema.",
@@ -36,7 +36,7 @@ export default {
 ### Overriding formats
 
 ```js
-import { oas } from "https://esm.sh/@stoplight/spectral-rulesets";
+import { oas } from "https://esm.sh/@openlint/openlint-rulesets";
 
 const myFormat = document => typeof document === "object" && document !== null && "x-lint" in document;
 
@@ -70,7 +70,7 @@ export default {
 "use strict";
 const fs = require("fs");
 const path = require("@stoplight/path");
-const { Resolver } = require("@stoplight/spectral-ref-resolver");
+const { Resolver } = require("@openlint/openlint-ref-resolver");
 
 module.exports = new Resolver({
   resolvers: {
@@ -104,10 +104,10 @@ For JS API consumers, this would look like this:
 
 ```js
 "use strict";
-const { Spectral } = require("@stoplight/spectral-core");
+const { OpenLint } = require("@openlint/openlint-core");
 const MyResolver = require("./my-resolver.js");
 
-const spectral = new Spectral({
+const spectral = new OpenLint({
   resolver: MyResolver,
 });
 ```

@@ -1,7 +1,7 @@
 import { stringify } from '@stoplight/json';
 import { DiagnosticSeverity } from '@stoplight/types';
-import * as Parsers from '@stoplight/spectral-parsers';
-import { createHttpAndFileResolver, Resolver } from '@stoplight/spectral-ref-resolver';
+import * as Parsers from '@openlint/openlint-parsers';
+import { createHttpAndFileResolver, Resolver } from '@openlint/openlint-ref-resolver';
 
 import { Document, IDocument, IParsedResult, isParsedResult, ParsedDocument } from './document';
 import { DocumentInventory } from './documentInventory';
@@ -14,7 +14,7 @@ import { getDiagnosticSeverity } from './ruleset';
 
 export * from './types';
 
-export class Spectral {
+export class OpenLint {
   private readonly _resolver: Resolver;
 
   public ruleset?: Ruleset;

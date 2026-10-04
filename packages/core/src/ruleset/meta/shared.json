@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "@stoplight/spectral-core/meta/shared",
+  "$id": "@openlint/openlint-core/meta/shared",
   "$defs": {
     "Formats": {
       "$anchor": "formats",
@@ -59,7 +59,7 @@
           "pattern": "^#"
         },
         "then": {
-          "x-spectral-runtime": "alias"
+          "x-openlint-runtime": "alias"
         },
         "else": {
           "pattern": "^\\$",

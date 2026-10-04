@@ -1,4 +1,4 @@
-const { truthy } = require('@stoplight/spectral-functions');
+const { truthy } = require('@openlint/openlint-functions');
 
 module.exports = {
   'rules': {

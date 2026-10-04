@@ -1,6 +1,6 @@
-import { RulesetDefinition } from '@stoplight/spectral-core';
+import { RulesetDefinition } from '@openlint/openlint-core';
 import shared from './shared';
-import { truthy } from '@stoplight/spectral-functions/src';
+import { truthy } from '@openlint/openlint-functions/src';
 
 export default {
   extends: [[shared, 'off']],

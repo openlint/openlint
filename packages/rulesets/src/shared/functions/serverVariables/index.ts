@@ -1,5 +1,5 @@
-import { createRulesetFunction } from '@stoplight/spectral-core';
-import type { IFunctionResult } from '@stoplight/spectral-core';
+import { createRulesetFunction } from '@openlint/openlint-core';
+import type { IFunctionResult } from '@openlint/openlint-core';
 
 import { parseUrlVariables } from './utils/parseUrlVariables';
 import { getMissingProps } from '../../utils/getMissingProps';

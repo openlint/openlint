@@ -1,4 +1,4 @@
-import { printPath, PrintStyle } from '@stoplight/spectral-runtime';
+import { printPath, PrintStyle } from '@openlint/openlint-runtime';
 import { DiagnosticSeverity } from '@stoplight/types';
 import { Formatter, FormatterContext } from './types';
 import { groupBySource } from './utils';

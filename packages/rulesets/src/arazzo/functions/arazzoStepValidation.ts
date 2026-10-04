@@ -1,4 +1,4 @@
-import type { IFunctionResult } from '@stoplight/spectral-core';
+import type { IFunctionResult } from '@openlint/openlint-core';
 import arazzoRuntimeExpressionValidation from './arazzoRuntimeExpressionValidation';
 import { ArazzoSpecification } from './types/arazzoTypes';
 

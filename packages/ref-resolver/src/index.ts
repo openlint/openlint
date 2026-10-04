@@ -2,7 +2,7 @@ import { createResolveHttp, resolveFile } from '@stoplight/json-ref-readers';
 import { Resolver } from '@stoplight/json-ref-resolver';
 import type { IGraphNodeData } from '@stoplight/json-ref-resolver/types';
 import type { Agent } from 'http';
-import { DEFAULT_REQUEST_OPTIONS } from '@stoplight/spectral-runtime';
+import { DEFAULT_REQUEST_OPTIONS } from '@openlint/openlint-runtime';
 import { DepGraph } from 'dependency-graph';
 
 export interface IHttpAndFileResolverOptions {

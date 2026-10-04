@@ -1,4 +1,4 @@
-const { asyncapi, oas } = require('@stoplight/spectral-rulesets');
+const { asyncapi, oas } = require('@openlint/openlint-rulesets');
 module.exports = {
   extends: [oas, asyncapi],
 };

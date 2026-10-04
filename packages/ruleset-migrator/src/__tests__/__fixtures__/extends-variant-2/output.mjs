@@ -1,4 +1,4 @@
-import { asyncapi, oas } from '@stoplight/spectral-rulesets';
+import { asyncapi, oas } from '@openlint/openlint-rulesets';
 export default {
   extends: [oas, asyncapi],
 };

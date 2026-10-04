@@ -1,7 +1,7 @@
 ====test====
 Identify enum values that does not respect the specified type
 ====asset:ruleset====
-const { oas } = require('@stoplight/spectral-rulesets');
+const { oas } = require('@openlint/openlint-rulesets');
 
 module.exports = {
   'extends': [[oas, 'off']],

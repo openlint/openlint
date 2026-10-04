@@ -1,6 +1,6 @@
 import Shell from 'node-powershell';
 import { isError } from 'lodash';
-import type { SpawnFn } from '@stoplight/spectral-test-harness';
+import type { SpawnFn } from '@openlint/openlint-test-harness';
 
 import { normalizeLineEndings, stripDeprecationWarnings } from '../utils';
 
@@ -16,7 +16,7 @@ export const spawnNode: SpawnFn = async (command, env, cwd) => {
     outputEncoding: 'utf8',
   });
 
-  const winCommand = command.replace(/\/binaries\/(spectral\.exe|spectral)/, '/binaries/spectral.exe');
+  const winCommand = command.replace(/\/binaries\/(openlint\.exe|openlint)/, '/binaries/openlint.exe');
   const wrappedCommand = `cd '${cwd}';${winCommand};echo LASTEXITCODE=$LASTEXITCODE`;
   const finalCommand = `$env:NODE_NO_WARNINGS=1; powershell -Command "& { ${wrappedCommand} }"`;
 

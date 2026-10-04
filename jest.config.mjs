@@ -12,7 +12,7 @@ const projectDefault = {
     ...Object.fromEntries(
       Object.entries(pathsToModuleNameMapper(compilerOptions.paths)).map(([k, v]) => [k, path.join(__dirname, v)]),
     ),
-    '^@stoplight/spectral\\-test\\-utils$': '<rootDir>/test-utils/node/index.ts',
+    '^@openlint/openlint\\-test\\-utils$': '<rootDir>/test-utils/node/index.ts',
   },
   testEnvironment: 'node',
   transform: {
@@ -29,7 +29,7 @@ export default {
     {
       ...projectDefault,
       displayName: {
-        name: '@stoplight/spectral-cli',
+        name: '@openlint/openlint-cli',
         color: 'greenBright',
       },
       testMatch: ['<rootDir>/packages/cli/src/**/__tests__/**/*.{test,spec}.ts'],
@@ -37,7 +37,7 @@ export default {
     {
       ...projectDefault,
       displayName: {
-        name: '@stoplight/spectral-core',
+        name: '@openlint/openlint-core',
         color: 'magenta',
       },
       testMatch: ['<rootDir>/packages/core/src/**/__tests__/**/*.{test,spec}.ts'],
@@ -45,7 +45,7 @@ export default {
     {
       ...projectDefault,
       displayName: {
-        name: '@stoplight/spectral-formats',
+        name: '@openlint/openlint-formats',
         color: 'redBright',
       },
       testMatch: ['<rootDir>/packages/formats/src/**/__tests__/**/*.{test,spec}.ts'],
@@ -53,7 +53,7 @@ export default {
     {
       ...projectDefault,
       displayName: {
-        name: '@stoplight/spectral-functions',
+        name: '@openlint/openlint-functions',
         color: 'blueBright',
       },
       testMatch: ['<rootDir>/packages/functions/src/**/__tests__/**/*.{test,spec}.ts'],
@@ -61,7 +61,7 @@ export default {
     {
       ...projectDefault,
       displayName: {
-        name: '@stoplight/spectral-ruleset-bundler',
+        name: '@openlint/openlint-ruleset-bundler',
         color: 'blueBright',
       },
       setupFilesAfterEnv: ['<rootDir>/packages/ruleset-bundler/jest.setup.mjs'],
@@ -70,20 +70,20 @@ export default {
     {
       ...projectDefault,
       displayName: {
-        name: '@stoplight/spectral-ruleset-migrator',
+        name: '@openlint/openlint-ruleset-migrator',
         color: 'blueBright',
       },
       testMatch: ['<rootDir>/packages/ruleset-migrator/src/**/__tests__/**/*.{test,spec}.ts'],
     },
     {
       ...projectDefault,
-      displayName: '@stoplight/spectral-parsers',
+      displayName: '@openlint/openlint-parsers',
       testMatch: ['<rootDir>/packages/parsers/src/**/__tests__/**/*.{test,spec}.ts'],
     },
     {
       ...projectDefault,
       displayName: {
-        name: '@stoplight/spectral-ref-resolver',
+        name: '@openlint/openlint-ref-resolver',
         color: 'yellow',
       },
       testMatch: ['<rootDir>/packages/ref-resolver/src/**/__tests__/**/*.{test,spec}.ts'],
@@ -91,7 +91,7 @@ export default {
     {
       ...projectDefault,
       displayName: {
-        name: '@stoplight/spectral-rulesets',
+        name: '@openlint/openlint-rulesets',
         color: 'cyanBright',
       },
       setupFilesAfterEnv: ['<rootDir>/packages/rulesets/jest.setup.mjs'],
@@ -100,7 +100,7 @@ export default {
     {
       ...projectDefault,
       displayName: {
-        name: '@stoplight/spectral-runtime',
+        name: '@openlint/openlint-runtime',
         color: 'blue',
       },
       testMatch: ['<rootDir>/packages/runtime/src/**/__tests__/*.{test,spec}.ts'],
@@ -108,7 +108,7 @@ export default {
     {
       ...projectDefault,
       displayName: {
-        name: '@stoplight/spectral-formatters',
+        name: '@openlint/openlint-formatters',
         color: 'magenta',
       },
       testMatch: ['<rootDir>/packages/formatters/src/**/__tests__/*.{test,spec}.ts'],
@@ -117,4 +117,3 @@ export default {
   collectCoverageFrom: ['<rootDir>/packages/*/src/**/*.ts', '!<rootDir>/packages/*/src/**/__*__/**/*.ts'],
   ...config,
 };
-

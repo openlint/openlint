@@ -2,7 +2,7 @@ name: Commit
 on:
   workflow_call:
   pull_request:
-    branches: [develop]
+    branches: [main]
     paths-ignore:
     - README.md
     - .github/**
@@ -20,11 +20,11 @@ jobs:
         - '26.5.1'
     steps:
     - name: Checkout code
-      uses: actions/checkout@v5.0.1
+      uses: actions/checkout@v7.0.1
       with:
         fetch-depth: 2
     - name: Mark repo as safe for Git
-      run: git config --global --add safe.directory /__w/spectral/spectral
+      run: git config --global --add safe.directory /__w/openlint/openlint
     - name: Cached dependencies
       uses: "./.github/actions/cached-dependencies"
     - name: Build
@@ -43,11 +43,11 @@ jobs:
         os: "linux"
         node-version: "${{ matrix.node-version }}"
   test-windows:
-    if: github.ref == 'refs/heads/develop'
+    if: github.ref == 'refs/heads/main'
     runs-on: windows-latest
     steps:
     - name: Checkout code
-      uses: actions/checkout@v5.0.1
+      uses: actions/checkout@v7.0.1
     - name: Cached dependencies
       uses: "./.github/actions/cached-dependencies"
       with:
@@ -67,7 +67,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
-      uses: actions/checkout@v5.0.1
+      uses: actions/checkout@v7.0.1
     - name: Cached dependencies
       uses: "./.github/actions/cached-dependencies"
     - name: Setup Chrome
@@ -88,7 +88,7 @@ jobs:
       image: node:lts
     steps:
     - name: Checkout code
-      uses: actions/checkout@v5.0.1
+      uses: actions/checkout@v7.0.1
     - name: Cached dependencies
       uses: "./.github/actions/cached-dependencies"
       with:
@@ -108,7 +108,7 @@ jobs:
   jsonschema-check:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v5.0.1
+    - uses: actions/checkout@v7.0.1
     - uses: sourcemeta/jsonschema@v7.0.2
     - run: jsonschema metaschema --verbose packages/core/src/ruleset/meta/*.json
     - run: jsonschema lint --verbose packages/core/src/ruleset/meta/*.json

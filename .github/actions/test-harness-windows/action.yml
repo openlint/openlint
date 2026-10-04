@@ -20,7 +20,7 @@ runs:
     with:
       key: test-harness-{{ checksum "${{ runner.temp }}/previous-commit-sha" }}-${{ inputs.os }}-${{ inputs.node-version }}
       path: |-
-        ./.cache/spectral-test-harness
+        ./.cache/openlint-test-harness
         ./test-harness/tests/
       restore-keys: test-harness-{{ checksum "${{ runner.temp }}/previous-commit-sha" }}-${{ inputs.os }}-${{ inputs.node-version }}
   - uses: "./.github/actions/build-binary"
@@ -38,6 +38,6 @@ runs:
     uses: actions/cache@v4.3.0
     with:
       path: |-
-        ./.cache/spectral-test-harness
+        ./.cache/openlint-test-harness
         ./test-harness/tests/
       key: test-harness-{{ checksum "${{ runner.temp }}/current-commit-sha" }}-${{ inputs.os }}-${{ inputs.node-version }}

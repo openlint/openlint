@@ -1,5 +1,5 @@
 import { Dictionary } from '@stoplight/types';
-import type { IRuleResult } from '@stoplight/spectral-core';
+import type { IRuleResult } from '@openlint/openlint-core';
 
 export const groupBySource = (results: IRuleResult[]): Dictionary<IRuleResult[]> => {
   return results.reduce<Dictionary<IRuleResult[]>>((grouped, result) => {

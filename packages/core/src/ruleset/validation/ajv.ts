@@ -32,7 +32,7 @@ export function createValidator(format: 'js' | 'json'): ValidateFunction {
   addFormats(ajv);
   addErrors(ajv);
   ajv.addKeyword({
-    keyword: 'x-spectral-runtime',
+    keyword: 'x-openlint-runtime',
     schemaType: 'string',
     error: {
       message(cxt) {

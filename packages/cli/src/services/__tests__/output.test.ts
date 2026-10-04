@@ -1,11 +1,11 @@
 import { DiagnosticSeverity } from '@stoplight/types';
 import * as fs from 'fs';
 import * as process from 'process';
-import * as formatters from '@stoplight/spectral-formatters';
+import * as formatters from '@openlint/openlint-formatters';
 import { OutputFormat } from '../config';
 import { formatOutput, writeOutput } from '../output';
 
-jest.mock('@stoplight/spectral-formatters');
+jest.mock('@openlint/openlint-formatters');
 jest.mock('fs', () => ({
   readFileSync: jest.requireActual('fs').readFileSync,
   promises: {
@@ -33,7 +33,7 @@ describe('Output service', () => {
               character: 19,
             },
           },
-          source: '/home/Stoplight/spectral/src/__tests__/__fixtures__/petstore.oas3.json',
+          source: '/home/openlint/src/__tests__/__fixtures__/petstore.oas3.json',
         },
       ];
 

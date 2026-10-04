@@ -1,4 +1,4 @@
-import { createRulesetFunction, IFunctionResult } from '@stoplight/spectral-core';
+import { createRulesetFunction, IFunctionResult } from '@openlint/openlint-core';
 import type { JsonPath } from '@stoplight/types';
 import arazzoRuntimeExpressionValidation from './arazzoRuntimeExpressionValidation';
 import { ArazzoSpecification } from './types/arazzoTypes';

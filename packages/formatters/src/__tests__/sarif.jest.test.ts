@@ -1,6 +1,6 @@
 import { DiagnosticSeverity } from '@stoplight/types';
-import type { IRuleResult } from '@stoplight/spectral-core';
-import { Ruleset } from '@stoplight/spectral-core';
+import type { IRuleResult } from '@openlint/openlint-core';
+import { Ruleset } from '@openlint/openlint-core';
 import { sarif } from '../sarif';
 
 const cwd = process.cwd();

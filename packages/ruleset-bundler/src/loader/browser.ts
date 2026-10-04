@@ -1,4 +1,4 @@
-import { Ruleset } from '@stoplight/spectral-core';
+import { Ruleset } from '@openlint/openlint-core';
 
 import { bundle } from './common/bundle';
 import { runtime } from '../presets/runtime';

@@ -1,6 +1,6 @@
 import * as yargs from 'yargs';
 import { DiagnosticSeverity } from '@stoplight/types';
-import { IRuleResult } from '@stoplight/spectral-core';
+import { IRuleResult } from '@openlint/openlint-core';
 import * as process from 'process';
 import { ErrorWithCause } from 'pony-cause';
 import AggregateError from 'es-aggregate-error';

@@ -1,4 +1,4 @@
-const donothing = _interopDefault(require('/.tmp/spectral/functions-variant-5/custom-functions/do-nothing.js'));
+const donothing = _interopDefault(require('/.tmp/openlint/functions-variant-5/custom-functions/do-nothing.js'));
 module.exports = {
   rules: {
     rule: {

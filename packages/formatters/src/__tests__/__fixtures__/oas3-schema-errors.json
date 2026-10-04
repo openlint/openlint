@@ -12,7 +12,7 @@
       "header-1"
     ],
     "severity": 0,
-    "source": "/home/Stoplight/spectral/src/__tests__/__fixtures__/petstore.invalid-schema.oas3.yaml",
+    "source": "/home/openlint/src/__tests__/__fixtures__/petstore.invalid-schema.oas3.yaml",
     "range": {
       "start": {
         "line": 35,
@@ -37,7 +37,7 @@
       "header-1"
     ],
     "severity": 0,
-    "source": "/home/Stoplight/spectral/src/__tests__/__fixtures__/petstore.invalid-schema.oas3.yaml",
+    "source": "/home/openlint/src/__tests__/__fixtures__/petstore.invalid-schema.oas3.yaml",
     "range": {
       "start": {
         "line": 35,
@@ -62,7 +62,7 @@
       "header-1"
     ],
     "severity": 0,
-    "source": "/home/Stoplight/spectral/src/__tests__/__fixtures__/petstore.invalid-schema.oas3.yaml",
+    "source": "/home/openlint/src/__tests__/__fixtures__/petstore.invalid-schema.oas3.yaml",
     "range": {
       "start": {
         "line": 35,

@@ -1,5 +1,5 @@
-import { falsy, truthy } from "@stoplight/spectral-functions";
-import pascalCase from "/.tmp/spectral/extends-variant-8/assets/shared/functions/pascalCase.js";
+import { falsy, truthy } from "@openlint/openlint-functions";
+import pascalCase from "/.tmp/openlint/extends-variant-8/assets/shared/functions/pascalCase.js";
 export default {
   extends: [
     {

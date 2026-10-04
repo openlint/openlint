@@ -3,12 +3,12 @@ import { extname, resolve } from '@stoplight/path';
 import { Dictionary, IParserResult, JsonPath } from '@stoplight/types';
 import { isObjectLike } from 'lodash';
 import { Document, IDocument } from './document';
-import { Resolver, ResolveResult } from '@stoplight/spectral-ref-resolver';
+import { Resolver, ResolveResult } from '@openlint/openlint-ref-resolver';
 
 import { formatParserDiagnostics, formatResolverErrors } from './errorMessages';
-import * as Parsers from '@stoplight/spectral-parsers';
+import * as Parsers from '@openlint/openlint-parsers';
 import { IRuleResult } from './types';
-import { getClosestJsonPath, isAbsoluteRef, traverseObjUntilRef } from '@stoplight/spectral-runtime';
+import { getClosestJsonPath, isAbsoluteRef, traverseObjUntilRef } from '@openlint/openlint-runtime';
 import { Format } from './ruleset/format';
 
 export type DocumentInventoryItem = {

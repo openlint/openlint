@@ -211,7 +211,7 @@ components:
         kafka:
           clientId: my-app-id
 ====asset:ruleset====
-const { asyncapi } = require('@stoplight/spectral-rulesets');
+const { asyncapi } = require('@openlint/openlint-rulesets');
 module.exports = asyncapi;
 ====command====
 {bin} lint {document} --ruleset "{asset:ruleset}"

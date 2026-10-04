@@ -51,7 +51,7 @@ function getChangedScenarios(changedFiles: string[], scenarios: string[]): strin
   await fs.mkdir(OUT_DIR, { recursive: true });
 
   const scenarios = await fg('**/*.scenario', { cwd: SCENARIOS_DIR, absolute: true });
-  const cache = fileEntryCache.create('spectral-test-harness', path.join(__dirname, '../../.cache'), true);
+  const cache = fileEntryCache.create('openlint-test-harness', path.join(__dirname, '../../.cache'), true);
   const changedFiles = cache.getUpdatedFiles([...scenarios, ...(await fg('**/**', { cwd: OUT_DIR, absolute: true }))]);
   const changedScenarios = getChangedScenarios(changedFiles, scenarios);
 
@@ -72,7 +72,7 @@ function getChangedScenarios(changedFiles: string[], scenarios: string[]): strin
 
       const env: Record<string, string> = {
         __dirname: scenario.path,
-        bin: path.join(__dirname, '../../packages/cli/binaries/spectral'),
+        bin: path.join(__dirname, '../../packages/cli/binaries/openlint'),
         ...scenario.env,
       };
 

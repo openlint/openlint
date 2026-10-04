@@ -1,7 +1,7 @@
 import * as fs from 'fs';
-import { serveAssets } from '@stoplight/spectral-test-utils';
-import * as runtime from '@stoplight/spectral-runtime';
-import * as functions from '@stoplight/spectral-functions';
+import { serveAssets } from '@openlint/openlint-test-utils';
+import * as runtime from '@openlint/openlint-runtime';
+import * as functions from '@openlint/openlint-functions';
 
 function parseBundle(code: string): { declarations: string[]; body: string } {
   const lines = code.split('\n');
@@ -46,8 +46,8 @@ describe('Builtins Plugin', () => {
   describe.each<BundleOptions['target']>(['browser', 'node', 'runtime'])('given %s target', target => {
     it('should inline Spectral packages & expose it to the runtime', async () => {
       serveAssets({
-        '/tmp/input.js': `import { schema } from '@stoplight/spectral-functions';
-import { oas } from '@stoplight/spectral-rulesets';
+        '/tmp/input.js': `import { schema } from '@openlint/openlint-functions';
+import { oas } from '@openlint/openlint-rulesets';
 
 export default {
   extends: [oas],
@@ -76,22 +76,22 @@ export default {
       const { declarations, body } = parseBundle(code);
       expect(declarations).toEqual(
         [
-          "const alphabetical = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-functions']['alphabetical'];",
-          "const arazzo = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-rulesets']['arazzo'];",
-          "const asyncapi = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-rulesets']['asyncapi'];",
-          "const casing = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-functions']['casing'];",
-          "const defined = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-functions']['defined'];",
-          "const enumeration = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-functions']['enumeration'];",
-          "const falsy = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-functions']['falsy'];",
-          "const length = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-functions']['length'];",
-          "const oas = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-rulesets']['oas'];",
-          "const or = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-functions']['or'];",
-          "const pattern = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-functions']['pattern'];",
-          "const schema = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-functions']['schema'];",
-          "const truthy = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-functions']['truthy'];",
-          "const undefined$1 = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-functions']['undefined'];",
-          "const unreferencedReusableObject = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-functions']['unreferencedReusableObject'];",
-          "const xor = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-functions']['xor'];",
+          "const alphabetical = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-functions']['alphabetical'];",
+          "const arazzo = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-rulesets']['arazzo'];",
+          "const asyncapi = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-rulesets']['asyncapi'];",
+          "const casing = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-functions']['casing'];",
+          "const defined = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-functions']['defined'];",
+          "const enumeration = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-functions']['enumeration'];",
+          "const falsy = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-functions']['falsy'];",
+          "const length = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-functions']['length'];",
+          "const oas = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-rulesets']['oas'];",
+          "const or = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-functions']['or'];",
+          "const pattern = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-functions']['pattern'];",
+          "const schema = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-functions']['schema'];",
+          "const truthy = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-functions']['truthy'];",
+          "const undefined$1 = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-functions']['undefined'];",
+          "const unreferencedReusableObject = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-functions']['unreferencedReusableObject'];",
+          "const xor = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-functions']['xor'];",
         ].sort(),
       );
       expect(body).toEqual(`
@@ -117,13 +117,13 @@ export { input as default };
 `);
 
       expect(
-        globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-functions'],
+        globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-functions'],
       ).toStrictEqual(functions);
     });
 
     it('should support overrides', async () => {
       serveAssets({
-        '/tmp/input.js': `import { readFile } from '@stoplight/spectral-runtime';
+        '/tmp/input.js': `import { readFile } from '@openlint/openlint-runtime';
 
 readFile();`,
       });
@@ -135,7 +135,7 @@ readFile();`,
         target,
         plugins: [
           builtins({
-            '@stoplight/spectral-runtime': {
+            '@openlint/openlint-runtime': {
               readFile,
             },
           }),
@@ -146,27 +146,27 @@ readFile();`,
       const { declarations, body } = parseBundle(code);
       expect(declarations).toEqual(
         [
-          "const DEFAULT_REQUEST_OPTIONS = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-runtime']['DEFAULT_REQUEST_OPTIONS'];",
-          "const PrintStyle = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-runtime']['PrintStyle'];",
-          "const decodeSegmentFragment = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-runtime']['decodeSegmentFragment'];",
-          "const fetch = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-runtime']['fetch'];",
-          "const getClosestJsonPath = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-runtime']['getClosestJsonPath'];",
-          "const getEndRef = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-runtime']['getEndRef'];",
-          "const isAbsoluteRef = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-runtime']['isAbsoluteRef'];",
-          "const printError = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-runtime']['printError'];",
-          "const printPath = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-runtime']['printPath'];",
-          "const printValue = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-runtime']['printValue'];",
-          "const readFile = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-runtime']['readFile'];",
-          "const readParsable = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-runtime']['readParsable'];",
-          "const safePointerToPath = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-runtime']['safePointerToPath'];",
-          "const startsWithProtocol = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-runtime']['startsWithProtocol'];",
-          "const traverseObjUntilRef = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-runtime']['traverseObjUntilRef'];",
+          "const DEFAULT_REQUEST_OPTIONS = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime']['DEFAULT_REQUEST_OPTIONS'];",
+          "const PrintStyle = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime']['PrintStyle'];",
+          "const decodeSegmentFragment = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime']['decodeSegmentFragment'];",
+          "const fetch = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime']['fetch'];",
+          "const getClosestJsonPath = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime']['getClosestJsonPath'];",
+          "const getEndRef = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime']['getEndRef'];",
+          "const isAbsoluteRef = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime']['isAbsoluteRef'];",
+          "const printError = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime']['printError'];",
+          "const printPath = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime']['printPath'];",
+          "const printValue = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime']['printValue'];",
+          "const readFile = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime']['readFile'];",
+          "const readParsable = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime']['readParsable'];",
+          "const safePointerToPath = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime']['safePointerToPath'];",
+          "const startsWithProtocol = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime']['startsWithProtocol'];",
+          "const traverseObjUntilRef = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime']['traverseObjUntilRef'];",
         ].sort(),
       );
       expect(body).toBe('\nreadFile();\n');
 
       expect(
-        globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-runtime'],
+        globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime'],
       ).toStrictEqual({
         ...runtime,
         readFile,
@@ -175,7 +175,7 @@ readFile();`,
 
     it('should isolate each instance', async () => {
       serveAssets({
-        '/tmp/input.js': `import { readFile } from '@stoplight/spectral-runtime';
+        '/tmp/input.js': `import { readFile } from '@openlint/openlint-runtime';
 
 readFile();`,
       });
@@ -189,12 +189,12 @@ readFile();`,
         target,
         plugins: [
           builtins({
-            '@stoplight/spectral-runtime': {
+            '@openlint/openlint-runtime': {
               readFile,
             },
           }),
           builtins({
-            '@stoplight/spectral-runtime': {
+            '@openlint/openlint-runtime': {
               readFile: readFile2,
             },
           }),
@@ -203,14 +203,14 @@ readFile();`,
       });
 
       expect(
-        globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@stoplight/spectral-runtime'],
+        globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime'],
       ).toStrictEqual({
         ...runtime,
         readFile,
       });
 
       expect(
-        globalThis[Symbol.for('@stoplight-spectral/builtins')]['750524']['@stoplight/spectral-runtime'],
+        globalThis[Symbol.for('@stoplight-spectral/builtins')]['750524']['@openlint/openlint-runtime'],
       ).toStrictEqual({
         ...runtime,
         readFile: readFile2,

@@ -48,7 +48,7 @@ index 48246f29..0aa0a549 100644
      );
      const releaseInfos = releases.filter((release) => Boolean(release.name));
 -    const shas = commits.map(({ hash }) => hash);
-+    const pkgName = tagFormat.replace('@stoplight/spectral-', '').replace('-${version}', '');
++    const pkgName = tagFormat.replace('@openlint/openlint-', '').replace('-${version}', '');
 +    const pkgNameRegexp = RegExp(`^[a-z]+\\(${pkgName}\\):`);
 +    const shas = commits.filter(({ subject }) => pkgNameRegexp.test(subject)).map(({ hash }) => hash);
 

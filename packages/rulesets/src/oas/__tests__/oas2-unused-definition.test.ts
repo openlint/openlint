@@ -1,7 +1,7 @@
 import { DiagnosticSeverity } from '@stoplight/types';
 import * as path from '@stoplight/path';
-import { Document } from '@stoplight/spectral-core';
-import * as Parsers from '@stoplight/spectral-parsers';
+import { Document } from '@openlint/openlint-core';
+import * as Parsers from '@openlint/openlint-parsers';
 import testRule from '../../__tests__/__helpers__/tester';
 
 const remoteLocalDocument = new Document<any, any>(

@@ -25,7 +25,7 @@
 
 import { extname } from '@stoplight/path';
 import { escapeRegExp } from 'lodash';
-import { printPath, PrintStyle } from '@stoplight/spectral-runtime';
+import { printPath, PrintStyle } from '@openlint/openlint-runtime';
 import { Formatter } from './types';
 import { groupBySource, xmlEscape } from './utils';
 
@@ -52,11 +52,11 @@ export const junit: Formatter = (results, { failSeverity }) => {
         result => Number(result.severity) <= Number(failSeverity),
       );
 
-      output += `<testsuite package="org.spectral" time="0" tests="${filteredValidationResults.length}" errors="0" failures="${filteredValidationResults.length}" name="${source}">\n`;
+      output += `<testsuite package="org.openlint" time="0" tests="${filteredValidationResults.length}" errors="0" failures="${filteredValidationResults.length}" name="${source}">\n`;
 
       for (const result of filteredValidationResults) {
         const path = printPath(result.path, PrintStyle.EscapedPointer);
-        output += `<testcase time="0" name="org.spectral.${result.code ?? 'unknown'}${
+        output += `<testcase time="0" name="org.openlint.${result.code ?? 'unknown'}${
           path.length > 0 ? `(${xmlEscape(path)})` : ''
         }" classname="${classname}">`;
         output += `<failure message="${xmlEscape(result.message)}">`;
@@ -74,7 +74,7 @@ export const junit: Formatter = (results, { failSeverity }) => {
 
       output += '</testsuite>\n';
     } else {
-      output += `<testsuite package="org.spectral" time="0" tests="1" errors="0" name="${source}">\n`;
+      output += `<testsuite package="org.openlint" time="0" tests="1" errors="0" name="${source}">\n`;
       output += `<testcase time="0" name="${source}" classname="${classname}" />\n`;
       output += '</testsuite>\n';
     }

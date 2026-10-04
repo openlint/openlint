@@ -56,10 +56,10 @@ describe('Tree.resolveModule', () => {
         scope: new Scope(),
       });
 
-      const resolved = tree.resolveModule('@stoplight/spectral-rulesets', mockCtx, 'ruleset');
+      const resolved = tree.resolveModule('@openlint/openlint-rulesets', mockCtx, 'ruleset');
 
       // Should fallback to path.join when requireResolve is undefined
-      expect(resolved).toBe(path.join(mockCtx.cwd, '@stoplight/spectral-rulesets'));
+      expect(resolved).toBe(path.join(mockCtx.cwd, '@openlint/openlint-rulesets'));
     });
 
     it('should handle requireResolve as null', async () => {
@@ -75,10 +75,10 @@ describe('Tree.resolveModule', () => {
         scope: new Scope(),
       });
 
-      const resolved = tree.resolveModule('@stoplight/spectral-rulesets', mockCtx, 'ruleset');
+      const resolved = tree.resolveModule('@openlint/openlint-rulesets', mockCtx, 'ruleset');
 
       // Should fallback to path.join when requireResolve is null
-      expect(resolved).toBe(path.join(mockCtx.cwd, '@stoplight/spectral-rulesets'));
+      expect(resolved).toBe(path.join(mockCtx.cwd, '@openlint/openlint-rulesets'));
     });
 
     it('should handle requireResolve as empty object (webpack bug)', async () => {
@@ -94,10 +94,10 @@ describe('Tree.resolveModule', () => {
         scope: new Scope(),
       });
 
-      const resolved = tree.resolveModule('@stoplight/spectral-rulesets', mockCtx, 'ruleset');
+      const resolved = tree.resolveModule('@openlint/openlint-rulesets', mockCtx, 'ruleset');
 
       // Should fallback to path.join when requireResolve is an empty object
-      expect(resolved).toBe(path.join(mockCtx.cwd, '@stoplight/spectral-rulesets'));
+      expect(resolved).toBe(path.join(mockCtx.cwd, '@openlint/openlint-rulesets'));
     });
 
     it('should handle requireResolve as non-function value', async () => {
@@ -113,10 +113,10 @@ describe('Tree.resolveModule', () => {
         scope: new Scope(),
       });
 
-      const resolved = tree.resolveModule('@stoplight/spectral-rulesets', mockCtx, 'ruleset');
+      const resolved = tree.resolveModule('@openlint/openlint-rulesets', mockCtx, 'ruleset');
 
       // Should fallback to path.join when requireResolve is not a function
-      expect(resolved).toBe(path.join(mockCtx.cwd, '@stoplight/spectral-rulesets'));
+      expect(resolved).toBe(path.join(mockCtx.cwd, '@openlint/openlint-rulesets'));
     });
 
     it('should call requireResolve when it is a function', async () => {
@@ -133,7 +133,7 @@ describe('Tree.resolveModule', () => {
         scope: new Scope(),
       });
 
-      const resolved = tree.resolveModule('@stoplight/spectral-rulesets', mockCtx, 'ruleset');
+      const resolved = tree.resolveModule('@openlint/openlint-rulesets', mockCtx, 'ruleset');
 
       // When requireResolve is a function, it should handle package resolution
       // Note: Due to module caching, we verify behavior rather than mock calls
@@ -155,11 +155,11 @@ describe('Tree.resolveModule', () => {
         scope: new Scope(),
       });
 
-      const resolved = tree.resolveModule('@stoplight/spectral-rulesets', mockCtx, 'ruleset');
+      const resolved = tree.resolveModule('@openlint/openlint-rulesets', mockCtx, 'ruleset');
 
       // When requireResolve returns null, should fallback to path.join
       // Note: Due to module caching, we verify behavior (fallback path) rather than mock calls
-      expect(resolved).toBe(path.join(mockCtx.cwd, '@stoplight/spectral-rulesets'));
+      expect(resolved).toBe(path.join(mockCtx.cwd, '@openlint/openlint-rulesets'));
     });
   });
 
@@ -204,24 +204,24 @@ describe('Tree.resolveModule', () => {
         npmRegistry: 'https://unpkg.com',
       };
 
-      const resolved = treeWithRegistry.resolveModule('@stoplight/spectral-rulesets', ctxWithRegistry, 'ruleset');
+      const resolved = treeWithRegistry.resolveModule('@openlint/openlint-rulesets', ctxWithRegistry, 'ruleset');
 
       // Should use npmRegistry instead of requireResolve
-      expect(resolved).toBe(path.join('https://unpkg.com', '@stoplight/spectral-rulesets'));
+      expect(resolved).toBe(path.join('https://unpkg.com', '@openlint/openlint-rulesets'));
     });
 
     it('should handle scoped package names correctly', () => {
-      const resolved = tree.resolveModule('@stoplight/spectral-rulesets', mockCtx, 'ruleset');
+      const resolved = tree.resolveModule('@openlint/openlint-rulesets', mockCtx, 'ruleset');
 
       // Should recognize as package import even with scope
-      expect(resolved).toBe(path.join(mockCtx.cwd, '@stoplight/spectral-rulesets'));
+      expect(resolved).toBe(path.join(mockCtx.cwd, '@openlint/openlint-rulesets'));
     });
 
     it('should handle package imports with subpaths', () => {
-      const resolved = tree.resolveModule('@stoplight/spectral-rulesets/dist/oas', mockCtx, 'ruleset');
+      const resolved = tree.resolveModule('@openlint/openlint-rulesets/dist/oas', mockCtx, 'ruleset');
 
       // Should recognize as package import with subpath
-      expect(resolved).toBe(path.join(mockCtx.cwd, '@stoplight/spectral-rulesets/dist/oas'));
+      expect(resolved).toBe(path.join(mockCtx.cwd, '@openlint/openlint-rulesets/dist/oas'));
     });
   });
 
@@ -229,7 +229,7 @@ describe('Tree.resolveModule', () => {
     it('should handle files from npm registry', () => {
       const ctxFromNpm = {
         ...mockCtx,
-        filepath: 'https://unpkg.com/@stoplight/spectral-rulesets@1.0.0/index.js',
+        filepath: 'https://unpkg.com/@openlint/openlint-rulesets@1.0.0/index.js',
         npmRegistry: 'https://unpkg.com',
       };
 
@@ -242,7 +242,7 @@ describe('Tree.resolveModule', () => {
       const resolved = treeWithRegistry.resolveModule('./custom.js', ctxFromNpm, 'ruleset');
 
       // Should resolve relative to the npm registry filepath
-      expect(resolved).toBe(path.join('https://unpkg.com/@stoplight/spectral-rulesets@1.0.0/index.js', './custom.js'));
+      expect(resolved).toBe(path.join('https://unpkg.com/@openlint/openlint-rulesets@1.0.0/index.js', './custom.js'));
     });
   });
 

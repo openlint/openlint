@@ -24,7 +24,7 @@
  * @author Ava Thorn
  */
 
-import { printPath, PrintStyle } from '@stoplight/spectral-runtime';
+import { printPath, PrintStyle } from '@openlint/openlint-runtime';
 import { IDiagnostic, IRange } from '@stoplight/types';
 import chalk from 'chalk';
 

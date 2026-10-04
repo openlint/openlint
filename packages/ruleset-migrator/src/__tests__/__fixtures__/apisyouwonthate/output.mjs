@@ -1,5 +1,5 @@
-import { oas2, oas3 } from '@stoplight/spectral-formats';
-import { enumeration, falsy, pattern, schema, truthy } from '@stoplight/spectral-functions';
+import { oas2, oas3 } from '@openlint/openlint-formats';
+import { enumeration, falsy, pattern, schema, truthy } from '@openlint/openlint-functions';
 export default {
   rules: {
     'api-home': {

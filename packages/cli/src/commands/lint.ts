@@ -1,6 +1,6 @@
 import { DiagnosticSeverity, Dictionary } from '@stoplight/types';
 import { isPlainObject } from '@stoplight/json';
-import { getDiagnosticSeverity, IRuleResult } from '@stoplight/spectral-core';
+import { getDiagnosticSeverity, IRuleResult } from '@openlint/openlint-core';
 import { camelCase, difference, isError, pick } from 'lodash';
 import type { CommandModule } from 'yargs';
 import * as process from 'process';

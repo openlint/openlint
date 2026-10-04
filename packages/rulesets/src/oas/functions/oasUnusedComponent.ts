@@ -1,5 +1,5 @@
-import { unreferencedReusableObject } from '@stoplight/spectral-functions';
-import { createRulesetFunction, IFunctionResult } from '@stoplight/spectral-core';
+import { unreferencedReusableObject } from '@openlint/openlint-functions';
+import { createRulesetFunction, IFunctionResult } from '@openlint/openlint-core';
 import { isObject } from './utils/isObject';
 
 export default createRulesetFunction<{ components: Record<string, unknown> }, null>(

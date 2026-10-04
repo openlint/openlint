@@ -1,4 +1,4 @@
-import { RulesetDefinition } from '@stoplight/spectral-core';
+import { RulesetDefinition } from '@openlint/openlint-core';
 
 import _base from '../_base';
 

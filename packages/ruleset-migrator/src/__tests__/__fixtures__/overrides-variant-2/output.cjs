@@ -1,5 +1,5 @@
-const { truthy } = require('@stoplight/spectral-functions');
-const { oas } = require('@stoplight/spectral-rulesets');
+const { truthy } = require('@openlint/openlint-functions');
+const { oas } = require('@openlint/openlint-rulesets');
 module.exports = {
   extends: [oas],
   aliases: {

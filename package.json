@@ -13,12 +13,12 @@
     "API"
   ],
   "private": true,
-  "homepage": "https://github.com/stoplightio/spectral",
-  "bugs": "https://github.com/stoplightio/spectral/issues",
-  "author": "Stoplight <support@stoplight.io>",
+  "homepage": "https://github.com/openlint/openlint",
+  "bugs": "https://github.com/openlint/openlint/issues",
+  "author": "OpenLint <info@openlint.org>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/stoplightio/spectral"
+    "url": "https://github.com/openlint/openlint"
   },
   "license": "Apache-2.0",
   "engines": {
@@ -54,7 +54,7 @@
   "release": {
     "branches": [
       {
-        "name": "develop",
+        "name": "main",
         "prerelease": false
       }
     ],
@@ -107,8 +107,8 @@
     "@semantic-release/github": "^12.0.6",
     "@semantic-release/npm": "^13.1.5",
     "@semantic-release/release-notes-generator": "^14.1.0",
-    "@swc/core": "^1.2.210",
-    "@swc/jest": "^0.2.37",
+    "@swc/core": "1.2.220",
+    "@swc/jest": "0.2.37",
     "@types/file-entry-cache": "^5.0.2",
     "@types/jest": "^29.5.13",
     "@types/karma": "^6.3.3",
@@ -142,6 +142,7 @@
     "node-powershell": "^4.0.0",
     "patch-package": "^8.0.0",
     "prettier": "^3.0.0",
+    "rimraf": "^6.1.3",
     "semantic-release": "^25.0.3",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.8.2",

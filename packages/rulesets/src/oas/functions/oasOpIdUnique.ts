@@ -1,5 +1,5 @@
-import type { IFunctionResult } from '@stoplight/spectral-core';
-import { createRulesetFunction } from '@stoplight/spectral-core';
+import type { IFunctionResult } from '@openlint/openlint-core';
+import { createRulesetFunction } from '@openlint/openlint-core';
 import { getAllOperations } from './utils/getAllOperations';
 import { isObject } from './utils/isObject';
 

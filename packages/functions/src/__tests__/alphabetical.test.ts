@@ -1,12 +1,12 @@
-import * as Parsers from '@stoplight/spectral-parsers';
-import { Document, RulesetValidationError } from '@stoplight/spectral-core';
+import * as Parsers from '@openlint/openlint-parsers';
+import { Document, RulesetValidationError } from '@openlint/openlint-core';
 import testFunction from './__helpers__/tester';
 import alphabetical from '../alphabetical';
 import AggregateError = require('es-aggregate-error');
 
 const runAlphabetical = testFunction.bind(null, alphabetical);
 
-import '@stoplight/spectral-test-utils/matchers';
+import '@openlint/openlint-test-utils/matchers';
 
 describe('Core Functions / Alphabetical', () => {
   it('given falsy target, should return no error message', async () => {

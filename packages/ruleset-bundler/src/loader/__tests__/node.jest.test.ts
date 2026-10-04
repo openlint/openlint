@@ -1,7 +1,7 @@
-import { serveAssets } from '@stoplight/spectral-test-utils';
+import { serveAssets } from '@openlint/openlint-test-utils';
 import * as path from 'path';
 import * as fs from 'fs';
-import { fetch } from '@stoplight/spectral-runtime';
+import { fetch } from '@openlint/openlint-runtime';
 import { bundleAndLoadRuleset } from '../node';
 import { IO } from '../../types';
 import { DiagnosticSeverity } from '@stoplight/types';
@@ -31,7 +31,7 @@ export { default } from "/v135/lodash.uppercase@4.3.0/es2022/lodash.uppercase.mj
   });
 
   it('should be able to load JS ruleset', async () => {
-    const ruleset = await bundleAndLoadRuleset(path.join(__dirname, '__fixtures__/spectral.js'), io);
+    const ruleset = await bundleAndLoadRuleset(path.join(__dirname, '__fixtures__/openlint.js'), io);
 
     expect(JSON.parse(JSON.stringify(ruleset))).toStrictEqual({
       aliases: null,
@@ -102,12 +102,12 @@ export { default } from "/v135/lodash.uppercase@4.3.0/es2022/lodash.uppercase.mj
           ],
         },
       },
-      source: path.join(__dirname, '__fixtures__/spectral.js'),
+      source: path.join(__dirname, '__fixtures__/openlint.js'),
     });
   });
 
   it('should be able to load JSON/YAML ruleset', async () => {
-    const ruleset = await bundleAndLoadRuleset(path.join(__dirname, '__fixtures__/spectral.json'), io);
+    const ruleset = await bundleAndLoadRuleset(path.join(__dirname, '__fixtures__/openlint.json'), io);
 
     expect(JSON.parse(JSON.stringify(ruleset))).toStrictEqual({
       aliases: null,
@@ -178,7 +178,7 @@ export { default } from "/v135/lodash.uppercase@4.3.0/es2022/lodash.uppercase.mj
           ],
         },
       },
-      source: path.join(__dirname, '__fixtures__/spectral.json'),
+      source: path.join(__dirname, '__fixtures__/openlint.json'),
     });
   });
 });

@@ -1,4 +1,4 @@
-import { createRulesetFunction } from '@stoplight/spectral-core';
+import { createRulesetFunction } from '@openlint/openlint-core';
 import { isObject } from './utils/isObject';
 
 const validConsumeValue = /(application\/x-www-form-urlencoded|multipart\/form-data)/;

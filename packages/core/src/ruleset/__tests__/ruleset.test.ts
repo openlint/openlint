@@ -1,7 +1,7 @@
-import '@stoplight/spectral-test-utils/matchers';
+import '@openlint/openlint-test-utils/matchers';
 
-import { oas2 } from '@stoplight/spectral-formats';
-import { pattern, truthy } from '@stoplight/spectral-functions';
+import { oas2 } from '@openlint/openlint-formats';
+import { pattern, truthy } from '@openlint/openlint-functions';
 import * as path from '@stoplight/path';
 import { DiagnosticSeverity } from '@stoplight/types';
 import AggregateError = require('es-aggregate-error');
@@ -1081,7 +1081,7 @@ describe('Ruleset', () => {
 
           expect(ruleset.fromSource.bind(ruleset, null)).toThrowError(
             Error(
-              'Document must have some source assigned. If you use Spectral programmatically make sure to pass the source to Document',
+              'Document must have some source assigned. If you use OpenLint programmatically make sure to pass the source to Document',
             ),
           );
         });
@@ -1091,7 +1091,7 @@ describe('Ruleset', () => {
 
           expect(ruleset.fromSource.bind(ruleset, path.join(cwd, 'v2/spec.json'))).toThrowError(
             Error(
-              'Ruleset must have some source assigned. If you use Spectral programmatically make sure to pass the source to Ruleset',
+              'Ruleset must have some source assigned. If you use OpenLint programmatically make sure to pass the source to Ruleset',
             ),
           );
         });

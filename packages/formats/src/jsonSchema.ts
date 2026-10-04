@@ -1,4 +1,4 @@
-import type { Format } from '@stoplight/spectral-core';
+import type { Format } from '@openlint/openlint-core';
 import { isPlainObject } from '@stoplight/json';
 import type { JSONSchema4, JSONSchema6, JSONSchema7 } from 'json-schema';
 

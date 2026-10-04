@@ -40,7 +40,7 @@ if [ "$KERNEL" = "Linux" ] ; then
   fi
 fi
 
-FILENAME="spectral-${OS}-${ARCH}"
+FILENAME="openlint-${OS}-${ARCH}"
 if [ "$VERSION" = "latest" ] ; then
   URL="https://github.com/stoplightio/spectral/releases/latest/download/${FILENAME}"
 else

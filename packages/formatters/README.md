@@ -1,13 +1,14 @@
-# @stoplight/spectral-formatters
+# @openlint/openlint-formatters
 
 This project exposes the available formatters from the CLI for users that perform custom validation through Javascript.
 
 ## Usage
 
 ```ts
-import { pretty } from "@stoplight/spectral-formatters";
+import { OpenLint } from "@openlint/openlint-core";
+import { pretty } from "@openlint/openlint-formatters";
 
-const spectral = new Spectral();
+const spectral = new OpenLint();
 // ...
 const result = await spectral.run(document);
 

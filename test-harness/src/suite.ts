@@ -1,4 +1,4 @@
-import { applyReplacements, spawnNode, normalizeLineEndings } from '@stoplight/spectral-test-harness';
+import { applyReplacements, spawnNode, normalizeLineEndings } from '@openlint/openlint-test-harness';
 import { test, expect } from '@jest/globals';
 import escapeRegExp from 'lodash/escapeRegExp';
 import type { IScenarioFile } from './parser';

@@ -1,35 +1,37 @@
-[![](https://raw.githubusercontent.com/stoplightio/spectral/develop/docs/img/readme-header.svg)](https://stoplight.io/api-governance?utm_source=github&utm_medium=spectral&utm_campaign=readme)
-[![CircleCI](https://img.shields.io/circleci/build/github/stoplightio/spectral/develop)](https://circleci.com/gh/stoplightio/spectral) [![NPM Downloads](https://img.shields.io/npm/dw/@stoplight/spectral-cli?color=blue)](https://www.npmjs.com/package/@stoplight/spectral-cli) [![Stoplight Forest](https://img.shields.io/ecologi/trees/stoplightinc)][stoplight_forest]
+# OpenLint CLI
 
 - **Custom Rulesets**: Create custom rules to lint JSON or YAML objects
-- **Ready-to-use Rulesets**: Validate and lint **OpenAPI v2 & v3.x**, **AsyncAPI**, and **Arazzo v1** Documents
+- **Ready-to-use Rulesets**: Validate and lint **OpenAPI v3.x & v2.x**, **AsyncAPI**, and **Arazzo v1** Documents
 - **JSON Path Support**: Use JSON path to apply rules to specific parts of your objects
-- **Ready-to-use Functions**: Built-in set of functions to help [create custom rules](https://meta.stoplight.io/docs/spectral/docs/guides/4-custom-rulesets.md#adding-rules). Functions include pattern checks, parameter checks, alphabetical ordering, a specified number of characters, provided keys are present in an object, etc.
+- **Ready-to-use Functions**: Built-in set of functions to help create custom rules. Functions include pattern checks, parameter checks, alphabetical ordering, a specified number of characters, provided keys are present in an object, etc.
 - **Custom Functions**: Create custom functions for advanced use cases
 - **JSON Validation**: Validate JSON with [Ajv](https://www.npmjs.com/package/ajv)
 
-![Spectral linting an OpenAPI document from the CLI with results being output](https://raw.githubusercontent.com/stoplightio/spectral/develop/docs/img/demo.svg)
-
 # Overview
 
-- [Installation and Usage](#-installation-and-Usage)
-- [Documentation and Community](#-documentation-and-community)
-- [FAQs](#-faqs)
-- [Contributing](#-contributing)
+- [OpenLint CLI](#openlint-cli)
+- [Overview](#overview)
+  - [🧰 Installation and Usage](#-installation-and-usage)
+  - [📖 Documentation and Community](#-documentation-and-community)
+  - [ℹ️ Support](#ℹ️-support)
+  - [🏁 Help Others Utilize OpenLint](#-help-others-utilize-openlint)
+  - [👏 Contributing](#-contributing)
+  - [🎉 Thanks](#-thanks)
+  - [📜 License](#-license)
 
 ## 🧰 Installation and Usage
 
 **Install**
 
 ```bash
-npm install -g @stoplight/spectral-cli
+npm install -g @openlint/openlint-cli
 
 # OR
 
-yarn global add @stoplight/spectral-cli
+yarn global add @openlint/openlint-cli
 ```
 
-Find more [installation methods](https://meta.stoplight.io/docs/spectral/docs/getting-started/2-installation.md) in our documentation.
+Find more [installation methods](https://openlint.org/docs/getting-started/2-installation.md) in our documentation.
 
 **Lint**
 
@@ -39,68 +41,25 @@ spectral lint petstore.yaml
 
 ## 📖 Documentation and Community
 
-- [Documentation](https://meta.stoplight.io/docs/spectral/ZG9jOjYyMDc0Mg-concepts)
-  - [Getting Started](https://meta.stoplight.io/docs/spectral/ZG9jOjYyMDc0Mg-concepts) - The basics concepts, what Spectral is about.
-  - [Using the Command-line Interface](https://meta.stoplight.io/docs/spectral/ZG9jOjI1MTg1-spectral-cli) - Learn how the command line interface works.
-  - [Continuous Integration](https://meta.stoplight.io/docs/spectral/ZG9jOjExNTMyOTAx-continuous-integration) - Spectral CLI can be run anywhere that NPM packages can be installed and run via CLI.
-  - [Custom Rulesets](https://meta.stoplight.io/docs/spectral/ZG9jOjI1MTg5-custom-rulesets) - Don't like our rules? Throw 'em out and make your own.
-  - [Custom Functions](https://meta.stoplight.io/docs/spectral/ZG9jOjI1MTkw-custom-functions) - When the core functions are not enough to solve a problem, you can write custom functions to do _anything_.
+Currently the documentation is in `./docs` as we work to get a website together.
 
 ## ℹ️ Support
 
-If you need help using Spectral or have a support question, please use [GitHub Discussions](https://github.com/stoplightio/spectral/discussions). It's also a great place to share your rulesets, or tools that leverage Spectral.
+If you need help using Spectral or have a support question, please use [GitHub Discussions](https://github.com/opemlint/openlint/discussions). It's also a great place to share your rulesets, or tools that leverage Spectral.
 
-If you have a bug or feature request, please [create an issue](https://github.com/stoplightio/spectral/issues).
+If you have a bug or feature request, please [create an issue](https://github.com/opemlint/openlint/issues).
 
-## ❓ FAQs
+## 🏁 Help Others Utilize OpenLint
 
-### How is this different to Ajv
-
-[Ajv](https://www.npmjs.com/package/ajv) is a JSON Schema validator, and Spectral is a JSON/YAML linter. Instead of just validating against JSON Schema, it can be used to write rules for any sort of JSON/YAML object, which could be JSON Schema, or OpenAPI, or anything similar. Spectral does expose a [`schema` function](https://meta.stoplight.io/docs/spectral/docs/reference/functions.md) that you can use in your rules to validate all or part of the target object with JSON Schema (we even use Ajv used under the hood for this), but that's just one of many functions.
-
-### I want to lint my OpenAPI documents but don't want to implement Spectral right now.
-
-No problem! A hosted version of Spectral comes **free** with the Stoplight platform. Sign up for a free account [here](https://stoplight.io/?utm_source=github&utm_medium=spectral&utm_campaign=readme).
-
-### What is the difference between Spectral and Speccy
-
-[Speccy](https://github.com/wework/speccy) was a great inspiration for Spectral, but was designed to work only with OpenAPI v3. Spectral can apply rules to _any_ JSON/YAML object (including OpenAPI v2/v3, Arazzo, and AsyncAPI). Speccy has mostly been abandoned now, and is JavaScript not TypeScript.
-
-## ⚙️ Integrations
-
-- [Stoplight Studio](https://stoplight.io/studio?utm_source=github&utm_medium=spectral&utm_campaign=readme) uses Spectral to validate and lint OpenAPI documents.
-- [Spectral GitHub Action](https://github.com/stoplightio/spectral-action), lints documents in your repo, built by [Vincenzo Chianese](https://github.com/XVincentX/).
-- [VS Code Spectral](https://github.com/stoplightio/vscode-spectral), all the power of Spectral without leaving VS Code.
-
-## Anonymized analytics
-
-Spectal uses [Scarf](https://scarf.sh/) to collect [anonymized installation analytics](https://github.com/scarf-sh/scarf-js?tab=readme-ov-file#as-a-user-of-a-package-using-scarf-js-what-information-does-scarf-js-send-about-me). These analytics help support the maintainers of this library and ONLY run during installation. To [opt out](https://github.com/scarf-sh/scarf-js?tab=readme-ov-file#as-a-user-of-a-package-using-scarf-js-how-can-i-opt-out-of-analytics), you can set the `scarfSettings.enabled` field to `false` in your project's `package.json`:
-
-```
-// package.json
-{
-  // ...
-  "scarfSettings": {
-    "enabled": false
-  }
-  // ...
-}
-```
-
-Alternatively, you can set the environment variable `SCARF_ANALYTICS` to `false` as part of the environment that installs your npm packages, e.g., `SCARF_ANALYTICS=false npm install`.
-
-<img referrerpolicy="no-referrer-when-downgrade" src="https://static.scarf.sh/a.png?x-pxid=6d942d93-f7b2-4dd7-9664-6153414304e9&page=README.md" />
-
-## 🏁 Help Others Utilize Spectral
-
-If you're using Spectral for an interesting use case, create an issue with details on how you're using it. We'll add it to a list here. Spread the goodness 🎉
+If you're using OpenLint for an interesting use case, create an issue with details on how you're using it. We'll add it to a list here. Spread the goodness 🎉
 
 ## 👏 Contributing
 
-If you are interested in contributing to Spectral, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+If you are interested in contributing to OpenLint, check out [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## 🎉 Thanks
 
+- [Stoplight.io](https://github.com/stoplightio) for creating, managing, and growing Spectral for years.
 - [Mike Ralphson](https://github.com/MikeRalphson) for kicking off the Spectral CLI and his work on Speccy
 - [Jamund Ferguson](https://github.com/xjamundx) for JUnit formatter
 - [Sindre Sorhus](https://github.com/sindresorhus) for Stylish formatter
@@ -111,9 +70,3 @@ If you are interested in contributing to Spectral, check out [CONTRIBUTING.md](C
 ## 📜 License
 
 Spectral is 100% free and open-source, under [Apache License 2.0](LICENSE).
-
-## 🌲 Sponsor Spectral by Planting a Tree
-
-If you would like to thank us for creating Spectral, we ask that you [**buy the world a tree**][stoplight_forest].
-
-[stoplight_forest]: https://ecologi.com/stoplightinc

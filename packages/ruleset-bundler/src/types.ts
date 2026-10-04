@@ -1,6 +1,6 @@
 /// <reference lib="dom" />
 
-export type Fetch = Window['fetch'] | typeof import('@stoplight/spectral-runtime').fetch;
+export type Fetch = Window['fetch'] | typeof import('@openlint/openlint-runtime').fetch;
 
 export type IO = {
   fs: {

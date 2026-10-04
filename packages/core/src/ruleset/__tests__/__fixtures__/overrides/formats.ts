@@ -1,6 +1,6 @@
-import { jsonSchemaDraft4, jsonSchemaDraft7 } from '@stoplight/spectral-formats';
-import { schema } from '@stoplight/spectral-functions';
-import { RulesetDefinition } from '@stoplight/spectral-core';
+import { jsonSchemaDraft4, jsonSchemaDraft7 } from '@openlint/openlint-formats';
+import { schema } from '@openlint/openlint-functions';
+import { RulesetDefinition } from '@openlint/openlint-core';
 
 import _base from './_base';
 

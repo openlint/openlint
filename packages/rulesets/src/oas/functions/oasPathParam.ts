@@ -1,7 +1,7 @@
 import type { JsonPath, Segment } from '@stoplight/types';
-import type { IFunctionResult } from '@stoplight/spectral-core';
+import type { IFunctionResult } from '@openlint/openlint-core';
 import { isObject } from './utils/isObject';
-import { createRulesetFunction } from '@stoplight/spectral-core';
+import { createRulesetFunction } from '@openlint/openlint-core';
 
 const pathRegex = /(\{;?\??[a-zA-Z0-9_-]+\*?\})/g;
 

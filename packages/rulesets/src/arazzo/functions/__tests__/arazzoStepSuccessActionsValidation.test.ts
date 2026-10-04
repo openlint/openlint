@@ -1,5 +1,5 @@
 import arazzoStepSuccessActionsValidation from '../arazzoStepSuccessActionsValidation';
-import type { RulesetFunctionContext } from '@stoplight/spectral-core';
+import type { RulesetFunctionContext } from '@openlint/openlint-core';
 import { ArazzoSpecification } from '../types/arazzoTypes';
 
 const runRule = (target: ArazzoSpecification, _contextOverrides: Partial<RulesetFunctionContext> = {}) => {

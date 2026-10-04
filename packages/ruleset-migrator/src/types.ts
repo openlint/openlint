@@ -4,7 +4,7 @@ import type { Tree } from './tree';
 import type { ExpressionKind } from 'ast-types/gen/kinds';
 import { Ruleset } from './validation/types';
 
-export type Fetch = Window['fetch'] | typeof import('@stoplight/spectral-runtime').fetch;
+export type Fetch = Window['fetch'] | typeof import('@openlint/openlint-runtime').fetch;
 
 export type MigrationOptions = {
   fs: {

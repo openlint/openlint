@@ -1,4 +1,4 @@
-import { migrateRuleset } from '@stoplight/spectral-ruleset-migrator';
+import { migrateRuleset } from '@openlint/openlint-ruleset-migrator';
 import * as path from '@stoplight/path';
 import { ErrorWithCause } from 'pony-cause';
 

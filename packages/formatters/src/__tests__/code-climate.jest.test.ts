@@ -1,5 +1,5 @@
 import { DiagnosticSeverity } from '@stoplight/types';
-import type { IRuleResult } from '@stoplight/spectral-core';
+import type { IRuleResult } from '@openlint/openlint-core';
 import { codeClimate } from '../code-climate';
 
 const cwd = process.cwd();

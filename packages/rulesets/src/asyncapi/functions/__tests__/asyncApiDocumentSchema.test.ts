@@ -1,12 +1,12 @@
 import { DiagnosticSeverity } from '@stoplight/types';
-import { Spectral } from '@stoplight/spectral-core';
+import { OpenLint } from '@openlint/openlint-core';
 import { prepareResults } from '../asyncApiDocumentSchema';
 
 import { ErrorObject } from 'ajv';
 import { createWithRules } from '../../__tests__/__helpers__/tester';
 
 describe('asyncApiDocumentSchema', () => {
-  let s: Spectral;
+  let s: OpenLint;
 
   beforeEach(async () => {
     s = createWithRules(['asyncapi-schema']);
@@ -43,7 +43,7 @@ describe('asyncApiDocumentSchema', () => {
       ).toEqual([
         {
           code: 'asyncapi-schema',
-          documentationUrl: 'https://meta.stoplight.io/docs/spectral/docs/reference/asyncapi-rules.md#asyncapi-schema',
+          documentationUrl: 'https://openlint.org/docs/reference/asyncapi-rules.md#asyncapi-schema',
           message: '"info" property must have required property "title"',
           path: ['info'],
           severity: DiagnosticSeverity.Error,
@@ -132,7 +132,7 @@ describe('asyncApiDocumentSchema', () => {
       ).toEqual([
         {
           code: 'asyncapi-schema',
-          documentationUrl: 'https://meta.stoplight.io/docs/spectral/docs/reference/asyncapi-rules.md#asyncapi-schema',
+          documentationUrl: 'https://openlint.org/docs/reference/asyncapi-rules.md#asyncapi-schema',
           message: '"0" property type must be string',
           path: ['channels', '/user/signedup', 'servers', '0'],
           severity: DiagnosticSeverity.Error,
@@ -140,7 +140,7 @@ describe('asyncApiDocumentSchema', () => {
         },
         {
           code: 'asyncapi-schema',
-          documentationUrl: 'https://meta.stoplight.io/docs/spectral/docs/reference/asyncapi-rules.md#asyncapi-schema',
+          documentationUrl: 'https://openlint.org/docs/reference/asyncapi-rules.md#asyncapi-schema',
           message: '"2" property type must be string',
           path: ['channels', '/user/signedup', 'servers', '2'],
           severity: DiagnosticSeverity.Error,
@@ -187,7 +187,7 @@ describe('asyncApiDocumentSchema', () => {
       ).toEqual([
         {
           code: 'asyncapi-schema',
-          documentationUrl: 'https://meta.stoplight.io/docs/spectral/docs/reference/asyncapi-rules.md#asyncapi-schema',
+          documentationUrl: 'https://openlint.org/docs/reference/asyncapi-rules.md#asyncapi-schema',
           message: '"kafka" property must have required property "url"',
           path: ['components', 'servers', 'kafka'],
           severity: DiagnosticSeverity.Error,

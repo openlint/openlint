@@ -10,7 +10,7 @@ describe('HTML formatter', () => {
     const table = result.querySelector('table tbody');
     expect(table.innerHTML.trim()).toEqual(`<tr class="bg-error" data-group="f-0">
     <th colspan="4">
-        [+] /home/Stoplight/spectral/src/__tests__/__fixtures__/petstore.oas3.json
+        [+] /home/openlint/src/__tests__/__fixtures__/petstore.oas3.json
         <span>6 problems (1 error, 1 warning, 3 infos, 1 hint)</span>
     </th>
 </tr>

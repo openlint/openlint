@@ -1,6 +1,6 @@
 import { DiagnosticSeverity } from '@stoplight/types';
-import { falsy, pattern, truthy } from '@stoplight/spectral-functions';
-import { RulesetDefinition } from '@stoplight/spectral-core';
+import { falsy, pattern, truthy } from '@openlint/openlint-functions';
+import { RulesetDefinition } from '@openlint/openlint-core';
 
 export { ruleset as default };
 

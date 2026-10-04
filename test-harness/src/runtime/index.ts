@@ -1,4 +1,4 @@
-declare module '@stoplight/spectral-test-harness' {
+declare module '@openlint/openlint-test-harness' {
   export type SpawnFn = (
     command: string,
     env: Record<string, string>,

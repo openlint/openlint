@@ -10,7 +10,7 @@ import {
   aas3,
   aas3_0,
   aas3_1,
-} from '@stoplight/spectral-formats';
+} from '@openlint/openlint-formats';
 import {
   truthy,
   pattern,
@@ -18,7 +18,7 @@ import {
   schema,
   undefined, // eslint-disable-line no-shadow-restricted-names
   alphabetical,
-} from '@stoplight/spectral-functions';
+} from '@openlint/openlint-functions';
 
 import asyncApiChannelParameters from './functions/asyncApiChannelParameters';
 import asyncApi2ChannelServers from './functions/asyncApi2ChannelServers';
@@ -34,7 +34,7 @@ import asyncApiSecurity from './functions/asyncApiSecurity';
 import { latestVersion } from './functions/utils/specs';
 
 export default {
-  documentationUrl: 'https://meta.stoplight.io/docs/spectral/docs/reference/asyncapi-rules.md',
+  documentationUrl: 'https://openlint.org/docs/reference/asyncapi-rules.md',
   formats: [aas2_0, aas2_1, aas2_2, aas2_3, aas2_4, aas2_5, aas2_6, aas3_0, aas3_1],
   rules: {
     'asyncapi-channel-no-empty-parameter': {

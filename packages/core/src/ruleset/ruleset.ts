@@ -19,9 +19,9 @@ import { Formats } from './formats';
 import { isSimpleAliasDefinition } from './utils/guards';
 import type { Stringified } from './types';
 
-const STACK_SYMBOL = Symbol('@stoplight/spectral/ruleset/#stack');
-const EXPLICIT_SEVERITY = Symbol('@stoplight/spectral/ruleset/#explicit-severity');
-const DEFAULT_RULESET_FILE = /^\.?spectral\.(ya?ml|json|m?js)$/;
+const STACK_SYMBOL = Symbol('@openlint/openlint/ruleset/#stack');
+const EXPLICIT_SEVERITY = Symbol('@openlint/openlint/ruleset/#explicit-severity');
+const DEFAULT_RULESET_FILE = /^\.?(?:openlint|spectral)\.(ya?ml|json|m?js)$/;
 
 type RulesetContext = {
   readonly severity?: FileRulesetSeverityDefinition;
@@ -181,13 +181,13 @@ export class Ruleset {
 
     if (source === null) {
       throw new Error(
-        'Document must have some source assigned. If you use Spectral programmatically make sure to pass the source to Document',
+        'Document must have some source assigned. If you use OpenLint programmatically make sure to pass the source to Document',
       );
     }
 
     if (rulesetSource === null) {
       throw new Error(
-        'Ruleset must have some source assigned. If you use Spectral programmatically make sure to pass the source to Ruleset',
+        'Ruleset must have some source assigned. If you use OpenLint programmatically make sure to pass the source to Ruleset',
       );
     }
 

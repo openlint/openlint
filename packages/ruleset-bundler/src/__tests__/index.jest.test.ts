@@ -1,5 +1,5 @@
-import { serveAssets } from '@stoplight/spectral-test-utils';
-import { fetch } from '@stoplight/spectral-runtime';
+import { serveAssets } from '@openlint/openlint-test-utils';
+import { fetch } from '@openlint/openlint-runtime';
 import * as fs from 'fs';
 import { bundleRuleset } from '../index';
 import { IO } from '../types';
@@ -99,8 +99,8 @@ export { spectral as default };`);
 
   it('given node target, should support commonjs for remote ruleset with builtin modules', async () => {
     serveAssets({
-      'https://tmp/input.js': `var spectralFormats = require('@stoplight/spectral-formats');
-var spectralFunctions = require('@stoplight/spectral-functions');
+      'https://tmp/input.js': `var spectralFormats = require('@openlint/openlint-formats');
+var spectralFunctions = require('@openlint/openlint-functions');
 const ruleset = {
   rules: {
     'my-rule': {

@@ -1,8 +1,8 @@
 import type { SchemaObject, ErrorObject } from 'ajv';
 import traverse from 'json-schema-traverse';
-import { schema as schemaFn, SchemaOptions } from '@stoplight/spectral-functions';
-import { createRulesetFunction } from '@stoplight/spectral-core';
-import { oas2, oas3_1, oas3_2, extractDraftVersion, oas3_0 } from '@stoplight/spectral-formats';
+import { schema as schemaFn, SchemaOptions } from '@openlint/openlint-functions';
+import { createRulesetFunction } from '@openlint/openlint-core';
+import { oas2, oas3_1, oas3_2, extractDraftVersion, oas3_0 } from '@openlint/openlint-formats';
 import { isPlainObject, pointerToPath } from '@stoplight/json';
 
 export type Options = {

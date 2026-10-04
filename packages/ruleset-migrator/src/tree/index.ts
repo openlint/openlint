@@ -15,9 +15,9 @@ export { Scope };
 type ImportDefinition = { imported: namedTypes.Identifier; local: namedTypes.Identifier; default: boolean };
 
 function sortImports([sourceA]: [string, ImportDefinition[]], [sourceB]: [string, ImportDefinition[]]): number {
-  if (sourceA.startsWith('@stoplight/')) {
-    return sourceB.startsWith('@stoplight/') ? sourceA.localeCompare(sourceB) : -1;
-  } else if (sourceB.startsWith('@stoplight/')) {
+  if (sourceA.startsWith('@openlint/')) {
+    return sourceB.startsWith('@openlint/') ? sourceA.localeCompare(sourceB) : -1;
+  } else if (sourceB.startsWith('@openlint/')) {
     return 1;
   }
 
@@ -50,7 +50,7 @@ export class Tree {
   addImport(specifier: string, source: string, _default = false): namedTypes.Identifier {
     const existingImportDeclaration = this.#importDeclarations.get(source);
 
-    const scope = source.startsWith('@stoplight/') ? this.scope.global : this.scope;
+    const scope = source.startsWith('@openlint/') ? this.scope.global : this.scope;
 
     if (existingImportDeclaration === void 0) {
       const identifier = Tree.identifier(specifier, scope);

@@ -1,6 +1,6 @@
-import { createRulesetFunction } from '@stoplight/spectral-core';
+import { createRulesetFunction } from '@openlint/openlint-core';
 
-import type { IFunctionResult } from '@stoplight/spectral-core';
+import type { IFunctionResult } from '@openlint/openlint-core';
 import { parseUrlVariables } from '../../shared/functions/serverVariables/utils/parseUrlVariables';
 import { getMissingProps } from '../../shared/utils/getMissingProps';
 import { getRedundantProps } from '../../shared/utils/getRedundantProps';

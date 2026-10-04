@@ -1,12 +1,12 @@
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
-import { createRulesetFunction } from '@stoplight/spectral-core';
+import { createRulesetFunction } from '@openlint/openlint-core';
 import betterAjvErrors from '@stoplight/better-ajv-errors';
 
 import { getCopyOfSchema, selectAsyncAPISchema } from './utils/specs';
 
 import type { ValidateFunction } from 'ajv';
-import type { Format } from '@stoplight/spectral-core';
+import type { Format } from '@openlint/openlint-core';
 import type { AsyncAPISpecVersion } from './utils/specs';
 
 const asyncApi2SchemaObject = { $ref: 'asyncapi2#/definitions/schema' };

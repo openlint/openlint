@@ -1,5 +1,5 @@
-import { truthy } from '@stoplight/spectral-functions';
-import type { RulesetDefinition } from '@stoplight/spectral-core';
+import { truthy } from '@openlint/openlint-functions';
+import type { RulesetDefinition } from '@openlint/openlint-core';
 
 // Test case 6: Child re-enables rule after extending with off
 // grandparent -> parent -> child (extends with 'off', but re-enables my-rule with true)

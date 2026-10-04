@@ -1,5 +1,5 @@
-import { arazzo1_0 } from '@stoplight/spectral-formats';
-import { truthy, falsy, pattern } from '@stoplight/spectral-functions';
+import { arazzo1_0 } from '@openlint/openlint-formats';
+import { truthy, falsy, pattern } from '@openlint/openlint-functions';
 
 import arazzoDocumentSchema from './functions/arazzoDocumentSchema';
 import arazzoWorkflowIdUniqueness from './functions/arazzoWorkflowIdUniqueness';
@@ -15,7 +15,7 @@ import arazzoStepRequestBodyValidation from './functions/arazzoStepRequestBodyVa
 import arazzoStepValidation from './functions/arazzoStepValidation';
 
 export default {
-  documentationUrl: 'https://meta.stoplight.io/docs/spectral/docs/reference/arazzo-rules.md',
+  documentationUrl: 'https://openlint.org/docs/reference/arazzo-rules.md',
   formats: [arazzo1_0],
   rules: {
     'arazzo-document-schema': {

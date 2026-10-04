@@ -1,5 +1,5 @@
 import { builders as b, namedTypes } from 'ast-types';
-import * as functions from '@stoplight/spectral-functions';
+import * as functions from '@openlint/openlint-functions';
 import createOrderedLiteral, { setOrder } from '@stoplight/ordered-object-literal';
 import { DiagnosticSeverity } from '@stoplight/types';
 
@@ -90,7 +90,7 @@ const transformer: Transformer = function (hooks) {
       assertString(value);
 
       if (KNOWN_FUNCTIONS.includes(value)) {
-        return ctx.tree.addImport(value, '@stoplight/spectral-functions');
+        return ctx.tree.addImport(value, '@openlint/openlint-functions');
       }
 
       const alias = ctx.tree.scope.load(`function-${value}`);

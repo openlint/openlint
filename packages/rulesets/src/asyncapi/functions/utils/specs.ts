@@ -1,5 +1,5 @@
 import allSchemas from '@asyncapi/specs';
-import type { Format } from '@stoplight/spectral-core';
+import type { Format } from '@openlint/openlint-core';
 import {
   aas2_0,
   aas2_1,
@@ -11,7 +11,7 @@ import {
   aas3,
   aas3_0,
   aas3_1,
-} from '@stoplight/spectral-formats';
+} from '@openlint/openlint-formats';
 const specs = allSchemas.schemas;
 
 export type AsyncAPISpecVersion = keyof typeof specs;

@@ -1,4 +1,4 @@
-import type { RulesetDefinition } from '@stoplight/spectral-core';
+import type { RulesetDefinition } from '@openlint/openlint-core';
 import shared from './shared';
 
 export { ruleset as default };

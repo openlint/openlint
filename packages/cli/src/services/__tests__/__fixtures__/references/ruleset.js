@@ -1,4 +1,4 @@
-const { schema } = require('@stoplight/spectral-functions');
+const { schema } = require('@openlint/openlint-functions');
 
 module.exports = {
   rules: {

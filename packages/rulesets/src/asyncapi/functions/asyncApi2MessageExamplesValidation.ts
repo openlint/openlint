@@ -1,10 +1,10 @@
-import { createRulesetFunction } from '@stoplight/spectral-core';
-import { schema as schemaFn } from '@stoplight/spectral-functions';
+import { createRulesetFunction } from '@openlint/openlint-core';
+import { schema as schemaFn } from '@openlint/openlint-functions';
 
 import { mergeTraits } from './utils/mergeTraits';
 
 import type { JsonPath } from '@stoplight/types';
-import type { IFunctionResult, RulesetFunctionContext } from '@stoplight/spectral-core';
+import type { IFunctionResult, RulesetFunctionContext } from '@openlint/openlint-core';
 import type { JSONSchema7 } from 'json-schema';
 
 interface MessageExample {

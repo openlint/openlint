@@ -7,7 +7,7 @@ Path Aliases can be used
       name:
 - info:
 ====asset:ruleset====
-const { truthy, falsy } = require('@stoplight/spectral-functions');
+const { truthy, falsy } = require('@openlint/openlint-functions');
 
 module.exports = {
   aliases: {

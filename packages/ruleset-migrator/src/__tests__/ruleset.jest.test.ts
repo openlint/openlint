@@ -63,8 +63,8 @@ describe('migrator', () => {
             },
           },
         }),
-      ).toEqual(`import {oas2} from "@stoplight/spectral-formats";
-import {truthy} from "@stoplight/spectral-functions";
+      ).toEqual(`import {oas2} from "@openlint/openlint-formats";
+import {truthy} from "@openlint/openlint-functions";
 import test from "${cwd}/node_modules/my-npm-ruleset/functions/test.js";
 export default {
   "extends": [{

@@ -1,6 +1,6 @@
-import myFn from './.spectral/my-fn.js';
-import lowerCase from './.spectral/lower-case.js';
-import upperCase from './.spectral/upper-case.js';
+import myFn from './.openlint/my-fn.js';
+import lowerCase from './.openlint/lower-case.js';
+import upperCase from './.openlint/upper-case.js';
 
 export default {
   rules: {

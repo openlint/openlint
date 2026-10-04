@@ -2,7 +2,7 @@
 Respect overrides with aliases
 ====asset:spectral.js====
 const { DiagnosticSeverity } = require('@stoplight/types');
-const { pattern } = require('@stoplight/spectral-functions');
+const { pattern } = require('@openlint/openlint-functions');
 
 module.exports = {
   aliases: {

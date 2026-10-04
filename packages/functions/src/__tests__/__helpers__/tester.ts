@@ -1,12 +1,12 @@
 import {
-  Spectral,
+  OpenLint,
   Document,
   RuleDefinition,
   Ruleset,
   IRuleResult,
   RulesetFunction,
   RulesetFunctionWithValidator,
-} from '@stoplight/spectral-core';
+} from '@openlint/openlint-core';
 
 export default async function <O = unknown>(
   fn: RulesetFunction<any, any> | RulesetFunctionWithValidator<any, any>,
@@ -14,7 +14,7 @@ export default async function <O = unknown>(
   opts: O | null = null,
   rule?: Partial<Omit<RuleDefinition, 'then'>> & { then?: Partial<RuleDefinition['then']> },
 ): Promise<Pick<IRuleResult, 'path' | 'message'>[]> {
-  const s = new Spectral();
+  const s = new OpenLint();
   s.setRuleset({
     rules: {
       'my-rule': {

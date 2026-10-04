@@ -1,5 +1,5 @@
 import { Dictionary, Optional } from '@stoplight/types';
-import { IRuleResult } from '@stoplight/spectral-core';
+import { IRuleResult } from '@openlint/openlint-core';
 import { Formatter } from './types';
 import { getSeverityName, groupBySource } from './utils';
 

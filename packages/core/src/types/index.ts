@@ -1,2 +1,2 @@
-export * from './spectral';
+export * from './openlint';
 export * from './function';

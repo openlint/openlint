@@ -1,9 +1,9 @@
 import { normalize } from '@stoplight/path';
 import { DeepReadonly, GetLocationForJsonPath, IParserResult, IRange, JsonPath, Optional } from '@stoplight/types';
 import { formatParserDiagnostics } from './errorMessages';
-import { startsWithProtocol } from '@stoplight/spectral-runtime';
+import { startsWithProtocol } from '@openlint/openlint-runtime';
 import { isPlainObject } from '@stoplight/json';
-import { IParser } from '@stoplight/spectral-parsers';
+import { IParser } from '@openlint/openlint-parsers';
 import { IRuleResult } from './types';
 import { Format } from './ruleset/format';
 

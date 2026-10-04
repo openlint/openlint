@@ -1,39 +1,37 @@
-# How to contribute to Spectral
+# How to contribute
 
-First of all, thanks for considering contributing to Spectral! ✨ It's people like you that make tools like Spectral awesome. 💖
+First of all, thanks for considering contributing to OpenLint! ✨ It's people like you that make tools like OpenLint awesome. 💖
 
-At Stoplight, we want contributing to Spectral to be an enjoyable and educational experience for everyone. Contributions go beyond commits in pull requests. We are excited to receive contributions in the form of feature ideas, pull requests, triaging issues, reviewing pull requests, implementations of Spectral in your own projects, blog posts, talks referencing the project, tweets, and much more!
+We want contributing to OpenLint to be an enjoyable and educational experience for everyone. Contributions go beyond commits in pull requests. We are excited to receive contributions in the form of feature ideas, pull requests, triaging issues, reviewing pull requests, implementations of OpenLint in your own projects, blog posts, talks referencing the project, tweets, and much more!
 
-Basically, if it is related to Spectral, we consider it a contribution.
+Basically, if it is related to OpenLint, we consider it a contribution.
 
-## Stoplight Community Code of Conduct
+## Community Code of Conduct
 
-The Stoplight Community is dedicated to providing a safe, inclusive, welcoming, and harassment-free space and experience for all community participants, regardless of gender identity and expression, sexual orientation, disability, physical appearance, socioeconomic status, body size, ethnicity, nationality, level of experience, age, religion (or lack thereof), or other identity markers.
+The OpenLint community is dedicated to providing a safe, inclusive, welcoming, and harassment-free space and experience for all community participants, regardless of gender identity and expression, sexual orientation, disability, physical appearance, socioeconomic status, body size, ethnicity, nationality, level of experience, age, religion (or lack thereof), or other identity markers.
 
-Our Code of Conduct exists because of that dedication, and we do not tolerate harassment in any form. See our reporting guidelines [here](https://github.com/stoplightio/code-of-conduct/blob/master/incident-reporting.md). Our full Code of Conduct can be found at this [link](https://github.com/stoplightio/code-of-conduct/blob/master/long-form-code-of-conduct.md#long-form-code-of-conduct).
+Our Code of Conduct exists because of that dedication, and we do not tolerate harassment in any form. See our reporting guidelines [here](https://github.com/openlint/.github/blob/main/CODE_OF_CONDUCT.md#reporting-an-issue). Our full Code of Conduct can be found at this [link](https://github.com/openlint/.github/blob/main/CODE_OF_CONDUCT.md).
 
 ## Development
 
 ### Setup
 
 - Install Node.JS, the minimum version we support is 12.20. If you have [nvm](https://github.com/nvm-sh/nvm) installed, execute `nvm use` and it'll pick the right version for you.
-- [Yarn](https://yarnpkg.com/getting-started/install) - Yarn is a package manager for your code, similar to npm. While you can use npm to use Spectral in your own project, we use yarn for development of Spectral.
+- [Yarn](https://yarnpkg.com/getting-started/install) - Yarn is a package manager for your code, similar to npm. While you can use npm to use OpenLint in your own project, we use yarn for development of OpenLint.
 - IDE / Editor of your choice - I use WebStorm, but VSCode and many others are fine too.
 
 #### Contributing from a Windows based environment
 
-Spectral is a cross-platform tool and we do our best to ensure it honors specifics
+OpenLint is a cross-platform tool and we do our best to ensure it honors specifics
 of the underlying operating system it's being run on.
 
 From a contributing standpoint, we also aim to make it easier for everyone to help
 move the product forward. This section is dedicated to people that primarily work
 on a Windows based environment.
 
-The recommended IDE to contribute to Spectral is **[VisualStudio Code](https://code.visualstudio.com/)** (aka. vscode).
-
 The repository is configured to checkout files using LF as line ending terminators and vscode honors this just fine.
 
-Upon opening Spectral folder under vscode, some workspace recommended extensions will be proposed to be installed.
+Upon opening OpenLint folder under vscode, some workspace recommended extensions will be proposed to be installed.
 Please accept and install them as they will make your contributing journey nicer.
 
 - **[EditorConfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)**: Applies some minor file normalization when saving files
@@ -48,19 +46,19 @@ Would you want to switch back to the standard experience, using the Command Pale
 
 This repo is a monorepo.
 
-- packages/cli contains everything that's related to CLI of Spectral. This is the only package that's meant to be run exclusively in Node.js environment.
-- packages/core contains all the code that's supposed to parse the input, load & validate the ruleset, run $ref resolver, run the linting process, process errors, etc. It's the heart of Spectral.
-- packages/formats is all about formats, as the title says :). It comes up with a set of officially supported formats you can leverage in your rulesets.
-- packages/functions is a collection of functions maintained by us that you can make use of in your rulesets.
-- packages/parsers is mostly used internally by packages/core. Our parsers live there. Do note that we mostly integrate `@stoplight/yaml` & `@stoplight/json` there.
-- packages/ref-resolver exposes an instance of json-ref-resolver
-- packages/ruleset-migrator
-- packages/rulesets is an array of rulesets backed by us. Currently the list of rulesets consists of OAS and AsyncAPI v2.
-- packages/runtime is a set of utilities you can use in your own custom functions.
+- `packages/cli` contains everything that's related to CLI of OpenLint. This is the only package that's meant to be run exclusively in Node.js environment.
+- `packages/core` contains all the code that's supposed to parse the input, load & validate the ruleset, run $ref resolver, run the linting process, process errors, etc. It's the heart of OpenLint.
+- `packages/formats` is all about formats, as the title says :). It comes up with a set of officially supported formats you can leverage in your rulesets.
+- `packages/functions` is a collection of functions maintained by us that you can make use of in your rulesets.
+- `packages/parsers` is mostly used internally by packages/core. Our parsers live there. Do note that we mostly integrate `@stoplight/yaml` & `@stoplight/json` there.
+- `packages/ref-resolver` exposes an instance of json-ref-resolver
+- `packages/ruleset-migrator`
+- `packages/rulesets` is an array of rulesets backed by us. Currently the list of rulesets consists of OAS and AsyncAPI v2.
+- `packages/runtime` is a set of utilities you can use in your own custom functions.
 
 ### General Principles
 
-Since Spectral should be executable in a variety of environments, including browsers & Node.js, we strongly encourage to write code that's portable.
+Since OpenLint should be executable in a variety of environments, including browsers & Node.js, we strongly encourage to write code that's portable.
 This implies usage of packages that are not platform-specific, browser globals such as fetch, as well as Node.js modules, such as `fs` or `path`.
 The only exception is the CLI package that's supposed to be exclusive to Node.js.
 To make the whole process easier, we usually have equivalent packages or approaches.
@@ -68,8 +66,7 @@ For instance, `path` can be quite safely replaced with `@stoplight/path`.
 
 ### Linting
 
-In comparison with other Stoplight projects, Spectral is the strictest and enforces plenty of rules.
-We use a number of various linters, including ESLint, Prettier or [commitlint](https://github.com/conventional-changelog/commitlint).
+OpenLint uses a number of other linters, including ESLint, Prettier or [commitlint](https://github.com/conventional-changelog/commitlint).
 If you're confused about a given linting error, please refer to the documentation provided by the owner of one of these packages, or plugins we use.
 Commit messages follow [conventional-changelog](https://github.com/conventional-changelog/commitlint).
 This rule applies to the title of your PR as well.
@@ -94,10 +91,10 @@ yarn lint.prettier
 
 ### Tests
 
-We run tests in the two environments that Spectral supports - the browser, and Node.js. Browser tests are run in a headless Chrome browser via the Karma test runner, while Node.js tests are run via the Jest test runner.
+We run tests in the two environments that OpenLint supports - the browser, and Node.js. Browser tests are run in a headless Chrome browser via the Karma test runner, while Node.js tests are run via the Jest test runner.
 
 Tests should usually be written for both environments, but there are valid cases when you need to write separate tests for each test runner.
-To do so, just create a file with `*.karma.test.ts` suffix or `*.jest.test.ts`. A good example of Jest only tests are the tests covering Spectral's CLI functionality - something that obviously is not relevant to the browser context.
+To do so, just create a file with `*.karma.test.ts` suffix or `*.jest.test.ts`. A good example of Jest only tests are the tests covering OpenLint's CLI functionality - something that obviously is not relevant to the browser context.
 
 #### Caveats
 
@@ -109,7 +106,7 @@ If you need to setup HTTP mocks or populate FS with some data, we have a dedicat
 Example:
 
 ```ts
-import { serveAssets } from '@stoplight/spectral-test-utils';
+import { serveAssets } from '@openlint/openlint-test-utils';
 import * as path from '@stoplight/path';
 
 const cwd = '/tmp/some-fake-path';
@@ -159,7 +156,10 @@ yarn test.karma
 Running the harness tests (these must pass or the PR merge will be blocked):
 
 ```bash
-# make sure to build the code beforehand if you haven't done it. To do so execute yarn build && yarn workspace @stoplight/spectral-cli build.binary
+# make sure to build the code beforehand if you haven't done it. To do so execute
+yarn build && yarn workspace @openlint/openlint-cli build.binary
+
+# then
 yarn test.harness
 ```
 
@@ -167,16 +167,16 @@ yarn test.harness
 
 1. [Fork](https://help.github.com/articles/fork-a-repo/) this repository to your own GitHub account and then [clone](https://help.github.com/articles/cloning-a-repository/) it to your computer.
 2. Install yarn: Refer to the [installation documentation](https://classic.yarnpkg.com/en/docs/install/) according to your development operating system
-3. In your terminal, navigate to the directory you cloned Spectral into.
+3. In your terminal, navigate to the directory you cloned OpenLint into.
 4. Install the dependencies: `yarn`
-5. Build Spectral: `yarn build`
-6. Run Spectral from your local installation: `node ./packages/cli/dist/index.js lint [openapi_spec_file] --ruleset /path/to/ruleset.yaml`
+5. Build OpenLint: `yarn build`
+6. Run OpenLint from your local installation: `node ./packages/cli/dist/index.js lint [openapi_spec_file] --ruleset /path/to/ruleset.yaml`
 7. Create a new branch for your work: `git checkout -b [name_of_your_new_branch]`
-8. Make changes, add tests, and then run the tests: `yarn test` and `yarn workspace @stoplight/spectral-cli build.binary && yarn test.harness`
+8. Make changes, add tests, and then run the tests: `yarn test` and `yarn workspace @openlint/openlint-cli build.binary && yarn test.harness`
 9. Update the documentation if appropriate. For example, if you added a new rule to an OpenAPI ruleset,
    add a description of the rule in `docs/reference/openapi-rules.md`.
 
-Now, you are ready to commit & push your changes, and make a pull request to the Spectral repo! 😃
+Now, you are ready to commit & push your changes, and make a pull request to the OpenLint repo! 😃
 
 If this is your first Pull Request on GitHub, here's some [help](https://egghead.io/lessons/javascript-how-to-create-a-pull-request-on-github).
 
@@ -190,6 +190,6 @@ Before you open an issue, please search to see if anyone else has already opened
 
 ## Support
 
-For help, discussions, or "how-to" type questions, please use [GitHub Discussions](https://github.com/stoplightio/spectral/discussions). If you are unsure if you are experiencing a bug then this is also a great place to start, as a discussion can be turned into an issue easily.
+For help, discussions, or "how-to" type questions, please use [GitHub Discussions](https://github.com/openlint/openlint/discussions). If you are unsure if you are experiencing a bug then this is also a great place to start, as a discussion can be turned into an issue easily.
 
-If you have found a security issue, please email [security@stoplight.io](mailto:security@stoplight.io) directly.
+If you have found a security issue, please email [info@openlint.org](mailto:info@openlint.org) directly.

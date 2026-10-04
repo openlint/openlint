@@ -1,4 +1,4 @@
-import { oas2, oas3, oas3_0, oas3_1, oas3_2 } from '@stoplight/spectral-formats';
+import { oas2, oas3, oas3_0, oas3_1, oas3_2 } from '@openlint/openlint-formats';
 import {
   truthy,
   pattern,
@@ -8,7 +8,7 @@ import {
   undefined, // eslint-disable-line no-shadow-restricted-names
   alphabetical,
   length,
-} from '@stoplight/spectral-functions';
+} from '@openlint/openlint-functions';
 import {
   oasOpIdUnique,
   oasPathParam,
@@ -31,7 +31,7 @@ import serverVariables from '../shared/functions/serverVariables';
 export { ruleset as default };
 
 const ruleset = {
-  documentationUrl: 'https://meta.stoplight.io/docs/spectral/docs/reference/openapi-rules.md',
+  documentationUrl: 'https://openlint.org/docs/reference/openapi-rules.md',
   formats: [oas2, oas3, oas3_0, oas3_1, oas3_2],
   aliases: {
     PathItem: ['$.paths[*]'],

@@ -1,5 +1,5 @@
-import { truthy, pattern } from '@stoplight/spectral-functions';
-import type { RulesetDefinition } from '@stoplight/spectral-core';
+import { truthy, pattern } from '@openlint/openlint-functions';
+import type { RulesetDefinition } from '@openlint/openlint-core';
 
 export { ruleset as default };
 

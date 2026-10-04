@@ -1,4 +1,4 @@
-import { pattern } from '@stoplight/spectral-functions';
+import { pattern } from '@openlint/openlint-functions';
 import { DiagnosticSeverity } from '@stoplight/types';
 
 export default {

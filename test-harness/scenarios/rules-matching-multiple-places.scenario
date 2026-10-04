@@ -15,7 +15,7 @@ schemas:
 ====command====
 {bin} lint {document} -r "{asset:ruleset.js}" --ignore-unknown-format
 ====asset:ruleset.js====
-const { truthy, pattern } = require("@stoplight/spectral-functions");
+const { truthy, pattern } = require("@openlint/openlint-functions");
 
 module.exports = {
    "rules": {

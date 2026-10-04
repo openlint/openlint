@@ -1,5 +1,5 @@
-import { createRulesetFunction, IFunctionResult } from '@stoplight/spectral-core';
-import { printValue } from '@stoplight/spectral-runtime';
+import { createRulesetFunction, IFunctionResult } from '@openlint/openlint-core';
+import { printValue } from '@openlint/openlint-runtime';
 
 import { optionSchemas } from './optionSchemas';
 

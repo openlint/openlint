@@ -1,8 +1,8 @@
 import { isObject } from './utils/isObject';
 import type { Dictionary, JsonPath, Optional } from '@stoplight/types';
 import oasSchema, { Options as SchemaOptions } from './oasSchema';
-import { createRulesetFunction, IFunctionResult } from '@stoplight/spectral-core';
-import { oas2 } from '@stoplight/spectral-formats';
+import { createRulesetFunction, IFunctionResult } from '@openlint/openlint-core';
+import { oas2 } from '@openlint/openlint-formats';
 import traverse from 'json-schema-traverse';
 
 export type Options = {

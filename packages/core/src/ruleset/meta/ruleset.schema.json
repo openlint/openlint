@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "@stoplight/spectral-core/meta/ruleset.schema",
+  "$id": "@openlint/openlint-core/meta/ruleset.schema",
   "type": "object",
   "additionalProperties": false,
   "properties": {

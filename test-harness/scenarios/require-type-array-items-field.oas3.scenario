@@ -40,7 +40,7 @@ paths:
                       type: array
 
 ====asset:ruleset====
-const { oas } = require('@stoplight/spectral-rulesets');
+const { oas } = require('@openlint/openlint-rulesets');
 module.exports = oas;
 ====command====
 {bin} lint {document} --ruleset "{asset:ruleset}"

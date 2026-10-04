@@ -1,4 +1,4 @@
-import { truthy } from '@stoplight/spectral-functions';
+import { truthy } from '@openlint/openlint-functions';
 export default {
   extends: [
     {

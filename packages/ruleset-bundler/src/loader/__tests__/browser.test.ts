@@ -1,5 +1,5 @@
-import { serveAssets } from '@stoplight/spectral-test-utils';
-import { fetch } from '@stoplight/spectral-runtime';
+import { serveAssets } from '@openlint/openlint-test-utils';
+import { fetch } from '@openlint/openlint-runtime';
 import * as fs from 'fs';
 import { bundleAndLoadRuleset } from '../browser';
 import { IO } from '../../types';

@@ -1,6 +1,6 @@
 import * as fs from 'fs';
-import { serveAssets, mockResponses } from '@stoplight/spectral-test-utils';
-import { fetch } from '@stoplight/spectral-runtime';
+import { serveAssets, mockResponses } from '@openlint/openlint-test-utils';
+import { fetch } from '@openlint/openlint-runtime';
 
 import { bundleRuleset } from '../../index';
 import { virtualFs } from '../virtualFs';

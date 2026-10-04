@@ -1,4 +1,4 @@
-import { createRulesetFunction, IFunctionResult } from '@stoplight/spectral-core';
+import { createRulesetFunction, IFunctionResult } from '@openlint/openlint-core';
 import { optionSchemas } from './optionSchemas';
 
 export type Options = {

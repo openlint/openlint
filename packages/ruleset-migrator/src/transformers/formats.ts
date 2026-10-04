@@ -43,7 +43,7 @@ function transform(input: unknown, ctx: TransformerCtx): namedTypes.ArrayExpress
       new Set(
         input.map(format => {
           assertString(format);
-          return ctx.tree.addImport(REPLACEMENTS[format] ?? safeFormat(format), '@stoplight/spectral-formats');
+          return ctx.tree.addImport(REPLACEMENTS[format] ?? safeFormat(format), '@openlint/openlint-formats');
         }),
       ),
     ),

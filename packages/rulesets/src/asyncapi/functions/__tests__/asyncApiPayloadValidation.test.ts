@@ -1,4 +1,4 @@
-import { aas2_0, aas3, aas3_1 } from '@stoplight/spectral-formats';
+import { aas2_0, aas3, aas3_1 } from '@openlint/openlint-formats';
 import asyncApiPayloadValidation from '../asyncApiPayloadValidation';
 
 function runPayloadValidation(targetVal: any, format = aas2_0) {

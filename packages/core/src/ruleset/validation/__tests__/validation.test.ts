@@ -1,4 +1,4 @@
-import '@stoplight/spectral-test-utils/matchers';
+import '@openlint/openlint-test-utils/matchers';
 
 import { assertValidRuleset, RulesetValidationError } from '../index';
 import AggregateError = require('es-aggregate-error');

@@ -1,5 +1,5 @@
-const { falsy, truthy } = require('@stoplight/spectral-functions');
-const pascalCase = _interopDefault(require('/.tmp/spectral/extends-variant-8/assets/shared/functions/pascalCase.js'));
+const { falsy, truthy } = require('@openlint/openlint-functions');
+const pascalCase = _interopDefault(require('/.tmp/openlint/extends-variant-8/assets/shared/functions/pascalCase.js'));
 module.exports = {
   extends: [
     {

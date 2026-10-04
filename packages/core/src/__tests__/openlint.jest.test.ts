@@ -1,23 +1,23 @@
 import { normalize } from '@stoplight/path';
-import { truthy, pattern } from '@stoplight/spectral-functions';
+import { truthy, pattern } from '@openlint/openlint-functions';
 import { DiagnosticSeverity } from '@stoplight/types';
 import * as fs from 'fs';
 import nock from 'nock';
 import * as path from '@stoplight/path';
-import * as Parsers from '@stoplight/spectral-parsers';
-import { httpAndFileResolver } from '@stoplight/spectral-ref-resolver';
+import * as Parsers from '@openlint/openlint-parsers';
+import { httpAndFileResolver } from '@openlint/openlint-ref-resolver';
 
 import { Document } from '../document';
-import { Spectral } from '../spectral';
+import { OpenLint } from '../openlint';
 
-describe('Spectral', () => {
+describe('OpenLint', () => {
   afterEach(() => {
     nock.cleanAll();
   });
 
   test('should report issues for correct files with correct ranges and paths', async () => {
     const documentUri = normalize(path.join(__dirname, './__fixtures__/document-with-external-refs.json'));
-    const spectral = new Spectral({ resolver: httpAndFileResolver });
+    const spectral = new OpenLint({ resolver: httpAndFileResolver });
     spectral.setRuleset({
       rules: {
         'requires-type': {
@@ -89,7 +89,7 @@ describe('Spectral', () => {
   });
 
   test('properly decorates results with metadata pertaining to the document being linted', async () => {
-    const s = new Spectral({ resolver: httpAndFileResolver });
+    const s = new OpenLint({ resolver: httpAndFileResolver });
     s.setRuleset({
       rules: {
         'unsecure-remote-reference': {
@@ -170,7 +170,7 @@ describe('Spectral', () => {
   });
 
   test('should recognize the source of remote $refs, and de-dupe results by fingerprint', async () => {
-    const s = new Spectral({ resolver: httpAndFileResolver });
+    const s = new OpenLint({ resolver: httpAndFileResolver });
     const documentUri = path.join(__dirname, './__fixtures__/gh-658/URIError.yaml');
 
     s.setRuleset({
@@ -271,7 +271,7 @@ describe('Spectral', () => {
   });
 
   test('should dedupe paths containing special characters', async () => {
-    const s = new Spectral({ resolver: httpAndFileResolver });
+    const s = new OpenLint({ resolver: httpAndFileResolver });
     const documentUri = path.join(__dirname, './__fixtures__/gh-2500/input.json');
 
     s.setRuleset((await import('./__fixtures__/gh-2500/ruleset')).default);

@@ -1,5 +1,5 @@
-import { createRulesetFunction } from '@stoplight/spectral-core';
-import { safePointerToPath } from '@stoplight/spectral-runtime';
+import { createRulesetFunction } from '@openlint/openlint-core';
+import { safePointerToPath } from '@openlint/openlint-runtime';
 import { decodePointer } from '@stoplight/json';
 
 import { optionSchemas } from './optionSchemas';

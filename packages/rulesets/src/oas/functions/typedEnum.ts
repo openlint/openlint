@@ -1,6 +1,6 @@
-import { oas2, oas3_0 } from '@stoplight/spectral-formats';
-import { printValue } from '@stoplight/spectral-runtime';
-import { createRulesetFunction, Document, IFunctionResult } from '@stoplight/spectral-core';
+import { oas2, oas3_0 } from '@openlint/openlint-formats';
+import { printValue } from '@openlint/openlint-runtime';
+import { createRulesetFunction, Document, IFunctionResult } from '@openlint/openlint-core';
 import type { JSONSchema4TypeName, JSONSchema6TypeName, JSONSchema7TypeName } from 'json-schema';
 
 function getDataType(

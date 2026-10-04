@@ -1,5 +1,5 @@
 import { DiagnosticSeverity } from '@stoplight/types';
-import type { IRuleResult } from '@stoplight/spectral-core';
+import type { IRuleResult } from '@openlint/openlint-core';
 import { json } from '../json';
 
 const results: IRuleResult[] = [
@@ -8,7 +8,7 @@ const results: IRuleResult[] = [
     message: 'paths./pets.get.description is not truthy',
     path: ['paths', '/pets', 'get', 'description'],
     severity: 1,
-    source: '/home/Stoplight/spectral/yaml/src/__tests__/fixtures/petstore.oas2.yaml',
+    source: '/home/openlint/yaml/src/__tests__/fixtures/petstore.oas2.yaml',
     range: {
       start: {
         line: 60,
@@ -25,7 +25,7 @@ const results: IRuleResult[] = [
     message: 'paths./pets.get.tags is not truthy',
     path: ['paths', '/pets', 'get', 'tags'],
     severity: 1,
-    source: '/home/Stoplight/spectral/yaml/src/__tests__/fixtures/petstore.oas2.yaml',
+    source: '/home/openlint/yaml/src/__tests__/fixtures/petstore.oas2.yaml',
     range: {
       start: {
         line: 60,

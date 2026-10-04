@@ -1,4 +1,4 @@
-import { length as length$0, truthy } from '@stoplight/spectral-functions';
+import { length as length$0, truthy } from '@openlint/openlint-functions';
 export default {
   rules: {
     rule: {

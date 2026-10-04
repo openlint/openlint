@@ -25,7 +25,7 @@ jobs:
       - run: "[ -d lint-results ] || mkdir lint-results"
       - run:
           name: Run Spectral Lint
-          command: npx @stoplight/spectral-cli lint openapi.yaml
+          command: npx @openlint/openlint-cli lint openapi.yaml
             -o lint-results/junit.xml
             -f junit
       - store_test_results:
@@ -43,11 +43,11 @@ The `-f` (format) flag is used in the script to pick the JUnit output format. Th
 
 ![On the CircleCI build results page there is a tab called Tests, which shows Spectral results if the JUnit format has been enabled](../img/ci-circleci.png)
 
-Learn more about [CircleCI Configuration](https://circleci.com/docs/2.0/config-intro/), or take a look at this [demo repository](https://github.com/philsturgeon/spectral-demo-circleci).
+Learn more about [CircleCI Configuration](https://circleci.com/docs/2.0/config-intro/), or take a look at this [demo repository](https://github.com/philsturgeon/openlint-demo-circleci).
 
 ## GitHub Action
 
-Spectral has a pre-built [Spectral GitHub Action](https://github.com/stoplightio/spectral-action) which should speed up implementing Spectral in your GitHub repository.
+Spectral has a pre-built [Spectral GitHub Action](https://github.com/stoplightio/openlint-action) which should speed up implementing Spectral in your GitHub repository.
 
 ## GitLab
 
@@ -57,18 +57,18 @@ GitLab users can add the following to their `.gitlab-ci.yml` files:
 stages:
   - lint
 
-lint:spectral:
+lint:openlint:
   stage: lint
   image:
-    name: stoplight/spectral
+    name: openlint/openlint
     entrypoint: [""]
   script:
-    - spectral lint -D -f junit -o spectral-report.xml openapi.yaml
+    - openlint lint -D -f junit -o openlint-report.xml openapi.yaml
   artifacts:
     when: always
     expire_in: 2 weeks
     reports:
-      junit: $CI_PROJECT_DIR/spectral-report.xml
+      junit: $CI_PROJECT_DIR/openlint-report.xml
 ```
 
 Make sure to change `openapi.yaml` to point to whatever documents you want to lint.

@@ -16,7 +16,7 @@ schemas:
 ====command====
 {bin} lint {document} -r "{asset:ruleset.js}"
 ====asset:ruleset.js====
-const { truthy } = require("@stoplight/spectral-functions");
+const { truthy } = require("@openlint/openlint-functions");
 
 function validAddress(input) {
   throw new TypeError(`Cannot read properties of null (reading 'test')`);

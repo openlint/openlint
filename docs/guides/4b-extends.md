@@ -10,7 +10,7 @@ Extends can reference any [distributed ruleset](../guides/7-sharing-rulesets.md)
 
 ```yaml
 extends:
-  - ./config/spectral.json
+  - ./config/openlint.json
   - https://example.org/api/style.yaml
   - some-npm-module # note that this would be treated as any other npm package, therefore it has to be placed under node_modules and have a valid package.json.
 ```

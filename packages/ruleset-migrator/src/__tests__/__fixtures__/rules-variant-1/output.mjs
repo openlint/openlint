@@ -1,5 +1,5 @@
-import { oas2 } from '@stoplight/spectral-formats';
-import { truthy } from '@stoplight/spectral-functions';
+import { oas2 } from '@openlint/openlint-formats';
+import { truthy } from '@openlint/openlint-functions';
 export default {
   rules: {
     'oas3-schema': 'error',

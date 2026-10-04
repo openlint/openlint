@@ -50,12 +50,12 @@
     },
     {
       "type": "item",
-      "title": "Spectral CLI",
+      "title": "OpenLint CLI",
       "uri": "/docs/guides/2-cli.md"
     },
     {
       "type": "item",
-      "title": "Spectral in JavaScript",
+      "title": "OpenLint in JavaScript",
       "uri": "/docs/guides/3-javascript.md"
     },
     {
@@ -125,13 +125,8 @@
     },
     {
       "type": "item",
-      "title": "Spectral v4 to v5 Migration Guide",
-      "uri": "/docs/migration-guides/5.0.md"
-    },
-    {
-      "type": "item",
-      "title": "Spectral v5 to v6 Migration Guide",
-      "uri": "/docs/migration-guides/6.0.md"
+      "title": "Migrate from Spectral",
+      "uri": "/docs/migration-guides/spectral.md"
     },
     {
       "type": "divider",

@@ -16,7 +16,7 @@
         "character": 19
       }
     },
-    "source": "/home/Stoplight/spectral/src/__tests__/__fixtures__/petstore.oas3.json"
+    "source": "/home/openlint/src/__tests__/__fixtures__/petstore.oas3.json"
   },
   {
     "code": "info-description",
@@ -35,7 +35,7 @@
         "character": 19
       }
     },
-    "source": "/home/Stoplight/spectral/src/__tests__/__fixtures__/petstore.oas3.json"
+    "source": "/home/openlint/src/__tests__/__fixtures__/petstore.oas3.json"
   },
   {
     "code": "info-matches-stoplight",
@@ -55,7 +55,7 @@
         "character": 31
       }
     },
-    "source": "/home/Stoplight/spectral/src/__tests__/__fixtures__/petstore.oas3.json"
+    "source": "/home/openlint/src/__tests__/__fixtures__/petstore.oas3.json"
   },
   {
     "code": "operation-description",
@@ -76,7 +76,7 @@
         "character": 54
       }
     },
-    "source": "/home/Stoplight/spectral/src/__tests__/__fixtures__/petstore.oas3.json"
+    "source": "/home/openlint/src/__tests__/__fixtures__/petstore.oas3.json"
   },
   {
     "code": "operation-description",
@@ -97,7 +97,7 @@
         "character": 54
       }
     },
-    "source": "/home/Stoplight/spectral/src/__tests__/__fixtures__/petstore.oas3.json"
+    "source": "/home/openlint/src/__tests__/__fixtures__/petstore.oas3.json"
   },
   {
     "code": "operation-description",
@@ -118,6 +118,6 @@
         "character": 54
       }
     },
-    "source": "/home/Stoplight/spectral/src/__tests__/__fixtures__/petstore.oas3.json"
+    "source": "/home/openlint/src/__tests__/__fixtures__/petstore.oas3.json"
   }
 ]

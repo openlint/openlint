@@ -37,7 +37,7 @@ jobs:
       image: node:lts
     steps:
     - name: Checkout code
-      uses: actions/checkout@v5.0.1
+      uses: actions/checkout@v7.0.1
       with:
         ref: ${{ inputs.tag }}
     - name: Install sudo
@@ -56,21 +56,21 @@ jobs:
         targets: macos-arm64
         bytecode: false
         node-version: '22'
-    - run: mv packages/cli/binaries/spectral packages/cli/binaries/spectral-macos-arm64
+    - run: mv packages/cli/binaries/openlint packages/cli/binaries/openlint-macos-arm64
     - name: Build binary linux-arm64
       uses: "./.github/actions/build-binary"
       with:
         targets: linux-arm64
         bytecode: false
         node-version: '22'
-    - run: mv packages/cli/binaries/spectral packages/cli/binaries/spectral-linux-arm64
+    - run: mv packages/cli/binaries/openlint packages/cli/binaries/openlint-linux-arm64
     - name: Build binary alpine-arm64
       uses: "./.github/actions/build-binary"
       with:
         targets: alpine-arm64
         bytecode: false
         node-version: '22'
-    - run: mv packages/cli/binaries/spectral packages/cli/binaries/spectral-alpine-arm64
+    - run: mv packages/cli/binaries/openlint packages/cli/binaries/openlint-alpine-arm64
     - name: Upload artifacts
       uses: actions/upload-artifact@v4.1.0
       with:
@@ -83,7 +83,7 @@ jobs:
       image: node:lts
     steps:
     - name: Checkout code
-      uses: actions/checkout@v5.0.1
+      uses: actions/checkout@v7.0.1
       with:
         ref: ${{ inputs.tag }}
     - name: Install sudo
@@ -102,21 +102,21 @@ jobs:
         targets: macos-x64
         bytecode: false
         node-version: '22'
-    - run: mv packages/cli/binaries/spectral packages/cli/binaries/spectral-macos-x64
+    - run: mv packages/cli/binaries/openlint packages/cli/binaries/openlint-macos-x64
     - name: Build binary linux-x64
       uses: "./.github/actions/build-binary"
       with:
         targets: linux-x64
         bytecode: false
         node-version: '22'
-    - run: mv packages/cli/binaries/spectral packages/cli/binaries/spectral-linux-x64
+    - run: mv packages/cli/binaries/openlint packages/cli/binaries/openlint-linux-x64
     - name: Build binary alpine-x64
       uses: "./.github/actions/build-binary"
       with:
         targets: alpine-x64
         bytecode: false
         node-version: '22'
-    - run: mv packages/cli/binaries/spectral packages/cli/binaries/spectral-alpine-x64
+    - run: mv packages/cli/binaries/openlint packages/cli/binaries/openlint-alpine-x64
     - name: Upload artifacts
       uses: actions/upload-artifact@v4.1.0
       with:
@@ -127,7 +127,7 @@ jobs:
     needs: validate
     steps:
     - name: Checkout code
-      uses: actions/checkout@v5.0.1
+      uses: actions/checkout@v7.0.1
       with:
         ref: ${{ inputs.tag }}
     - name: Cached dependencies
@@ -172,13 +172,13 @@ jobs:
     needs:
     - upload-artifacts
     steps:
-    - uses: actions/checkout@v5.0.1
+    - uses: actions/checkout@v7.0.1
       with:
         ref: ${{ inputs.tag }}
     - name: docker build
       run: |-
         GIT_SHA="$(git rev-parse --short HEAD)"
-        docker build . --tag stoplight/spectral:${GIT_SHA}
+        docker build . --tag openlint/openlint:${GIT_SHA}
     - name: docker login
       uses: docker/login-action@v4
       with:
@@ -194,13 +194,13 @@ jobs:
         MINOR_VERSION="${FULL_VERSION%.*}"
         MAJOR_VERSION="${MINOR_VERSION%.*}"
 
-        docker tag stoplight/spectral:${GIT_SHA} stoplight/spectral:${FULL_VERSION}
-        docker tag stoplight/spectral:${GIT_SHA} stoplight/spectral:${MINOR_VERSION}
-        docker tag stoplight/spectral:${GIT_SHA} stoplight/spectral:${MAJOR_VERSION}
-        docker tag stoplight/spectral:${GIT_SHA} stoplight/spectral:latest
+        docker tag openlint/openlint:${GIT_SHA} openlint/openlint:${FULL_VERSION}
+        docker tag openlint/openlint:${GIT_SHA} openlint/openlint:${MINOR_VERSION}
+        docker tag openlint/openlint:${GIT_SHA} openlint/openlint:${MAJOR_VERSION}
+        docker tag openlint/openlint:${GIT_SHA} openlint/openlint:latest
 
-        docker push stoplight/spectral:${GIT_SHA}
-        docker push stoplight/spectral:${FULL_VERSION}
-        docker push stoplight/spectral:${MINOR_VERSION}
-        docker push stoplight/spectral:${MAJOR_VERSION}
-        docker push stoplight/spectral:latest
+        docker push openlint/openlint:${GIT_SHA}
+        docker push openlint/openlint:${FULL_VERSION}
+        docker push openlint/openlint:${MINOR_VERSION}
+        docker push openlint/openlint:${MAJOR_VERSION}
+        docker push openlint/openlint:latest

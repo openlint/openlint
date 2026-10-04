@@ -84,7 +84,7 @@ rules:
 Where the function `functions/equals.js` looks like:
 
 ```js
-import { createRulesetFunction } from "@stoplight/spectral-core";
+import { createRulesetFunction } from "@openlint/openlint-core";
 
 export default createRulesetFunction(
   {
@@ -115,7 +115,7 @@ export default createRulesetFunction(
 You can also name the custom function by using `createRulesetFunction` and passing a named function. This can help debug any errors as the function name is printed out in any error messages:
 
 ```js
-import { createRulesetFunction } from "@stoplight/spectral-core";
+import { createRulesetFunction } from "@openlint/openlint-core";
 
 export default createRulesetFunction(
   {
@@ -278,7 +278,7 @@ Make sure to provide all arguments that were originally passed to your function,
 ### Example
 
 ```js
-import { truthy } from "@stoplight/spectral-functions";
+import { truthy } from "@openlint/openlint-functions";
 
 export default function (input, ...args) {
   if (input.info["skip-info"] === true) {

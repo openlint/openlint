@@ -1,4 +1,4 @@
-import { undefined as undefined$0 } from "@stoplight/spectral-functions";
+import { undefined as undefined$0 } from "@openlint/openlint-functions";
 export default {
   rules: {
     'oas3-unused-components': 'error',

@@ -1,4 +1,4 @@
-import type { SpawnFn } from '@stoplight/spectral-test-harness';
+import type { SpawnFn } from '@openlint/openlint-test-harness';
 import * as child_process from 'child_process';
 import { Transform } from 'stream';
 import { normalizeLineEndings, stripDeprecationWarnings } from '../utils';

@@ -1,11 +1,11 @@
-import { falsy, pattern, truthy } from '@stoplight/spectral-functions';
+import { falsy, pattern, truthy } from '@openlint/openlint-functions';
 import { DiagnosticSeverity } from '@stoplight/types';
 import { parse } from '@stoplight/yaml';
-import * as Parsers from '@stoplight/spectral-parsers';
-import { Resolver } from '@stoplight/spectral-ref-resolver';
+import * as Parsers from '@openlint/openlint-parsers';
+import { Resolver } from '@openlint/openlint-ref-resolver';
 
 import { IParsedResult } from '../document';
-import { Document, Spectral, Format, RulesetDefinition, Ruleset } from '..';
+import { Document, OpenLint, Format, RulesetDefinition, Ruleset } from '..';
 import { normalize } from '@stoplight/path';
 import * as path from '@stoplight/path';
 
@@ -24,10 +24,10 @@ const target = {
 };
 
 describe('linter', () => {
-  let spectral: Spectral;
+  let spectral: OpenLint;
 
   beforeEach(() => {
-    spectral = new Spectral();
+    spectral = new OpenLint();
   });
 
   test('should demand some result', () => {
@@ -247,7 +247,7 @@ describe('linter', () => {
       Parsers.Yaml,
     );
 
-    const spectral = new Spectral();
+    const spectral = new OpenLint();
 
     spectral.setRuleset({
       rules: {
@@ -677,7 +677,7 @@ responses:: !!foo
   });
 
   test('should report when a resolver is no t defined for a given $ref type', async () => {
-    const s = new Spectral({ resolver: new Resolver() });
+    const s = new OpenLint({ resolver: new Resolver() });
     s.setRuleset(new Ruleset({ rules: {} }));
 
     const document = JSON.stringify({
@@ -990,7 +990,7 @@ responses:: !!foo
 
   describe('evaluate {{value}} in validation messages', () => {
     test('should print primitive values', () => {
-      spectral = new Spectral();
+      spectral = new OpenLint();
       spectral.setRuleset({
         rules: {
           'header-parameter-names-kebab-case': {
@@ -1043,7 +1043,7 @@ responses:: !!foo
     });
 
     test('should not attempt to print complex values', () => {
-      spectral = new Spectral();
+      spectral = new OpenLint();
       spectral.setRuleset({
         rules: {
           'empty-is-falsy': {
@@ -1105,7 +1105,7 @@ responses:: !!foo
         },
       });
 
-      spectral = new Spectral({ resolver });
+      spectral = new OpenLint({ resolver });
 
       spectral.setRuleset({
         rules: {
@@ -1267,7 +1267,7 @@ responses:: !!foo
   });
 
   test.each(['1', 'null', '', 'false'])('given %s input, should report nothing', async input => {
-    const s = new Spectral();
+    const s = new OpenLint();
     s.setRuleset(new Ruleset({ rules: {} }));
 
     const source = '/tmp/file.yaml';
@@ -1279,7 +1279,7 @@ responses:: !!foo
   });
 
   test('should be capable of linting arrays', async () => {
-    const s = new Spectral();
+    const s = new OpenLint();
 
     s.setRuleset({
       rules: {
@@ -1339,7 +1339,7 @@ responses:: !!foo
       },
     };
 
-    const spectral = new Spectral();
+    const spectral = new OpenLint();
     spectral.setRuleset(new Ruleset(ruleset, { source: path.join(path.dirname(documentUri), 'ruleset.json') }));
 
     const document = new Document(
@@ -1412,7 +1412,7 @@ responses:: !!foo
         ],
       };
 
-      const spectral = new Spectral();
+      const spectral = new OpenLint();
 
       spectral.setRuleset(new Ruleset(ruleset, { source: path.join(path.dirname(documentUri), 'ruleset.json') }));
 
@@ -1501,7 +1501,7 @@ responses:: !!foo
         ],
       };
 
-      const spectral = new Spectral();
+      const spectral = new OpenLint();
 
       spectral.setRuleset(new Ruleset(ruleset, { source: path.join(path.dirname(documentUri), 'ruleset.json') }));
 
@@ -1562,7 +1562,7 @@ responses:: !!foo
         ],
       };
 
-      const spectral = new Spectral();
+      const spectral = new OpenLint();
 
       spectral.setRuleset(new Ruleset(ruleset, { source: path.join(path.dirname(documentUri), 'ruleset.json') }));
 
@@ -1596,7 +1596,7 @@ responses:: !!foo
   });
 
   test.concurrent('should retain path in async functions', async () => {
-    const spectral = new Spectral();
+    const spectral = new OpenLint();
     const documentUri = path.join(__dirname, './__fixtures__/test.json');
     spectral.setRuleset({
       rules: {
@@ -1647,7 +1647,7 @@ responses:: !!foo
   });
 
   test.concurrent('should handle direct circular file $refs', async () => {
-    const spectral = new Spectral();
+    const spectral = new OpenLint();
     spectral.setRuleset({
       rules: {
         'valid-type': {
@@ -1692,7 +1692,7 @@ responses:: !!foo
   });
 
   test.concurrent('should reset path provided in fn context', async () => {
-    const spectral = new Spectral();
+    const spectral = new OpenLint();
     const fn = jest.fn();
 
     spectral.setRuleset({

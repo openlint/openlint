@@ -1,6 +1,6 @@
-import { oas3 } from '@stoplight/spectral-formats';
-import { truthy } from '@stoplight/spectral-functions';
-import type { RulesetDefinition } from '@stoplight/spectral-core';
+import { oas3 } from '@openlint/openlint-formats';
+import { truthy } from '@openlint/openlint-functions';
+import type { RulesetDefinition } from '@openlint/openlint-core';
 
 export { ruleset as default };
 

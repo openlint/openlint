@@ -1,5 +1,5 @@
 import { DiagnosticSeverity } from '@stoplight/types';
-import type { IRuleResult } from '@stoplight/spectral-core';
+import type { IRuleResult } from '@openlint/openlint-core';
 import { FormatterContext } from '../types';
 import { githubActions } from '../github-actions';
 

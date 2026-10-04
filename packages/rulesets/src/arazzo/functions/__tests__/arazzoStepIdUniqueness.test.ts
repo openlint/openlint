@@ -1,6 +1,6 @@
 import { DeepPartial } from '@stoplight/types';
 import arazzoStepIdUniqueness from '../arazzoStepIdUniqueness';
-import type { RulesetFunctionContext } from '@stoplight/spectral-core';
+import type { RulesetFunctionContext } from '@openlint/openlint-core';
 
 const runRule = (target: { steps: Array<{ stepId: string }> }) => {
   const context: DeepPartial<RulesetFunctionContext> = {

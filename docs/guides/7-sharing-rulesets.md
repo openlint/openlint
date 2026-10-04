@@ -12,7 +12,7 @@ Or mix and match:
 
 ```yaml
 extends:
-  - ./config/spectral.json
+  - ./config/openlint.json
   - https://example.org/api/style.yaml
   - some-npm-module # note that this would be treated as any other npm package, therefore it has to live under node_modules, and have a valid package.json.
 ```
@@ -38,15 +38,15 @@ extends:
   - https://raw.githubusercontent.com/openapi-contrib/style-guides/master/apisyouwonthate.yml
 ```
 
-As with any ruleset, you can pass these directly to the [Spectral CLI](./2-cli.md):
+As with any ruleset, you can pass these directly to the [OpenLint CLI](./2-cli.md):
 
 ```shell
-spectral lint -r https://example.com/some-ruleset.yml
+openlint lint -r https://example.com/some-ruleset.yml
 ```
 
 ## npm
 
-As Spectral is an [npm](https://www.npmjs.com/) package, it supports loading rulesets from other npm packages.
+As OpenLint is an [npm](https://www.npmjs.com/) package, it supports loading rulesets from other npm packages.
 
 Not only does it let you serve files without a need for hosting your own server or uploading it somewhere else, but also supports versioning out of the box, and makes it easy to bundle a ruleset with custom rulesets.
 
@@ -56,9 +56,9 @@ This is a basic example showing how the directory structure as well as package.j
 
 ```json
 {
-  "name": "example-spectral-ruleset",
+  "name": "example-openlint-ruleset",
   "version": "0.0.0",
-  "description": "Example Spectral ruleset",
+  "description": "Example ruleset",
   "main": "ruleset.json",
   "scripts": {},
   "license": "ISC"
@@ -113,7 +113,7 @@ Developers wanting to pull in your ruleset can just install the package using ya
 
 ```yaml
 extends:
-  - example-spectral-ruleset
+  - example-openlint-ruleset
 ```
 
 Locking a ruleset on a given version is possible through `package.json`:
@@ -121,7 +121,7 @@ Locking a ruleset on a given version is possible through `package.json`:
 ```json
 {
   "dependencies": {
-    "example-spectral-ruleset": "0.2.0"
+    "example-openlint-ruleset": "0.2.0"
   }
 }
 ```
@@ -130,12 +130,12 @@ If you use Spectral in a browser or don't want to install the package, you can a
 
 ```yaml
 extends:
-  - "https://unpkg.com/example-spectral-ruleset@0.2.0"
+  - "https://unpkg.com/example-openlint-ruleset@0.2.0"
 ```
 
 ## Filesystem
 
-If you want to share Spectral rulesets between multiple repositories, you may need to use something like [Git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) to clone down another repository into your repository.
+If you want to share OpenLint rulesets between multiple repositories, you may need to use something like [Git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) to clone down another repository into your repository.
 
 ```bash
 git submodule add https://github.com/some-org/style-guide
@@ -145,7 +145,7 @@ With that in place, you reference the files inside it:
 
 ```yaml
 extends:
-  - ./style-guide/spectral.json
+  - ./style-guide/openlint.json
 ```
 
 This works if you need custom functions, as `functionsDir` can point to a directory inside `style-guide/` and all the JavaScript files can live in there too.

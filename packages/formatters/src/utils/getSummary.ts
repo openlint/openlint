@@ -1,5 +1,5 @@
 import { DiagnosticSeverity, Dictionary } from '@stoplight/types';
-import { IRuleResult } from '@stoplight/spectral-core';
+import { IRuleResult } from '@openlint/openlint-core';
 import { groupBySeverity } from './groupBySeverity';
 import { pluralize } from './pluralize';
 

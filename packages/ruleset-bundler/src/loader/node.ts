@@ -1,6 +1,6 @@
 import { createRequire } from 'module';
 import * as path from '@stoplight/path';
-import { Ruleset, RulesetDefinition } from '@stoplight/spectral-core';
+import { Ruleset, RulesetDefinition } from '@openlint/openlint-core';
 
 import { bundle } from './common/bundle';
 import { node } from '../presets/node';

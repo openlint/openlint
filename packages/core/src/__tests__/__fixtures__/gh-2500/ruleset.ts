@@ -1,6 +1,6 @@
 import { Ruleset } from '../../../ruleset';
 import { DiagnosticSeverity } from '@stoplight/types';
-import { defined } from '@stoplight/spectral-functions';
+import { defined } from '@openlint/openlint-functions';
 
 export default new Ruleset({
   rules: {

@@ -1,6 +1,6 @@
-import { serveAssets } from '@stoplight/spectral-test-utils';
-import { IRuleResult, Spectral, Document, RulesetDefinition } from '@stoplight/spectral-core';
-import { httpAndFileResolver } from '@stoplight/spectral-ref-resolver';
+import { serveAssets } from '@openlint/openlint-test-utils';
+import { IRuleResult, OpenLint, Document, RulesetDefinition } from '@openlint/openlint-core';
+import { httpAndFileResolver } from '@openlint/openlint-ref-resolver';
 import oasRuleset from '../../oas/index';
 import aasRuleset from '../../asyncapi/index';
 import arazzoRuleset from '../../arazzo/index';
@@ -37,8 +37,8 @@ export default (ruleName: RuleName, tests: Scenario): void => {
   });
 };
 
-export function createWithRules(rules: (keyof Ruleset['rules'])[]): Spectral {
-  const s = new Spectral({ resolver: httpAndFileResolver });
+export function createWithRules(rules: (keyof Ruleset['rules'])[]): OpenLint {
+  const s = new OpenLint({ resolver: httpAndFileResolver });
 
   s.setRuleset({
     extends: [

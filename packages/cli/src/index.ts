@@ -2,7 +2,7 @@
 
 import * as yargs from 'yargs';
 
-import { DEFAULT_REQUEST_OPTIONS } from '@stoplight/spectral-runtime';
+import { DEFAULT_REQUEST_OPTIONS } from '@openlint/openlint-runtime';
 import lintCommand from './commands/lint';
 
 if (typeof process.env.PROXY === 'string') {
@@ -15,7 +15,7 @@ if (typeof process.env.PROXY === 'string') {
 }
 
 export default yargs
-  .scriptName('spectral')
+  .scriptName('openlint')
   .parserConfiguration({
     'camel-case-expansion': true,
   })

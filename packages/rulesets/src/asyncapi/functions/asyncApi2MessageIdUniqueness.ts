@@ -1,9 +1,9 @@
-import { createRulesetFunction } from '@stoplight/spectral-core';
+import { createRulesetFunction } from '@openlint/openlint-core';
 import { isPlainObject } from '@stoplight/json';
 
 import { getAllMessages } from './utils/getAllMessages';
 
-import type { IFunctionResult } from '@stoplight/spectral-core';
+import type { IFunctionResult } from '@openlint/openlint-core';
 import type { JsonPath } from '@stoplight/types';
 
 function retrieveMessageId(message: {

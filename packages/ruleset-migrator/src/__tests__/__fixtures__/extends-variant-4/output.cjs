@@ -1,4 +1,4 @@
-const { oas } = require('@stoplight/spectral-rulesets');
+const { oas } = require('@openlint/openlint-rulesets');
 module.exports = {
   extends: [[oas, 'off']],
 };

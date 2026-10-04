@@ -1,4 +1,4 @@
-import { fetch as defaultFetch } from '@stoplight/spectral-runtime';
+import { fetch as defaultFetch } from '@openlint/openlint-runtime';
 import { isURL, extname } from '@stoplight/path';
 import type { Fetch } from '../types';
 

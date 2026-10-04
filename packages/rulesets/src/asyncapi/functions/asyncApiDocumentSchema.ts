@@ -2,8 +2,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
-import { createRulesetFunction, IFunctionResult, Format } from '@stoplight/spectral-core';
-import { schema as schemaFn } from '@stoplight/spectral-functions';
+import { createRulesetFunction, IFunctionResult, Format } from '@openlint/openlint-core';
+import { schema as schemaFn } from '@openlint/openlint-functions';
 import type { ErrorObject } from 'ajv';
 import { getCopyOfSchema, selectAsyncAPISchema } from './utils/specs';
 import type { AsyncAPISpecVersion } from './utils/specs';

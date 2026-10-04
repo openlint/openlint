@@ -1,8 +1,8 @@
 // This function will check an API doc to verify that any tag that appears on
 // an operation is also present in the global tags array.
 
-import type { IFunctionResult } from '@stoplight/spectral-core';
-import { createRulesetFunction } from '@stoplight/spectral-core';
+import type { IFunctionResult } from '@openlint/openlint-core';
+import { createRulesetFunction } from '@openlint/openlint-core';
 import { getAllOperations } from './utils/getAllOperations';
 import { isObject } from './utils/isObject';
 

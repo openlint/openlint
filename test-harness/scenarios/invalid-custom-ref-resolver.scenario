@@ -3,7 +3,7 @@ Prints meaningful error message when custom json-ref-resolver instance cannot be
 ====document====
 $ref: custom://user.yaml
 ====asset:ruleset====
-const { truthy } = require('@stoplight/spectral-functions');
+const { truthy } = require('@openlint/openlint-functions');
 
 module.exports = {
   rules:

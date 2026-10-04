@@ -1,4 +1,4 @@
-import { oas2, oas3_0, oas3_1 } from '@stoplight/spectral-formats';
+import { oas2, oas3_0, oas3_1 } from '@openlint/openlint-formats';
 export default {
   aliases: {
     schema: {

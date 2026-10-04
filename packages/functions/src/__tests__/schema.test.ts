@@ -1,8 +1,8 @@
 import type { JSONSchema6 as JSONSchema } from 'json-schema';
 import schema from '../schema';
-import { RulesetValidationError } from '@stoplight/spectral-core';
+import { RulesetValidationError } from '@openlint/openlint-core';
 import testFunction from './__helpers__/tester';
-import '@stoplight/spectral-test-utils/matchers';
+import '@openlint/openlint-test-utils/matchers';
 import AggregateError = require('es-aggregate-error');
 
 const runSchema = testFunction.bind(null, schema);

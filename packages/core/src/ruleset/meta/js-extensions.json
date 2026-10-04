@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "@stoplight/spectral-core/meta/extensions",
+  "$id": "@openlint/openlint-core/meta/extensions",
   "$defs": {
     "Extends": {
       "$anchor": "extends",
@@ -39,12 +39,12 @@
     },
     "Format": {
       "$anchor": "format",
-      "x-spectral-runtime": "format",
+      "x-openlint-runtime": "format",
       "errorMessage": "must be a valid format"
     },
     "Function": {
       "$anchor": "function",
-      "x-spectral-runtime": "ruleset-function",
+      "x-openlint-runtime": "ruleset-function",
       "type": "object",
       "properties": {
         "function": true

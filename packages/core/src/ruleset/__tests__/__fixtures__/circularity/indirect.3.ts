@@ -1,5 +1,5 @@
 import ruleset from './indirect.1';
-import {falsy} from "@stoplight/spectral-functions";
+import {falsy} from "@openlint/openlint-functions";
 
 export default {
   get extends() {

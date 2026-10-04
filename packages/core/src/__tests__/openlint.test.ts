@@ -1,12 +1,12 @@
 import { DiagnosticSeverity } from '@stoplight/types';
-import { truthy } from '@stoplight/spectral-functions';
-import * as Parsers from '@stoplight/spectral-parsers';
-import { Resolver } from '@stoplight/spectral-ref-resolver';
+import { truthy } from '@openlint/openlint-functions';
+import * as Parsers from '@openlint/openlint-parsers';
+import { Resolver } from '@openlint/openlint-ref-resolver';
 import { Document } from '../document';
-import { Spectral } from '../spectral';
+import { OpenLint } from '../openlint';
 import { Ruleset } from '../ruleset';
 
-describe('spectral', () => {
+describe('openlint', () => {
   describe('when a $ref appears', () => {
     describe('and a custom resolver is provided', () => {
       test('will call the resolver with target', async () => {
@@ -14,7 +14,7 @@ describe('spectral', () => {
 
         const resolve = jest.spyOn(customResolver, 'resolve');
 
-        const s = new Spectral({
+        const s = new OpenLint({
           resolver: customResolver,
         });
 
@@ -30,7 +30,7 @@ describe('spectral', () => {
       });
 
       test('should recognize the source of local $refs', () => {
-        const s = new Spectral();
+        const s = new OpenLint();
         const source = 'foo.yaml';
 
         const document = new Document(

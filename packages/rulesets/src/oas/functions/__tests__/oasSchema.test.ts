@@ -1,5 +1,5 @@
-import type { RulesetFunctionContext } from '@stoplight/spectral-core';
-import { oas2, oas3, oas3_0, oas3_1 } from '@stoplight/spectral-formats';
+import type { RulesetFunctionContext } from '@openlint/openlint-core';
+import { oas2, oas3, oas3_0, oas3_1 } from '@openlint/openlint-formats';
 import type { DeepPartial } from '@stoplight/types';
 
 import oasSchema from '../../functions/oasSchema';

@@ -1,4 +1,4 @@
-const { oas2, oas3_0, oas3_1 } = require('@stoplight/spectral-formats');
+const { oas2, oas3_0, oas3_1 } = require('@openlint/openlint-formats');
 module.exports = {
   aliases: {
     schema: {

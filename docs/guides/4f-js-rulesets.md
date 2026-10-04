@@ -20,8 +20,8 @@ cd style-guide
 Next, install two dependencies using [npm](https://www.npmjs.com/):
 
 ```
-npm install --save @stoplight/spectral-functions
-npm install --save @stoplight/spectral-formats
+npm install --save @openlint/openlint-functions
+npm install --save @openlint/openlint-formats
 ```
 
 Installing these packages isn't required for creating a JavaScript ruleset, but you'll use them in the example to create some common rules used with Spectral and to target a specific OpenAPI format.
@@ -35,8 +35,8 @@ touch spectral.js
 Inside the file, create a couple of rules:
 
 ```js
-import { truthy, undefined as pattern, schema } from "@stoplight/spectral-functions";
-import { oas3 } from "@stoplight/spectral-formats";
+import { truthy, undefined as pattern, schema } from "@openlint/openlint-functions";
+import { oas3 } from "@openlint/openlint-formats";
 
 export default {
   rules: {
@@ -111,4 +111,4 @@ extends:
   - https://unpkg.com/@your-js-ruleset
 ```
 
-For a more detailed example of creating a JavaScript ruleset and publishing it to npm, check out [Distribute Spectral Style Guides with npm](https://apisyouwonthate.com/blog/distribute-spectral-style-guides-with-npm) at APIs You Won't Hate.
+For a more detailed example of creating a JavaScript ruleset and publishing it to npm, check out [Distribute Spectral Style Guides with npm](https://apisyouwonthate.com/blog/distribute-openlint-style-guides-with-npm) at APIs You Won't Hate.

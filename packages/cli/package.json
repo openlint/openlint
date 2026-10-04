@@ -1,9 +1,9 @@
 {
-  "name": "@stoplight/spectral-cli",
+  "name": "@openlint/openlint-cli",
   "version": "6.17.0",
-  "homepage": "https://github.com/stoplightio/spectral",
-  "bugs": "https://github.com/stoplightio/spectral/issues",
-  "author": "Stoplight <support@stoplight.io>",
+  "homepage": "https://github.com/openlint/openlint",
+  "bugs": "https://github.com/openlint/openlint/issues",
+  "author": "OpenLint <info@openlint.org>",
   "bin": {
     "spectral": "./dist/index.js"
   },
@@ -21,30 +21,29 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/stoplightio/spectral.git"
+    "url": "https://github.com/openlint/openlint.git"
   },
   "scripts": {
     "prelint": "node ../../scripts/inline-version.mjs",
     "prepare": "node ../../scripts/inline-version.mjs",
     "prebuild": "node ../../scripts/inline-version.mjs",
-    "build.binary": "pkg . --output ./binaries/spectral",
+    "build.binary": "pkg . --output ./binaries/openlint",
     "build.windows": "pkg . --targets windows --out-path ./binaries",
     "build.nix": "pkg . --targets linux-x64,linux-arm64,macos-x64,macos-arm64,alpine-x64,alpine-arm64 --out-path ./binaries",
     "cli": "node -r ts-node/register/transpile-only -r tsconfig-paths/register src/index.ts",
     "cli:debug": "node -r ts-node/register/transpile-only -r tsconfig-paths/register --inspect-brk src/index.ts"
   },
   "dependencies": {
-    "@scarf/scarf": "^1.4.0",
+    "@openlint/openlint-core": "^1.19.5",
+    "@openlint/openlint-formatters": "^1.4.1",
+    "@openlint/openlint-parsers": "^1.0.4",
+    "@openlint/openlint-ref-resolver": "^1.0.4",
+    "@openlint/openlint-ruleset-bundler": "^1.6.0",
+    "@openlint/openlint-ruleset-migrator": "^1.11.0",
+    "@openlint/openlint-rulesets": ">=1",
+    "@openlint/openlint-runtime": "^1.1.2",
     "@stoplight/json": "~3.21.0",
     "@stoplight/path": "1.3.2",
-    "@stoplight/spectral-core": "^1.19.5",
-    "@stoplight/spectral-formatters": "^1.4.1",
-    "@stoplight/spectral-parsers": "^1.0.4",
-    "@stoplight/spectral-ref-resolver": "^1.0.4",
-    "@stoplight/spectral-ruleset-bundler": "^1.6.0",
-    "@stoplight/spectral-ruleset-migrator": "^1.11.0",
-    "@stoplight/spectral-rulesets": ">=1",
-    "@stoplight/spectral-runtime": "^1.1.2",
     "@stoplight/types": "^13.6.0",
     "chalk": "4.1.2",
     "fast-glob": "~3.2.12",

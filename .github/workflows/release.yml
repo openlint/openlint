@@ -21,13 +21,13 @@ jobs:
     - run-tests
     steps:
     - name: Checkout code
-      uses: actions/checkout@v5.0.1
+      uses: actions/checkout@v7.0.1
       with:
         fetch-depth: 0
         token: ${{ secrets.GH_TOKEN }}
     - name: Configure Git
       run: |
-        git config --global --add safe.directory /__w/spectral/spectral
+        git config --global --add safe.directory /__w/openlint/openlint
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
     - name: Cached dependencies

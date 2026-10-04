@@ -24,7 +24,7 @@
  */
 import { Dictionary } from '@stoplight/types';
 import { template } from 'lodash';
-import type { IRuleResult } from '@stoplight/spectral-core';
+import type { IRuleResult } from '@openlint/openlint-core';
 import { Formatter } from '../types';
 import { getHighestSeverity, getSeverityName, getSummary, getSummaryForSource, groupBySource } from '../utils';
 import templates from './templates';

@@ -1,4 +1,4 @@
-import { truthy } from '@stoplight/spectral-functions';
+import { truthy } from '@openlint/openlint-functions';
 
 // Test case: nested extends with 'off' severity and intermediate rule enable
 // The key scenario is: grandparent -> parent (enables rule) -> child (extends with 'off')

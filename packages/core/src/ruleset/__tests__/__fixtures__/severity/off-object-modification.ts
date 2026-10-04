@@ -1,4 +1,4 @@
-import { truthy } from '@stoplight/spectral-functions';
+import { truthy } from '@openlint/openlint-functions';
 
 // Test case 3: Object rule modification followed by off
 // grandparent -> parent (modifies rule with object) -> child (off)

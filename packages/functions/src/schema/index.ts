@@ -1,9 +1,9 @@
 import type { ErrorObject } from 'ajv';
 import betterAjvErrors from '@stoplight/better-ajv-errors';
-import { detectDialect } from '@stoplight/spectral-formats';
+import { detectDialect } from '@openlint/openlint-formats';
 import { createAjvInstances } from './ajv';
 import MissingRefError from 'ajv/dist/compile/ref_error';
-import { createRulesetFunction, IFunctionResult, JSONSchema, RulesetFunctionContext } from '@stoplight/spectral-core';
+import { createRulesetFunction, IFunctionResult, JSONSchema, RulesetFunctionContext } from '@openlint/openlint-core';
 import { isError } from 'lodash';
 
 import { optionSchemas } from '../optionSchemas';

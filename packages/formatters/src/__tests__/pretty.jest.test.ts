@@ -60,7 +60,7 @@ describe('Pretty formatter', () => {
     setColumnWidth(120, function (): void {
       const result = pretty(oas3SchemaErrors, { failSeverity: DiagnosticSeverity.Error });
       expect(result).toContain(`
-File:   /home/Stoplight/spectral/src/__tests__/__fixtures__/petstore.invalid-schema.oas3.yaml
+File:   /home/openlint/src/__tests__/__fixtures__/petstore.invalid-schema.oas3.yaml
 ${chalk.red(
   '36:22',
 )}       ${chalk.red.inverse('ERROR')}        ${forceWrapped(chalk.red.bold('oas3-sch'), 0)}  ${chalk.gray('should NOT have')}       ${chalk.cyan('paths./pets.get.responses[200].headers.header-1')}

@@ -1,6 +1,6 @@
 import arazzoWorkflowOutputNamesValidation from '../arazzoWorkflowOutputNamesValidation';
 import { DeepPartial } from '@stoplight/types';
-import type { RulesetFunctionContext } from '@stoplight/spectral-core';
+import type { RulesetFunctionContext } from '@openlint/openlint-core';
 import { ArazzoSpecification } from '../types/arazzoTypes';
 
 const runRule = (target: ArazzoSpecification, contextOverrides: Partial<RulesetFunctionContext> = {}) => {

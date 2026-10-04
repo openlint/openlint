@@ -1,4 +1,4 @@
-# @stoplight/spectral-ruleset-migrator
+# @openlint/openlint-ruleset-migrator
 
 This project serves as a converter between the legacy ruleset format and a new one.
 It's used internally, albeit it can be used externally too, also in browsers.
@@ -25,9 +25,9 @@ rules:
 
 ```js
 // .spectral.js (CommonJS)
-const { oas: oas } = require("@stoplight/spectral-rulesets");
-const { oas2: oas2, jsonSchemaLoose: jsonSchemaLoose } = require("@stoplight/spectral-formats");
-const { pattern: pattern } = require("@stoplight/spectral-functions");
+const { oas: oas } = require("@openlint/openlint-rulesets");
+const { oas2: oas2, jsonSchemaLoose: jsonSchemaLoose } = require("@openlint/openlint-formats");
+const { pattern: pattern } = require("@openlint/openlint-functions");
 module.exports = {
   extends: oas,
   formats: [oas2, jsonSchemaLoose],
@@ -49,9 +49,9 @@ module.exports = {
 
 ```js
 // .spectral.js (ES Module)
-import { oas } from "@stoplight/spectral-rulesets";
-import { oas2, jsonSchemaLoose } from "@stoplight/spectral-formats";
-import { pattern } from "@stoplight/spectral-functions";
+import { oas } from "@openlint/openlint-rulesets";
+import { oas2, jsonSchemaLoose } from "@openlint/openlint-formats";
+import { pattern } from "@openlint/openlint-functions";
 export default {
   extends: oas,
   formats: [oas2, jsonSchemaLoose],
@@ -73,15 +73,15 @@ export default {
 
 ## Usage
 
-### With spectral-ruleset-bundler
+### With openlint-ruleset-bundler
 
 If you need to transform the YAML/JSON ruleset and load it in a single step, we've got you covered.
-Please refer to [@stoplight/spectral-ruleset-bundler](https://www.npmjs.com/package/@stoplight/spectral-ruleset-bundler).
+Please refer to [@openlint/openlint-ruleset-bundler](https://www.npmjs.com/package/@openlint/openlint-ruleset-bundler).
 
 ### Programmatically
 
 ```ts
-const { migrateRuleset } = require("@stoplight/spectral-ruleset-migrator");
+const { migrateRuleset } = require("@openlint/openlint-ruleset-migrator");
 const fs = require("fs");
 const path = require("path");
 
