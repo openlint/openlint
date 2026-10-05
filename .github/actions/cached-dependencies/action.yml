@@ -25,3 +25,10 @@ runs:
   - name: Install Dependencies
     run: yarn install --immutable
     shell: bash
+  - name: save_cache
+    uses: actions/cache@v4.3.0
+    with:
+      path: |-
+        ~/.yarn
+        ~/AppData/Local/Yarn/Berry/cache
+      key: yarn-packages-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('yarn.lock') }}
