@@ -38,12 +38,12 @@
     "source": "/home/openlint/src/__tests__/__fixtures__/petstore.oas3.json"
   },
   {
-    "code": "info-matches-stoplight",
+    "code": "info-matches-openlint",
     "path": [
       "info",
       "title"
     ],
-    "message": "Info must contain Stoplight",
+    "message": "Info must contain OpenLint",
     "severity": 0,
     "range": {
       "start": {

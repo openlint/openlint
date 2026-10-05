@@ -105,7 +105,7 @@ assets real-life example
 openapi: 3.0.0
 info:
   version: 1.0.0
-  title: Stoplight
+  title: OpenLint
 paths: {}
 ====asset:ruleset====
 extends: spectral:oas

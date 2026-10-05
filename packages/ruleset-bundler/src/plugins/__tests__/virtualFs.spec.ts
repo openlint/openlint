@@ -18,7 +18,7 @@ describe('VirtualFs Plugin', () => {
 
   it('should handle relative paths', async () => {
     serveAssets({
-      '/p/spectral.js': `import upperCase from './fns/upperCase.js';
+      '/p/openlint.js': `import upperCase from './fns/upperCase.js';
 export default {
   rules: {
     'upper-case': {
@@ -39,7 +39,7 @@ export default (targetVal) => {
 };`,
     });
 
-    const code = await bundleRuleset('/p/spectral.js', {
+    const code = await bundleRuleset('/p/openlint.js', {
       target: 'node',
       plugins: [virtualFs(io)],
     });
@@ -52,7 +52,7 @@ var upperCase = (targetVal) => {
   }
 };
 
-var spectral = {
+var openlint = {
   rules: {
     'upper-case': {
       given: '$.info',
@@ -63,13 +63,13 @@ var spectral = {
   },
 };
 
-export { spectral as default };
+export { openlint as default };
 `);
   });
 
   it('should handle file: protocol', async () => {
     serveAssets({
-      '/p/.spectral/my-fn.mjs': `import {isOdd} from './helpers/index.mjs';
+      '/p/.openlint/my-fn.mjs': `import {isOdd} from './helpers/index.mjs';
 
 export default (input) => {
   if (!isOdd(input)) {
@@ -77,10 +77,10 @@ export default (input) => {
   }
 };`,
 
-      '/p/.spectral/helpers/index.mjs': `export * from './is-odd.mjs';`,
-      '/p/.spectral/helpers/is-odd.mjs': `export const isOdd = (value) => value % 2 === 1`,
+      '/p/.openlint/helpers/index.mjs': `export * from './is-odd.mjs';`,
+      '/p/.openlint/helpers/is-odd.mjs': `export const isOdd = (value) => value % 2 === 1`,
 
-      '/p/spectral.mjs': `import myFn from 'file:///p/.spectral/my-fn.mjs';
+      '/p/openlint.mjs': `import myFn from 'file:///p/.openlint/my-fn.mjs';
 
 export default {
   extends: [oas],
@@ -93,7 +93,7 @@ export default {
 };`,
     });
 
-    const code = await bundleRuleset('/p/spectral.mjs', {
+    const code = await bundleRuleset('/p/openlint.mjs', {
       target: 'browser',
       plugins: [virtualFs(io)],
     });
@@ -106,7 +106,7 @@ var myFn = (input) => {
   }
 };
 
-var spectral = {
+var openlint = {
   extends: [oas],
   rules: {
     'my-rule': {
@@ -116,7 +116,7 @@ var spectral = {
   },
 };
 
-export { spectral as default };
+export { openlint as default };
 `);
   });
 });

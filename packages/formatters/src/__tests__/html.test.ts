@@ -31,7 +31,7 @@ describe('HTML formatter', () => {
 <tr style="display:none" class="f-0">
     <td>5:14</td>
     <td class="severity clr-error">error</td>
-    <td>Info must contain Stoplight</td>
+    <td>Info must contain OpenLint</td>
     <td></td>
 </tr>
 

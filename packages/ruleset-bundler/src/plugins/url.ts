@@ -3,7 +3,7 @@ import type { Plugin } from 'rollup';
 import type { IO } from '../types';
 
 export const url = ({ fetch }: IO): Plugin => ({
-  name: '@stoplight-spectral/url',
+  name: '@openlint-openlint/url',
   async resolveId(id, importer, opts): Promise<string | undefined> {
     const resolved = await this.resolve(id, importer, {
       ...opts,

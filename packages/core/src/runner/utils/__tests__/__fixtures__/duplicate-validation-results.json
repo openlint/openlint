@@ -14,7 +14,7 @@
       "example"
     ],
     "severity": 0,
-    "source": "/home/Spectral/test-harness/scenarios/documents/invalid-schema-example/lib.yaml",
+    "source": "/home/OpenLint/test-harness/scenarios/documents/invalid-schema-example/lib.yaml",
     "range": {
       "start": {
         "line": 20,
@@ -41,7 +41,7 @@
       "example"
     ],
     "severity": 0,
-    "source": "/home/Spectral/test-harness/scenarios/documents/invalid-schema-example/lib.yaml",
+    "source": "/home/OpenLint/test-harness/scenarios/documents/invalid-schema-example/lib.yaml",
     "range": {
       "start": {
         "line": 20,
@@ -68,7 +68,7 @@
       "example"
     ],
     "severity": 0,
-    "source": "/home/Spectral/test-harness/scenarios/documents/invalid-schema-example/lib.yaml",
+    "source": "/home/OpenLint/test-harness/scenarios/documents/invalid-schema-example/lib.yaml",
     "range": {
       "start": {
         "line": 20,
@@ -90,7 +90,7 @@
       "example"
     ],
     "severity": 0,
-    "source": "/home/Spectral/test-harness/scenarios/documents/invalid-schema-example/lib.yaml",
+    "source": "/home/OpenLint/test-harness/scenarios/documents/invalid-schema-example/lib.yaml",
     "range": {
       "start": {
         "line": 20,

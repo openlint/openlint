@@ -19,7 +19,7 @@ describe('Url Plugin', () => {
 
   it('should handle absolute imports/exports', async () => {
     serveAssets({
-      '/p/spectral.js': `import {upperCase} from 'https://esm.sh/lodash';
+      '/p/openlint.js': `import {upperCase} from 'https://esm.sh/lodash';
 export default {
   rules: {
     'upper-case': {
@@ -52,7 +52,7 @@ export {default} from '/-/lodash@v4.17.21-K6GEbP02mWFnLA45zAmi/dist=es2020,mode=
 export default {};`,
     });
 
-    const code = await bundleRuleset('/p/spectral.js', {
+    const code = await bundleRuleset('/p/openlint.js', {
       target: 'node',
       plugins: [url(io), virtualFs(io)],
     });
@@ -74,7 +74,7 @@ var lodash = {};
  *
  */
 
-var spectral = {
+var openlint = {
   rules: {
     'upper-case': {
       given: '$.info',
@@ -85,7 +85,7 @@ var spectral = {
   },
 };
 
-export { spectral as default };
+export { openlint as default };
 `);
   });
 
@@ -121,7 +121,7 @@ export { isPlainObject };
 
   it('should handle network errors', async () => {
     serveAssets({
-      '/p/spectral.js': `import {upperCase} from 'https://esm.sh/lodash';
+      '/p/openlint.js': `import {upperCase} from 'https://esm.sh/lodash';
 export default {
   rules: {
     'upper-case': {
@@ -141,7 +141,7 @@ export default {
     });
 
     await expect(
-      bundleRuleset('/p/spectral.js', {
+      bundleRuleset('/p/openlint.js', {
         target: 'node',
         plugins: [url(io), virtualFs(io)],
       }),

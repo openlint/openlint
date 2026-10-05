@@ -330,7 +330,7 @@ describe('Ruleset', () => {
 
   it('should respect documentationUrl', async () => {
     const ruleset = {
-      documentationUrl: 'https://stoplight.io/p/docs/gh/stoplightio/spectral/docs/reference/openapi-rules.md',
+      documentationUrl: 'https://openlint.org/docs/reference/openapi-rules.md',
       rules: {
         'foo-rule': {
           given: '$',
@@ -341,7 +341,7 @@ describe('Ruleset', () => {
           },
         },
         'bar-rule': {
-          documentationUrl: 'https://stoplight.io/p/docs/gh/stoplightio/spectral/docs/reference/bar-rule.md',
+          documentationUrl: 'https://openlint.org/docs/reference/bar-rule.md',
           given: '$',
           then: {
             function() {
@@ -360,7 +360,7 @@ describe('Ruleset', () => {
    │  ├─ given
    │  │  └─ 0: $
    │  ├─ severity: 1
-   │  └─ documentationUrl: https://stoplight.io/p/docs/gh/stoplightio/spectral/docs/reference/openapi-rules.md#foo-rule
+   │  └─ documentationUrl: https://openlint.org/docs/reference/openapi-rules.md#foo-rule
    └─ bar-rule
       ├─ name: bar-rule
       ├─ enabled: true
@@ -368,7 +368,7 @@ describe('Ruleset', () => {
       ├─ given
       │  └─ 0: $
       ├─ severity: 1
-      └─ documentationUrl: https://stoplight.io/p/docs/gh/stoplightio/spectral/docs/reference/bar-rule.md
+      └─ documentationUrl: https://openlint.org/docs/reference/bar-rule.md
 `);
   });
 

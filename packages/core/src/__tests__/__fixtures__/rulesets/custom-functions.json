@@ -7,7 +7,7 @@
   ],
   "rules": {
     "true-info-contact": {
-      "message": "Info must contain Stoplight",
+      "message": "Info must contain OpenLint",
       "given": "$.info.contact",
       "type": "style",
       "recommended": true,

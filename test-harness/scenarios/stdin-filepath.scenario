@@ -4,7 +4,7 @@ Respects stdin filepath
 {
   "rules": {
     "title-matches-stoplight": {
-      "message": "Info must contain Stoplight",
+      "message": "Info must contain OpenLint",
       "given": "$.title",
       "then": {
         "function": "pattern",
@@ -14,7 +14,7 @@ Respects stdin filepath
       }
     },
     "description-matches-stoplight": {
-      "message": "Info must contain Stoplight",
+      "message": "Info must contain OpenLint",
       "given": "$.description",
       "then": {
         "function": "pattern",
@@ -40,7 +40,7 @@ title: Oops
 cat {asset:document.yaml} | {bin} lint --ruleset "{asset:ruleset.json}" --stdin-filepath={asset:document.yaml}
 ====stdout====
 {asset:document.yaml}
- 1:14  warning  description-matches-stoplight  Info must contain Stoplight  description
-  2:8    error  title-matches-stoplight        Info must contain Stoplight  title
+ 1:14  warning  description-matches-stoplight  Info must contain OpenLint  description
+  2:8    error  title-matches-stoplight        Info must contain OpenLint  title
 
 ✖ 2 problems (1 error, 1 warning, 0 infos, 0 hints)

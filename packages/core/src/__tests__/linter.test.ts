@@ -24,20 +24,20 @@ const target = {
 };
 
 describe('linter', () => {
-  let spectral: OpenLint;
+  let openlint: OpenLint;
 
   beforeEach(() => {
-    spectral = new OpenLint();
+    openlint = new OpenLint();
   });
 
   test('should demand some result', () => {
-    return expect(spectral.run(new Document('123', Parsers.Json))).rejects.toThrow(
+    return expect(openlint.run(new Document('123', Parsers.Json))).rejects.toThrow(
       'No ruleset has been defined. Have you called setRuleset()?',
     );
   });
 
   test('should not throw if passed in value is not an object', () => {
-    spectral.setRuleset({
+    openlint.setRuleset({
       rules: {
         example: {
           message: '',
@@ -49,11 +49,11 @@ describe('linter', () => {
       },
     });
 
-    return expect(spectral.run('123')).resolves.toEqual([]);
+    return expect(openlint.run('123')).resolves.toEqual([]);
   });
 
   test('given @ in the property key, should still lint as normal', () => {
-    spectral.setRuleset({
+    openlint.setRuleset({
       rules: {
         example: {
           given: '$.properties[*]~',
@@ -69,7 +69,7 @@ describe('linter', () => {
     });
 
     return expect(
-      spectral.run({
+      openlint.run({
         properties: {
           '@foo': true,
           foo: true,
@@ -87,7 +87,7 @@ describe('linter', () => {
   });
 
   test('given failing JSON Path expression, should refuse to lint', async () => {
-    spectral.setRuleset({
+    openlint.setRuleset({
       rules: {
         rule1: {
           given: '$.bar[?(@.in==foo)]',
@@ -105,7 +105,7 @@ describe('linter', () => {
     });
 
     await expect(
-      spectral.run({
+      openlint.run({
         bar: {
           in: {},
         },
@@ -129,7 +129,7 @@ describe('linter', () => {
       return;
     }
 
-    spectral.setRuleset({
+    openlint.setRuleset({
       rules: {
         rule1: {
           given: '$.responses[?(@property >= 400 && @property < 500)]',
@@ -141,7 +141,7 @@ describe('linter', () => {
       },
     });
 
-    const result = await spectral.run(
+    const result = await openlint.run(
       {
         responses: {
           '200': {
@@ -176,7 +176,7 @@ describe('linter', () => {
   });
 
   test('should support rule overriding severity', async () => {
-    spectral.setRuleset({
+    openlint.setRuleset({
       rules: {
         rule1: {
           given: '$.x',
@@ -192,7 +192,7 @@ describe('linter', () => {
       },
     });
 
-    const result = await spectral.run(
+    const result = await openlint.run(
       {
         x: true,
       },
@@ -203,7 +203,7 @@ describe('linter', () => {
   });
 
   test('should output unescaped json paths', async () => {
-    spectral.setRuleset({
+    openlint.setRuleset({
       rules: {
         'valid-header': {
           given: '$..header',
@@ -216,7 +216,7 @@ describe('linter', () => {
       },
     });
 
-    const result = await spectral.run(
+    const result = await openlint.run(
       {
         a: {
           '/b': {
@@ -247,9 +247,9 @@ describe('linter', () => {
       Parsers.Yaml,
     );
 
-    const spectral = new OpenLint();
+    const openlint = new OpenLint();
 
-    spectral.setRuleset({
+    openlint.setRuleset({
       rules: {
         rule: {
           given: '$..type',
@@ -263,7 +263,7 @@ describe('linter', () => {
       },
     });
 
-    expect(await spectral.run(document)).toEqual([
+    expect(await openlint.run(document)).toEqual([
       {
         code: 'rule',
         message: '"string" must match the pattern "array"',
@@ -284,7 +284,7 @@ describe('linter', () => {
   });
 
   test('should support human readable severity levels', async () => {
-    spectral.setRuleset({
+    openlint.setRuleset({
       rules: {
         rule1: {
           given: '$.x',
@@ -303,7 +303,7 @@ describe('linter', () => {
       },
     });
 
-    const result = await spectral.run(
+    const result = await openlint.run(
       {
         x: false,
         y: '',
@@ -326,7 +326,7 @@ describe('linter', () => {
   test('should respect the format of data and run rules associated with it', async () => {
     const fooBarFormat: Format = obj => typeof obj === 'object' && obj !== null && 'foo-bar' in obj;
 
-    spectral.setRuleset({
+    openlint.setRuleset({
       formats: [fooBarFormat],
       rules: {
         rule1: {
@@ -348,7 +348,7 @@ describe('linter', () => {
       },
     });
 
-    const result = await spectral.run({
+    const result = await openlint.run({
       'foo-bar': true,
       x: false,
       y: '',
@@ -364,7 +364,7 @@ describe('linter', () => {
   test('should match all formats if rule has no formats defined', async () => {
     const fooBarFormat: Format = obj => typeof obj === 'object' && obj !== null && 'foo-bar' in obj;
 
-    spectral.setRuleset({
+    openlint.setRuleset({
       rules: {
         rule1: {
           given: '$.x',
@@ -384,7 +384,7 @@ describe('linter', () => {
       },
     });
 
-    const result = await spectral.run({
+    const result = await openlint.run({
       'foo-bar': true,
       x: false,
       y: '',
@@ -404,7 +404,7 @@ describe('linter', () => {
     const fooBarFormat: Format = obj => typeof obj === 'object' && obj !== null && 'foo-bar' in obj;
     const bazFormat: Format = () => true;
 
-    spectral.setRuleset({
+    openlint.setRuleset({
       rules: {
         rule1: {
           given: '$.x',
@@ -425,7 +425,7 @@ describe('linter', () => {
       },
     });
 
-    const result = await spectral.run({
+    const result = await openlint.run({
       'foo-bar': true,
       x: false,
       y: '',
@@ -445,7 +445,7 @@ describe('linter', () => {
   test('given a string input, should warn about unmatched formats', async () => {
     const oas2: Format = () => false;
     const oas3: Format = () => false;
-    spectral.setRuleset({
+    openlint.setRuleset({
       formats: [oas2, oas3],
       rules: {
         test: {
@@ -456,7 +456,7 @@ describe('linter', () => {
         },
       },
     });
-    const result = await spectral.run('test');
+    const result = await openlint.run('test');
 
     expect(result).toEqual([
       {
@@ -481,7 +481,7 @@ describe('linter', () => {
   test('given ignoreUnknownFormat, should not warn about unmatched formats', async () => {
     const format: Format = obj => typeof obj === 'object' && obj !== null && 'foo-bar' in obj;
 
-    spectral.setRuleset({
+    openlint.setRuleset({
       formats: [format],
       rules: {
         rule1: {
@@ -495,7 +495,7 @@ describe('linter', () => {
       },
     });
 
-    const result = await spectral.run(
+    const result = await openlint.run(
       {
         'bar-foo': true,
         x: true,
@@ -510,7 +510,7 @@ describe('linter', () => {
   test('should accept format lookup by source', async () => {
     const fooBar: Format = (_, source) => source === '/foo/bar';
 
-    spectral.setRuleset({
+    openlint.setRuleset({
       rules: {
         rule1: {
           given: '$.x',
@@ -531,7 +531,7 @@ describe('linter', () => {
       },
     });
 
-    const result = await spectral.run(new Document(`x: false\ny: ''`, Parsers.Yaml, '/foo/bar'));
+    const result = await openlint.run(new Document(`x: false\ny: ''`, Parsers.Yaml, '/foo/bar'));
 
     expect(result).toEqual([
       expect.objectContaining({
@@ -551,8 +551,8 @@ responses:: !!foo
      description: c
 `;
 
-    spectral.setRuleset({ rules: {} });
-    const result = await spectral.run(responses, { ignoreUnknownFormat: true });
+    openlint.setRuleset({ rules: {} });
+    const result = await openlint.run(responses, { ignoreUnknownFormat: true });
 
     expect(result).toEqual(
       expect.arrayContaining([
@@ -593,7 +593,7 @@ responses:: !!foo
   });
 
   test('should report a valid line number for json paths containing escaped slashes', async () => {
-    spectral.setRuleset({
+    openlint.setRuleset({
       rules: {
         'truthy-get': {
           given: '$..get',
@@ -604,7 +604,7 @@ responses:: !!foo
       },
     });
 
-    const result = await spectral.run(
+    const result = await openlint.run(
       JSON.stringify(
         {
           paths: {
@@ -640,8 +640,8 @@ responses:: !!foo
   });
 
   test('should report invalid schema $refs', async () => {
-    spectral.setRuleset({ rules: {} });
-    const result = await spectral.run(
+    openlint.setRuleset({ rules: {} });
+    const result = await openlint.run(
       JSON.stringify(
         {
           paths: {
@@ -704,8 +704,8 @@ responses:: !!foo
 
   describe('reports duplicated properties for', () => {
     test('JSON format', async () => {
-      spectral.setRuleset({ rules: {} });
-      const result = await spectral.run('{"foo":true,"foo":false}', {
+      openlint.setRuleset({ rules: {} });
+      const result = await openlint.run('{"foo":true,"foo":false}', {
         ignoreUnknownFormat: true,
       });
 
@@ -730,8 +730,8 @@ responses:: !!foo
     });
 
     test('YAML format', async () => {
-      spectral.setRuleset({ rules: {} });
-      const result = await spectral.run(`foo: bar\nfoo: baz`, {
+      openlint.setRuleset({ rules: {} });
+      const result = await openlint.run(`foo: bar\nfoo: baz`, {
         ignoreUnknownFormat: true,
       });
 
@@ -757,8 +757,8 @@ responses:: !!foo
   });
 
   test('should report invalid YAML mapping keys', async () => {
-    spectral.setRuleset({ rules: {} });
-    const results = await spectral.run(
+    openlint.setRuleset({ rules: {} });
+    const results = await openlint.run(
       `responses:
   200:
     description: ''
@@ -789,13 +789,13 @@ responses:: !!foo
 
   describe('parser options', () => {
     test('should allow changing the severity of invalid YAML mapping keys diagnostics', async () => {
-      spectral.setRuleset({
+      openlint.setRuleset({
         rules: {},
         parserOptions: {
           incompatibleValues: 'info',
         },
       });
-      const results = await spectral.run(
+      const results = await openlint.run(
         `responses:
   200:
     description: ''
@@ -825,13 +825,13 @@ responses:: !!foo
     });
 
     test('should allow disabling invalid YAML mapping keys diagnostics', async () => {
-      spectral.setRuleset({
+      openlint.setRuleset({
         rules: {},
         parserOptions: {
           incompatibleValues: 'off',
         },
       });
-      const results = await spectral.run(
+      const results = await openlint.run(
         `responses:
   200:
     description: ''
@@ -847,14 +847,14 @@ responses:: !!foo
     test.each<keyof typeof Parsers>(['Json', 'Yaml'])(
       'should allow changing the severity of duplicate key diagnostics reported by %s parser',
       async parser => {
-        spectral.setRuleset({
+        openlint.setRuleset({
           rules: {},
           parserOptions: {
             duplicateKeys: 'info',
           },
         });
 
-        const results = await spectral.run(
+        const results = await openlint.run(
           new Document(
             `{
   "200": {},
@@ -889,14 +889,14 @@ responses:: !!foo
     test.each<keyof typeof Parsers>(['Json', 'Yaml'])(
       'should allow disabling duplicate key diagnostics reported by %s parser',
       async parser => {
-        spectral.setRuleset({
+        openlint.setRuleset({
           rules: {},
           parserOptions: {
             duplicateKeys: 'off',
           },
         });
 
-        const results = await spectral.run(
+        const results = await openlint.run(
           new Document(
             `{
   "200": {},
@@ -920,7 +920,7 @@ responses:: !!foo
     beforeEach(() => {
       fakeLintingFunction = jest.fn();
       fakeLintingFunction2 = jest.fn();
-      spectral.setRuleset({
+      openlint.setRuleset({
         rules: {
           example: {
             message: '',
@@ -947,7 +947,7 @@ responses:: !!foo
 
     describe('given list of then objects', () => {
       test('should call each one with the appropriate args', async () => {
-        await spectral.run(target);
+        await openlint.run(target);
 
         expect(fakeLintingFunction).toHaveBeenCalledTimes(1);
         expect(fakeLintingFunction.mock.calls[0][0]).toEqual(target.responses);
@@ -965,7 +965,7 @@ responses:: !!foo
 
     describe('given many then field matches', () => {
       test('should call each one with the appropriate args', async () => {
-        spectral.setRuleset({
+        openlint.setRuleset({
           rules: {
             example: {
               message: '',
@@ -978,7 +978,7 @@ responses:: !!foo
           },
         });
 
-        await spectral.run(target);
+        await openlint.run(target);
 
         expect(fakeLintingFunction).toHaveBeenCalledTimes(3);
         expect(fakeLintingFunction.mock.calls[0][0]).toEqual('a');
@@ -990,8 +990,8 @@ responses:: !!foo
 
   describe('evaluate {{value}} in validation messages', () => {
     test('should print primitive values', () => {
-      spectral = new OpenLint();
-      spectral.setRuleset({
+      openlint = new OpenLint();
+      openlint.setRuleset({
         rules: {
           'header-parameter-names-kebab-case': {
             severity: DiagnosticSeverity.Error,
@@ -1011,7 +1011,7 @@ responses:: !!foo
       });
 
       return expect(
-        spectral.run({
+        openlint.run({
           parameters: [
             {
               in: 'header',
@@ -1043,8 +1043,8 @@ responses:: !!foo
     });
 
     test('should not attempt to print complex values', () => {
-      spectral = new OpenLint();
-      spectral.setRuleset({
+      openlint = new OpenLint();
+      openlint.setRuleset({
         rules: {
           'empty-is-falsy': {
             severity: DiagnosticSeverity.Error,
@@ -1060,7 +1060,7 @@ responses:: !!foo
       });
 
       return expect(
-        spectral.run({
+        openlint.run({
           empty: {
             a: 'b',
           },
@@ -1105,9 +1105,9 @@ responses:: !!foo
         },
       });
 
-      spectral = new OpenLint({ resolver });
+      openlint = new OpenLint({ resolver });
 
-      spectral.setRuleset({
+      openlint.setRuleset({
         rules: {
           'empty-is-falsy': {
             severity: DiagnosticSeverity.Error,
@@ -1122,7 +1122,7 @@ responses:: !!foo
         },
       });
 
-      const results = await spectral.run(
+      const results = await openlint.run(
         new Document(
           JSON.stringify({
             foo: {
@@ -1165,7 +1165,7 @@ responses:: !!foo
   });
 
   test('should evaluate {{path}} in validation messages', async () => {
-    spectral.setRuleset({
+    openlint.setRuleset({
       rules: {
         'truthy-get': {
           given: '$..get',
@@ -1177,7 +1177,7 @@ responses:: !!foo
       },
     });
 
-    const result = await spectral.run(
+    const result = await openlint.run(
       {
         paths: {
           '/test': {
@@ -1205,7 +1205,7 @@ responses:: !!foo
         info: null,
       });
 
-      spectral.setRuleset({
+      openlint.setRuleset({
         rules: {
           'no-info': {
             // some dumb rule to have some error
@@ -1219,7 +1219,7 @@ responses:: !!foo
       });
 
       const { result } = await new Resolver().resolve(parse(document));
-      const { resolved, results } = await spectral.runWithResolved(document);
+      const { resolved, results } = await openlint.runWithResolved(document);
 
       expect(resolved).toEqual(result);
       expect(results).toEqual([expect.objectContaining({ code: 'no-info' })]);
@@ -1228,7 +1228,7 @@ responses:: !!foo
 
   describe('legacy parsed document', () => {
     beforeEach(() => {
-      spectral.setRuleset({
+      openlint.setRuleset({
         rules: {
           'falsy-document': {
             // some dumb rule to have some error
@@ -1253,7 +1253,7 @@ responses:: !!foo
         source: 'foo',
       };
 
-      const results = await spectral.run(parsedResult, {
+      const results = await openlint.run(parsedResult, {
         ignoreUnknownFormat: true,
       });
 
@@ -1339,8 +1339,8 @@ responses:: !!foo
       },
     };
 
-    const spectral = new OpenLint();
-    spectral.setRuleset(new Ruleset(ruleset, { source: path.join(path.dirname(documentUri), 'ruleset.json') }));
+    const openlint = new OpenLint();
+    openlint.setRuleset(new Ruleset(ruleset, { source: path.join(path.dirname(documentUri), 'ruleset.json') }));
 
     const document = new Document(
       JSON.stringify({
@@ -1359,7 +1359,7 @@ responses:: !!foo
       documentUri,
     );
 
-    const results = await spectral.run(document);
+    const results = await openlint.run(document);
     expect(results).toEqual([
       expect.objectContaining({
         code: 'valid-type',
@@ -1412,9 +1412,9 @@ responses:: !!foo
         ],
       };
 
-      const spectral = new OpenLint();
+      const openlint = new OpenLint();
 
-      spectral.setRuleset(new Ruleset(ruleset, { source: path.join(path.dirname(documentUri), 'ruleset.json') }));
+      openlint.setRuleset(new Ruleset(ruleset, { source: path.join(path.dirname(documentUri), 'ruleset.json') }));
 
       const document = new Document(
         JSON.stringify({
@@ -1436,7 +1436,7 @@ responses:: !!foo
         documentUri,
       );
 
-      const results = await spectral.run(document);
+      const results = await openlint.run(document);
       expect(results).toEqual([
         expect.objectContaining({
           code: 'valid-type',
@@ -1501,9 +1501,9 @@ responses:: !!foo
         ],
       };
 
-      const spectral = new OpenLint();
+      const openlint = new OpenLint();
 
-      spectral.setRuleset(new Ruleset(ruleset, { source: path.join(path.dirname(documentUri), 'ruleset.json') }));
+      openlint.setRuleset(new Ruleset(ruleset, { source: path.join(path.dirname(documentUri), 'ruleset.json') }));
 
       const document = new Document(
         JSON.stringify({
@@ -1519,7 +1519,7 @@ responses:: !!foo
         documentUri,
       );
 
-      const results = await spectral.run(document);
+      const results = await openlint.run(document);
       expect(results).toEqual([
         expect.objectContaining({
           code: 'valid-type',
@@ -1562,9 +1562,9 @@ responses:: !!foo
         ],
       };
 
-      const spectral = new OpenLint();
+      const openlint = new OpenLint();
 
-      spectral.setRuleset(new Ruleset(ruleset, { source: path.join(path.dirname(documentUri), 'ruleset.json') }));
+      openlint.setRuleset(new Ruleset(ruleset, { source: path.join(path.dirname(documentUri), 'ruleset.json') }));
 
       const document = new Document(
         JSON.stringify({
@@ -1579,7 +1579,7 @@ responses:: !!foo
         documentUri,
       );
 
-      const results = await spectral.run(document);
+      const results = await openlint.run(document);
       expect(results).toEqual([
         expect.objectContaining({
           code: 'valid-type',
@@ -1596,9 +1596,9 @@ responses:: !!foo
   });
 
   test.concurrent('should retain path in async functions', async () => {
-    const spectral = new OpenLint();
+    const openlint = new OpenLint();
     const documentUri = path.join(__dirname, './__fixtures__/test.json');
-    spectral.setRuleset({
+    openlint.setRuleset({
       rules: {
         'valid-type': {
           given: '$..type',
@@ -1630,7 +1630,7 @@ responses:: !!foo
       documentUri,
     );
 
-    const results = spectral.run(document);
+    const results = openlint.run(document);
 
     await expect(results).resolves.toEqual([
       expect.objectContaining({
@@ -1647,8 +1647,8 @@ responses:: !!foo
   });
 
   test.concurrent('should handle direct circular file $refs', async () => {
-    const spectral = new OpenLint();
-    spectral.setRuleset({
+    const openlint = new OpenLint();
+    openlint.setRuleset({
       rules: {
         'valid-type': {
           given: '$..type',
@@ -1680,7 +1680,7 @@ responses:: !!foo
       Parsers.Json,
       documentUri,
     );
-    const results = spectral.run(document);
+    const results = openlint.run(document);
 
     await expect(results).resolves.toEqual([
       expect.objectContaining({
@@ -1692,10 +1692,10 @@ responses:: !!foo
   });
 
   test.concurrent('should reset path provided in fn context', async () => {
-    const spectral = new OpenLint();
+    const openlint = new OpenLint();
     const fn = jest.fn();
 
-    spectral.setRuleset({
+    openlint.setRuleset({
       rules: {
         'valid-info': {
           given: '$.info',
@@ -1731,7 +1731,7 @@ responses:: !!foo
       documentUri,
     );
 
-    await expect(spectral.run(document)).resolves.toEqual([]);
+    await expect(openlint.run(document)).resolves.toEqual([]);
 
     expect(fn).nthCalledWith(
       1,

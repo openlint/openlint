@@ -20,9 +20,9 @@ describe('Ruleset Bundler', () => {
     };
 
     serveAssets({
-      '/p/.spectral/my-fn.js': `module.exports = function f() { return [] };`,
+      '/p/.openlint/my-fn.js': `module.exports = function f() { return [] };`,
 
-      '/p/spectral.js': `import myFn from './.spectral/my-fn.js';
+      '/p/openlint.js': `import myFn from './.openlint/my-fn.js';
 
 export default {
   rules: {
@@ -36,14 +36,14 @@ export default {
   });
 
   it('given runtime target, should support commonjs', async () => {
-    const code = await bundleRuleset('/p/spectral.js', {
+    const code = await bundleRuleset('/p/openlint.js', {
       target: 'runtime',
       plugins: [...runtime(io), commonjs()],
     });
 
     expect(code).toContain(`\tvar myFn = function f() { return [] };
 
-\tvar spectral = {
+\tvar openlint = {
 \t  rules: {
 \t    rule: {
 \t       given: '$',
@@ -52,20 +52,20 @@ export default {
 \t  },
 \t};
 
-\treturn spectral;
+\treturn openlint;
 
 })();`);
   });
 
   it('given browser target, should support commonjs', async () => {
-    const code = await bundleRuleset('/p/spectral.js', {
+    const code = await bundleRuleset('/p/openlint.js', {
       target: 'browser',
       plugins: [...browser(io), commonjs()],
     });
 
     expect(code).toContain(`var myFn = function f() { return [] };
 
-var spectral = {
+var openlint = {
   rules: {
     rule: {
        given: '$',
@@ -74,18 +74,18 @@ var spectral = {
   },
 };
 
-export { spectral as default };`);
+export { openlint as default };`);
   });
 
   it('given node target, should support commonjs', async () => {
-    const code = await bundleRuleset('/p/spectral.js', {
+    const code = await bundleRuleset('/p/openlint.js', {
       target: 'node',
       plugins: [...node(io), virtualFs(io), commonjs()],
     });
 
     expect(code).toContain(`var myFn = function f() { return [] };
 
-var spectral = {
+var openlint = {
   rules: {
     rule: {
        given: '$',
@@ -94,19 +94,19 @@ var spectral = {
   },
 };
 
-export { spectral as default };`);
+export { openlint as default };`);
   });
 
   it('given node target, should support commonjs for remote ruleset with builtin modules', async () => {
     serveAssets({
-      'https://tmp/input.js': `var spectralFormats = require('@openlint/openlint-formats');
-var spectralFunctions = require('@openlint/openlint-functions');
+      'https://tmp/input.js': `var openlintFormats = require('@openlint/openlint-formats');
+var openlintFunctions = require('@openlint/openlint-functions');
 const ruleset = {
   rules: {
     'my-rule': {
       given: '$',
       then: {
-        function: spectralFunctions.schema,
+        function: openlintFunctions.schema,
         functionOptions: {
           schema: {
             type: 'object',
@@ -131,7 +131,7 @@ module.exports = ruleset;
     'my-rule': {
       given: '$',
       then: {
-        function: spectralFunctions.schema,
+        function: openlintFunctions.schema,
         functionOptions: {
           schema: {
             type: 'object',

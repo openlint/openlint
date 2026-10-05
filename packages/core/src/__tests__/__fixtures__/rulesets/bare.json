@@ -1,7 +1,7 @@
 {
   "rules": {
-    "info-matches-stoplight": {
-      "message": "Info must contain Stoplight",
+    "info-matches-openlint": {
+      "message": "Info must contain OpenLint",
       "given": "$.info",
       "type": "style",
       "recommended": true,

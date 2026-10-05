@@ -119,14 +119,14 @@ describe('migrator', () => {
     await vol.promises.writeFile(
       path.join(cwd, 'ruleset.json'),
       JSON.stringify({
-        extends: ['https://spectral.stoplight.io/ruleset'],
+        extends: ['https://mock.openlint.org/ruleset'],
         rules: {
           'valid-type': 'error',
         },
       }),
     );
 
-    fetch.get('https://spectral.stoplight.io/ruleset', {
+    fetch.get('https://mock.openlint.org/ruleset', {
       body: {
         rules: {
           'valid-type': {
@@ -241,11 +241,11 @@ export default {
     await vol.promises.writeFile(
       path.join(cwd, 'ruleset.json'),
       JSON.stringify({
-        extends: ['https://spectral.stoplight.io/ruleset'],
+        extends: ['https://mock.openlint.org/ruleset'],
       }),
     );
 
-    fetch.get('https://spectral.stoplight.io/ruleset', {
+    fetch.get('https://mock.openlint.org/ruleset', {
       body: `export default { rules: {} }`,
       headers: {
         'Content-Type': 'application/javascript; charset=utf-8',
@@ -258,7 +258,7 @@ export default {
         fs: vol as any,
         fetch,
       }),
-    ).toEqual(`import ruleset_ from "https://spectral.stoplight.io/ruleset";
+    ).toEqual(`import ruleset_ from "https://mock.openlint.org/ruleset";
 export default {
   "extends": [ruleset_]
 };

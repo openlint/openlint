@@ -76,22 +76,22 @@ export default {
       const { declarations, body } = parseBundle(code);
       expect(declarations).toEqual(
         [
-          "const alphabetical = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-functions']['alphabetical'];",
-          "const arazzo = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-rulesets']['arazzo'];",
-          "const asyncapi = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-rulesets']['asyncapi'];",
-          "const casing = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-functions']['casing'];",
-          "const defined = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-functions']['defined'];",
-          "const enumeration = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-functions']['enumeration'];",
-          "const falsy = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-functions']['falsy'];",
-          "const length = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-functions']['length'];",
-          "const oas = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-rulesets']['oas'];",
-          "const or = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-functions']['or'];",
-          "const pattern = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-functions']['pattern'];",
-          "const schema = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-functions']['schema'];",
-          "const truthy = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-functions']['truthy'];",
-          "const undefined$1 = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-functions']['undefined'];",
-          "const unreferencedReusableObject = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-functions']['unreferencedReusableObject'];",
-          "const xor = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-functions']['xor'];",
+          "const alphabetical = globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-functions']['alphabetical'];",
+          "const arazzo = globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-rulesets']['arazzo'];",
+          "const asyncapi = globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-rulesets']['asyncapi'];",
+          "const casing = globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-functions']['casing'];",
+          "const defined = globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-functions']['defined'];",
+          "const enumeration = globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-functions']['enumeration'];",
+          "const falsy = globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-functions']['falsy'];",
+          "const length = globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-functions']['length'];",
+          "const oas = globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-rulesets']['oas'];",
+          "const or = globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-functions']['or'];",
+          "const pattern = globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-functions']['pattern'];",
+          "const schema = globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-functions']['schema'];",
+          "const truthy = globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-functions']['truthy'];",
+          "const undefined$1 = globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-functions']['undefined'];",
+          "const unreferencedReusableObject = globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-functions']['unreferencedReusableObject'];",
+          "const xor = globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-functions']['xor'];",
         ].sort(),
       );
       expect(body).toEqual(`
@@ -117,7 +117,7 @@ export { input as default };
 `);
 
       expect(
-        globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-functions'],
+        globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-functions'],
       ).toStrictEqual(functions);
     });
 
@@ -146,27 +146,27 @@ readFile();`,
       const { declarations, body } = parseBundle(code);
       expect(declarations).toEqual(
         [
-          "const DEFAULT_REQUEST_OPTIONS = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime']['DEFAULT_REQUEST_OPTIONS'];",
-          "const PrintStyle = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime']['PrintStyle'];",
-          "const decodeSegmentFragment = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime']['decodeSegmentFragment'];",
-          "const fetch = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime']['fetch'];",
-          "const getClosestJsonPath = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime']['getClosestJsonPath'];",
-          "const getEndRef = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime']['getEndRef'];",
-          "const isAbsoluteRef = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime']['isAbsoluteRef'];",
-          "const printError = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime']['printError'];",
-          "const printPath = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime']['printPath'];",
-          "const printValue = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime']['printValue'];",
-          "const readFile = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime']['readFile'];",
-          "const readParsable = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime']['readParsable'];",
-          "const safePointerToPath = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime']['safePointerToPath'];",
-          "const startsWithProtocol = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime']['startsWithProtocol'];",
-          "const traverseObjUntilRef = globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime']['traverseObjUntilRef'];",
+          "const DEFAULT_REQUEST_OPTIONS = globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-runtime']['DEFAULT_REQUEST_OPTIONS'];",
+          "const PrintStyle = globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-runtime']['PrintStyle'];",
+          "const decodeSegmentFragment = globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-runtime']['decodeSegmentFragment'];",
+          "const fetch = globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-runtime']['fetch'];",
+          "const getClosestJsonPath = globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-runtime']['getClosestJsonPath'];",
+          "const getEndRef = globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-runtime']['getEndRef'];",
+          "const isAbsoluteRef = globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-runtime']['isAbsoluteRef'];",
+          "const printError = globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-runtime']['printError'];",
+          "const printPath = globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-runtime']['printPath'];",
+          "const printValue = globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-runtime']['printValue'];",
+          "const readFile = globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-runtime']['readFile'];",
+          "const readParsable = globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-runtime']['readParsable'];",
+          "const safePointerToPath = globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-runtime']['safePointerToPath'];",
+          "const startsWithProtocol = globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-runtime']['startsWithProtocol'];",
+          "const traverseObjUntilRef = globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-runtime']['traverseObjUntilRef'];",
         ].sort(),
       );
       expect(body).toBe('\nreadFile();\n');
 
       expect(
-        globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime'],
+        globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-runtime'],
       ).toStrictEqual({
         ...runtime,
         readFile,
@@ -203,14 +203,14 @@ readFile();`,
       });
 
       expect(
-        globalThis[Symbol.for('@stoplight-spectral/builtins')]['822928']['@openlint/openlint-runtime'],
+        globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-runtime'],
       ).toStrictEqual({
         ...runtime,
         readFile,
       });
 
       expect(
-        globalThis[Symbol.for('@stoplight-spectral/builtins')]['750524']['@openlint/openlint-runtime'],
+        globalThis[Symbol.for('@openlint-openlint/builtins')]['750524']['@openlint/openlint-runtime'],
       ).toStrictEqual({
         ...runtime,
         readFile: readFile2,

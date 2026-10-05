@@ -99,15 +99,15 @@ describe('JUnit formatter', () => {
               {
                 $: {
                   classname: '/home/openlint/src/__tests__/__fixtures__/petstore.oas3',
-                  name: 'org.openlint.info-matches-stoplight(#/info/title)',
+                  name: 'org.openlint.info-matches-openlint(#/info/title)',
                   time: '0',
                 },
                 failure: [
                   {
                     $: {
-                      message: 'Info must contain Stoplight',
+                      message: 'Info must contain OpenLint',
                     },
-                    _: 'line 5, col 14, Info must contain Stoplight (info-matches-stoplight) at path #/info/title',
+                    _: 'line 5, col 14, Info must contain OpenLint (info-matches-openlint) at path #/info/title',
                   },
                 ],
               },
@@ -151,15 +151,15 @@ describe('JUnit formatter', () => {
               {
                 $: {
                   classname: '/home/openlint/src/__tests__/__fixtures__/petstore.oas3',
-                  name: 'org.openlint.info-matches-stoplight(#/info/title)',
+                  name: 'org.openlint.info-matches-openlint(#/info/title)',
                   time: '0',
                 },
                 failure: [
                   {
                     $: {
-                      message: 'Info must contain Stoplight',
+                      message: 'Info must contain OpenLint',
                     },
-                    _: 'line 5, col 14, Info must contain Stoplight (info-matches-stoplight) at path #/info/title',
+                    _: 'line 5, col 14, Info must contain OpenLint (info-matches-openlint) at path #/info/title',
                   },
                 ],
               },

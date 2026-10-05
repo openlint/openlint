@@ -107,7 +107,7 @@ For JS API consumers, this would look like this:
 const { OpenLint } = require("@openlint/openlint-core");
 const MyResolver = require("./my-resolver.js");
 
-const spectral = new OpenLint({
+const openlint = new OpenLint({
   resolver: MyResolver,
 });
 ```

@@ -18,21 +18,21 @@ describe('Stylish formatter', () => {
     expect(result).toContain(`
   3:10         ${chalk.white(
     'hint',
-  )}  info-contact            Info object should contain \`contact\` object.                             info
+  )}  info-contact           Info object should contain \`contact\` object.                             info
   3:10      ${chalk.yellow(
     'warning',
-  )}  info-description        OpenAPI object info \`description\` must be present and non-empty string.  info
+  )}  info-description       OpenAPI object info \`description\` must be present and non-empty string.  info
   5:14        ${chalk.red(
     'error',
-  )}  info-matches-stoplight  Info must contain Stoplight                                              info.title
+  )}  info-matches-openlint  Info must contain OpenLint                                               info.title
  17:13  ${chalk.blue(
    'information',
- )}  operation-description   Operation \`description\` must be present and non-empty string.            paths./pets.get
+ )}  operation-description  Operation \`description\` must be present and non-empty string.            paths./pets.get
  64:14  ${chalk.blue(
    'information',
- )}  operation-description   Operation \`description\` must be present and non-empty string.            paths./pets.post
+ )}  operation-description  Operation \`description\` must be present and non-empty string.            paths./pets.post
  86:13  ${chalk.blue(
    'information',
- )}  operation-description   Operation \`description\` must be present and non-empty string.            paths./pets/{petId}.get`);
+ )}  operation-description  Operation \`description\` must be present and non-empty string.            paths./pets/{petId}.get`);
   });
 });

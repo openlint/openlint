@@ -2,12 +2,12 @@
   "name": "@openlint/openlint-formats",
   "version": "1.9.0",
   "sideEffects": false,
-  "homepage": "https://github.com/stoplightio/spectral",
-  "bugs": "https://github.com/stoplightio/spectral/issues",
+  "homepage": "https://github.com/openlint/openlint",
+  "bugs": "https://github.com/openlint/openlint/issues",
   "author": "OpenLint <info@openlint.org>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/stoplightio/spectral"
+    "url": "https://github.com/openlint/openlint"
   },
   "license": "Apache-2.0",
   "main": "dist/index.js",

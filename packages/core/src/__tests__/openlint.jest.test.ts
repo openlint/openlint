@@ -17,8 +17,8 @@ describe('OpenLint', () => {
 
   test('should report issues for correct files with correct ranges and paths', async () => {
     const documentUri = normalize(path.join(__dirname, './__fixtures__/document-with-external-refs.json'));
-    const spectral = new OpenLint({ resolver: httpAndFileResolver });
-    spectral.setRuleset({
+    const openlint = new OpenLint({ resolver: httpAndFileResolver });
+    openlint.setRuleset({
       rules: {
         'requires-type': {
           given: ['$..allOf', '$.empty'],
@@ -31,7 +31,7 @@ describe('OpenLint', () => {
     });
     const document = new Document(fs.readFileSync(documentUri, 'utf8'), Parsers.Json, documentUri);
 
-    const results = await spectral.run(document);
+    const results = await openlint.run(document);
 
     expect(results).toEqual([
       {

@@ -124,4 +124,4 @@ Here's a reference list of common aliases you can implement to target specific p
 | API_Description  | `$.info.description`                                       | `$.info.description"`                                      |
 | Operation_Object | `#Path_Item[get,put,post,delete,options,head,patch,trace]` | `#Path_Item[get,put,post,delete,options,head,patch,trace]` |
 
-> This will be followed by the Spectral core rulesets providing a common set of aliases for OpenAPI and AsyncAPI so that users don't have to do the work at all. If you have ideas about what kind of aliases could be useful leave your thoughts on [GitHub Discussions](https://github.com/stoplightio/spectral/discussions).
+> This will be followed by the Spectral core rulesets providing a common set of aliases for OpenAPI and AsyncAPI so that users don't have to do the work at all. If you have ideas about what kind of aliases could be useful leave your thoughts on [GitHub Discussions](https://github.com/openlint/openlint/discussions).

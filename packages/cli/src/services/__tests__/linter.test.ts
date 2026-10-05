@@ -112,14 +112,14 @@ describe('Linter service', () => {
 
     describe('and the file is expected to trigger warnings', () => {
       it('outputs warnings', async () => {
-        return expect(run('lint missing-stoplight-info-document.json')).resolves.toEqual([
+        return expect(run('lint missing-vendor-info-document.json')).resolves.toEqual([
           {
-            code: 'info-matches-stoplight',
-            message: 'Info must contain Stoplight',
+            code: 'info-matches-openlint',
+            message: 'Info must contain OpenLint',
             path: ['info', 'title'],
             range: expect.any(Object),
             severity: DiagnosticSeverity.Warning,
-            source: join(__dirname, `./__fixtures__/missing-stoplight-info-document.json`),
+            source: join(__dirname, `./__fixtures__/missing-vendor-info-document.json`),
           },
         ]);
       });
@@ -129,21 +129,21 @@ describe('Linter service', () => {
   it('given a list of files is provided, outputs issues for each file', () => {
     const documents = [
       join(__dirname, `./__fixtures__/invalid-stoplight-info-document.json`),
-      join(__dirname, `./__fixtures__/missing-stoplight-info-document.json`),
+      join(__dirname, `./__fixtures__/missing-vendor-info-document.json`),
     ];
 
     return expect(run(['lint', ...documents].join(' '))).resolves.toEqual([
       {
-        code: 'info-matches-stoplight',
-        message: 'Info must contain Stoplight',
+        code: 'info-matches-openlint',
+        message: 'Info must contain OpenLint',
         path: ['info', 'title'],
         range: expect.any(Object),
         severity: DiagnosticSeverity.Warning,
         source: documents[0],
       },
       {
-        code: 'info-matches-stoplight',
-        message: 'Info must contain Stoplight',
+        code: 'info-matches-openlint',
+        message: 'Info must contain OpenLint',
         path: ['info', 'title'],
         range: expect.any(Object),
         severity: DiagnosticSeverity.Warning,
@@ -154,47 +154,47 @@ describe('Linter service', () => {
 
   it('sorts linting results in an alphabetical order', () => {
     const documents = [
-      join(__dirname, `./__fixtures__/missing-stoplight-info-document.json`),
+      join(__dirname, `./__fixtures__/missing-vendor-info-document.json`),
       join(__dirname, `./__fixtures__/openapi-3.0-valid.yaml`),
       join(__dirname, `./__fixtures__/invalid-stoplight-info-document.json`),
     ];
 
     return expect(run(['lint', ...documents].join(' '))).resolves.toEqual([
       expect.objectContaining({
-        code: 'info-matches-stoplight',
+        code: 'info-matches-openlint',
         source: join(__dirname, `./__fixtures__/invalid-stoplight-info-document.json`),
       }),
       expect.objectContaining({
-        code: 'info-matches-stoplight',
-        source: join(__dirname, `./__fixtures__/missing-stoplight-info-document.json`),
+        code: 'info-matches-openlint',
+        source: join(__dirname, `./__fixtures__/missing-vendor-info-document.json`),
       }),
       expect.objectContaining({
-        code: 'info-matches-stoplight',
+        code: 'info-matches-openlint',
         source: join(__dirname, `./__fixtures__/openapi-3.0-valid.yaml`),
       }),
     ]);
   });
 
   describe('when glob is provided', () => {
-    const documents = join(__dirname, `./__fixtures__/missing-stoplight-info*.json`);
+    const documents = join(__dirname, `./__fixtures__/missing-vendor-info*.json`);
 
     it('outputs issues for each file', () => {
       return expect(run(`lint ${documents}`)).resolves.toEqual([
         {
-          code: 'info-matches-stoplight',
-          message: 'Info must contain Stoplight',
+          code: 'info-matches-openlint',
+          message: 'Info must contain OpenLint',
           path: ['info', 'title'],
           range: expect.any(Object),
           severity: DiagnosticSeverity.Warning,
-          source: join(__dirname, `./__fixtures__/missing-stoplight-info-document-copy.json`),
+          source: join(__dirname, `./__fixtures__/missing-vendor-info-document-copy.json`),
         },
         {
-          code: 'info-matches-stoplight',
-          message: 'Info must contain Stoplight',
+          code: 'info-matches-openlint',
+          message: 'Info must contain OpenLint',
           path: ['info', 'title'],
           range: expect.any(Object),
           severity: DiagnosticSeverity.Warning,
-          source: join(__dirname, `./__fixtures__/missing-stoplight-info-document.json`),
+          source: join(__dirname, `./__fixtures__/missing-vendor-info-document.json`),
         },
       ]);
     });
@@ -202,20 +202,20 @@ describe('Linter service', () => {
     it('unixifies patterns', () => {
       return expect(run(`lint } ${documents.replace(/\//g, '\\')}`)).resolves.toEqual([
         {
-          code: 'info-matches-stoplight',
-          message: 'Info must contain Stoplight',
+          code: 'info-matches-openlint',
+          message: 'Info must contain OpenLint',
           path: ['info', 'title'],
           range: expect.any(Object),
           severity: DiagnosticSeverity.Warning,
-          source: join(__dirname, `./__fixtures__/missing-stoplight-info-document-copy.json`),
+          source: join(__dirname, `./__fixtures__/missing-vendor-info-document-copy.json`),
         },
         {
-          code: 'info-matches-stoplight',
-          message: 'Info must contain Stoplight',
+          code: 'info-matches-openlint',
+          message: 'Info must contain OpenLint',
           path: ['info', 'title'],
           range: expect.any(Object),
           severity: DiagnosticSeverity.Warning,
-          source: join(__dirname, `./__fixtures__/missing-stoplight-info-document.json`),
+          source: join(__dirname, `./__fixtures__/missing-vendor-info-document.json`),
         },
       ]);
     });
@@ -290,7 +290,7 @@ describe('Linter service', () => {
 
       it('outputs warnings', async () => {
         const output = await run(`lint ${validOas3SpecPath} -r ${validRulesetPath}`);
-        expect(output).toEqual(expect.arrayContaining([expect.objectContaining({ code: 'info-matches-stoplight' })]));
+        expect(output).toEqual(expect.arrayContaining([expect.objectContaining({ code: 'info-matches-openlint' })]));
         expect(output).toEqual(
           expect.not.arrayContaining([
             expect.objectContaining({
@@ -304,7 +304,7 @@ describe('Linter service', () => {
     describe('given legacy ruleset', () => {
       it('outputs warnings', async () => {
         const output = await run(`lint ${validOas3SpecPath} -r ${join(__dirname, '__fixtures__/ruleset.json')}`);
-        expect(output).toEqual(expect.arrayContaining([expect.objectContaining({ code: 'info-matches-stoplight' })]));
+        expect(output).toEqual(expect.arrayContaining([expect.objectContaining({ code: 'info-matches-openlint' })]));
         expect(output).toEqual(
           expect.not.arrayContaining([
             expect.objectContaining({
@@ -323,7 +323,7 @@ describe('Linter service', () => {
           });
 
         const output = await run(`lint ${validOas3SpecPath} -r http://foo.local/ruleset.json`);
-        expect(output).toEqual(expect.arrayContaining([expect.objectContaining({ code: 'info-matches-stoplight' })]));
+        expect(output).toEqual(expect.arrayContaining([expect.objectContaining({ code: 'info-matches-openlint' })]));
         expect(output).toEqual(
           expect.not.arrayContaining([
             expect.objectContaining({
@@ -342,7 +342,7 @@ describe('Linter service', () => {
           });
 
         const output = await run(`lint ${validOas3SpecPath} -r http://foo.local/ruleset`);
-        expect(output).toEqual(expect.arrayContaining([expect.objectContaining({ code: 'info-matches-stoplight' })]));
+        expect(output).toEqual(expect.arrayContaining([expect.objectContaining({ code: 'info-matches-openlint' })]));
         expect(output).toEqual(
           expect.not.arrayContaining([
             expect.objectContaining({
@@ -362,7 +362,7 @@ describe('Linter service', () => {
           });
 
         const output = await run(`lint ${validOas3SpecPath} -r http://foo.local/ruleset.json?token=bar`);
-        expect(output).toEqual(expect.arrayContaining([expect.objectContaining({ code: 'info-matches-stoplight' })]));
+        expect(output).toEqual(expect.arrayContaining([expect.objectContaining({ code: 'info-matches-openlint' })]));
         expect(output).toEqual(
           expect.not.arrayContaining([
             expect.objectContaining({
@@ -393,15 +393,15 @@ describe('Linter service', () => {
     });
 
     it('outputs warnings', () => {
-      const document = join(__dirname, `./__fixtures__/missing-stoplight-info-document.json`);
+      const document = join(__dirname, `./__fixtures__/missing-vendor-info-document.json`);
       nock('http://foo.local').persist().get('/openapi').replyWithFile(200, document, {
         'Content-Type': 'application/yaml',
       });
 
       return expect(run(`lint http://foo.local/openapi`)).resolves.toEqual([
         {
-          code: 'info-matches-stoplight',
-          message: 'Info must contain Stoplight',
+          code: 'info-matches-openlint',
+          message: 'Info must contain OpenLint',
           path: ['info', 'title'],
           range: expect.any(Object),
           severity: DiagnosticSeverity.Warning,
@@ -413,10 +413,10 @@ describe('Linter service', () => {
 
   describe('when using default ruleset file', () => {
     it('respects rules from a ruleset file', () => {
-      return expect(run('lint missing-stoplight-info-document.json')).resolves.toEqual([
+      return expect(run('lint missing-vendor-info-document.json')).resolves.toEqual([
         expect.objectContaining({
-          code: 'info-matches-stoplight',
-          message: 'Info must contain Stoplight',
+          code: 'info-matches-openlint',
+          message: 'Info must contain OpenLint',
         }),
       ]);
     });
@@ -553,8 +553,8 @@ describe('Linter service', () => {
 
       expect(await run(`lint --resolver ${resolver} ${document}`)).toEqual([
         {
-          code: 'info-matches-stoplight',
-          message: 'Info must contain Stoplight',
+          code: 'info-matches-openlint',
+          message: 'Info must contain OpenLint',
           path: [],
           range: expect.any(Object),
           severity: DiagnosticSeverity.Warning,

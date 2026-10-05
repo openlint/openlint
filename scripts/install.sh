@@ -10,12 +10,12 @@ set -eu
 KERNEL=$(uname -s)
 ARCH=$(uname -m)
 if [ "$KERNEL" != "Linux" ] && [ "$KERNEL" != "Darwin" ] ; then
-  echo "Sorry, KERNEL/Architecture not supported: ${KERNEL}/${ARCH}. Download binary from https://github.com/stoplightio/spectral/releases"
+  echo "Sorry, KERNEL/Architecture not supported: ${KERNEL}/${ARCH}. Download binary from https://github.com/openlint/openlint/releases"
   exit 1
 fi
 
 if [ "$ARCH" != "aarch64" ] && [ "$ARCH" != "arm64" ] && [ "$ARCH" != "x86_64" ] ; then
-  echo "Sorry, KERNEL/Architecture not supported: ${KERNEL}/${ARCH}. Download binary from https://github.com/stoplightio/spectral/releases"
+  echo "Sorry, KERNEL/Architecture not supported: ${KERNEL}/${ARCH}. Download binary from https://github.com/openlint/openlint/releases"
   exit 1
 fi
 
@@ -42,19 +42,19 @@ fi
 
 FILENAME="openlint-${OS}-${ARCH}"
 if [ "$VERSION" = "latest" ] ; then
-  URL="https://github.com/stoplightio/spectral/releases/latest/download/${FILENAME}"
+  URL="https://github.com/openlint/openlint/releases/latest/download/${FILENAME}"
 else
-  URL="https://github.com/stoplightio/spectral/releases/download/v${VERSION}/${FILENAME}"
+  URL="https://github.com/openlint/openlint/releases/download/v${VERSION}/${FILENAME}"
 fi
 
 SRC="$(pwd)/${FILENAME}"
-DEST=/usr/local/bin/spectral
+DEST=/usr/local/bin/openlint
 
 STATUS=$(curl -sL -w "%{http_code}" -o "$SRC" "$URL") || STATUS=000
 if [ "$STATUS" -ge 200 ] && [ "$STATUS" -le 308 ]; then
   mv "$SRC" "$DEST"
   chmod +x "$DEST"
-  echo "Spectral was installed to: ${DEST}"
+  echo "OpenLint was installed to: ${DEST}"
 else
   rm -f "$SRC"
   echo "Error requesting. Download binary from ${URL}"

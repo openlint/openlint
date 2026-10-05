@@ -93,7 +93,7 @@ ${chalk.yellow(
 
 ${chalk.red(
   '5:14',
-)}        ${chalk.red.inverse('ERROR')}        ${chalk.red.bold('info-matches-stoplight')}          ${chalk.gray('Info must contain Stoplight')}                                      ${chalk.cyan('info.title')}
+)}        ${chalk.red.inverse('ERROR')}        ${chalk.red.bold('info-matches-openlint')}           ${chalk.gray('Info must contain OpenLint')}                                       ${chalk.cyan('info.title')}
 
 ${chalk.blue(
   '17:13',

@@ -8,9 +8,9 @@ This project exposes the available formatters from the CLI for users that perfor
 import { OpenLint } from "@openlint/openlint-core";
 import { pretty } from "@openlint/openlint-formatters";
 
-const spectral = new OpenLint();
+const openlint = new OpenLint();
 // ...
-const result = await spectral.run(document);
+const result = await openlint.run(document);
 
 // You can also filter the results here.
 const output = pretty(result);

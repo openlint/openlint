@@ -8,7 +8,7 @@ testRule('asyncapi-info-license-url', [
       asyncapi: '2.0.0',
       info: {
         license: {
-          url: 'https://github.com/stoplightio/spectral/blob/develop/LICENSE',
+          url: 'https://github.com/openlint/openlint/blob/main/LICENSE',
         },
       },
     },
@@ -20,7 +20,7 @@ testRule('asyncapi-info-license-url', [
       asyncapi: '3.0.0',
       info: {
         license: {
-          url: 'https://github.com/stoplightio/spectral/blob/develop/LICENSE',
+          url: 'https://github.com/openlint/openlint/blob/main/LICENSE',
         },
       },
     },

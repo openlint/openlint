@@ -17,24 +17,24 @@ export { _stdin_ as default };
     });
 
     it('should accept any arbitrary path', async () => {
-      const code = await bundleRuleset('/spectral.json', {
+      const code = await bundleRuleset('/openlint.json', {
         format: 'esm',
         target,
-        plugins: [stdin('export default { rules: {} }', '/spectral.json')],
+        plugins: [stdin('export default { rules: {} }', '/openlint.json')],
       });
 
-      expect(code).toEqual(`var spectral = { rules: {} };
+      expect(code).toEqual(`var openlint = { rules: {} };
 
-export { spectral as default };
+export { openlint as default };
 `);
     });
 
     it('given unmatched path, should be a no-op', async () => {
       await expect(
-        bundleRuleset('/spectral.js', {
+        bundleRuleset('/openlint.js', {
           format: 'esm',
           target,
-          plugins: [stdin('export default { rules: {} }', '/spectral.json')],
+          plugins: [stdin('export default { rules: {} }', '/openlint.json')],
         }),
       ).rejects.toThrow();
     });

@@ -4,7 +4,7 @@ Valid OAS2 document returns no results
 swagger: "2.0"
 info:
   version: 1.0.0
-  title: Stoplight
+  title: OpenLint
   description: lots of text
   contact:
     name: fred

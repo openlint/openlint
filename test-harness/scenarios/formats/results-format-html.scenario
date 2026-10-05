@@ -4,7 +4,7 @@ Invalid document outputs results when --format=html
 ---
 info:
   version: 1.0.0
-  title: Stoplight
+  title: OpenLint
 ====asset:ruleset.json====
 {
   "rules": {

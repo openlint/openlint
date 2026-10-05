@@ -6,7 +6,7 @@ export const virtualFs = ({ fs }: IO): Plugin => {
   const recognized = new Set();
 
   return {
-    name: '@stoplight-spectral/virtual-fs',
+    name: '@openlint-openlint/virtual-fs',
 
     resolveId(source, importer): string | null {
       const { protocol } = parse(source);

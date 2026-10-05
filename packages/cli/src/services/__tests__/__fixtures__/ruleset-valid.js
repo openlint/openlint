@@ -2,15 +2,15 @@ const { pattern } = require('@openlint/openlint-functions');
 
 module.exports = {
   rules: {
-    'info-matches-stoplight': {
-      message: 'Info must contain Stoplight',
+    'info-matches-openlint': {
+      message: 'Info must contain OpenLint',
       given: '$.info',
       recommended: true,
       then: {
         field: 'title',
         function: pattern,
         functionOptions: {
-          match: 'Stoplight'
+          match: 'OpenLint'
         }
       },
     },

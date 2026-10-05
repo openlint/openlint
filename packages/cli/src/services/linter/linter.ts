@@ -13,13 +13,13 @@ export interface LinterResult {
 }
 
 export async function lint(documents: Array<number | string>, flags: ILintConfig): Promise<LinterResult> {
-  const spectral = new OpenLint({
+  const openlint = new OpenLint({
     resolver: getResolver(flags.resolver),
   });
 
   const ruleset = await getRuleset(flags.ruleset);
 
-  spectral.setRuleset(ruleset);
+  openlint.setRuleset(ruleset);
   if (flags.verbose === true) {
     const rules = Object.values(ruleset.rules);
     console.info(`Found ${rules.length} rules (${rules.filter(rule => rule.enabled).length} enabled)`);
@@ -52,7 +52,7 @@ export async function lint(documents: Array<number | string>, flags: ILintConfig
     const document = await createDocument(targetUri, { encoding: flags.encoding }, flags.stdinFilepath ?? '<STDIN>');
 
     results.push(
-      ...(await spectral.run(document, {
+      ...(await openlint.run(document, {
         ignoreUnknownFormat: flags.ignoreUnknownFormat,
       })),
     );
