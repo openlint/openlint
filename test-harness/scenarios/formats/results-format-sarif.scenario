@@ -84,7 +84,7 @@ info:
               "helpUri": "https://www.example.com/docs/info-description.md"
             }
           ],
-          "informationUri": "https://github.com/stoplightio/spectral"
+          "informationUri": "https://github.com/openlint/openlint"
         }
       },
       "results": [
@@ -105,7 +105,7 @@ info:
                   "startLine": 1,
                   "startColumn": 1,
                   "endLine": 4,
-                  "endColumn": 19
+                  "endColumn": 18
                 }
               }
             }
@@ -129,7 +129,7 @@ info:
                   "startLine": 2,
                   "startColumn": 6,
                   "endLine": 4,
-                  "endColumn": 19
+                  "endColumn": 18
                 }
               }
             }
@@ -153,7 +153,7 @@ info:
                   "startLine": 2,
                   "startColumn": 6,
                   "endLine": 4,
-                  "endColumn": 19
+                  "endColumn": 18
                 }
               }
             }

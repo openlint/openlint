@@ -65,7 +65,7 @@ info:
 			},
 			"end": {
 				"line": 3,
-				"character": 18
+				"character": 17
 			}
 		},
 		"source": "{document}"
@@ -84,7 +84,7 @@ info:
 			},
 			"end": {
 				"line": 3,
-				"character": 18
+				"character": 17
 			}
 		},
 		"source": "{document}"
@@ -103,7 +103,7 @@ info:
 			},
 			"end": {
 				"line": 3,
-				"character": 18
+				"character": 17
 			}
 		},
 		"source": "{document}"

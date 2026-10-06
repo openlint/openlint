@@ -9,7 +9,7 @@ rules: {}
 ====status====
 1
 ====stderr====
-spectral lint [documents..]
+openlint lint [documents..]
 
 lint JSON/YAML documents from files or URLs
 
