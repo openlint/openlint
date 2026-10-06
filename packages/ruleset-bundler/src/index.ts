@@ -35,8 +35,12 @@ export async function bundleRuleset(
       if (e.code === 'MISSING_NAME_OPTION_FOR_IIFE_EXPORT') {
         return;
       }
-      // The Spectral packages themselves are not included in the bundle.
-      if (e.code === 'UNRESOLVED_IMPORT' && typeof e.source === 'string' && (e.source.startsWith('@stoplight/spectral') || .source.startsWith('@openlint/openlint'))) {
+      // The OpenLint packages themselves are not included in the bundle.
+      if (
+        e.code === 'UNRESOLVED_IMPORT' &&
+        typeof e.source === 'string' &&
+        (e.source.startsWith('@stoplight/spectral') || e.source.startsWith('@openlint/openlint'))
+      ) {
         return;
       }
 
