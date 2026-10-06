@@ -65,7 +65,10 @@
   },
   "pkg": {
     "scripts": [
-      "./dist/**/*.js"
+      "./dist/**/*.js",
+      "../../node_modules/async-function/index.js",
+      "../../node_modules/async-generator-function/index.js",
+      "../../node_modules/generator-function/index.js"
     ],
     "assets": [
       "./dist/**/*.json",
