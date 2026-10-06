@@ -2,7 +2,7 @@ import { prepareResults } from '../results';
 import { DiagnosticSeverity, IPosition } from '@stoplight/types';
 
 import { comparePosition, compareResults, sortResults } from '../results';
-import type { ISpectralDiagnostic } from '../../../types';
+import type { IOpenLintDiagnostic } from '../../../types';
 
 import duplicateValidationResults from './__fixtures__/duplicate-validation-results.json';
 import { results } from './__fixtures__/random-results';
@@ -60,11 +60,11 @@ describe('prepareResults util', () => {
 });
 
 describe('sortResults', () => {
-  const shuffleBy = (arr: ISpectralDiagnostic[], indices: number[]): ISpectralDiagnostic[] => {
+  const shuffleBy = (arr: IOpenLintDiagnostic[], indices: number[]): IOpenLintDiagnostic[] => {
     expect(indices).toHaveLength(arr.length);
 
     const shuffled = results
-      .map<ISpectralDiagnostic & { pos?: number }>((v, i) => ({ ...v, pos: indices[i] }))
+      .map<IOpenLintDiagnostic & { pos?: number }>((v, i) => ({ ...v, pos: indices[i] }))
       .sort((a, b) => a.pos! - b.pos!)
       .map(v => {
         delete v.pos;

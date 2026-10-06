@@ -10,13 +10,13 @@ export interface IRunOpts {
   ignoreUnknownFormat?: boolean;
 }
 
-export interface ISpectralDiagnostic extends IDiagnostic {
+export interface IOpenLintDiagnostic extends IDiagnostic {
   path: JsonPath;
   code: string | number;
   documentationUrl?: string;
 }
 
-export type IRuleResult = ISpectralDiagnostic;
+export type IRuleResult = IOpenLintDiagnostic;
 
 export interface ISpectralFullResult {
   resolved: unknown;

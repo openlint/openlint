@@ -6,7 +6,7 @@ import { createHttpAndFileResolver, Resolver } from '@openlint/openlint-ref-reso
 import { Document, IDocument, IParsedResult, isParsedResult, ParsedDocument } from './document';
 import { DocumentInventory } from './documentInventory';
 import { Runner } from './runner';
-import type { IConstructorOpts, IRunOpts, ISpectralDiagnostic, ISpectralFullResult } from './types';
+import type { IConstructorOpts, IRunOpts, IOpenLintDiagnostic, ISpectralFullResult } from './types';
 import type { Format, ParserOptions, RulesetDefinition } from './ruleset/index';
 import { Ruleset } from './ruleset/ruleset';
 import { generateDocumentWideResult } from './utils/generateDocumentWideResult';
@@ -79,7 +79,7 @@ export class OpenLint {
   public async run(
     target: IParsedResult | IDocument | Record<string, unknown> | string,
     opts: IRunOpts = {},
-  ): Promise<ISpectralDiagnostic[]> {
+  ): Promise<IOpenLintDiagnostic[]> {
     return (await this.runWithResolved(target, opts)).results;
   }
 
@@ -87,7 +87,7 @@ export class OpenLint {
     this.ruleset = ruleset instanceof Ruleset ? ruleset : new Ruleset(ruleset);
   }
 
-  private _generateUnrecognizedFormatError(document: IDocument, formats: Format[]): ISpectralDiagnostic {
+  private _generateUnrecognizedFormatError(document: IDocument, formats: Format[]): IOpenLintDiagnostic {
     return generateDocumentWideResult(
       document,
       `The provided document does not match any of the registered formats [${formats
@@ -99,10 +99,10 @@ export class OpenLint {
   }
 
   private _filterParserErrors(
-    diagnostics: ReadonlyArray<ISpectralDiagnostic>,
+    diagnostics: ReadonlyArray<IOpenLintDiagnostic>,
     parserOptions: ParserOptions,
-  ): ISpectralDiagnostic[] {
-    return diagnostics.reduce<ISpectralDiagnostic[]>((diagnostics, diagnostic) => {
+  ): IOpenLintDiagnostic[] {
+    return diagnostics.reduce<IOpenLintDiagnostic[]>((diagnostics, diagnostic) => {
       if (diagnostic.code !== 'parser') return diagnostics;
 
       let severity;

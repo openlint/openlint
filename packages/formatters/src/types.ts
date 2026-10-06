@@ -1,4 +1,4 @@
-import { ISpectralDiagnostic, Ruleset } from '@openlint/openlint-core';
+import { IOpenLintDiagnostic, Ruleset } from '@openlint/openlint-core';
 import type { DiagnosticSeverity } from '@stoplight/types';
 
 export type FormatterOptions = {
@@ -10,4 +10,4 @@ export type FormatterContext = {
   spectralVersion: string;
 };
 
-export type Formatter = (results: ISpectralDiagnostic[], options: FormatterOptions, ctx?: FormatterContext) => string;
+export type Formatter = (results: IOpenLintDiagnostic[], options: FormatterOptions, ctx?: FormatterContext) => string;
