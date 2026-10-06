@@ -103,7 +103,7 @@ describe('Sarif formatter', () => {
                 },
               ],
               version: sarifToolVersion,
-              informationUri: 'https://github.com/stoplightio/spectral',
+              informationUri: 'https://github.com/openlint/openlint',
             },
           },
           results: [

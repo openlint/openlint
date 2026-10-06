@@ -25,7 +25,7 @@ export const sarif: Formatter = (results, _, ctx) => {
   const sarifRunBuilder = new SarifRunBuilder().initSimple({
     toolDriverName: 'spectral',
     toolDriverVersion: ctx.spectralVersion,
-    url: 'https://github.com/stoplightio/spectral',
+    url: 'https://github.com/openlint/openlint',
   });
 
   // add rules
