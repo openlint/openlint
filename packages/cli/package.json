@@ -71,6 +71,9 @@
       "./dist/**/*.json",
       "../*/dist/**/*.js.map",
       "../*/src/**/*.ts"
+    ],
+    "options": [
+      "no-experimental-require-module"
     ]
   }
 }
