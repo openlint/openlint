@@ -23,7 +23,7 @@ export const sarif: Formatter = (results, _, ctx) => {
   });
 
   const sarifRunBuilder = new SarifRunBuilder().initSimple({
-    toolDriverName: 'spectral',
+    toolDriverName: 'openlint',
     toolDriverVersion: ctx.spectralVersion,
     url: 'https://github.com/openlint/openlint',
   });

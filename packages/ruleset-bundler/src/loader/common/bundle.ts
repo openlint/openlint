@@ -14,7 +14,7 @@ export async function bundle(rulesetFile: string, bundleOptions: BundleOptions, 
         fs,
       });
 
-      rulesetFile = path.join(path.dirname(rulesetFile), '.spectral.js');
+      rulesetFile = path.join(path.dirname(rulesetFile), '.openlint.js');
 
       return await bundleRuleset(rulesetFile, {
         ...bundleOptions,

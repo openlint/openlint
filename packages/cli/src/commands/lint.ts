@@ -258,7 +258,7 @@ const fail = (error: Error | ErrorWithCause<unknown> | AggregateError, verbose: 
 
   const errors: unknown[] = 'errors' in error ? error.errors : [error];
 
-  process.stderr.write(chalk.red('Error running Spectral!\n'));
+  process.stderr.write(chalk.red('Error running OpenLint!\n'));
 
   if (!verbose) {
     process.stderr.write(chalk.red('Use --verbose flag to print the error stack.\n'));

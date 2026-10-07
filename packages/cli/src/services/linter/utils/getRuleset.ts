@@ -56,7 +56,7 @@ export async function getRuleset(rulesetFile: Optional<string>): Promise<Ruleset
         fs,
       });
 
-      rulesetFile = path.join(path.dirname(rulesetFile), '.spectral.js');
+      rulesetFile = path.join(path.dirname(rulesetFile), '.openlint.js');
 
       ruleset = await bundleRuleset(rulesetFile, {
         target: 'node',

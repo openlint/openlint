@@ -61,7 +61,7 @@ module.exports = {
 ====status====
 2
 ====stderr====
-Error running Spectral!
+Error running OpenLint!
 Use --verbose flag to print the error stack.
 Error #1: Function "upperCase" threw an exception: input is not defined
 Error #2: Function "upperCase" threw an exception: input is not defined

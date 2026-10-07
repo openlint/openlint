@@ -1,5 +1,3 @@
-import '@openlint/openlint-test-utils/matchers';
-
 import { join, resolve } from '@stoplight/path';
 import nock from 'nock';
 import * as yargs from 'yargs';
@@ -93,7 +91,7 @@ describe('Linter service', () => {
   it('demands some ruleset to be present', () => {
     (process.cwd as jest.Mock).mockReturnValue(join(__dirname, '__fixtures__/resolver'));
     return expect(run(`lint stoplight-info-document.json`)).rejects.toThrow(
-      'No ruleset has been found. Please provide a ruleset using the --ruleset CLI argument, or make sure your ruleset file matches .?spectral.(js|ya?ml|json)',
+      'No ruleset has been found. Please provide a ruleset using the --ruleset CLI argument, or make sure your ruleset file matches .openlint.js/yaml/json or .openlint.js/yaml/json',
     );
   });
 
