@@ -1,60 +1,72 @@
-# Spectral CLI
+# OpenLint CLI
 
-[Once Spectral is installed](../getting-started/2-installation.md) and [you have a ruleset](../../README.md#installation-and-usage), run Spectral via the command-line:
+[Once OpenLint is installed](../getting-started/2-installation.md) and [you have a ruleset](../../README.md#installation-and-usage), run the `openlint` command-line:
 
 ```bash
-spectral lint petstore.yaml
+openlint lint openlint.yaml
 ```
 
 Use this command to lint with a custom ruleset or one that's located in a different directory than your API document:
 
 ```bash
-spectral lint petstore.yaml --ruleset myruleset.json
+openlint lint openlint.yaml --ruleset myruleset.json
 ```
 
 You can lint multiple files at the same time by passing on multiple arguments:
 
 ```bash
-spectral lint petstore.yaml https://example.com/petstore/openapi-v2.json https://example.com/todos/openapi-v3.json
+openlint lint openlint.yaml https://example.com/openlint/openapi.json https://example.com/train-travel/openapi.yaml
 ```
 
 Alternatively, you can use [glob syntax](https://github.com/mrmlnc/fast-glob#basic-syntax) to match multiple files at once:
 
 ```bash
-spectral lint ./reference/**/*.oas*.{json,yml,yaml}
+openlint lint ./reference/**/*.oas*.{json,yml,yaml}
 ```
 
 Other options include:
 
 ```
-      --version                  Show version number                                                                              [boolean]
-      --help                     Show help                                                                                        [boolean]
+      --version                  Show version number                                       [boolean]
+      --help                     Show help                                                 [boolean]
   -e, --encoding                 text encoding to use
-          [string] [choices: "utf8", "ascii", "utf-8", "utf16le", "ucs2", "ucs-2", "base64", "latin1"] [default: "utf8"]
-  -f, --format                   formatters to use for outputting results, more than one can be provided by using
-                                 multiple flags
-         [string] [choices: "json", "stylish", "junit", "html", "text", "teamcity", "pretty", "github-actions", "sarif", "markdown","gitlab"]
-                                                                                                    [default: "stylish"]
-  -o, --output                   where to output results, can be a single file name, multiple "output.<format>" or
-                                 missing to print to stdout                                                     [string]
-      --stdin-filepath           path to a file to pretend that stdin comes from                                [string]
-      --resolver                 path to custom json-ref-resolver instance                                      [string]
-  -r, --ruleset                  path/URL to a ruleset file                                                     [string]
+        [string] [choices: "utf8", "ascii", "utf-8", "utf16le", "ucs2", "ucs-2", "base64", "latin1"]
+                                                                                   [default: "utf8"]
+  -f, --format                   formatters to use for outputting results, more than one can be
+                                 provided by using multiple flags
+                [string] [choices: "json", "stylish", "junit", "html", "text", "teamcity", "pretty",
+               "github-actions", "sarif", "code-climate", "gitlab", "markdown"] [default: "stylish"]
+  -o, --output                   where to output results, can be a single file name, multiple
+                                 "output.<format>" or missing to print to stdout            [string]
+      --stdin-filepath           path to a file to pretend that stdin comes from            [string]
+      --resolver                 path to custom json-ref-resolver instance                  [string]
+  -r, --ruleset                  path/URL to a ruleset file                                 [string]
   -F, --fail-severity            results of this level or above will trigger a failure exit code
-                                                  [string] [choices: "error", "warn", "info", "hint"] [default: "error"]
-  -D, --display-only-failures    only output results equal to or greater than --fail-severity [boolean] [default: false]
-      --ignore-unknown-format    do not warn about unmatched formats                          [boolean] [default: false]
-      --fail-on-unmatched-globs  fail on unmatched glob patterns                              [boolean] [default: false]
-      --show-documentation-url   show documentation url in output result                      [boolean] [default: false]
-  -v, --verbose                  increase verbosity                                                            [boolean]
-  -q, --quiet                    no logging - output only                                                      [boolean]
+                              [string] [choices: "error", "warn", "info", "hint"] [default: "error"]
+  -D, --display-only-failures    only output results equal to or greater than --fail-severity
+                                                                          [boolean] [default: false]
+      --ignore-unknown-format    do not warn about unmatched formats      [boolean] [default: false]
+      --fail-on-unmatched-globs  fail on unmatched glob patterns          [boolean] [default: false]
+      --show-documentation-url   show documentation url in output result  [boolean] [default: false]
+  -v, --verbose                  increase verbosity                                        [boolean]
+  -q, --quiet                    no logging - output only                                  [boolean]
 ```
 
-The Spectral CLI supports loading documents as YAML or JSON, and validation of OpenAPI v2/v3 documents via the built-in ruleset.
+OpenLint CLI supports loading documents as YAML or JSON, and validation of OpenAPI v3.2-v2.0 documents via the built-in ruleset.
 
 ## Using a Ruleset File
 
-If you don't specify a ruleset file with the `--ruleset` parameter, the Spectral CLI looks for a ruleset file called `.spectral.yml`, `.spectral.yaml`, `.spectral.json` or `.spectral.js` in the current working directory.
+If you don't specify a ruleset file with the `--ruleset` parameter, the OpenLint CLI looks for a ruleset file with any of the following names in the current working directory.
+
+- `.openlint.yml`
+- `.openlint.yaml`
+- `.openlint.json`
+- `.openlint.js`
+- `.spectral.yml`
+- `.spectral.yaml`
+- `.spectral.json`
+- `.spectral.js`
+
 Spectral won't lint the document if no ruleset is specified and no default ruleset file is found.
 
 Here you can build a [custom ruleset](../getting-started/3-rulesets.md), or extend and modify the core rulesets:
@@ -93,7 +105,7 @@ items:
   properties:
     code:
       type: string
-      description: A string that represents the rule code that has been violated or triggered in Spectral. This code is unique to each rule defined in Spectral.
+      description: A string that represents the rule code that has been violated or triggered in OpenLint. This code is unique to each rule defined in OpenLint.
     path:
       type: array
       description: An array of strings that indicate the location within the analyzed document where the rule was triggered. It shows the "path" in the document structure to the issue.
@@ -101,14 +113,14 @@ items:
         type: string
     message:
       type: string
-      description: A string that contains a human-readable message describing the issue found by Spectral. This message typically provides information on why the rule was triggered and how to fix the issue.
+      description: A string that contains a human-readable message describing the issue found by OpenLint. This message typically provides information on why the rule was triggered and how to fix the issue.
     severity:
       enum:
         - 0
         - 1
         - 2
         - 3
-      description: An integer representing the severity level of the rule violation. The severity levels usually follow a specific scale defined by Spectral. 0 equals error, while 3 is hint.
+      description: An integer representing the severity level of the rule violation. The severity levels usually follow a specific scale defined by OpenLint. 0 equals error, while 3 is hint.
     range:
       type: object
       description: An object that describes where in the file the issue was found. It contains two sub-properties, start and end, each of which is an object with line and character properties. line and character are integers that represent the line number and the character position within the line, respectively, where the issue starts or ends. All the values are zero indexed.
@@ -184,26 +196,26 @@ If you wish to output results in multiple formats, you can do so by passing mult
 In order to output results in multiple formats, you must also pass the `-o` flag with a filename for each format.
 
 ```bash
-spectral lint "specs/**/*.yaml" -f json -f junit -o.json results.json -o.junit junit.xml
+openlint lint "specs/**/*.yaml" -f json -f junit -o.json results.json -o.junit junit.xml
 ```
 
 You can also pipe an output to stdout.
 
 ```bash
-spectral lint "specs/**/*.yaml" -f stylish -f junit -o.junit junit.xml -o.stylish "<stdout>"
+openlint lint "specs/**/*.yaml" -f stylish -f junit -o.junit junit.xml -o.stylish "<stdout>"
 ```
 
 It's possible to output each format to stdout.
 
 ```bash
-spectral lint "specs/**/*.yaml" -f text -f stylish -o.text "<stdout>" -o.stylish "<stdout>"
+openlint lint "specs/**/*.yaml" -f text -f stylish -o.text "<stdout>" -o.stylish "<stdout>"
 ```
 
 ## Proxying
 
 To have requests made from Spectral be proxied through a server, you'd need to specify the `PROXY` environment variable:
 
-`PROXY=<<PROXY_SERVER_ADDRESS>> spectral lint spec.yaml`
+`PROXY=<<PROXY_SERVER_ADDRESS>> openlint lint spec.yaml`
 
 ## Custom \$ref Resolving
 
