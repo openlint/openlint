@@ -24,7 +24,7 @@ rules:
 ```
 
 ```js
-// .spectral.js (CommonJS)
+// .openlint.js (CommonJS)
 const { oas: oas } = require("@openlint/openlint-rulesets");
 const { oas2: oas2, jsonSchemaLoose: jsonSchemaLoose } = require("@openlint/openlint-formats");
 const { pattern: pattern } = require("@openlint/openlint-functions");
@@ -48,7 +48,7 @@ module.exports = {
 ```
 
 ```js
-// .spectral.js (ES Module)
+// .openlint.js (ES Module)
 import { oas } from "@openlint/openlint-rulesets";
 import { oas2, jsonSchemaLoose } from "@openlint/openlint-formats";
 import { pattern } from "@openlint/openlint-functions";
@@ -88,7 +88,7 @@ const path = require("path");
 migrateRuleset(path.join(__dirname, "spectral.json"), {
   fs,
   format: "commonjs", // esm available too, but not recommended for now
-}).then(fs.promises.writeFile.bind(fs.promises, path.join(__dirname, ".spectral.js")));
+}).then(fs.promises.writeFile.bind(fs.promises, path.join(__dirname, ".openlint.js")));
 ```
 
 ### Caveats
