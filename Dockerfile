@@ -1,4 +1,6 @@
-FROM node:24-alpine
+# Pass the version from .nvmrc: docker build --build-arg NODE_VERSION=$(cat .nvmrc) .
+ARG NODE_VERSION
+FROM node:${NODE_VERSION}-alpine
 
 WORKDIR /usr/src/openlint
 
