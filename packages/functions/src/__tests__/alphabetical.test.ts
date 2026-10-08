@@ -2,7 +2,6 @@ import * as Parsers from '@openlint/openlint-parsers';
 import { Document, RulesetValidationError } from '@openlint/openlint-core';
 import testFunction from './__helpers__/tester';
 import alphabetical from '../alphabetical';
-import AggregateError = require('es-aggregate-error');
 
 const runAlphabetical = testFunction.bind(null, alphabetical);
 

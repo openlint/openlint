@@ -16,7 +16,7 @@
   ],
   "types": "dist/index.d.ts",
   "engines": {
-    "node": "^16.20 || ^18.18 || >= 20.17"
+    "node": "^22.0 || >= 24.0"
   },
   "dependencies": {
     "@openlint/openlint-core": "^1.23.0",

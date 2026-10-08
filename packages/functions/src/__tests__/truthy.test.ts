@@ -3,7 +3,6 @@ import '@openlint/openlint-test-utils/matchers';
 import { RulesetValidationError } from '@openlint/openlint-core';
 import truthy from '../truthy';
 import testFunction from './__helpers__/tester';
-import AggregateError = require('es-aggregate-error');
 
 const runTruthy = testFunction.bind(null, truthy);
 
