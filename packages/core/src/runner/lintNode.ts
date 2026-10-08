@@ -1,6 +1,5 @@
 import { decodeSegmentFragment, getClosestJsonPath, printPath, PrintStyle } from '@openlint/openlint-runtime';
 import { get, isError } from 'lodash';
-import { ErrorWithCause } from 'pony-cause';
 
 import { Document } from '../document';
 import type { IFunctionResult, IGivenNode, RulesetFunctionContext } from '../types';
@@ -32,7 +31,7 @@ export const lintNode = (context: IRunnerInternalContext, node: IGivenNode, rule
       try {
         targetResults = then.function(target.value, then.functionOptions ?? null, fnContext);
       } catch (e) {
-        throw new ErrorWithCause(
+        throw new Error(
           `Function "${then.function.name}" threw an exception${isError(e) ? `: ${e.message}` : ''}`,
           {
             cause: e,

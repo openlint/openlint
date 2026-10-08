@@ -4,7 +4,6 @@ import { oas2 } from '@openlint/openlint-formats';
 import { pattern, truthy } from '@openlint/openlint-functions';
 import * as path from '@stoplight/path';
 import { DiagnosticSeverity } from '@stoplight/types';
-import AggregateError = require('es-aggregate-error');
 
 import { Ruleset } from '../ruleset';
 import { RulesetDefinition } from '../types';

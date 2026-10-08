@@ -3,7 +3,6 @@ import '@openlint/openlint-test-utils/matchers';
 import { RulesetValidationError } from '@openlint/openlint-core';
 import enumeration from '../enumeration';
 import testFunction from './__helpers__/tester';
-import AggregateError = require('es-aggregate-error');
 
 const runEnumeration = testFunction.bind(null, enumeration);
 

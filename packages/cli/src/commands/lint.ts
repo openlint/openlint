@@ -5,7 +5,6 @@ import { camelCase, difference, isError, pick } from 'lodash';
 import type { CommandModule } from 'yargs';
 import * as process from 'process';
 import chalk from 'chalk';
-import type { ErrorWithCause } from 'pony-cause';
 import StackTracey from 'stacktracey';
 
 import { lint } from '../services/linter';
@@ -250,7 +249,7 @@ const lintCommand: CommandModule = {
   },
 };
 
-const fail = (error: Error | ErrorWithCause<unknown> | AggregateError, verbose: boolean): void => {
+const fail = (error: Error | AggregateError, verbose: boolean): void => {
   if (error instanceof CLIError) {
     process.stderr.write(chalk.red(error.message));
     process.exit(2);
@@ -265,7 +264,7 @@ const fail = (error: Error | ErrorWithCause<unknown> | AggregateError, verbose: 
   }
 
   for (const [i, error] of errors.entries()) {
-    const actualError: unknown = isError(error) && 'cause' in error ? (error as ErrorWithCause<unknown>).cause : error;
+    const actualError: unknown = isError(error) && 'cause' in error ? error.cause : error;
     const message = isError(actualError) ? actualError.message : String(actualError);
     const location = formatErrorLocation(actualError);
 

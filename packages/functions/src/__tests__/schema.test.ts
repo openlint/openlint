@@ -3,7 +3,6 @@ import schema from '../schema';
 import { RulesetValidationError } from '@openlint/openlint-core';
 import testFunction from './__helpers__/tester';
 import '@openlint/openlint-test-utils/matchers';
-import AggregateError = require('es-aggregate-error');
 
 const runSchema = testFunction.bind(null, schema);
 

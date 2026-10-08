@@ -5,7 +5,7 @@
   "bugs": "https://github.com/openlint/openlint/issues",
   "author": "OpenLint <info@openlint.org>",
   "engines": {
-    "node": "^16.20 || ^18.18 || >= 20.17"
+    "node": "^22.0 || >= 24.0"
   },
   "license": "Apache-2.0",
   "files": [

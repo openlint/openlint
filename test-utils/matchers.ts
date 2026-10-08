@@ -1,4 +1,4 @@
-import AggregateError = require('es-aggregate-error');
+export {};
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace

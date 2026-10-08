@@ -1,6 +1,5 @@
 import { migrateRuleset } from '@openlint/openlint-ruleset-migrator';
 import * as path from '@stoplight/path';
-import { ErrorWithCause } from 'pony-cause';
 
 import { stdin } from '../../plugins/stdin';
 import { isBasicRuleset, isErrorWithCode } from './utils';
@@ -28,6 +27,6 @@ export async function bundle(rulesetFile: string, bundleOptions: BundleOptions, 
       throw e;
     }
 
-    throw new ErrorWithCause(`Could not read ruleset at ${rulesetFile}.`, { cause: e });
+    throw new Error(`Could not read ruleset at ${rulesetFile}.`, { cause: e });
   }
 }

@@ -12,7 +12,6 @@ import { RulesetValidationError } from './validation/index';
 import { IFunctionResult, JSONSchema, RulesetFunction, RulesetFunctionWithValidator } from '../types';
 import { isObject } from 'lodash';
 // eslint-disable-next-line @typescript-eslint/no-require-imports
-import AggregateError = require('es-aggregate-error');
 
 const ajv = new Ajv({ allErrors: true, allowUnionTypes: true, strict: true, keywords: ['x-internal'] });
 ajvErrors(ajv);

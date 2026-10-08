@@ -3,7 +3,6 @@ import '@openlint/openlint-test-utils/matchers';
 import { RulesetValidationError } from '@openlint/openlint-core';
 import testFunction from './__helpers__/tester';
 import xor from '../xor';
-import AggregateError = require('es-aggregate-error');
 
 const runXor = testFunction.bind(null, xor);
 
