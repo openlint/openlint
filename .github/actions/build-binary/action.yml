@@ -21,9 +21,13 @@ runs:
       key: pkg-cache-${{ inputs.targets }}-${{ inputs.node-version }}
       path: "/tmp/pkg-node-binaries"
       restore-keys: pkg-cache-${{ inputs.targets }}-${{ inputs.node-version }}
+  - name: Resolve Node.js major version
+    id: node-major
+    run: echo "major=$(echo "${{ inputs.node-version }}" | cut -d. -f1)" >> "$GITHUB_OUTPUT"
+    shell: bash
   - name: Create the openlint Binary Windows
     if: ${{ inputs.targets == 'windows' }}
-    run: yarn workspace @openlint/openlint-cli pkg . --public --public-packages "*" --targets node${{ inputs.node-version }}-windows --output binaries/openlint
+    run: yarn workspace @openlint/openlint-cli pkg . --public --public-packages "*" --targets node${{ steps.node-major.outputs.major }}-windows --output binaries/openlint
     env:
       PKG_CACHE_PATH: "/tmp/pkg-node-binaries"
     shell: powershell

@@ -3,7 +3,6 @@ import '@openlint/openlint-test-utils/matchers';
 import { RulesetValidationError } from '@openlint/openlint-core';
 import testFunction from './__helpers__/tester';
 import unreferencedReusableObject from '../unreferencedReusableObject';
-import AggregateError = require('es-aggregate-error');
 
 const runUnreferencedReusableObject = testFunction.bind(null, unreferencedReusableObject);
 

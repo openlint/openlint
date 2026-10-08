@@ -13,12 +13,26 @@ jobs:
   run-tests:
     uses: ./.github/workflows/commit.yml
 
+  read-node-version:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.node.outputs.version }}
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v7.0.1
+      with:
+        fetch-depth: 1
+    - name: Read Node.js version
+      id: node
+      run: echo "version=$(cat .nvmrc)" >> "$GITHUB_OUTPUT"
+
   release:
     runs-on: ubuntu-latest
     container:
-      image: node:lts
+      image: node:${{ needs.read-node-version.outputs.version }}
     needs:
     - run-tests
+    - read-node-version
     steps:
     - name: Checkout code
       uses: actions/checkout@v7.0.1
