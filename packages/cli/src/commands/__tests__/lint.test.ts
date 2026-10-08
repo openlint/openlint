@@ -215,7 +215,7 @@ describe('lint', () => {
     (lint as jest.Mock).mockReset();
     (lint as jest.Mock).mockRejectedValueOnce(error);
     await run(`lint ./__fixtures__/empty-oas2-document.json`);
-    expect(process.stderr.write).nthCalledWith(1, chalk.red('Error running Spectral!\n'));
+    expect(process.stderr.write).nthCalledWith(1, chalk.red('Error running OpenLint!\n'));
     expect(process.stderr.write).nthCalledWith(2, chalk.red('Use --verbose flag to print the error stack.\n'));
     expect(process.stderr.write).nthCalledWith(3, `Error #1: ${chalk.red('Failure')}\n`);
   });

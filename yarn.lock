@@ -2874,11 +2874,12 @@ __metadata:
     nock: ^13.5.4
     pony-cause: ^1.1.1
     stacktracey: ^2.1.8
+    tsconfig-paths: ^4.2.0
     tslib: ^2.8.1
     xml2js: ^0.5.0
     yargs: ~17.7.2
   bin:
-    spectral: ./dist/index.js
+    openlint: ./dist/index.js
   languageName: unknown
   linkType: soft
 
@@ -2894,7 +2895,7 @@ __metadata:
     "@stoplight/better-ajv-errors": 1.0.3
     "@stoplight/json": ~3.21.0
     "@stoplight/path": 1.3.2
-    "@stoplight/types": ~13.6.0
+    "@stoplight/types": ^13.6.0
     "@stoplight/yaml": ^4.2.2
     "@types/es-aggregate-error": ^1.0.2
     "@types/json-schema": ^7.0.11
@@ -3528,16 +3529,6 @@ __metadata:
     "@types/json-schema": ^7.0.4
     utility-types: ^3.10.0
   checksum: 1da2e683e88afe2f72c3b3af341537bc9bac153d224f65744ca60d44eade93609ce91172064ae27093e1ebfa7bcbf05fb232a1910d83b2aee5b1eed4bb726200
-  languageName: node
-  linkType: hard
-
-"@stoplight/types@npm:~13.6.0":
-  version: 13.6.0
-  resolution: "@stoplight/types@npm:13.6.0"
-  dependencies:
-    "@types/json-schema": ^7.0.4
-    utility-types: ^3.10.0
-  checksum: 4cc81cf29decc0392f15c71b21fd11cd806bcf99168ae4509ed41c2b7dbcfbd5a83c7f9f320edb5a518cc483fd18dd8794c54b232fb6a6f2a7b6e9fb6ca20269
   languageName: node
   linkType: hard
 
@@ -10189,7 +10180,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"json5@npm:^2.2.3":
+"json5@npm:^2.2.2, json5@npm:^2.2.3":
   version: 2.2.3
   resolution: "json5@npm:2.2.3"
   bin:
@@ -14847,6 +14838,17 @@ __metadata:
     ts-node-transpile-only: dist/bin-transpile.js
     ts-script: dist/bin-script-deprecated.js
   checksum: 356e2647b8b1e6ab00380c0537fa569b63bd9b6f006cc40fd650f81fae1817bd8fecc075300036950d8f45c1d85b95be33cd1e48a1a424a7d86c3dbb42bf60e5
+  languageName: node
+  linkType: hard
+
+"tsconfig-paths@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "tsconfig-paths@npm:4.2.0"
+  dependencies:
+    json5: ^2.2.2
+    minimist: ^1.2.6
+    strip-bom: ^3.0.0
+  checksum: 28c5f7bbbcabc9dabd4117e8fdc61483f6872a1c6b02a4b1c4d68c5b79d06896c3cc9547610c4c3ba64658531caa2de13ead1ea1bf321c7b53e969c4752b98c7
   languageName: node
   linkType: hard
 

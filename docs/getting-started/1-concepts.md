@@ -2,19 +2,19 @@
 
 The power of integrating linting into the design-first workflow, or any workflow which involves API descriptions, is often overlooked. Linting isn't just about validating OpenAPI or JSON Schema documents against specifications. It's for enforcing style guides to ensure that your APIs are consistent, valid, and of high quality.
 
-To achieve this, Spectral has three key concepts:
+To achieve this, OpenLint has three key concepts:
 
 - **Rules** filter your object down to a set of target values and specify the function (or functions) used to evaluate those values.
 - **Functions** accept a value and return issues if the value is incorrect.
 - **Rulesets** act as a container for rules and functions.
 
-Spectral comes bundled with a [set of core functions](../reference/functions.md) and rulesets for working with [OpenAPI v2 and v3](./4-openapi.md), [AsyncAPI v2 and v3](./5-asyncapi.md), and [Arazzo v1](./6-arazzo.md) that you can chose to use or extend, but Spectral is about far more than just checking your OpenAPI/AsyncAPI/Arazzo documents are valid.
+OpenLint comes bundled with a [set of core functions](../reference/functions.md) and rulesets for working with [OpenAPI v2 and v3](./4-openapi.md), [AsyncAPI v2 and v3](./5-asyncapi.md), and [Arazzo v1](./6-arazzo.md) that you can chose to use or extend, but OpenLint is about far more than just checking your OpenAPI/AsyncAPI/Arazzo documents are valid.
 
-By far the most popular use-case of Spectral is automating [API Style Guides](https://stoplight.io/api-style-guides-guidelines-and-best-practices?utm_source=github&utm_medium=spectral&utm_campaign=docs), implementing rules that your Architecture, DevOps, API Governance, "Center for Enablement", or "Center of Excellence" teams have decided upon. Companies generally write these style guides as wiki pages, and several can be found on [API Stylebook](http://apistylebook.com/), but most of these rules could be automated with Spectral. For example:
+By far the most popular use-case of OpenLint is automating [API Style Guides](https://apisyouwonthate.com/blog/automated-style-guides-for-rest-graphql-grpc/), implementing rules that your Architecture, DevOps, API Governance, "Center for Enablement", or "Center of Excellence" teams have decided upon. Companies generally write these style guides as wiki pages, and several can be found on [API Stylebook](http://apistylebook.com/), but most of these rules could be automated with OpenLint. For example:
 
-- Paths must be `/kebab-case` ([more ideas for URL rules](https://blog.stoplight.io/consistent-api-urls-with-openapi-and-style-guides))
-- HTTP Basic isn't allowed
-- Restrict the use of numeric integers in favor of UUID or any other ID pattern you choose
+- Paths must be `/kebab-case`.
+- HTTP Basic isn't allowed.
+- Restrict the use of numeric integers in favor of UUID or any other ID pattern you choose.
 - Enforce consistent hypermedia formats, like [JSON:API], or [another format](https://sookocheff.com/post/api/on-choosing-a-hypermedia-format/).
 
 To do that, you'll want to learn a bit more about how rulesets work.

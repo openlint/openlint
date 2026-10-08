@@ -18,7 +18,6 @@
   - [📖 Documentation](#-documentation)
   - [ℹ️ Support](#ℹ️-support)
   - [🌎 Real-World Rulesets](#-real-world-rulesets)
-  - [⚙️ Integrations](#️-integrations)
   - [🏁 Help Others Utilize OpenLint](#-help-others-utilize-openlint)
   - [👏 Contributing](#-contributing)
   - [🎉 Thanks](#-thanks)
@@ -52,12 +51,12 @@ docker run --rm -it -v $(pwd):/tmp stoplight/openlint lint --ruleset "/tmp/.spec
 
 ### 1. Create a local ruleset
 
-OpenLint, being a generic YAML/JSON linter, **needs a ruleset** to lint files. A ruleset is a JSON, YAML, or JavaScript/TypeScript file (often the file is called `.spectral.yaml` for a YAML ruleset) that contains a collection of rules, which can be used to lint other JSON or YAML files such as an API description.
+OpenLint, being a generic YAML/JSON linter, **needs a ruleset** to lint files. A ruleset is a JSON, YAML, or JavaScript/TypeScript file (often the file is called `.openlint.yaml` for a YAML ruleset) that contains a collection of rules, which can be used to lint other JSON or YAML files such as an API description.
 
-To get started, run this command in your terminal to create a `.spectral.yaml` file that uses the OpenLint predefined rulesets based on OpenAPI, Arazzo or AsyncAPI:
+To get started, run this command in your terminal to create a `.openlint.yaml` file that uses the OpenLint predefined rulesets based on OpenAPI, Arazzo or AsyncAPI:
 
 ```bash
-echo 'extends: ["spectral:oas", "spectral:asyncapi", "spectral:arazzo"]' > .spectral.yaml
+echo 'extends: ["spectral:oas", "spectral:asyncapi", "spectral:arazzo"]' > .openlint.yaml
 ```
 
 If you would like to create your own rules, check out the [Custom Rulesets](https://openlint.org/docs/01baf06bdd05a-rulesets) page.
@@ -85,7 +84,7 @@ openlint lint myapifile.yaml --ruleset myruleset.yaml
 Once you've had a look through the getting started material, some of these guides can help you become a power user.
 
 - [Different Workflows](https://openlint.org/docs/guides/1-workflows.md) - When and where should you use OpenLint? Editors, Git hooks, continuous integration, GitHub Actions, wherever you like!
-- [Using the command-line interface](https://openlint.org/docs/guides/2-cli.md) - Quickest way to get going with Spectral is in the CLI.
+- [Using the command-line interface](https://openlint.org/docs/guides/2-cli.md) - Quickest way to get going with OpenLint is in the CLI.
 - [Using the JavaScript API](https://openlint.org/docs/guides/3-javascript.md) - Access the _raw power_ of OpenLint via the JS, or hey, TypeScript if you want.
 - [Custom Rulesets](https://openlint.org/docs/guides/4-custom-rulesets.md) - Need something more than the core rulesets provide? Fancy building your own API Style Guide? Learn how to create a custom ruleset.
 - [Custom Functions](https://openlint.org/docs/guides/5-custom-functions.md) - Handle more advanced rules, by writing a little JavaScript/TypeScript and calling it as a function.
@@ -116,15 +115,8 @@ There are also rulesets created by many companies to improve their APIs. You can
 
 Check out some additional style guides here:
 
-- [Spectral Rulesets by Stoplight](https://github.com/stoplightio/openlint-rulesets)
+- [Spectral Rulesets by Stoplight](https://github.com/stoplightio/spectral-rulesets)
 - [API Stylebook by Stoplight](https://apistylebook.stoplight.io)
-
-## ⚙️ Integrations
-
-- [GitHub Action](https://github.com/stoplightio/openlint-action) - Lints documents in your repo, built by [Vincenzo Chianese](https://github.com/XVincentX/).
-- [JetBrains Plugin](https://plugins.jetbrains.com/plugin/18520-spectral) - Automatic linting of your OpenAPI specifications and highlighting in your editor.
-- [Stoplight Studio](https://stoplight.io/studio?utm_source=github.com&utm_medium=referral&utm_campaign=github_repo_spectral) - Uses Spectral to validate and lint OpenAPI documents.
-- [VS Code Spectral Extension](https://marketplace.visualstudio.com/items?itemName=stoplight.spectral) - All the power of Spectral without leaving VS Code.
 
 ## 🏁 Help Others Utilize OpenLint
 
