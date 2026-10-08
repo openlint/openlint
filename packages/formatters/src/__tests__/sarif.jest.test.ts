@@ -87,7 +87,7 @@ describe('Sarif formatter', () => {
         {
           tool: {
             driver: {
-              name: 'spectral',
+              name: 'openlint',
               rules: [
                 {
                   id: 'operation-description',

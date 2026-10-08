@@ -39,7 +39,7 @@ export async function getRuleset(rulesetFile: Optional<string>): Promise<Ruleset
 
   if (rulesetFile === void 0) {
     throw new CLIError(
-      'No ruleset has been found. Please provide a ruleset using the --ruleset CLI argument, or make sure your ruleset file matches .?spectral.(js|ya?ml|json)',
+      'No ruleset has been found. Please provide a ruleset using the --ruleset CLI argument, or make sure your ruleset file matches .openlint.js/yaml/json or .openlint.js/yaml/json',
     );
   }
 
