@@ -77,7 +77,9 @@ export function createAjvInstances(): AssignAjvInstance {
   const compiledSchemas = new WeakMap<AjvCore, WeakMap<SchemaObject, ValidateFunction>>();
 
   return function (schema, dialect, allErrors): ValidateFunction {
-    const instances = (ajvInstances[dialect] ?? ajvInstances.auto) as ReturnType<typeof _createAjvInstances>;
+    const instances = (ajvInstances[dialect as keyof typeof ajvInstances] ?? ajvInstances.auto) as ReturnType<
+      typeof _createAjvInstances
+    >;
     const ajv = instances[allErrors ? 'allErrors' : 'default'];
 
     const $id = schema.$id;

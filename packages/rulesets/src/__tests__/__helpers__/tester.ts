@@ -46,7 +46,7 @@ export function createWithRules(rules: (keyof Ruleset['rules'])[]): OpenLint {
       [oasRuleset as RulesetDefinition, 'off'],
       [arazzoRuleset as RulesetDefinition, 'off'],
     ],
-    rules: rules.reduce((obj, name) => {
+    rules: rules.reduce<Record<string, boolean>>((obj, name) => {
       obj[name] = true;
       return obj;
     }, {}),

@@ -122,10 +122,11 @@ function* getMediaValidationItems(
 
       return;
     } else {
-      return yield {
+      yield {
         value,
         path: [...givenPath, field],
       };
+      return;
     }
   }
 }
@@ -147,12 +148,16 @@ function* getSchemaValidationItems(
   }
 }
 
+// json-schema-traverse exposes these keyword maps at runtime, but its typings omit them
+const { keywords, arrayKeywords, propsKeywords } = traverse as unknown as Record<
+  'keywords' | 'arrayKeywords' | 'propsKeywords',
+  Record<string, true>
+>;
+
 const KNOWN_TRAVERSE_KEYWORDS = [
-  /* eslint-disable @typescript-eslint/no-unsafe-argument */
-  ...Object.keys(traverse['keywords']),
-  ...Object.keys(traverse['arrayKeywords']),
-  ...Object.keys(traverse['propsKeywords']),
-  /* eslint-enable @typescript-eslint/no-unsafe-argument */
+  ...Object.keys(keywords),
+  ...Object.keys(arrayKeywords),
+  ...Object.keys(propsKeywords),
 ];
 
 /**

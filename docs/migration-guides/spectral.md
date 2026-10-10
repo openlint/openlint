@@ -6,12 +6,12 @@ You can continue using `.spectral.yaml` and `extends: "spectral:oas"` will conti
 
 1. Install OpenLint.
 
-  ```
-  yarn add openlint
-  ```
+```
+yarn add openlint
+```
 
 2. Change any commands using `spectral` to use `openlint`. For example:
 
-  ```bash
-  openlint lint openapi.yaml
-  ```
+```bash
+openlint lint openapi.yaml
+```

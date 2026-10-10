@@ -1,7 +1,7 @@
 import { Dictionary } from '@stoplight/types';
 import { HumanReadableDiagnosticSeverity } from '@openlint/openlint-core';
 
-export type FailSeverity = HumanReadableDiagnosticSeverity;
+export type FailSeverity = Exclude<HumanReadableDiagnosticSeverity, 'off'>;
 
 export enum OutputFormat {
   JSON = 'json',

@@ -27,7 +27,7 @@ export default createRulesetFunction<unknown, null>(
 
     validator(input);
 
-    const errors = validator['errors'] as ErrorObject[] | null;
+    const errors = (validator as unknown as { errors: ErrorObject[] | null }).errors;
 
     return errors?.reduce<IFunctionResult[]>((errors, e) => processError(errors, input, e), []) ?? [];
   },

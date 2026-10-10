@@ -20,7 +20,10 @@ function registerModule(
   overrides: Partial<Overrides>,
 ): [string, string] {
   const actualOverrides = overrides[id];
-  const instances = (globalThis[Symbol.for(NAME)] ??= {}) as Record<string, Partial<Overrides>>;
+  const instances = ((globalThis as Record<symbol, unknown>)[Symbol.for(NAME)] ??= {}) as Record<
+    string,
+    Partial<Overrides>
+  >;
   const root = (instances[instanceId] ??= {});
 
   root[id] = actualOverrides ? { ...members, ...actualOverrides } : members;
@@ -70,7 +73,7 @@ export const builtins = (overrides: Partial<Overrides> = {}): Plugin => {
     },
     load(id): string | undefined {
       if (id in modules) {
-        return modules[id] as string;
+        return modules[id as keyof GlobalModules];
       }
 
       return;

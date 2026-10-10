@@ -34,7 +34,7 @@ testRule('asyncapi-info-contact-properties', [
     document: document_v3,
     errors: [],
   },
-  ...['name', 'url', 'email'].map(property => ({
+  ...(['name', 'url', 'email'] as const).map(property => ({
     name: `for v3 contact.${property} property is missing`,
     document: produce(document_v3, draft => {
       delete draft.info.contact[property];
@@ -47,7 +47,7 @@ testRule('asyncapi-info-contact-properties', [
       },
     ],
   })),
-  ...['name', 'url', 'email'].map(property => ({
+  ...(['name', 'url', 'email'] as const).map(property => ({
     name: `contact.${property} property is missing`,
     document: produce(document, draft => {
       delete draft.info.contact[property];

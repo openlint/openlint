@@ -1,7 +1,7 @@
 import { oas3, oas3_0 } from '@openlint/openlint-formats';
 import { DeepPartial } from '@stoplight/types';
 import oasExample, { Options as ExampleOptions } from '../oasExample';
-import { RulesetFunctionContext } from '@openlint/openlint-core/src';
+import { IFunctionResult, RulesetFunctionContext } from '@openlint/openlint-core/src';
 
 const schemaOpts: ExampleOptions = {
   schemaField: '$',
@@ -24,14 +24,14 @@ const docFormats = {
  * @param context the spectral context object to pass to oasExample()
  * @returns an array of errors, or [] if no errors occurred
  */
-function runRule(testData: Record<string, unknown>, ruleOptions: ExampleOptions) {
+function runRule(testData: Record<string, unknown>, ruleOptions: ExampleOptions): IFunctionResult[] {
   const context: DeepPartial<RulesetFunctionContext> = {
     path: [],
     documentInventory: {},
     document: docFormats,
   };
 
-  return oasExample(testData, ruleOptions, context as RulesetFunctionContext);
+  return oasExample(testData, ruleOptions, context as RulesetFunctionContext) as IFunctionResult[];
 }
 
 describe('oasExample', () => {
@@ -329,7 +329,7 @@ describe('oasExample', () => {
         const results = runRule(schema, schemaOpts);
         expect(results).toHaveLength(1);
 
-        expect(results[0].path.join('.')).toBe('example.bar');
+        expect(results[0].path?.join('.')).toBe('example.bar');
         expect(results[0].message).toBe(`"bar" property type must be string`);
       });
       test('invalid "default" string', () => {
@@ -344,7 +344,7 @@ describe('oasExample', () => {
         const results = runRule(schema, schemaOpts);
         expect(results).toHaveLength(1);
         expect(results[0].message).toBe(`"default" property must not have more than 8 characters`);
-        expect(results[0].path.join('.')).toBe('default');
+        expect(results[0].path?.join('.')).toBe('default');
       });
     });
     describe('example/examples value in mediatype', () => {
@@ -370,7 +370,7 @@ describe('oasExample', () => {
         const results = runRule(mediaType, mediaOpts);
         expect(results).toHaveLength(1);
         expect(results[0].message).toBe(`"example" property must have required property "bar"`);
-        expect(results[0].path.join('.')).toBe('example');
+        expect(results[0].path?.join('.')).toBe('example');
       });
       test('invalid "examples" object', () => {
         const mediaType = {
@@ -405,10 +405,10 @@ describe('oasExample', () => {
         expect(results).toHaveLength(2);
 
         expect(results[0].message).toBe(`"value" property must have required property "bar"`);
-        expect(results[0].path.join('.')).toBe('examples.first.value');
+        expect(results[0].path?.join('.')).toBe('examples.first.value');
 
         expect(results[1].message).toBe(`"foo" property type must be number`);
-        expect(results[1].path.join('.')).toBe('examples.second.value.foo');
+        expect(results[1].path?.join('.')).toBe('examples.second.value.foo');
       });
       test('invalid "example" string', () => {
         const mediaType = {
@@ -424,7 +424,7 @@ describe('oasExample', () => {
         const results = runRule(mediaType, mediaOpts);
         expect(results).toHaveLength(1);
         expect(results[0].message).toBe(`"example" property must not have more than 8 characters`);
-        expect(results[0].path.join('.')).toBe('example');
+        expect(results[0].path?.join('.')).toBe('example');
       });
       test('invalid "examples" string', () => {
         const mediaType = {
@@ -448,9 +448,9 @@ describe('oasExample', () => {
         const results = runRule(mediaType, mediaOpts);
         expect(results).toHaveLength(2);
         expect(results[0].message).toBe(`"value" property must not have more than 8 characters`);
-        expect(results[0].path.join('.')).toBe('examples.first.value');
+        expect(results[0].path?.join('.')).toBe('examples.first.value');
         expect(results[1].message).toBe(`"value" property type must be string`);
-        expect(results[1].path.join('.')).toBe('examples.second.value');
+        expect(results[1].path?.join('.')).toBe('examples.second.value');
       });
     });
   });

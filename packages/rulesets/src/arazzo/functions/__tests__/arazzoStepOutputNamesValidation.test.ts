@@ -1,6 +1,6 @@
 import arazzoStepOutputNamesValidation from '../arazzoStepOutputNamesValidation';
 import { DeepPartial } from '@stoplight/types';
-import type { RulesetFunctionContext } from '@openlint/openlint-core';
+import type { IFunctionResult, RulesetFunctionContext } from '@openlint/openlint-core';
 
 const runRule = (
   target: {
@@ -14,7 +14,7 @@ const runRule = (
     components?: Record<string, unknown>;
   },
   contextOverrides: Partial<RulesetFunctionContext> = {},
-) => {
+): IFunctionResult[] => {
   const context: DeepPartial<RulesetFunctionContext> = {
     path: [],
     documentInventory: {
@@ -28,7 +28,7 @@ const runRule = (
     ...contextOverrides,
   };
 
-  return arazzoStepOutputNamesValidation(target, null, context as RulesetFunctionContext);
+  return arazzoStepOutputNamesValidation(target, null, context as RulesetFunctionContext) as IFunctionResult[];
 };
 
 describe('arazzoStepOutputNamesValidation', () => {

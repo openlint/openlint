@@ -1,9 +1,12 @@
 import arazzoWorkflowOutputNamesValidation from '../arazzoWorkflowOutputNamesValidation';
 import { DeepPartial } from '@stoplight/types';
-import type { RulesetFunctionContext } from '@openlint/openlint-core';
+import type { IFunctionResult, RulesetFunctionContext } from '@openlint/openlint-core';
 import { ArazzoSpecification } from '../types/arazzoTypes';
 
-const runRule = (target: ArazzoSpecification, contextOverrides: Partial<RulesetFunctionContext> = {}) => {
+const runRule = (
+  target: ArazzoSpecification,
+  contextOverrides: Partial<RulesetFunctionContext> = {},
+): IFunctionResult[] => {
   const context: DeepPartial<RulesetFunctionContext> = {
     path: [],
     documentInventory: {
@@ -17,7 +20,7 @@ const runRule = (target: ArazzoSpecification, contextOverrides: Partial<RulesetF
     ...contextOverrides,
   };
 
-  return arazzoWorkflowOutputNamesValidation(target, null, context as RulesetFunctionContext);
+  return arazzoWorkflowOutputNamesValidation(target, null, context as RulesetFunctionContext) as IFunctionResult[];
 };
 
 describe('arazzoWorkflowOutputNamesValidation', () => {

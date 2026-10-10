@@ -1,0 +1,36 @@
+diff --git a/dist/bundler/dependency-walker.js b/dist/bundler/dependency-walker.js
+index aa4ae53c5f5a1b536238628d7dbd5e2a21397ec5..b5ba657f73244552f585a4cdaadc18d90c234f18 100644
+--- a/dist/bundler/dependency-walker.js
++++ b/dist/bundler/dependency-walker.js
+@@ -35,7 +35,7 @@ var DependencyWalker = /** @class */ (function () {
+         };
+         queue.forEach(function (queued) {
+             queued.item.dependencies = _this.findUnresolvedTsRequires(queued.emitOutput);
+-            var resolvedModules = queued.emitOutput.sourceFile.resolvedModules;
++            var resolvedModules = queued.emitOutput.resolvedModules || queued.emitOutput.sourceFile.resolvedModules;
+             if (resolvedModules && !queued.emitOutput.isDeclarationFile) {
+                 if (isTS45Map(resolvedModules) || lodash.isMap(resolvedModules)) { // Typescript 2.2+
+                     resolvedModules.forEach(function (resolvedModule, moduleName) {
+@@ -101,6 +101,9 @@ var DependencyWalker = /** @class */ (function () {
+     };
+     DependencyWalker.prototype.addBundleItem = function (queued, resolvedModule, moduleName, ambientModuleNames) {
+         if (ambientModuleNames.indexOf(moduleName) === -1) {
++            if (resolvedModule && "resolvedModule" in resolvedModule) {
++                resolvedModule = resolvedModule.resolvedModule;
++            }
+             queued.item.dependencies.push(new bundle_item_1.BundleItem(moduleName, resolvedModule && resolvedModule.resolvedFileName));
+         }
+     };
+diff --git a/dist/compiler/compiler.js b/dist/compiler/compiler.js
+index 618dfe333c5f7cf651606e15132445c6a080e77d..af8f196f97426c956fa26975aa7535773a582e55 100644
+--- a/dist/compiler/compiler.js
++++ b/dist/compiler/compiler.js
+@@ -87,6 +87,8 @@ var Compiler = /** @class */ (function () {
+                 isAmbientModule: ambientModuleNames && ambientModuleNames.length > 0,
+                 isDeclarationFile: _this.fileExtensionIs(sourceFile.fileName, ".d.ts"),
+                 outputText: _this.compiledFiles[queued.file.path],
++                resolvedModules: sourceFile.resolvedModules ||
++                    (_this.program.resolvedModules && _this.program.resolvedModules.get(sourceFile.path)),
+                 sourceFile: sourceFile,
+                 sourceMapText: _this.compiledFiles[queued.file.path + ".map"]
+             });

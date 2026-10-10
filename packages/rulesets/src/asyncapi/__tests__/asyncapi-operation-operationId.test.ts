@@ -25,7 +25,7 @@ testRule('asyncapi-operation-operationId', [
 
   ...['publish', 'subscribe'].map(property => ({
     name: `channels.{channel}.${property}.operationId property is missing`,
-    document: produce(document, draft => {
+    document: produce(document, (draft: any) => {
       delete draft.channels.one[property].operationId;
     }),
     errors: [

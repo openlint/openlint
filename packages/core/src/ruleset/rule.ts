@@ -15,7 +15,7 @@ import type { Stringified, FileRulesetSeverityDefinition } from './types';
 export interface IRule {
   description: string | null;
   message: string | null;
-  severity: DiagnosticSeverity;
+  severity: DiagnosticSeverity | -1;
   resolved: boolean;
   formats: Formats | null;
   enabled: boolean;
@@ -37,7 +37,7 @@ export type StringifiedRule = Stringified<RuleJson>;
 export class Rule implements IRule {
   public description: string | null;
   public message: string | null;
-  #severity!: DiagnosticSeverity;
+  #severity!: DiagnosticSeverity | -1;
   public resolved: boolean;
   public formats: Formats | null;
   #enabled: boolean;
@@ -97,7 +97,7 @@ export class Rule implements IRule {
       return this.severity;
     }
 
-    let severity: DiagnosticSeverity = this.severity;
+    let severity: DiagnosticSeverity | -1 = this.severity;
     let closestPointer = '';
     const pointer = pathToPointer(path);
 
@@ -116,7 +116,7 @@ export class Rule implements IRule {
     return severity;
   }
 
-  public get severity(): DiagnosticSeverity {
+  public get severity(): DiagnosticSeverity | -1 {
     return this.#severity;
   }
 

@@ -32,7 +32,7 @@ export default createRulesetFunction<unknown[] | Record<string, unknown> | strin
     } else if (typeof targetVal === 'number') {
       value = targetVal;
     } else {
-      value = targetVal.length;
+      value = (targetVal as string).length;
     }
 
     let results: IFunctionResult[] | undefined;

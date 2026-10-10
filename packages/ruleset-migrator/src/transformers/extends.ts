@@ -19,7 +19,7 @@ async function processExtend(
   name: string,
 ): Promise<namedTypes.ObjectExpression | namedTypes.Identifier> {
   if (name in REPLACEMENTS) {
-    return ctx.tree.addImport(REPLACEMENTS[name], '@openlint/openlint-rulesets');
+    return ctx.tree.addImport(REPLACEMENTS[name as keyof typeof REPLACEMENTS], '@openlint/openlint-rulesets');
   }
 
   const filepath = ctx.tree.resolveModule(name, ctx, 'ruleset');

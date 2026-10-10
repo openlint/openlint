@@ -6,7 +6,7 @@ import { fs as memFs } from 'memfs';
 
 const fs = new Proxy(nodeFs, {
   get(target, key) {
-    if (target[key] !== memFs[key]) {
+    if (target[key as keyof typeof target] !== memFs[key as keyof typeof memFs]) {
       throw new Error('jest.mock is not correctly hooked up and memfs is not in use. Aborting for security reasons');
     }
 
@@ -48,7 +48,7 @@ export function serveAssets(mocks: Record<string, Body>): void {
 function mockResponse(uri: string, code: number, body: Body): void {
   const { origin, pathname, searchParams } = new URL(uri);
 
-  const query = {};
+  const query: Record<string, string> = {};
   for (const [key, val] of searchParams.entries()) {
     query[key] = val;
   }

@@ -1,8 +1,8 @@
 import { DeepPartial } from '@stoplight/types';
 import arazzoStepIdUniqueness from '../arazzoStepIdUniqueness';
-import type { RulesetFunctionContext } from '@openlint/openlint-core';
+import type { IFunctionResult, RulesetFunctionContext } from '@openlint/openlint-core';
 
-const runRule = (target: { steps: Array<{ stepId: string }> }) => {
+const runRule = (target: { steps: Array<{ stepId: string }> }): IFunctionResult[] => {
   const context: DeepPartial<RulesetFunctionContext> = {
     path: [],
     documentInventory: {
@@ -15,7 +15,7 @@ const runRule = (target: { steps: Array<{ stepId: string }> }) => {
     },
   };
 
-  return arazzoStepIdUniqueness(target, null, context as RulesetFunctionContext);
+  return arazzoStepIdUniqueness(target, null, context as RulesetFunctionContext) as IFunctionResult[];
 };
 
 describe('arazzoStepIdUniqueness', () => {

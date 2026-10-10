@@ -18,7 +18,7 @@ const transformer: Transformer = function (hooks) {
       overrides.push(
         ...Object.keys(except).map(pattern => ({
           files: [pattern.startsWith('#') ? `**${pattern}` : pattern],
-          rules: except[pattern].reduce((rules, rule) => {
+          rules: except[pattern].reduce<Record<string, string>>((rules, rule) => {
             rules[rule] = 'off';
             return rules;
           }, {}),

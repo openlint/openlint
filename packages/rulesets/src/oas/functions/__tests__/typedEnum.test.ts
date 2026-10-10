@@ -1,8 +1,8 @@
 import typedEnum from '../typedEnum';
-import { Document } from '@openlint/openlint-core';
+import { Document, IFunctionResult } from '@openlint/openlint-core';
 import * as Parsers from '@openlint/openlint-parsers';
 
-function runTypedEnum(targetVal: any) {
+function runTypedEnum(targetVal: any): IFunctionResult[] {
   const doc = new Document(JSON.stringify(targetVal), Parsers.Json);
 
   return typedEnum(targetVal, null, {
@@ -10,7 +10,7 @@ function runTypedEnum(targetVal: any) {
     document: doc,
     documentInventory: {} as any,
     rule: {} as any,
-  });
+  }) as IFunctionResult[];
 }
 
 describe('typedEnum', () => {

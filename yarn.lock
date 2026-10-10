@@ -2894,7 +2894,7 @@ __metadata:
     "@stoplight/better-ajv-errors": 1.0.3
     "@stoplight/json": ~3.21.0
     "@stoplight/path": 1.3.2
-    "@stoplight/types": ~13.6.0
+    "@stoplight/types": ^13.6.0
     "@stoplight/yaml": ^4.2.2
     "@types/es-aggregate-error": ^1.0.2
     "@types/json-schema": ^7.0.11
@@ -3528,16 +3528,6 @@ __metadata:
     "@types/json-schema": ^7.0.4
     utility-types: ^3.10.0
   checksum: 1da2e683e88afe2f72c3b3af341537bc9bac153d224f65744ca60d44eade93609ce91172064ae27093e1ebfa7bcbf05fb232a1910d83b2aee5b1eed4bb726200
-  languageName: node
-  linkType: hard
-
-"@stoplight/types@npm:~13.6.0":
-  version: 13.6.0
-  resolution: "@stoplight/types@npm:13.6.0"
-  dependencies:
-    "@types/json-schema": ^7.0.4
-    utility-types: ^3.10.0
-  checksum: 4cc81cf29decc0392f15c71b21fd11cd806bcf99168ae4509ed41c2b7dbcfbd5a83c7f9f320edb5a518cc483fd18dd8794c54b232fb6a6f2a7b6e9fb6ca20269
   languageName: node
   linkType: hard
 
@@ -10189,7 +10179,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"json5@npm:^2.2.3":
+"json5@npm:^2.2.2, json5@npm:^2.2.3":
   version: 2.2.3
   resolution: "json5@npm:2.2.3"
   bin:
@@ -10320,7 +10310,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"karma-typescript@npm:^5.5.3":
+"karma-typescript@npm:5.5.4":
   version: 5.5.4
   resolution: "karma-typescript@npm:5.5.4"
   dependencies:
@@ -10371,6 +10361,60 @@ __metadata:
     karma: 1 || 2 || 3 || 4 || 5 || 6
     typescript: 1 || 2 || 3 || 4 || 5
   checksum: 81336ac06ef1c292285212c8d7299e75a6f8905de6cfb2193611f8f996f633d3380df3e90dd5c8925f1d03caba49fc525a62150f0a34d9a70312664a3ac3a846
+  languageName: node
+  linkType: hard
+
+"karma-typescript@patch:karma-typescript@npm%3A5.5.4#./.yarn/patches/karma-typescript-npm-5.5.4-a60dd44153.patch::locator=root%40workspace%3A.":
+  version: 5.5.4
+  resolution: "karma-typescript@patch:karma-typescript@npm%3A5.5.4#./.yarn/patches/karma-typescript-npm-5.5.4-a60dd44153.patch::version=5.5.4&hash=1174d9&locator=root%40workspace%3A."
+  dependencies:
+    acorn: ^8.1.0
+    acorn-walk: ^8.0.2
+    assert: ^2.0.0
+    async: ^3.0.1
+    browser-resolve: ^2.0.0
+    browserify-zlib: ^0.2.0
+    buffer: ^5.4.3
+    combine-source-map: ^0.8.0
+    console-browserify: ^1.2.0
+    constants-browserify: ^1.0.0
+    convert-source-map: ^1.7.0
+    crypto-browserify: ^3.12.0
+    diff: ^4.0.1
+    domain-browser: ^4.16.0
+    events: ^3.2.0
+    glob: ^7.1.6
+    https-browserify: ^1.0.0
+    istanbul-lib-coverage: ^3.0.0
+    istanbul-lib-instrument: ^4.0.0
+    istanbul-lib-report: ^3.0.0
+    istanbul-lib-source-maps: ^4.0.0
+    istanbul-reports: ^3.0.0
+    json-stringify-safe: ^5.0.1
+    lodash: ^4.17.19
+    log4js: ^6.3.0
+    minimatch: ^3.0.4
+    os-browserify: ^0.3.0
+    pad: ^3.2.0
+    path-browserify: ^1.0.0
+    process: ^0.11.10
+    punycode: ^2.1.1
+    querystring-es3: ^0.2.1
+    readable-stream: ^3.1.1
+    source-map: ^0.7.3
+    stream-browserify: ^3.0.0
+    stream-http: ^3.1.0
+    string_decoder: ^1.3.0
+    timers-browserify: ^2.0.11
+    tmp: ^0.2.1
+    tty-browserify: ^0.0.1
+    url: ^0.11.0
+    util: ^0.12.1
+    vm-browserify: ^1.1.2
+  peerDependencies:
+    karma: 1 || 2 || 3 || 4 || 5 || 6
+    typescript: 1 || 2 || 3 || 4 || 5
+  checksum: 8cf5eb604d6d242614504dd3d864516601738295c5361af40c565f2b591b7914435ca3f5b72222a072136febe575b7d46eeaa594fb595e746569732a910d6720
   languageName: node
   linkType: hard
 
@@ -13407,7 +13451,8 @@ __metadata:
     semantic-release: ^25.0.3
     ts-jest: ^29.2.5
     ts-node: ^10.8.2
-    typescript: 4.9.5
+    tsconfig-paths: ^4.2.0
+    typescript: 5.9.3
     typescript-eslint: ^8.0.0
   languageName: unknown
   linkType: soft
@@ -14850,6 +14895,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tsconfig-paths@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "tsconfig-paths@npm:4.2.0"
+  dependencies:
+    json5: ^2.2.2
+    minimist: ^1.2.6
+    strip-bom: ^3.0.0
+  checksum: 28c5f7bbbcabc9dabd4117e8fdc61483f6872a1c6b02a4b1c4d68c5b79d06896c3cc9547610c4c3ba64658531caa2de13ead1ea1bf321c7b53e969c4752b98c7
+  languageName: node
+  linkType: hard
+
 "tslib@npm:^1.14.1":
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
@@ -15056,7 +15112,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:4.9.5, typescript@npm:^4.4.3":
+"typescript@npm:5.9.3":
+  version: 5.9.3
+  resolution: "typescript@npm:5.9.3"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 0d0ffb84f2cd072c3e164c79a2e5a1a1f4f168e84cb2882ff8967b92afe1def6c2a91f6838fb58b168428f9458c57a2ba06a6737711fdd87a256bbe83e9a217f
+  languageName: node
+  linkType: hard
+
+"typescript@npm:^4.4.3":
   version: 4.9.5
   resolution: "typescript@npm:4.9.5"
   bin:
@@ -15066,7 +15132,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@4.9.5#~builtin<compat/typescript>, typescript@patch:typescript@^4.4.3#~builtin<compat/typescript>":
+"typescript@patch:typescript@5.9.3#~builtin<compat/typescript>":
+  version: 5.9.3
+  resolution: "typescript@patch:typescript@npm%3A5.9.3#~builtin<compat/typescript>::version=5.9.3&hash=85af82"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 8bb8d86819ac86a498eada254cad7fb69c5f74778506c700c2a712daeaff21d3a6f51fd0d534fe16903cb010d1b74f89437a3d02d4d0ff5ca2ba9a4660de8497
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@^4.4.3#~builtin<compat/typescript>":
   version: 4.9.5
   resolution: "typescript@patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=23ec76"
   bin:

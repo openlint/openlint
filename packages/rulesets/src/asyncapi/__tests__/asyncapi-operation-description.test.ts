@@ -25,7 +25,7 @@ testRule('asyncapi-operation-description', [
 
   ...['publish', 'subscribe'].map(property => ({
     name: `channels.{channel}.${property}.description property is missing`,
-    document: produce(document, draft => {
+    document: produce(document, (draft: any) => {
       delete draft.channels.one[property].description;
     }),
     errors: [

@@ -117,7 +117,7 @@ testRule('asyncapi-headers-schema-type-object', [
   ...['publish', 'subscribe'].flatMap(property => [
     {
       name: `channels.{channel}.${property}.message.headers lacks "type" property`,
-      document: produce(document, draft => {
+      document: produce(document, (draft: any) => {
         draft.channels['users/{userId}/signedUp'][property].message.headers = { const: 'Hello World!' };
       }),
       errors: [
@@ -131,7 +131,7 @@ testRule('asyncapi-headers-schema-type-object', [
 
     {
       name: `channels.{channel}.${property}.message.headers is not of type "object"`,
-      document: produce(document, draft => {
+      document: produce(document, (draft: any) => {
         draft.channels['users/{userId}/signedUp'][property].message.headers = { type: 'integer' };
       }),
       errors: [
@@ -146,7 +146,7 @@ testRule('asyncapi-headers-schema-type-object', [
 
     {
       name: `channels.{channel}.${property}.message.traits.[*].headers lacks "type" property`,
-      document: produce(document, draft => {
+      document: produce(document, (draft: any) => {
         draft.channels['users/{userId}/loggedIn'][property].message.traits[0].headers = { const: 'Hello World!' };
       }),
       errors: [
@@ -160,7 +160,7 @@ testRule('asyncapi-headers-schema-type-object', [
 
     {
       name: `channels.{channel}.${property}.message.traits.[*].headers is not of type "object"`,
-      document: produce(document, draft => {
+      document: produce(document, (draft: any) => {
         draft.channels['users/{userId}/loggedIn'][property].message.traits[0].headers = { type: 'integer' };
       }),
       errors: [

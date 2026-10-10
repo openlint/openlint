@@ -12,10 +12,16 @@ const SEVERITY_MAP: Record<HumanReadableDiagnosticSeverity, DiagnosticSeverity |
 };
 
 export function getDiagnosticSeverity(
+  severity: DiagnosticSeverity | Exclude<HumanReadableDiagnosticSeverity, 'off'>,
+): DiagnosticSeverity;
+export function getDiagnosticSeverity(
+  severity: DiagnosticSeverity | HumanReadableDiagnosticSeverity,
+): DiagnosticSeverity | -1;
+export function getDiagnosticSeverity(
   severity: DiagnosticSeverity | HumanReadableDiagnosticSeverity,
 ): DiagnosticSeverity | -1 {
   if (Number.isNaN(Number(severity))) {
-    return SEVERITY_MAP[severity] as DiagnosticSeverity | -1;
+    return SEVERITY_MAP[severity as HumanReadableDiagnosticSeverity];
   }
 
   return Number(severity);

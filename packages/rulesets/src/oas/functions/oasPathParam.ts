@@ -133,7 +133,7 @@ export default createRulesetFunction<Record<string, unknown>, null>(
       }
 
       // find parameters set within the top-level 'parameters' object
-      const topParams = {};
+      const topParams: Record<string, JsonPath> = {};
       if (Array.isArray(pathValue.parameters)) {
         for (const [i, value] of pathValue.parameters.entries()) {
           if (!isObject(value)) continue;
@@ -156,7 +156,7 @@ export default createRulesetFunction<Record<string, unknown>, null>(
             continue;
           }
 
-          const operationParams = {};
+          const operationParams: Record<string, JsonPath> = {};
           const { parameters } = operationValue;
           const operationPath = ['paths', path, op];
 

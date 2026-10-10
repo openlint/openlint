@@ -27,8 +27,8 @@ MessageReplacer.addFunction('print', function (type) {
     case 'value':
       return printValue(value);
     default:
-      if (type in this && this[type] !== null) {
-        return String(this[type]);
+      if (type in this && this[type as keyof MessageVars] !== null) {
+        return String(this[type as keyof MessageVars]);
       }
 
       return '';

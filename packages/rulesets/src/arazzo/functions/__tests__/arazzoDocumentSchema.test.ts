@@ -1,8 +1,8 @@
-import type { RulesetFunctionContext } from '@openlint/openlint-core';
+import type { IFunctionResult, RulesetFunctionContext } from '@openlint/openlint-core';
 import arazzoDocumentSchema from '../arazzoDocumentSchema';
 import { arazzo1_0 } from '@openlint/openlint-formats';
 
-function runSchema(target: unknown, context?: Partial<RulesetFunctionContext>) {
+function runSchema(target: unknown, context?: Partial<RulesetFunctionContext>): IFunctionResult[] {
   return arazzoDocumentSchema(target, null, {
     path: [],
     documentInventory: {},
@@ -15,7 +15,7 @@ function runSchema(target: unknown, context?: Partial<RulesetFunctionContext>) {
       data: target,
     },
     ...context,
-  } as RulesetFunctionContext);
+  } as RulesetFunctionContext) as IFunctionResult[];
 }
 
 describe('arazzoDocumentSchema', () => {

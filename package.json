@@ -95,7 +95,8 @@
     "ajv@^8.0.1": "8.20.0",
     "ajv@^8.12.0": "8.20.0",
     "ajv@^8.16.0": "8.20.0",
-    "ajv@^8.18.0": "8.20.0"
+    "ajv@^8.18.0": "8.20.0",
+    "karma-typescript@^5.5.3": "patch:karma-typescript@npm%3A5.5.4#./.yarn/patches/karma-typescript-npm-5.5.4-a60dd44153.patch"
   },
   "devDependencies": {
     "@commitlint/cli": "^14.1.0",
@@ -146,7 +147,8 @@
     "semantic-release": "^25.0.3",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.8.2",
-    "typescript": "4.9.5",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "5.9.3",
     "typescript-eslint": "^8.0.0"
   },
   "lint-staged": {

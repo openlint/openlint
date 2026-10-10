@@ -61,7 +61,7 @@ testRule('asyncapi-payload-unsupported-schemaFormat', [
 
   ...['publish', 'subscribe'].map(property => ({
     name: `channels.{channel}.${property}.message.schemaFormat is set to a non supported value`,
-    document: produce(document, draft => {
+    document: produce(document, (draft: any) => {
       draft.channels['users/{userId}/signedUp'][property].message.schemaFormat = 'application/nope';
     }),
     errors: [

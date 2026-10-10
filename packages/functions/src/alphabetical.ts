@@ -75,7 +75,7 @@ export default createRulesetFunction<Record<string, unknown> | unknown[], Option
           ];
         }
 
-        _targetArray.push(item[keyedBy]);
+        _targetArray.push((item as Record<string, string | number>)[keyedBy]);
       }
 
       targetArray = _targetArray;

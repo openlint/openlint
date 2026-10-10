@@ -18,7 +18,7 @@ export const traverseObjUntilRef = (obj: unknown, path: JsonPath): string | null
     }
 
     if (segment in piece) {
-      piece = piece[segment];
+      piece = (piece as Record<string, unknown>)[segment];
     } else if (hasRef(piece)) {
       return piece.$ref;
     } else {
@@ -58,7 +58,7 @@ export const getClosestJsonPath = (data: unknown, path: JsonPath): JsonPath => {
   for (const segment of path) {
     if (!isObject(piece) || !(segment in piece)) break;
     closestPath.push(segment);
-    piece = piece[segment];
+    piece = (piece as Record<string, unknown>)[segment];
   }
 
   return closestPath;

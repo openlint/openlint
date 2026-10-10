@@ -71,6 +71,7 @@ const transformer: Transformer = function (hooks) {
         if (typeof rules[key] === 'object') continue; // we do not touch new definitions (aka custom rules). If one defines a rule like operation-2xx-response in their own ruleset, we shouldn't touch it.
         const newName = REPLACEMENTS[key];
         if (newName in rules) {
+          // eslint-disable-next-line @typescript-eslint/no-base-to-string
           rules[newName] = max(String(rules[key]), String(rules[newName]));
         } else {
           rules[newName] ??= rules[key];

@@ -3,6 +3,9 @@ import { serveAssets } from '@openlint/openlint-test-utils';
 import * as runtime from '@openlint/openlint-runtime';
 import * as functions from '@openlint/openlint-functions';
 
+const getBuiltins = (): Record<string, Record<string, unknown>> =>
+  (globalThis as Record<symbol, Record<string, Record<string, unknown>>>)[Symbol.for('@openlint-openlint/builtins')];
+
 function parseBundle(code: string): { declarations: string[]; body: string } {
   const lines = code.split('\n');
   const declarations: string[] = [];
@@ -116,9 +119,7 @@ var input = {
 export { input as default };
 `);
 
-      expect(
-        globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-functions'],
-      ).toStrictEqual(functions);
+      expect(getBuiltins()['822928']['@openlint/openlint-functions']).toStrictEqual(functions);
     });
 
     it('should support overrides', async () => {
@@ -165,9 +166,7 @@ readFile();`,
       );
       expect(body).toBe('\nreadFile();\n');
 
-      expect(
-        globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-runtime'],
-      ).toStrictEqual({
+      expect(getBuiltins()['822928']['@openlint/openlint-runtime']).toStrictEqual({
         ...runtime,
         readFile,
       });
@@ -202,16 +201,12 @@ readFile();`,
         ],
       });
 
-      expect(
-        globalThis[Symbol.for('@openlint-openlint/builtins')]['822928']['@openlint/openlint-runtime'],
-      ).toStrictEqual({
+      expect(getBuiltins()['822928']['@openlint/openlint-runtime']).toStrictEqual({
         ...runtime,
         readFile,
       });
 
-      expect(
-        globalThis[Symbol.for('@openlint-openlint/builtins')]['750524']['@openlint/openlint-runtime'],
-      ).toStrictEqual({
+      expect(getBuiltins()['750524']['@openlint/openlint-runtime']).toStrictEqual({
         ...runtime,
         readFile: readFile2,
       });
