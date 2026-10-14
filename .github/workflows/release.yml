@@ -8,6 +8,9 @@ on:
         default: false
         type: boolean
 
+permissions:
+  contents: read
+
 jobs:
   # Call the commit workflow to run all tests and linting
   run-tests:
