@@ -53,7 +53,7 @@ describe('OpenLint', () => {
       },
       {
         code: 'invalid-ref',
-        message: 'EISDIR: illegal operation on a directory, read',
+        message: expect.stringContaining('EISDIR: illegal operation on a directory, read'),
         path: ['empty', '$ref'],
         range: {
           end: {

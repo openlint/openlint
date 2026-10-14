@@ -31,12 +31,9 @@ export const lintNode = (context: IRunnerInternalContext, node: IGivenNode, rule
       try {
         targetResults = then.function(target.value, then.functionOptions ?? null, fnContext);
       } catch (e) {
-        throw new Error(
-          `Function "${then.function.name}" threw an exception${isError(e) ? `: ${e.message}` : ''}`,
-          {
-            cause: e,
-          },
-        );
+        throw new Error(`Function "${then.function.name}" threw an exception${isError(e) ? `: ${e.message}` : ''}`, {
+          cause: e,
+        });
       }
 
       if (targetResults === void 0) continue;
