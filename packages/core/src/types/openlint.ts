@@ -18,10 +18,13 @@ export interface IOpenLintDiagnostic extends IDiagnostic {
 
 export type IRuleResult = IOpenLintDiagnostic;
 
-export interface ISpectralFullResult {
+export interface IOpenLintFullResult {
   resolved: unknown;
   results: IRuleResult[];
 }
+
+// Alias kept to ease migration from `@stoplight/spectral-core`.
+export type { IOpenLintFullResult as ISpectralFullResult, IOpenLintDiagnostic as ISpectralDiagnostic };
 
 export interface IGivenNode {
   path: JsonPath;

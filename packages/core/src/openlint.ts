@@ -6,7 +6,7 @@ import { createHttpAndFileResolver, Resolver } from '@openlint/openlint-ref-reso
 import { Document, IDocument, IParsedResult, isParsedResult, ParsedDocument } from './document';
 import { DocumentInventory } from './documentInventory';
 import { Runner } from './runner';
-import type { IConstructorOpts, IRunOpts, IOpenLintDiagnostic, ISpectralFullResult } from './types';
+import type { IConstructorOpts, IRunOpts, IOpenLintDiagnostic, IOpenLintFullResult } from './types';
 import type { Format, ParserOptions, RulesetDefinition } from './ruleset/index';
 import { Ruleset } from './ruleset/ruleset';
 import { generateDocumentWideResult } from './utils/generateDocumentWideResult';
@@ -41,7 +41,7 @@ export class OpenLint {
   public async runWithResolved(
     target: IParsedResult | IDocument | Record<string, unknown> | string,
     opts: IRunOpts = {},
-  ): Promise<ISpectralFullResult> {
+  ): Promise<IOpenLintFullResult> {
     if (this.ruleset === void 0) {
       throw new Error('No ruleset has been defined. Have you called setRuleset()?');
     }
@@ -125,3 +125,6 @@ export class OpenLint {
     }, []);
   }
 }
+
+// Alias kept to ease migration from `@stoplight/spectral-core`.
+export { OpenLint as Spectral };
