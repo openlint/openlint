@@ -15,3 +15,40 @@ yarn add openlint
 ```bash
 openlint lint openapi.yaml
 ```
+
+## JavaScript API
+
+### Try it quickly
+
+To try OpenLint without changing any code, alias the package in your `package.json` so the old import path resolves to OpenLint. The old `Spectral`, `ISpectralDiagnostic` and `ISpectralFullResult` names are still exported for this purpose:
+
+```json
+{
+  "dependencies": {
+    "@stoplight/spectral-core": "npm:@openlint/openlint-core@^<version>"
+  }
+}
+```
+
+Each `@stoplight/spectral-*` package you import has to be aliased this way (for example `@stoplight/spectral-functions` to `@openlint/openlint-functions`). Packages that depend on `@stoplight/spectral-*` indirectly are not rewritten automatically, so use your package manager's `overrides`/`resolutions` for those.
+
+### Migrate
+
+All packages were renamed, and so were the main class and types:
+
+| Spectral                     | OpenLint                    |
+| ---------------------------- | --------------------------- |
+| `@stoplight/spectral-<name>` | `@openlint/openlint-<name>` |
+| `Spectral`                   | `OpenLint`                  |
+| `ISpectralDiagnostic`        | `IOpenLintDiagnostic`       |
+| `ISpectralFullResult`        | `IOpenLintFullResult`       |
+
+For example, `@stoplight/spectral-core` is now `@openlint/openlint-core`.
+
+```diff
+-import { Spectral } from "@stoplight/spectral-core";
++import { OpenLint } from "@openlint/openlint-core";
+
+-const spectral = new Spectral();
++const openlint = new OpenLint();
+```
