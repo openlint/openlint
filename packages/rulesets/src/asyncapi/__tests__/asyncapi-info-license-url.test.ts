@@ -1,5 +1,5 @@
 import testRule from './__helpers__/tester';
-import { DiagnosticSeverity } from '@stoplight/types/';
+import { DiagnosticSeverity } from '@stoplight/types';
 
 testRule('asyncapi-info-license-url', [
   {

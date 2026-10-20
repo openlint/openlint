@@ -4,24 +4,30 @@ import * as Parsers from '@openlint/openlint-parsers';
 import { Document } from '@openlint/openlint-core';
 
 import testRule from '../../__tests__/__helpers__/tester';
+import unusedComponentNegative from '../../__tests__/__fixtures__/unusedComponent.negative.json';
+import unusedComponent from '../../__tests__/__fixtures__/unusedComponent.json';
+import unusedComponentsSchemaRemoteLocal from './__fixtures__/unusedShared/unusedComponentsSchema.remoteLocal.json';
+import unusedComponentsSchemaDefinition from './__fixtures__/unusedShared/unusedComponentsSchema.definition.json';
+import unusedComponentsSchemaIndirect1 from './__fixtures__/unusedShared/unusedComponentsSchema.indirect.1.json';
+import unusedComponentsSchemaIndirect2 from './__fixtures__/unusedShared/unusedComponentsSchema.indirect.2.json';
 
 const remoteLocalDocument = new Document<any, any>(
-  JSON.stringify(require('./__fixtures__/unusedShared/unusedComponentsSchema.remoteLocal.json')),
+  JSON.stringify(unusedComponentsSchemaRemoteLocal),
   Parsers.Json,
   path.join(__dirname, './__fixtures__/unusedShared/unusedComponentsSchema.remoteLocal.json'),
 );
 const definitionDocument = new Document<any, any>(
-  JSON.stringify(require('./__fixtures__/unusedShared/unusedComponentsSchema.definition.json')),
+  JSON.stringify(unusedComponentsSchemaDefinition),
   Parsers.Json,
   path.join(__dirname, './__fixtures__/unusedShared/unusedComponentsSchema.definition.json'),
 );
 const indirectDocument = new Document<any, any>(
-  JSON.stringify(require('./__fixtures__/unusedShared/unusedComponentsSchema.indirect.1.json')),
+  JSON.stringify(unusedComponentsSchemaIndirect1),
   Parsers.Json,
   path.join(__dirname, './__fixtures__/unusedShared/unusedComponentsSchema.indirect.1.json'),
 );
 const indirect2Document = new Document<any, any>(
-  JSON.stringify(require('./__fixtures__/unusedShared/unusedComponentsSchema.indirect.2.json')),
+  JSON.stringify(unusedComponentsSchemaIndirect2),
   Parsers.Json,
   path.join(__dirname, './__fixtures__/unusedShared/unusedComponentsSchema.indirect.2.json'),
 );
@@ -63,13 +69,13 @@ testRule('oas3-unused-component', [
 
   {
     name: 'all components are referenced',
-    document: require('../../__tests__/__fixtures__/unusedComponent.negative.json'),
+    document: unusedComponentNegative,
     errors: [],
   },
 
   {
     name: 'orphaned components',
-    document: require('../../__tests__/__fixtures__/unusedComponent.json'),
+    document: unusedComponent,
 
     errors: [
       {

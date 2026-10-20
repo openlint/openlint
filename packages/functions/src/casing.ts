@@ -4,7 +4,8 @@ import { createRulesetFunction } from '@openlint/openlint-core';
 import { optionSchemas } from './optionSchemas';
 import { CasingType, CasingOptions as Options } from './types';
 
-export { CasingType, Options };
+export { CasingType };
+export type { Options };
 
 const CASES: Record<CasingType, string> = {
   [CasingType.flat]: '[a-z][a-z{__DIGITS__}]*',

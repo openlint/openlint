@@ -11,7 +11,7 @@ export type BundleOptions = {
   fullOutput?: boolean;
 };
 
-export { IO } from './types';
+export type { IO } from './types';
 
 export async function bundleRuleset(
   input: string,

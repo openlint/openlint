@@ -91,14 +91,14 @@ yarn lint.prettier
 
 ### Tests
 
-We run tests in the two environments that OpenLint supports - the browser, and Node.js. Browser tests are run in a headless Chrome browser via the Karma test runner, while Node.js tests are run via the Jest test runner.
+We run tests in the two environments that OpenLint supports - the browser, and Node.js. Browser tests are run in a headless Chromium browser via Vitest's browser mode, while Node.js tests are run via the Jest test runner.
 
 Tests should usually be written for both environments, but there are valid cases when you need to write separate tests for each test runner.
-To do so, just create a file with `*.karma.test.ts` suffix or `*.jest.test.ts`. A good example of Jest only tests are the tests covering OpenLint's CLI functionality - something that obviously is not relevant to the browser context.
+To do so, just create a file with `*.browser.test.ts` suffix or `*.jest.test.ts`. A good example of Jest only tests are the tests covering OpenLint's CLI functionality - something that obviously is not relevant to the browser context.
 
 #### Caveats
 
-Since Jest and Jasmine (we use Jasmine framework in Karma) are not fully compatible, one has to keep in mind that certain assertions or methods are not available.
+Since Jest and Vitest are not fully compatible, one has to keep in mind that certain assertions or methods are not available.
 For example, `toMatchSnapshot` or `toMatchInlineSnapshot` are not available for use. `jest.mock` and similar are also missing.
 This is usually not a problem. Things like `fs` are usually mocked globally (we use aliases to accomplish this), thus you don't need to worry too much.
 If you need to setup HTTP mocks or populate FS with some data, we have a dedicated util to do so.
@@ -131,7 +131,7 @@ serveAssets({
 })
 ```
 
-This works both in Karma & Jest.
+This works both in Vitest & Jest.
 
 #### Usage
 
@@ -147,10 +147,10 @@ Running Node.js (jest) tests:
 yarn test.jest
 ```
 
-Running Browser (karma) tests:
+Running Browser (Vitest) tests (first run requires `yarn playwright install chromium`):
 
 ```bash
-yarn test.karma
+yarn test.browser
 ```
 
 Running the harness tests (these must pass or the PR merge will be blocked):

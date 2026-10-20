@@ -104,9 +104,9 @@ export default tseslint.config(
     languageOptions: { globals: { ...globals.jest, ...globals.node } },
   },
 
-  // Karma test files: browser + jasmine globals
+  // Browser test files: browser + test globals
   {
-    files: ['**/__tests__/**/*.karma.test.{ts,js}'],
+    files: ['**/__tests__/**/*.browser.test.{ts,js}'],
     languageOptions: { globals: { ...globals.browser, ...globals.jasmine } },
   },
 

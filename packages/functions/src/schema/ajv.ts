@@ -5,8 +5,8 @@ import Ajv2020 from 'ajv/dist/2020';
 import AjvDraft4 from 'ajv-draft-04';
 import addFormats from 'ajv-formats';
 import ajvErrors from 'ajv-errors';
-import * as draft6MetaSchema from 'ajv/dist/refs/json-schema-draft-06.json';
-import * as draft4MetaSchema from './draft4.json';
+import draft6MetaSchema from 'ajv/dist/refs/json-schema-draft-06.json';
+import draft4MetaSchema from './draft4.json';
 
 import { Options } from './index';
 

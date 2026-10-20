@@ -1587,7 +1587,7 @@ describe('Ruleset', () => {
         });
 
         expect(() => ruleset.rules['valid-header'].getGivenForFormats(new Formats([oas3]))).toThrowError(
-          ReferenceError(
+          Error(
             'Alias "HeaderObject" is circular. Resolution stack: HeaderObject -> HeaderObjects -> Components -> HeaderObject',
           ),
         );

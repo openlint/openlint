@@ -100,16 +100,14 @@ jobs:
         node-version-file: .nvmrc
     - name: Cached dependencies
       uses: "./.github/actions/cached-dependencies"
-    - name: Setup Chrome
-      uses: browser-actions/setup-chrome@v1.2.0
-    - name: Install chrome dependencies
-      run: yarn add -D karma-chrome-launcher
+    - name: Install Chromium
+      run: yarn playwright install --with-deps chromium
     - name: Build
       run: yarn build
       shell: bash
     - run: yarn pretest
     - name: Run browser tests
-      run: yarn test.karma
+      run: yarn test.browser
       env:
         CI: true
   lint:

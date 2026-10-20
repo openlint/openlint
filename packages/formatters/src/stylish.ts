@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-require-imports,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return */
 /**
  * Copyright JS Foundation and other contributors, https://js.foundation
  *
@@ -26,7 +25,7 @@
 
 import type { DiagnosticSeverity, IRange } from '@stoplight/types';
 import chalk from 'chalk';
-import stripAnsi = require('strip-ansi');
+import stripAnsi from 'strip-ansi';
 import table from 'text-table';
 import { printPath, PrintStyle } from '@openlint/openlint-runtime';
 import type { IRuleResult } from '@openlint/openlint-core';

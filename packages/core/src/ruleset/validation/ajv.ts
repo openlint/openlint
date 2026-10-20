@@ -2,11 +2,11 @@ import Ajv, { _, ValidateFunction } from 'ajv/dist/2020';
 import names from 'ajv/dist/compile/names';
 import addFormats from 'ajv-formats';
 import addErrors from 'ajv-errors';
-import * as ruleSchema from '../meta/rule.schema.json';
-import * as shared from '../meta/shared.json';
-import * as rulesetSchema from '../meta/ruleset.schema.json';
-import * as jsExtensions from '../meta/js-extensions.json';
-import * as jsonExtensions from '../meta/json-extensions.json';
+import ruleSchema from '../meta/rule.schema.json';
+import shared from '../meta/shared.json';
+import rulesetSchema from '../meta/ruleset.schema.json';
+import jsExtensions from '../meta/js-extensions.json';
+import jsonExtensions from '../meta/json-extensions.json';
 import { validateAlias } from './validators/alias';
 import { validateFunction } from './validators/function';
 

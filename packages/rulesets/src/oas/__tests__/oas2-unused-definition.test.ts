@@ -3,24 +3,28 @@ import * as path from '@stoplight/path';
 import { Document } from '@openlint/openlint-core';
 import * as Parsers from '@openlint/openlint-parsers';
 import testRule from '../../__tests__/__helpers__/tester';
+import unusedDefinitionRemoteLocal from './__fixtures__/unusedShared/unusedDefinition.remoteLocal.json';
+import unusedDefinitionDefinition from './__fixtures__/unusedShared/unusedDefinition.definition.json';
+import unusedDefinitionIndirect1 from './__fixtures__/unusedShared/unusedDefinition.indirect.1.json';
+import unusedDefinitionIndirect2 from './__fixtures__/unusedShared/unusedDefinition.indirect.2.json';
 
 const remoteLocalDocument = new Document<any, any>(
-  JSON.stringify(require('./__fixtures__/unusedShared/unusedDefinition.remoteLocal.json')),
+  JSON.stringify(unusedDefinitionRemoteLocal),
   Parsers.Json,
   path.join(__dirname, './__fixtures__/unusedShared/unusedDefinition.remoteLocal.json'),
 );
 const definitionDocument = new Document<any, any>(
-  JSON.stringify(require('./__fixtures__/unusedShared/unusedDefinition.definition.json')),
+  JSON.stringify(unusedDefinitionDefinition),
   Parsers.Json,
   path.join(__dirname, './__fixtures__/unusedShared/unusedDefinition.definition.json'),
 );
 const indirectDocument = new Document<any, any>(
-  JSON.stringify(require('./__fixtures__/unusedShared/unusedDefinition.indirect.1.json')),
+  JSON.stringify(unusedDefinitionIndirect1),
   Parsers.Json,
   path.join(__dirname, './__fixtures__/unusedShared/unusedDefinition.indirect.1.json'),
 );
 const indirect2Document = new Document<any, any>(
-  JSON.stringify(require('./__fixtures__/unusedShared/unusedDefinition.indirect.2.json')),
+  JSON.stringify(unusedDefinitionIndirect2),
   Parsers.Json,
   path.join(__dirname, './__fixtures__/unusedShared/unusedDefinition.indirect.2.json'),
 );

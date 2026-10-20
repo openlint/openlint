@@ -2,4 +2,4 @@ export * from './consts';
 export * from './openlint';
 export { Document, ParsedDocument } from './document';
 export * from './ruleset';
-export { IOpenLintDiagnostic } from './types';
+export type { IOpenLintDiagnostic } from './types';

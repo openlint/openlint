@@ -19,6 +19,7 @@ packages/*/src/version.ts
 packages/*/dist
 
 # testing
+/.vitest
 /coverage
 
 # production
@@ -44,3 +45,4 @@ packages/*/dist
 *.log*
 *-debug.log*
 *-error.log*
+.vitest

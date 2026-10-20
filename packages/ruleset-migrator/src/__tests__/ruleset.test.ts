@@ -4,6 +4,8 @@ import { format as prettierFormat } from 'prettier/standalone';
 import * as parserBabel from 'prettier/plugins/babel';
 import * as parserEstree from 'prettier/plugins/estree';
 import { Ruleset } from '@openlint/openlint-core';
+import * as functions from '@openlint/openlint-functions';
+import * as rulesets from '@openlint/openlint-rulesets';
 import { DiagnosticSeverity } from '@stoplight/types';
 import fetchMockLib, { FetchMock as FetchMockInstance } from 'fetch-mock';
 import { serveAssets } from '@openlint/openlint-test-utils';
@@ -95,9 +97,9 @@ describe('migrator', () => {
     )(_module, (id: string): unknown => {
       switch (id) {
         case '@openlint/openlint-functions':
-          return require('@openlint/openlint-functions') as unknown;
+          return functions;
         case '@openlint/openlint-rulesets':
-          return require('@openlint/openlint-rulesets') as unknown;
+          return rulesets;
         default:
           throw new ReferenceError(`${id} not found`);
       }
@@ -105,10 +107,7 @@ describe('migrator', () => {
 
     const ruleset = new Ruleset(_module.exports);
 
-    expect(Object.keys(ruleset.rules)).toEqual([
-      ...Object.keys(require('@openlint/openlint-rulesets').oas.rules),
-      'valid-type',
-    ]);
+    expect(Object.keys(ruleset.rules)).toEqual([...Object.keys(rulesets.oas.rules), 'valid-type']);
 
     expect(ruleset.rules['valid-type'].severity).toEqual(DiagnosticSeverity.Error);
   });
