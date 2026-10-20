@@ -5,4 +5,5 @@ on:
 
 jobs:
   run-commit-workflow:
+    name: Commit
     uses: ./.github/workflows/commit.yml

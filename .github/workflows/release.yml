@@ -14,6 +14,7 @@ permissions:
 jobs:
   # Call the commit workflow to run all tests and linting
   run-tests:
+    name: Commit
     uses: ./.github/workflows/commit.yml
 
   read-node-version:
