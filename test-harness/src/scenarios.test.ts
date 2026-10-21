@@ -3,7 +3,6 @@ import * as fs from 'node:fs/promises';
 import * as path from '@stoplight/path';
 import { fileURLToPath } from 'node:url';
 import { describe, test } from 'node:test';
-import fg from 'fast-glob';
 import escapeRegExp from 'lodash/escapeRegExp.js';
 import { IS_WINDOWS } from './consts.ts';
 import { parseScenarioFile } from './parser.ts';
@@ -80,7 +79,12 @@ function stripOpenLintVersionFromSarif(str: string): string {
 
 await fs.mkdir(TMP_DIR, { recursive: true });
 
-const files = (await fg(FILTER, { cwd: SCENARIOS_DIR })).sort();
+const files: string[] = [];
+for await (const file of fs.glob(FILTER, { cwd: SCENARIOS_DIR })) {
+  files.push(file.replaceAll('\\', '/'));
+}
+files.sort();
+
 const scenarios = await Promise.all(
   files.map(async file => ({ file, ...parseScenarioFile(await fs.readFile(path.join(SCENARIOS_DIR, file), 'utf8')) })),
 );
