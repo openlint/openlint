@@ -1,3 +1,4 @@
+import { afterEach, beforeEach } from 'vitest';
 import { dirname, isURL } from '@stoplight/path';
 import * as fs from 'fs';
 import fetchMockLib from 'fetch-mock';
