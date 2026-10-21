@@ -1,3 +1,4 @@
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { Tree, Scope } from '../index';
 import { TransformerCtx } from '../../types';
 import * as path from '@stoplight/path';

@@ -1,3 +1,4 @@
+import { describe, expect, test, vi } from 'vitest';
 import { DeepPartial } from '@stoplight/types';
 import arazzoStepIdUniqueness from '../arazzoStepIdUniqueness';
 import type { IFunctionResult, RulesetFunctionContext } from '@openlint/openlint-core';

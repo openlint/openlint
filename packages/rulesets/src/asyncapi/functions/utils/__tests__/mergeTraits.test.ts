@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest';
 import { mergeTraits } from '../mergeTraits';
 
 describe('mergeTraits', () => {

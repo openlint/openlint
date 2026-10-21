@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { serveAssets } from '@openlint/openlint-test-utils';
 import * as path from 'path';
 import * as fs from 'fs';

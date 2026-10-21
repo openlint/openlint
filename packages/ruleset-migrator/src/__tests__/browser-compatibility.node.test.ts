@@ -1,3 +1,4 @@
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { vol } from 'memfs';
 import * as path from '@stoplight/path';
 import { migrateRuleset } from '..';

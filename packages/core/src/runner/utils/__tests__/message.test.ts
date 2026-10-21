@@ -1,3 +1,4 @@
+import { describe, expect, test, vi } from 'vitest';
 import { message } from '../message';
 
 const mockFs = {

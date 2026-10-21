@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest';
 import { getMissingProps } from '../getMissingProps';
 
 describe('getMissingProps', () => {

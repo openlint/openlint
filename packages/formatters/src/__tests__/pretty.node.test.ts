@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest';
 import { DiagnosticSeverity } from '@stoplight/types';
 import chalk from 'chalk';
 import { pretty } from '../pretty';

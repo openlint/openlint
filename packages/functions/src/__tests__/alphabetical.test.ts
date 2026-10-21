@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import * as Parsers from '@openlint/openlint-parsers';
 import { Document, RulesetValidationError } from '@openlint/openlint-core';
 import testFunction from './__helpers__/tester';

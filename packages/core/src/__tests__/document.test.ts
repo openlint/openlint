@@ -1,3 +1,4 @@
+import { describe, expect, test, vi } from 'vitest';
 import { IParsedResult, isParsedResult } from '../document';
 
 describe('isParsedResult util', () => {

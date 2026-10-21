@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import '@openlint/openlint-test-utils/matchers';
 
 import { RulesetValidationError } from '@openlint/openlint-core';

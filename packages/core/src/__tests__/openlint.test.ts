@@ -1,3 +1,4 @@
+import { describe, expect, test, vi } from 'vitest';
 import { DiagnosticSeverity } from '@stoplight/types';
 import { truthy } from '@openlint/openlint-functions';
 import * as Parsers from '@openlint/openlint-parsers';

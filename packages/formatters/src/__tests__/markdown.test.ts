@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest';
 import { DiagnosticSeverity } from '@stoplight/types';
 import type { IRuleResult } from '@openlint/openlint-core';
 import { FormatterContext } from '../types';

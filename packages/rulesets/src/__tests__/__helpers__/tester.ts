@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { serveAssets } from '@openlint/openlint-test-utils';
 import { IRuleResult, OpenLint, Document, RulesetDefinition } from '@openlint/openlint-core';
 import { httpAndFileResolver } from '@openlint/openlint-ref-resolver';

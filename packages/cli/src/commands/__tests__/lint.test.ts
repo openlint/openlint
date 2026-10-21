@@ -1,4 +1,4 @@
-import type { Mock } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi, type Mock } from 'vitest';
 import yargs from 'yargs';
 import { DiagnosticSeverity } from '@stoplight/types';
 import { IRuleResult } from '@openlint/openlint-core';

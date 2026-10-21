@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest';
 import arazzoStepSuccessCriteriaValidation from '../arazzoStepSuccessCriteriaValidation';
 import type { RulesetFunctionContext } from '@openlint/openlint-core';
 import { ArazzoSpecification } from '../types/arazzoTypes';
