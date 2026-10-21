@@ -56,7 +56,7 @@ describe('Pretty formatter', () => {
       expect(result).toContain(chalk.red.bold('1 Unique Issue(s)'));
     });
   });
-  xtest('should wrap when terminal width is very small', () => {
+  test.skip('should wrap when terminal width is very small', () => {
     setColumnWidth(120, function (): void {
       const result = pretty(oas3SchemaErrors, { failSeverity: DiagnosticSeverity.Error });
       expect(result).toContain(`

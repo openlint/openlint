@@ -1,6 +1,7 @@
+import type { Mock, MockInstance } from 'vitest';
 import { join, resolve } from '@stoplight/path';
 import nock from 'nock';
-import * as yargs from 'yargs';
+import yargs from 'yargs';
 import { DiagnosticSeverity } from '@stoplight/types';
 import { RulesetValidationError } from '@openlint/openlint-core';
 import '@openlint/openlint-test-utils/matchers';
@@ -9,8 +10,8 @@ import * as process from 'process';
 import lintCommand from '../../commands/lint';
 import { LinterResult, lint } from '../linter';
 
-jest.mock('process');
-jest.mock('../output');
+vi.mock('node:process');
+vi.mock('../output');
 
 const validCustomOas3SpecPath = resolve(__dirname, '__fixtures__/openapi-3.0-valid-custom.yaml');
 const invalidRulesetPath = resolve(__dirname, '__fixtures__/ruleset-invalid.js');
@@ -18,7 +19,7 @@ const validRulesetPath = resolve(__dirname, '__fixtures__/ruleset-valid.js');
 const validOas3SpecPath = resolve(__dirname, './__fixtures__/openapi-3.0-valid.yaml');
 
 async function run(command: string): Promise<LinterResult['results']> {
-  const parser = yargs.command(lintCommand);
+  const parser = yargs().command(lintCommand);
   const { documents, ...opts } = await new Promise<any>((resolve, reject) => {
     parser.parse(`${command} --ignore-unknown-format`, {}, (err, argv) => {
       if (err) {
@@ -33,16 +34,16 @@ async function run(command: string): Promise<LinterResult['results']> {
 }
 
 describe('Linter service', () => {
-  let processCwdSpy: jest.SpyInstance;
+  let processCwdSpy: MockInstance;
 
   beforeEach(() => {
-    (process.cwd as jest.Mock).mockReturnValue(join(__dirname, '__fixtures__'));
-    processCwdSpy = jest.spyOn(globalThis.process, 'cwd').mockImplementation(process.cwd);
+    (process.cwd as Mock).mockReturnValue(join(__dirname, '__fixtures__'));
+    processCwdSpy = vi.spyOn(globalThis.process, 'cwd').mockImplementation(process.cwd);
   });
 
   afterEach(() => {
     processCwdSpy.mockRestore();
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     nock.cleanAll();
   });
 
@@ -88,7 +89,7 @@ describe('Linter service', () => {
   });
 
   it('demands some ruleset to be present', () => {
-    (process.cwd as jest.Mock).mockReturnValue(join(__dirname, '__fixtures__/resolver'));
+    (process.cwd as Mock).mockReturnValue(join(__dirname, '__fixtures__/resolver'));
     return expect(run(`lint stoplight-info-document.json`)).rejects.toThrow(
       'No ruleset has been found. Please provide a ruleset using the --ruleset CLI argument, or make sure your ruleset file matches .openlint.js/yaml/json or .openlint.js/yaml/json',
     );

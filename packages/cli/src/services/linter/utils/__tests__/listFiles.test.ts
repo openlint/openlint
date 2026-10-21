@@ -1,8 +1,9 @@
+import type { Mock } from 'vitest';
 import * as path from '@stoplight/path';
-import * as fg from 'fast-glob';
+import fg from 'fast-glob';
 import { listFiles } from '../listFiles';
 
-jest.mock('fast-glob', () => jest.fn(async () => []));
+vi.mock('fast-glob', () => ({ default: vi.fn(async () => []) }));
 
 describe('listFiles CLI util', () => {
   it('unixify paths', () => {
@@ -16,7 +17,7 @@ describe('listFiles CLI util', () => {
   it('returns file paths', async () => {
     const list = [path.join(__dirname, 'foo/a.json'), path.join(__dirname, 'foo/b.json')];
 
-    (fg as unknown as jest.Mock).mockResolvedValueOnce([...list]);
+    (fg as unknown as Mock).mockResolvedValueOnce([...list]);
 
     expect(await listFiles(['./foo/*.json'], true)).toEqual([list, []]);
   });
@@ -24,7 +25,7 @@ describe('listFiles CLI util', () => {
   it('given disabled ignoredUnmatchedGlobs, reports unmatched patterns', async () => {
     const list = [path.join(__dirname, 'foo/a.json'), path.join(__dirname, 'foo/b.json')];
 
-    (fg as unknown as jest.Mock).mockImplementation(async pattern => {
+    (fg as unknown as Mock).mockImplementation(async pattern => {
       if (pattern === './foo/*.json') {
         return list;
       }

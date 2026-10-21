@@ -98,16 +98,16 @@ export default tseslint.config(
     },
   },
 
-  // Jest test files: jest + node globals
+  // Node test files: node globals
   {
-    files: ['**/__tests__/**/*.jest.test.{ts,js}', '__mocks__/**/*.{ts,js}'],
-    languageOptions: { globals: { ...globals.jest, ...globals.node } },
+    files: ['**/__tests__/**/*.node.test.{ts,js}', '__mocks__/**/*.{ts,js}'],
+    languageOptions: { globals: { ...globals.node } },
   },
 
-  // Browser test files: browser + test globals
+  // Browser test files: browser globals
   {
     files: ['**/__tests__/**/*.browser.test.{ts,js}'],
-    languageOptions: { globals: { ...globals.browser, ...globals.jasmine } },
+    languageOptions: { globals: { ...globals.browser } },
   },
 
   // Scripts and test-harness: node globals

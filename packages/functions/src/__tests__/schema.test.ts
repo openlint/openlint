@@ -1,3 +1,4 @@
+import type { MockInstance } from 'vitest';
 import type { JSONSchema6 as JSONSchema } from 'json-schema';
 import schema from '../schema';
 import { RulesetValidationError } from '@openlint/openlint-core';
@@ -168,7 +169,7 @@ describe('Core Functions / Schema', () => {
   });
 
   describe('when schema defines unknown format', () => {
-    let warnSpy: jest.SpyInstance;
+    let warnSpy: MockInstance;
 
     const schema = {
       type: 'string',
@@ -176,7 +177,7 @@ describe('Core Functions / Schema', () => {
     };
 
     beforeEach(() => {
-      warnSpy = jest.spyOn(console, 'warn');
+      warnSpy = vi.spyOn(console, 'warn');
     });
 
     afterEach(() => {

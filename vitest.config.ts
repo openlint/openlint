@@ -2,6 +2,7 @@ import * as path from 'node:path';
 import { defineConfig, type Plugin } from 'vitest/config';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
 import { playwright } from '@vitest/browser-playwright';
+import tsconfig from './tsconfig.json' with { type: 'json' };
 
 // the generated standalone validators call `require`, which does not exist in the browser
 const hoistRequires = (): Plugin => ({
@@ -38,7 +39,8 @@ const injectDirname = (): Plugin => ({
 
 const resolve = (p: string) => path.join(__dirname, p);
 
-export default defineConfig({
+const browser = {
+  extends: false,
   plugins: [hoistRequires(), injectDirname(), nodePolyfills({ exclude: ['fs', 'module'] })],
   resolve: {
     alias: [
@@ -87,7 +89,6 @@ export default defineConfig({
       'json-schema-traverse',
       'nimma/legacy',
       'nimma/fallbacks',
-      'jest-mock',
       'jsonpath-plus',
       'expr-eval-fork',
       'ast-types',
@@ -111,6 +112,7 @@ export default defineConfig({
     ],
   },
   test: {
+    name: 'browser',
     globals: true,
     include: ['packages/*/src/**/__tests__/**/*.{test,spec}.ts'],
     exclude: [
@@ -120,7 +122,7 @@ export default defineConfig({
       'packages/formatters/src/sarif.ts',
       'packages/formatters/src/index.node.ts',
       'packages/ruleset-bundler/src/plugins/commonjs.ts',
-      '**/*.jest.test.ts',
+      '**/*.node.test.ts',
       '**/node_modules/**',
     ],
     setupFiles: ['./__browser__/setup.ts'],
@@ -132,5 +134,59 @@ export default defineConfig({
       provider: playwright(process.env.CI ? { launchOptions: { channel: 'chrome' } } : {}),
       instances: [{ browser: 'chromium' }],
     },
+  },
+} as const;
+
+const { paths } = tsconfig.compilerOptions;
+
+// the same workspace resolution as tsc has, so that the tests run against the sources
+const workspaceAliases = Object.entries(paths).map(([find, [replacement]]) => {
+  const escaped = find.replace(/[.*+?^${}()|[\]\\/]/g, '\\$&');
+  return find.endsWith('/*')
+    ? { find: new RegExp(`^${escaped.slice(0, -2)}/(.*)$`), replacement: resolve(replacement.replace(/\*$/, '')) + '$1' }
+    : { find: new RegExp(`^${escaped}$`), replacement: resolve(replacement) };
+});
+
+const node = {
+  extends: false,
+  resolve: {
+    alias: [
+      { find: /^@openlint\/openlint-test-utils$/, replacement: resolve('test-utils/node/index.ts') },
+      ...workspaceAliases,
+    ],
+  },
+  test: {
+    globals: true,
+    environment: 'node',
+    setupFiles: ['./test-utils/matchers.ts'],
+  },
+} as const;
+
+// these packages run against an in-memory fs, see test-utils/node/mock-fs.ts
+const MEMFS_PACKAGES = ['rulesets', 'ruleset-bundler'];
+
+export default defineConfig({
+  test: {
+    projects: [
+      browser,
+      {
+        ...node,
+        test: {
+          ...node.test,
+          name: 'node',
+          include: ['packages/*/src/**/__tests__/**/*.{test,spec}.ts'],
+          exclude: [...MEMFS_PACKAGES.map(name => `packages/${name}/**`), '**/node_modules/**'],
+        },
+      },
+      {
+        ...node,
+        test: {
+          ...node.test,
+          name: 'node-fs',
+          include: MEMFS_PACKAGES.map(name => `packages/${name}/src/**/__tests__/**/*.{test,spec}.ts`),
+          setupFiles: [...node.test.setupFiles, './test-utils/node/mock-fs.ts'],
+        },
+      },
+    ],
   },
 });

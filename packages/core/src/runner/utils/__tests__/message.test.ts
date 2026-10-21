@@ -1,8 +1,8 @@
 import { message } from '../message';
 
 const mockFs = {
-  existsSync: jest.fn().mockReturnValue(false),
-  unlinkSync: jest.fn(),
+  existsSync: vi.fn().mockReturnValue(false),
+  unlinkSync: vi.fn(),
 };
 
 const fs = mockFs;

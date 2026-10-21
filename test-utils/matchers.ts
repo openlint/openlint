@@ -1,11 +1,8 @@
 export {};
 
-declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
-  namespace jest {
-    interface Matchers<R> {
-      toThrowAggregateError(error: AggregateError): R;
-    }
+declare module 'vitest' {
+  interface Matchers<T = any> {
+    toThrowAggregateError(error: AggregateError): T;
   }
 }
 
