@@ -3,9 +3,9 @@ import { TransformerCtx } from '../../types';
 import * as path from '@stoplight/path';
 
 // Mock requireResolve module to test different scenarios
-jest.mock('../../requireResolve', () => {
+vi.mock('../../requireResolve', () => {
   // This will be overridden in each test
-  return {};
+  return { default: undefined };
 });
 
 describe('Tree.resolveModule', () => {
@@ -28,24 +28,24 @@ describe('Tree.resolveModule', () => {
         format: 'esm',
         fs: {
           promises: {
-            readFile: jest.fn(),
+            readFile: vi.fn(),
           },
         },
-        fetch: jest.fn() as any,
+        fetch: vi.fn() as any,
       },
       hooks: new Set(),
-      read: jest.fn(),
+      read: vi.fn(),
     };
   });
 
   describe('requireResolve handling (browser compatibility)', () => {
     afterEach(() => {
-      jest.resetModules();
+      vi.resetModules();
     });
 
     it('should handle requireResolve as undefined (normal browser environment)', async () => {
       // Simulate browser environment where requireResolve is undefined
-      jest.doMock('../../requireResolve', () => ({
+      vi.doMock('../../requireResolve', () => ({
         default: undefined,
       }));
 
@@ -64,7 +64,7 @@ describe('Tree.resolveModule', () => {
 
     it('should handle requireResolve as null', async () => {
       // Simulate browser environment where requireResolve is null
-      jest.doMock('../../requireResolve', () => ({
+      vi.doMock('../../requireResolve', () => ({
         default: null,
       }));
 
@@ -83,7 +83,7 @@ describe('Tree.resolveModule', () => {
 
     it('should handle requireResolve as empty object (webpack bug)', async () => {
       // Simulate webpack returning empty object instead of undefined
-      jest.doMock('../../requireResolve', () => ({
+      vi.doMock('../../requireResolve', () => ({
         default: {},
       }));
 
@@ -102,7 +102,7 @@ describe('Tree.resolveModule', () => {
 
     it('should handle requireResolve as non-function value', async () => {
       // Simulate other non-function values
-      jest.doMock('../../requireResolve', () => ({
+      vi.doMock('../../requireResolve', () => ({
         default: 'not-a-function',
       }));
 
@@ -120,9 +120,9 @@ describe('Tree.resolveModule', () => {
     });
 
     it('should call requireResolve when it is a function', async () => {
-      const mockResolve = jest.fn().mockReturnValue('/resolved/path/to/package');
+      const mockResolve = vi.fn().mockReturnValue('/resolved/path/to/package');
 
-      jest.doMock('../../requireResolve', () => ({
+      vi.doMock('../../requireResolve', () => ({
         default: mockResolve,
       }));
 
@@ -142,9 +142,9 @@ describe('Tree.resolveModule', () => {
     });
 
     it('should fallback when requireResolve returns null', async () => {
-      const mockResolve = jest.fn().mockReturnValue(null);
+      const mockResolve = vi.fn().mockReturnValue(null);
 
-      jest.doMock('../../requireResolve', () => ({
+      vi.doMock('../../requireResolve', () => ({
         default: mockResolve,
       }));
 

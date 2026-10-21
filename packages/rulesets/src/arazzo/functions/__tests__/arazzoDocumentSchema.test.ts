@@ -10,8 +10,8 @@ function runSchema(target: unknown, context?: Partial<RulesetFunctionContext>): 
       formats: new Set([arazzo1_0]),
       source: '',
       diagnostics: [],
-      getRangeForJsonPath: jest.fn(), // Mocked function
-      trapAccess: jest.fn(), // Mocked function
+      getRangeForJsonPath: vi.fn(), // Mocked function
+      trapAccess: vi.fn(), // Mocked function
       data: target,
     },
     ...context,

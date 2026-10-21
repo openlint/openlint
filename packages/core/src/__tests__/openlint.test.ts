@@ -12,7 +12,7 @@ describe('openlint', () => {
       test('will call the resolver with target', async () => {
         const customResolver = new Resolver();
 
-        const resolve = jest.spyOn(customResolver, 'resolve');
+        const resolve = vi.spyOn(customResolver, 'resolve');
 
         const s = new OpenLint({
           resolver: customResolver,

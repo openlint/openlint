@@ -29,7 +29,7 @@ describe('isParsedResult util', () => {
     ).toBe(false);
 
     const obj: IParsedResult = {
-      getLocationForJsonPath: jest.fn(),
+      getLocationForJsonPath: vi.fn(),
       parsed: {
         data: {},
         ast: {},

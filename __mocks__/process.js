@@ -1,15 +1,17 @@
-module.exports.exit = jest.fn();
-module.exports.cwd = jest.fn();
-module.exports.on = jest.fn();
+import { vi } from 'vitest';
 
-module.exports.stdin = {
+export const exit = vi.fn();
+export const cwd = vi.fn();
+export const on = vi.fn();
+
+export const stdin = {
   fd: 0,
   isTTY: true,
 };
-module.exports.stdout = {
-  write: jest.fn(),
+export const stdout = {
+  write: vi.fn(),
 };
 
-module.exports.stderr = {
-  write: jest.fn(),
+export const stderr = {
+  write: vi.fn(),
 };

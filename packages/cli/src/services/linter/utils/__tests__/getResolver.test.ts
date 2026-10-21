@@ -16,10 +16,7 @@ describe('getResolver', () => {
 
   it('throws when module cannot be imported', () => {
     expect(getResolver.bind(null, join(__dirname, 'test.json'), void 0)).toThrow(
-      `Cannot find module '${join(
-        __dirname,
-        'test.json',
-      )}' from 'packages/cli/src/services/linter/utils/getResolver.ts'`,
+      `Cannot find module '${join(__dirname, 'test.json')}'`,
     );
   });
 

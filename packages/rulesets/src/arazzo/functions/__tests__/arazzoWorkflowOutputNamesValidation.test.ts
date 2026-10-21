@@ -12,7 +12,7 @@ const runRule = (
     documentInventory: {
       graph: {}, // Mock the graph property
       referencedDocuments: {}, // Mock the referencedDocuments property as a Dictionary
-      findAssociatedItemForPath: jest.fn(), // Mock the findAssociatedItemForPath function
+      findAssociatedItemForPath: vi.fn(), // Mock the findAssociatedItemForPath function
     },
     document: {
       formats: new Set(), // Mock the formats property correctly

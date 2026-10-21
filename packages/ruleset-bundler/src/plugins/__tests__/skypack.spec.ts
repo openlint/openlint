@@ -1,3 +1,4 @@
+import type { MockInstance } from 'vitest';
 import * as fs from 'fs';
 import { serveAssets } from '@openlint/openlint-test-utils';
 import { fetch } from '@openlint/openlint-runtime';
@@ -9,7 +10,7 @@ import { esmCdn } from '../skypack';
 
 describe('Skypack Plugin', () => {
   let io: IO;
-  let warnSpy: jest.SpyInstance;
+  let warnSpy: MockInstance;
 
   beforeEach(() => {
     io = {
@@ -17,7 +18,7 @@ describe('Skypack Plugin', () => {
       fetch,
     };
 
-    warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {
+    warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {
       /* no-op */
     });
   });

@@ -1,3 +1,4 @@
+import type { MockInstance } from 'vitest';
 import * as fs from 'fs';
 import { serveAssets } from '@openlint/openlint-test-utils';
 import * as runtime from '@openlint/openlint-runtime';
@@ -27,7 +28,7 @@ import { builtins } from '../builtins';
 
 describe('Builtins Plugin', () => {
   let io: IO;
-  let randomSpy: jest.SpyInstance;
+  let randomSpy: MockInstance;
 
   beforeEach(() => {
     io = {
@@ -35,7 +36,7 @@ describe('Builtins Plugin', () => {
       fetch: runtime.fetch,
     };
 
-    randomSpy = jest
+    randomSpy = vi
       .spyOn(Math, 'random')
       .mockReturnValueOnce(0.8229275205939697)
       .mockReturnValueOnce(0.7505242801973444)

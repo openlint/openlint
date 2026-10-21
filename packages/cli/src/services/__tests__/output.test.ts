@@ -1,3 +1,4 @@
+import type { Mock } from 'vitest';
 import { DiagnosticSeverity } from '@stoplight/types';
 import * as fs from 'fs';
 import * as process from 'process';
@@ -5,14 +6,14 @@ import * as formatters from '@openlint/openlint-formatters';
 import { OutputFormat } from '../config';
 import { formatOutput, writeOutput } from '../output';
 
-jest.mock('@openlint/openlint-formatters');
-jest.mock('fs', () => ({
-  readFileSync: jest.requireActual('fs').readFileSync,
+vi.mock('@openlint/openlint-formatters');
+vi.mock('fs', async () => ({
+  readFileSync: (await vi.importActual<typeof import('fs')>('fs')).readFileSync,
   promises: {
-    writeFile: jest.fn().mockResolvedValue(void 0),
+    writeFile: vi.fn().mockResolvedValue(void 0),
   },
 }));
-jest.mock('process');
+vi.mock('node:process');
 
 describe('Output service', () => {
   describe('formatOutput', () => {
@@ -38,7 +39,7 @@ describe('Output service', () => {
       ];
 
       const output = `value for ${format}`;
-      (formatters[format] as jest.Mock).mockReturnValueOnce(output);
+      (formatters[format] as Mock).mockReturnValueOnce(output);
       expect(formatOutput(results, format as OutputFormat, { failSeverity: DiagnosticSeverity.Error })).toEqual(output);
     });
   });
@@ -53,7 +54,7 @@ describe('Output service', () => {
 
     it('given <stdout>, print output to console', async () => {
       const output = '{}';
-      const writeMock = jest.spyOn(process.stdout, 'write').mockImplementation((chunk: any, callback?: any) => {
+      const writeMock = vi.spyOn(process.stdout, 'write').mockImplementation((chunk: any, callback?: any) => {
         if (typeof callback === 'function') {
           callback();
         }
