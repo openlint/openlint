@@ -1,4 +1,6 @@
-# Workflows
+---
+title: "Workflows"
+---
 
 When and where you use Spectral depends on how you are creating and managing your API description documents or other files you are trying to lint.
 

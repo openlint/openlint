@@ -1,4 +1,6 @@
-# Create a Ruleset
+---
+title: "Create a Ruleset"
+---
 
 Rulesets are collections of rules written in JSON, YAML, or [JavaScript](../guides/custom-rulesets.md#alternative-js-ruleset-format). Rulesets provide powerful linting of other JSON or YAML files, such as OpenAPI or AsyncAPI descriptions.
 

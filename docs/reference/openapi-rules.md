@@ -1,4 +1,6 @@
-# OpenAPI Rules
+---
+title: "OpenAPI Rules"
+---
 
 Spectral has a built-in "oas" ruleset, with OAS being shorthand for the [OpenAPI Specification](https://openapis.org/specification).
 

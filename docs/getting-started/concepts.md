@@ -1,4 +1,6 @@
-# Concepts
+---
+title: "Concepts"
+---
 
 The power of integrating linting into the design-first workflow, or any workflow which involves API descriptions, is often overlooked. Linting isn't just about validating OpenAPI or JSON Schema documents against specifications. It's for enforcing style guides to ensure that your APIs are consistent, valid, and of high quality.
 

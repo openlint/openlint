@@ -1,4 +1,6 @@
-# AsyncAPI Rules
+---
+title: "AsyncAPI Rules"
+---
 
 Spectral has a built-in "asyncapi" ruleset for the [AsyncAPI Specification](https://asyncapi.com).
 

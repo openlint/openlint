@@ -1,4 +1,6 @@
-# Tips & Tricks
+---
+title: "Tips & Tricks"
+---
 
 ## Rulesets
 

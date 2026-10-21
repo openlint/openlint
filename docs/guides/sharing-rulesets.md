@@ -1,4 +1,6 @@
-# Sharing & Distributing Rulesets
+---
+title: "Sharing & Distributing Rulesets"
+---
 
 A [ruleset](../getting-started/rulesets.md) becomes infinitely more useful when other developers are using it. By itself, it's just a way of enforcing some rules on a single project, but when distributed a ruleset can become a "style guide" for enforcing consistency across a whole bunch of projects.
 

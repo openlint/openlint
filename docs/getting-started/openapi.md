@@ -1,4 +1,6 @@
-# OpenAPI Support
+---
+title: "OpenAPI Support"
+---
 
 Spectral has a built-in [OpenAPI Specification](https://openapis.org/specification) ruleset that you can use to validate your OpenAPI files.
 

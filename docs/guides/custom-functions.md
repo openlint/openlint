@@ -1,4 +1,6 @@
-# Custom Functions
+---
+title: "Custom Functions"
+---
 
 If the core functions aren't enough for your [custom ruleset](../getting-started/rulesets.md), Spectral allows you to write and use custom functions.
 

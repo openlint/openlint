@@ -1,4 +1,6 @@
-# Extending Rulesets
+---
+title: "Extending Rulesets"
+---
 
 Rulesets can extend other rulesets using the `extends` property, allowing you to pull in other rulesets.
 

@@ -1,4 +1,6 @@
-## Aliases
+---
+title: "Aliases"
+---
 
 Targeting certain parts of an OpenAPI spec is powerful but it can become cumbersome to write and repeat complex JSONPath expressions across multiple rules.
 

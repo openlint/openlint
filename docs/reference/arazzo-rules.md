@@ -1,4 +1,6 @@
-# Arazzo Rules
+---
+title: "Arazzo Rules"
+---
 
 Spectral has a built-in "arazzo" ruleset for the [Arazzo Specification](https://spec.openapis.org/arazzo/v1.0.0.html).
 

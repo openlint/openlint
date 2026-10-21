@@ -1,4 +1,6 @@
-# Rules
+---
+title: "Rules"
+---
 
 Rules are at the core of how rulesets work, so let's look at how to create a rule and its properties.
 

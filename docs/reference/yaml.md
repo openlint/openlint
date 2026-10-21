@@ -1,4 +1,6 @@
-# YAML support
+---
+title: "YAML support"
+---
 
 Spectral supports YAML 1.2 with merge keys extension.
 

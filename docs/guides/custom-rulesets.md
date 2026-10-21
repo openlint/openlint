@@ -1,4 +1,6 @@
-# Rulesets
+---
+title: "Rulesets"
+---
 
 Spectral comes with three rulesets built-in: [OpenAPI](../reference/openapi-rules.md), [AsyncAPI](../reference/asyncapi-rules.md), and [Arazzo](../reference/arazzo-rules.md). They're good starting points, but the true power of Spectral comes with customizing and creating a ruleset that fits your project or organization. Creating a ruleset can help you and your team improve your API design and API development process, and help you create better APIs.
 
@@ -81,7 +83,7 @@ rules:
       # ...
 ```
 
-Custom formats can be registered via the [JS API](../guides/javascript.md), but the [CLI](../guides/cli.md) is limited to using the predefined formats.
+Custom formats can be registered via the [JS API](../guides/javascript.mdx), but the [CLI](../guides/cli.md) is limited to using the predefined formats.
 
 ### Documentation URL
 

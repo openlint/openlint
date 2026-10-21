@@ -1,4 +1,6 @@
-# AsyncAPI Support
+---
+title: "AsyncAPI Support"
+---
 
 Spectral has a built-in AsyncAPI [v2](https://v2.asyncapi.com/docs/reference/specification/v2.6.0) and [v3](https://www.asyncapi.com/docs/reference/specification/v3.1.0) ruleset that you can use to validate your AsyncAPI files.
 

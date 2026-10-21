@@ -1,4 +1,6 @@
-# Arazzo Support
+---
+title: "Arazzo Support"
+---
 
 Spectral has a built-in [Arazzo v1](https://spec.openapis.org/arazzo/v1.0.0.html) ruleset that you can use to validate your Arazzo files.
 

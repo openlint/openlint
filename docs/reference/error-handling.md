@@ -1,4 +1,6 @@
-## Error Handling
+---
+title: "Error Handling"
+---
 
 ### Rulesets
 

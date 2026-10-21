@@ -1,4 +1,6 @@
-## Recommended or All
+---
+title: "Recommended or All"
+---
 
 Rules by default are considered "recommended" (equivalent to a rule having `recommended: true`), but they can also be marked as not recommended with `recommended: false`. This can help scenarios like rolling out rulesets across API landscapes with a lot of legacy APIs which might have a hard time following every rule immediately. A two-tier system for rules can be helpful to avoid requiring multiple rulesets for this basic use case.
 

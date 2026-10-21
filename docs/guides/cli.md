@@ -1,6 +1,8 @@
-# OpenLint CLI
+---
+title: "OpenLint CLI"
+---
 
-[Once OpenLint is installed](../getting-started/installation.md) and [you have a ruleset](../../README.md#installation-and-usage), run the `openlint` command-line:
+[Once OpenLint is installed](../getting-started/installation.mdx) and [you have a ruleset](../../README.md#installation-and-usage), run the `openlint` command-line:
 
 ```bash
 openlint lint openlint.yaml
@@ -235,4 +237,4 @@ module.exports = new Resolver({
 });
 ```
 
-You can learn more about `$ref` resolving in the [JS section](./javascript.md#using-a-custom-resolver).
+You can learn more about `$ref` resolving in the [JS section](./javascript.mdx#using-a-custom-resolver).
