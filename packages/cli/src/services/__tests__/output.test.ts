@@ -41,7 +41,9 @@ describe('Output service', () => {
 
       const output = `value for ${format}`;
       (formatters[format as keyof typeof formatters] as Mock).mockReturnValueOnce(output);
-      expect(formatOutput(results, format as OutputFormat, { failSeverity: DiagnosticSeverity.Error }, {} as Ruleset)).toEqual(output);
+      expect(
+        formatOutput(results, format as OutputFormat, { failSeverity: DiagnosticSeverity.Error }, {} as Ruleset),
+      ).toEqual(output);
     });
   });
 
