@@ -6,6 +6,7 @@ import * as Parsers from '@openlint/openlint-parsers';
 import { Resolver } from '@openlint/openlint-ref-resolver';
 
 import { IParsedResult } from '../document';
+import type { RulesetFunction } from '../types';
 import { Document, OpenLint, Format, RulesetDefinition, Ruleset } from '..';
 import { normalize } from '@stoplight/path';
 import * as path from '@stoplight/path';
@@ -44,7 +45,7 @@ describe('linter', () => {
           message: '',
           given: '$.responses',
           then: {
-            function: vi.fn(),
+            function: vi.fn() as unknown as RulesetFunction,
           },
         },
       },
