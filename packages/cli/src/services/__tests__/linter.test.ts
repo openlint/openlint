@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi, type Mock, type MockInstance } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi, type MockInstance } from 'vitest';
 import { join, resolve } from '@stoplight/path';
 import nock from 'nock';
 import yargs from 'yargs';
@@ -37,7 +37,7 @@ describe('Linter service', () => {
   let processCwdSpy: MockInstance;
 
   beforeEach(() => {
-    (process.cwd as Mock).mockReturnValue(join(__dirname, '__fixtures__'));
+    vi.mocked(process.cwd).mockReturnValue(join(__dirname, '__fixtures__'));
     processCwdSpy = vi.spyOn(globalThis.process, 'cwd').mockImplementation(process.cwd);
   });
 
@@ -89,7 +89,7 @@ describe('Linter service', () => {
   });
 
   it('demands some ruleset to be present', () => {
-    (process.cwd as Mock).mockReturnValue(join(__dirname, '__fixtures__/resolver'));
+    vi.mocked(process.cwd).mockReturnValue(join(__dirname, '__fixtures__/resolver'));
     return expect(run(`lint stoplight-info-document.json`)).rejects.toThrow(
       'No ruleset has been found. Please provide a ruleset using the --ruleset CLI argument, or make sure your ruleset file matches .openlint.js/yaml/json or .openlint.js/yaml/json',
     );

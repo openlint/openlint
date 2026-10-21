@@ -1,5 +1,5 @@
 import * as path from 'node:path';
-import { defineConfig, type Plugin } from 'vitest/config';
+import { defineConfig, type Plugin, type TestProjectInlineConfiguration } from 'vitest/config';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
 import { playwright } from '@vitest/browser-playwright';
 import tsconfig from './tsconfig.json' with { type: 'json' };
@@ -39,7 +39,7 @@ const injectDirname = (): Plugin => ({
 
 const resolve = (p: string) => path.join(__dirname, p);
 
-const browser = {
+const browser: TestProjectInlineConfiguration = {
   extends: false,
   plugins: [hoistRequires(), injectDirname(), nodePolyfills({ exclude: ['fs', 'module'] })],
   resolve: {
@@ -135,7 +135,7 @@ const browser = {
       instances: [{ browser: 'chromium' }],
     },
   },
-} as const;
+};
 
 const { paths } = tsconfig.compilerOptions;
 
@@ -143,11 +143,14 @@ const { paths } = tsconfig.compilerOptions;
 const workspaceAliases = Object.entries(paths).map(([find, [replacement]]) => {
   const escaped = find.replace(/[.*+?^${}()|[\]\\/]/g, '\\$&');
   return find.endsWith('/*')
-    ? { find: new RegExp(`^${escaped.slice(0, -2)}/(.*)$`), replacement: resolve(replacement.replace(/\*$/, '')) + '$1' }
+    ? {
+        find: new RegExp(`^${escaped.slice(0, -2)}/(.*)$`),
+        replacement: resolve(replacement.replace(/\*$/, '')) + '$1',
+      }
     : { find: new RegExp(`^${escaped}$`), replacement: resolve(replacement) };
 });
 
-const node = {
+const node: TestProjectInlineConfiguration = {
   extends: false,
   resolve: {
     alias: [
@@ -155,12 +158,13 @@ const node = {
       ...workspaceAliases,
     ],
   },
-  test: {
-    globals: false,
-    environment: 'node',
-    setupFiles: ['./test-utils/matchers.ts'],
-  },
-} as const;
+};
+
+const nodeTest = {
+  globals: false,
+  environment: 'node' as const,
+  setupFiles: ['./test-utils/matchers.ts'],
+};
 
 // these packages run against an in-memory fs, see test-utils/node/mock-fs.ts
 const MEMFS_PACKAGES = ['rulesets', 'ruleset-bundler'];
@@ -172,7 +176,7 @@ export default defineConfig({
       {
         ...node,
         test: {
-          ...node.test,
+          ...nodeTest,
           name: 'node',
           include: ['packages/*/src/**/__tests__/**/*.{test,spec}.ts'],
           exclude: [...MEMFS_PACKAGES.map(name => `packages/${name}/**`), '**/node_modules/**'],
@@ -181,10 +185,10 @@ export default defineConfig({
       {
         ...node,
         test: {
-          ...node.test,
+          ...nodeTest,
           name: 'node-fs',
           include: MEMFS_PACKAGES.map(name => `packages/${name}/src/**/__tests__/**/*.{test,spec}.ts`),
-          setupFiles: [...node.test.setupFiles, './test-utils/node/mock-fs.ts'],
+          setupFiles: [...nodeTest.setupFiles, './test-utils/node/mock-fs.ts'],
         },
       },
     ],

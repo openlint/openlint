@@ -1,8 +1,8 @@
 import { expect } from 'vitest';
 
 declare module 'vitest' {
-  interface Matchers<T = any> {
-    toThrowAggregateError(error: AggregateError): T;
+  interface Matchers<R extends void | Promise<void> = void | Promise<void>, T = unknown> {
+    toThrowAggregateError(error: AggregateError): R;
   }
 }
 

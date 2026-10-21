@@ -1,4 +1,4 @@
-import { describe, expect, it, vi, type Mock } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import * as path from '@stoplight/path';
 import fg from 'fast-glob';
 import { listFiles } from '../listFiles';
@@ -17,7 +17,7 @@ describe('listFiles CLI util', () => {
   it('returns file paths', async () => {
     const list = [path.join(__dirname, 'foo/a.json'), path.join(__dirname, 'foo/b.json')];
 
-    (fg as unknown as Mock).mockResolvedValueOnce([...list]);
+    vi.mocked(fg).mockResolvedValueOnce([...list]);
 
     expect(await listFiles(['./foo/*.json'], true)).toEqual([list, []]);
   });
@@ -25,7 +25,7 @@ describe('listFiles CLI util', () => {
   it('given disabled ignoredUnmatchedGlobs, reports unmatched patterns', async () => {
     const list = [path.join(__dirname, 'foo/a.json'), path.join(__dirname, 'foo/b.json')];
 
-    (fg as unknown as Mock).mockImplementation(async pattern => {
+    vi.mocked(fg).mockImplementation(async pattern => {
       if (pattern === './foo/*.json') {
         return list;
       }

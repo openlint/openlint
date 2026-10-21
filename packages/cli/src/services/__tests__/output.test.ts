@@ -1,7 +1,8 @@
-import { describe, expect, it, vi, type Mock } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { DiagnosticSeverity } from '@stoplight/types';
 import * as fs from 'fs';
 import * as process from 'process';
+import { Ruleset } from '@openlint/openlint-core';
 import * as formatters from '@openlint/openlint-formatters';
 import { OutputFormat } from '../config';
 import { formatOutput, writeOutput } from '../output';
@@ -39,8 +40,10 @@ describe('Output service', () => {
       ];
 
       const output = `value for ${format}`;
-      (formatters[format] as Mock).mockReturnValueOnce(output);
-      expect(formatOutput(results, format as OutputFormat, { failSeverity: DiagnosticSeverity.Error })).toEqual(output);
+      vi.mocked(formatters[format as keyof typeof formatters]).mockReturnValueOnce(output);
+      expect(
+        formatOutput(results, format as OutputFormat, { failSeverity: DiagnosticSeverity.Error }, {} as Ruleset),
+      ).toEqual(output);
     });
   });
 

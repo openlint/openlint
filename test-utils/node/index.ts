@@ -1,4 +1,4 @@
-import { afterAll, afterEach, vi } from 'vitest';
+import { afterAll, afterEach } from 'vitest';
 import nock from 'nock';
 import * as nodeFs from 'fs';
 import { URL } from 'url';
