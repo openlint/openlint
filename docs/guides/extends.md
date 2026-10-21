@@ -6,7 +6,7 @@ Rulesets can extend other rulesets using the `extends` property, allowing you to
 extends: spectral:oas
 ```
 
-Extends can reference any [distributed ruleset](../guides/7-sharing-rulesets.md). It can be a single string, or an array of strings, and can contain either local file paths, URLs, or even npm modules.
+Extends can reference any [distributed ruleset](../guides/sharing-rulesets.md). It can be a single string, or an array of strings, and can contain either local file paths, URLs, or even npm modules.
 
 ```yaml
 extends:
@@ -15,7 +15,7 @@ extends:
   - some-npm-module # note that this would be treated as any other npm package, therefore it has to be placed under node_modules and have a valid package.json.
 ```
 
-The `extends` keyword can be combined with extra rules to extend and override rulesets. Learn more about that in [custom rulesets](../guides/4-custom-rulesets.md).
+The `extends` keyword can be combined with extra rules to extend and override rulesets. Learn more about that in [custom rulesets](../guides/custom-rulesets.md).
 
 ## Modify Rules
 
@@ -46,4 +46,4 @@ rules:
   operation-success-response: warn
 ```
 
-See [Severity](./4a-rules.md#severity) for more details.
+See [Severity](./rules.md#severity) for more details.

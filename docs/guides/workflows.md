@@ -4,7 +4,7 @@ When and where you use Spectral depends on how you are creating and managing you
 
 You can:
 
-1. Run [Spectral CLI](2-cli.md) against design docs and get early feedback.
+1. Run [Spectral CLI](cli.md) against design docs and get early feedback.
 2. Run Spectral in [Stoplight Studio](https://stoplight.io/studio/?utm_source=github&utm_medium=spectral&utm_campaign=docs) or [VS Code](https://github.com/stoplightio/vscode-spectral?utm_source=github&utm_medium=spectral&utm_campaign=docs) as you work to avoid switching to CLI.
 3. Run Spectral as a [Git hook](#git-hooks) to enforce linting as part of the commit process.
 4. Use [Continuous Integration](#continuous-integration) to reject pull requests that don't match your rulesets and style guide.
@@ -48,7 +48,7 @@ Here's an example of a Spectral Git hook using [Husky](https://github.com/typico
 }
 ```
 
-See the [CLI documentation](./2-cli.md) to see what other arguments and options can be used.
+See the [CLI documentation](./cli.md) to see what other arguments and options can be used.
 
 ## Continuous Integration
 
@@ -56,4 +56,4 @@ Spectral can be used in any CI environment that runs Node.js or a Docker image: 
 
 By enabling the JUnit output format when you lint, most CI servers can show visual results helping people realize which mistakes were made and where.
 
-Read the [Continuous Integration guide](8-continuous-integration.md) for more information on setting things up in your CI of choice.
+Read the [Continuous Integration guide](continuous-integration.md) for more information on setting things up in your CI of choice.

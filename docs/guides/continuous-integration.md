@@ -41,8 +41,6 @@ Make sure to change `openapi.yaml` to point to whatever documents you want to li
 
 The `-f` (format) flag is used in the script to pick the JUnit output format. This is a standard test format that many CI servers understand, and means you should be able to see the errors in the Test interface.
 
-![On the CircleCI build results page there is a tab called Tests, which shows Spectral results if the JUnit format has been enabled](../img/ci-circleci.png)
-
 Learn more about [CircleCI Configuration](https://circleci.com/docs/2.0/config-intro/), or take a look at this [demo repository](https://github.com/philsturgeon/openlint-demo-circleci).
 
 ## GitHub Action

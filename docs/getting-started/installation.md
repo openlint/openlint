@@ -2,7 +2,7 @@
 
 You can install OpenLint using [npm](https://www.npmjs.com/).
 
-To install the [OpenLint CLI client](../guides/2-cli.md), use:
+To install the [OpenLint CLI client](../guides/cli.md), use:
 
 ```bash
 npm install -g @openlint/openlint-cli
@@ -14,7 +14,7 @@ Or if you are a [Yarn](https://yarnpkg.com/) user:
 yarn global add @openlint/openlint-cli
 ```
 
-To consume the [OpenLint Javascript API](../guides/3-javascript.md), use:
+To consume the [OpenLint Javascript API](../guides/javascript.md), use:
 
 ```bash
 npm install -g @openlint/openlint-core

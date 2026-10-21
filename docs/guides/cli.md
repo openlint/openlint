@@ -1,6 +1,6 @@
 # OpenLint CLI
 
-[Once OpenLint is installed](../getting-started/2-installation.md) and [you have a ruleset](../../README.md#installation-and-usage), run the `openlint` command-line:
+[Once OpenLint is installed](../getting-started/installation.md) and [you have a ruleset](../../README.md#installation-and-usage), run the `openlint` command-line:
 
 ```bash
 openlint lint openlint.yaml
@@ -69,7 +69,7 @@ If you don't specify a ruleset file with the `--ruleset` parameter, the OpenLint
 
 Spectral won't lint the document if no ruleset is specified and no default ruleset file is found.
 
-Here you can build a [custom ruleset](../getting-started/3-rulesets.md), or extend and modify the core rulesets:
+Here you can build a [custom ruleset](../getting-started/rulesets.md), or extend and modify the core rulesets:
 
 - [OpenAPI ruleset](../reference/openapi-rules.md)
 - [AsyncAPI ruleset](../reference/asyncapi-rules.md)
@@ -235,4 +235,4 @@ module.exports = new Resolver({
 });
 ```
 
-You can learn more about `$ref` resolving in the [JS section](./3-javascript.md#using-a-custom-resolver).
+You can learn more about `$ref` resolving in the [JS section](./javascript.md#using-a-custom-resolver).

@@ -22,12 +22,12 @@ The example above is a valid ruleset with a single rule that can be used to lint
 Rules can have the following properties:
 
 - `given` (required): The part of the document the rule should be applied to. Uses the [JSONPath](https://goessner.net/articles/JsonPath/index.html) syntax.
-- `then` (required): Describes which function should be applied to the `given` part of the document. Can be used with a [core function](../reference/functions.md) or [custom function](./5-custom-functions.md).
+- `then` (required): Describes which function should be applied to the `given` part of the document. Can be used with a [core function](../reference/functions.md) or [custom function](./custom-functions.md).
 - `description` (optional): A short description of the rule.
 - `message` (optional): A message that's displayed in the `spectral lint` output. Can be customized to use placeholder values that are evaluated at runtime, such as `{{description}}` or `{{error}}`.
 - `severity` (optional): The severity of the rule. Used to differentiate between rules that must be followed (`error`) and warnings or hints. Default value is `warn`.
-- `formats` (optional): The format that the rule should apply to. For example `oas3` for any OpenAPI v3.x descriptions. Can be applied at the ruleset and/or rule level. See [Formats](./4-custom-rulesets.md#formats) for more details.
-- `recommended` (optional): Use `recommended` when extending a ruleset so users can enforce all rules (`recommended` set to `false`) or only recommended rules (`recommended` set to `true`). Recommended can be used to slowly roll out a ruleset across API landscapes with a lot of legacy APIs. Default value is `true`. See [Recommended](./4e-recommended.md) for more details.
+- `formats` (optional): The format that the rule should apply to. For example `oas3` for any OpenAPI v3.x descriptions. Can be applied at the ruleset and/or rule level. See [Formats](./custom-rulesets.md#formats) for more details.
+- `recommended` (optional): Use `recommended` when extending a ruleset so users can enforce all rules (`recommended` set to `false`) or only recommended rules (`recommended` set to `true`). Recommended can be used to slowly roll out a ruleset across API landscapes with a lot of legacy APIs. Default value is `true`. See [Recommended](./recommended.md) for more details.
 - `resolved` (optional): Used to apply a rule to a document that's not "resolved," where `$ref` JSON Schema references haven't been replaced with the objects they point to.
 
 Let's look at all the properties that can be used for a rule.
@@ -39,13 +39,13 @@ The `given` property is conceptually similar to a selector in CSS, in that it in
 `given` has a specific syntax known as [JSONPath](https://goessner.net/articles/JsonPath/index.html), which is similar to XPath. JSONPath has a few competing implementations. Spectral uses [nimma](https://www.npmjs.com/package/nimma) as its main implementation, and sometimes resorts to [jsonpath-plus](https://www.npmjs.com/package/jsonpath-plus) to ensure backwards-compatibility. Both support all the main JSONPath functionality and a bit more, but this syntax may differ slightly from other JSONPath implementations. Currently the implementation that Spectral uses is not fully aligned with [IETF RFC 9535](https://datatracker.ietf.org/doc/rfc9535/) (published in February 2024) which also is titled "JSONPath". Once supported by the underlying implementations, we will look to make available within Spectral.
 
 Your `given` value can be a string containing any valid JSONPath expression, or an array of expressions to apply a rule to multiple parts of a document.
-You can also consume your [aliases](4c-aliases.md) here if you have some defined.
+You can also consume your [aliases](aliases.md) here if you have some defined.
 
 Use the [JSONPath Online Evaluator](http://jsonpath.com/) to determine what `given` path you want.
 
 ### Then
 
-The `then` part of the rule explains which function to apply to the `given` JSONPath. The function you apply [may be one of the core functions](../reference/functions.md) or it may be [a custom function](./5-custom-functions.md).
+The `then` part of the rule explains which function to apply to the `given` JSONPath. The function you apply [may be one of the core functions](../reference/functions.md) or it may be [a custom function](./custom-functions.md).
 
 `then` has two main keywords:
 

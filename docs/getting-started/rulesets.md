@@ -1,6 +1,6 @@
 # Create a Ruleset
 
-Rulesets are collections of rules written in JSON, YAML, or [JavaScript](../guides/4-custom-rulesets.md#alternative-js-ruleset-format). Rulesets provide powerful linting of other JSON or YAML files, such as OpenAPI or AsyncAPI descriptions.
+Rulesets are collections of rules written in JSON, YAML, or [JavaScript](../guides/custom-rulesets.md#alternative-js-ruleset-format). Rulesets provide powerful linting of other JSON or YAML files, such as OpenAPI or AsyncAPI descriptions.
 
 Ruleset files are often named `.spectral.yaml`, but that's not a requirement.
 
@@ -12,9 +12,9 @@ The fastest way to create a ruleset is to use the `extends` property to leverage
 
 Spectral comes with three built-in rulesets:
 
-- `spectral:oas` - [OpenAPI v2/v3 rules](./4-openapi.md)
-- `spectral:asyncapi` - [AsyncAPI v2/v3 rules](./5-asyncapi.md)
-- `spectral:arazzo` - [Arazzo v1 rules](./6-arazzo.md)
+- `spectral:oas` - [OpenAPI v2/v3 rules](./openapi.md)
+- `spectral:asyncapi` - [AsyncAPI v2/v3 rules](./asyncapi.md)
+- `spectral:arazzo` - [Arazzo v1 rules](./arazzo.md)
 
 To create a ruleset that extends both rulesets, open your terminal and run:
 
@@ -56,6 +56,6 @@ Breaking down each part of the rule:
 
 ## Next Steps
 
-For more information about creating Rulesets and Rules, see [Custom Rulesets](../guides/4-custom-rulesets.md).
+For more information about creating Rulesets and Rules, see [Custom Rulesets](../guides/custom-rulesets.md).
 
 For more examples of existing rulesets you can use, see [Real-World Rulesets](../../README.md#-real-world-rulesets).

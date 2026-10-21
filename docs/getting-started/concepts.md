@@ -8,7 +8,7 @@ To achieve this, OpenLint has three key concepts:
 - **Functions** accept a value and return issues if the value is incorrect.
 - **Rulesets** act as a container for rules and functions.
 
-OpenLint comes bundled with a [set of core functions](../reference/functions.md) and rulesets for working with [OpenAPI v2 and v3](./4-openapi.md), [AsyncAPI v2 and v3](./5-asyncapi.md), and [Arazzo v1](./6-arazzo.md) that you can chose to use or extend, but OpenLint is about far more than just checking your OpenAPI/AsyncAPI/Arazzo documents are valid.
+OpenLint comes bundled with a [set of core functions](../reference/functions.md) and rulesets for working with [OpenAPI v2 and v3](./openapi.md), [AsyncAPI v2 and v3](./asyncapi.md), and [Arazzo v1](./arazzo.md) that you can chose to use or extend, but OpenLint is about far more than just checking your OpenAPI/AsyncAPI/Arazzo documents are valid.
 
 By far the most popular use-case of OpenLint is automating [API Style Guides](https://apisyouwonthate.com/blog/automated-style-guides-for-rest-graphql-grpc/), implementing rules that your Architecture, DevOps, API Governance, "Center for Enablement", or "Center of Excellence" teams have decided upon. Companies generally write these style guides as wiki pages, and several can be found on [API Stylebook](http://apistylebook.com/), but most of these rules could be automated with OpenLint. For example:
 
@@ -19,4 +19,4 @@ By far the most popular use-case of OpenLint is automating [API Style Guides](ht
 
 To do that, you'll want to learn a bit more about how rulesets work.
 
-[Learn more about rulesets](./3-rulesets.md).
+[Learn more about rulesets](./rulesets.md).

@@ -110,7 +110,7 @@ openlint.run(myDocument).then(console.log);
 
 ### Load a JavaScript Ruleset
 
-OpenLint Rulesets can be [written using JavaScript](./4-custom-rulesets.md#alternative-js-ruleset-format).
+OpenLint Rulesets can be [written using JavaScript](./custom-rulesets.md#alternative-js-ruleset-format).
 
 To load a JavaScript ruleset, import it similar to how you would import a module:
 
@@ -174,7 +174,7 @@ openlint.setRuleset(await bundleAndLoadRuleset("/.openlint.yaml", { fs, fetch })
 
 ### Load Multiple Rulesets
 
-If you'd like to use the `bundleAndLoadRuleset` method to load multiple rulesets, you'll have to create a new ruleset file, and use the [`extends`](../getting-started/3-rulesets.md#extending-rulesets) functionality to extend the rulesets you'd like to use.
+If you'd like to use the `bundleAndLoadRuleset` method to load multiple rulesets, you'll have to create a new ruleset file, and use the [`extends`](../getting-started/rulesets.md#extending-rulesets) functionality to extend the rulesets you'd like to use.
 
 ## Advanced
 
