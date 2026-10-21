@@ -2,7 +2,7 @@ const oasDocumentSchema = _interopDefault(require('/.tmp/openlint/functions-vari
 const oasExample = _interopDefault(require('/.tmp/openlint/functions-variant-2/custom-functions/oasExample.js'));
 const oasOp2xxResponse = _interopDefault(require('/.tmp/openlint/functions-variant-2/custom-functions/oasOp2xxResponse.js'));
 module.exports = {
-  documentationUrl: 'https://openlint.org/docs/reference/openapi-rules.md',
+  documentationUrl: 'https://docs.openlint.org/reference/openapi-rules',
   rules: {
     'operation-2xx-response': {
       description: 'Operation must have at least one `2xx` response.',

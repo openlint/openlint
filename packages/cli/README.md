@@ -31,7 +31,7 @@ npm install -g @openlint/openlint-cli
 yarn global add @openlint/openlint-cli
 ```
 
-Find more [installation methods](https://openlint.org/docs/getting-started/2-installation.md) in our documentation.
+Find more [installation methods](https://docs.openlint.org/getting-started/installation) in our documentation.
 
 **Lint**
 

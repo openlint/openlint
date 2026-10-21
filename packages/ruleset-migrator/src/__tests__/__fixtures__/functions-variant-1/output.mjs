@@ -6,7 +6,7 @@ import oasOpFormDataConsumeCheck from '/.tmp/openlint/functions-variant-1/functi
 import refSiblings from '/.tmp/openlint/functions-variant-1/functions/refSiblings.js';
 import typedEnum from '/.tmp/openlint/functions-variant-1/functions/typedEnum.js';
 export default {
-  documentationUrl: 'https://openlint.org/docs/reference/openapi-rules.md',
+  documentationUrl: 'https://docs.openlint.org/reference/openapi-rules',
   formats: [oas2, oas3],
   rules: {
     'operation-2xx-response': {

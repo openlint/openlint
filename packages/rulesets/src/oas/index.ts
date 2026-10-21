@@ -31,7 +31,7 @@ import serverVariables from '../shared/functions/serverVariables';
 export { ruleset as default };
 
 const ruleset = {
-  documentationUrl: 'https://openlint.org/docs/reference/openapi-rules.md',
+  documentationUrl: 'https://docs.openlint.org/reference/openapi-rules',
   formats: [oas2, oas3, oas3_0, oas3_1, oas3_2],
   aliases: {
     PathItem: ['$.paths[*]'],

@@ -113,7 +113,7 @@ describe('JS Ruleset Validation', () => {
   it('recognizes valid documentationUrl', () => {
     expect(
       assertValidRuleset.bind(null, {
-        documentationUrl: 'https://openlint.org/docs/reference/openapi-rules.md',
+        documentationUrl: 'https://docs.openlint.org/reference/openapi-rules',
         rules: {},
       }),
     ).not.toThrow();
@@ -122,7 +122,7 @@ describe('JS Ruleset Validation', () => {
       assertValidRuleset.bind(null, {
         rules: {
           rule: {
-            documentationUrl: 'https://openlint.org/docs/reference/openapi-rules.md',
+            documentationUrl: 'https://docs.openlint.org/reference/openapi-rules',
             given: '$',
             then: {
               function: truthy,

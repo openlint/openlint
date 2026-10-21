@@ -329,7 +329,7 @@ describe('Ruleset', () => {
 
   it('should respect documentationUrl', async () => {
     const ruleset = {
-      documentationUrl: 'https://openlint.org/docs/reference/openapi-rules.md',
+      documentationUrl: 'https://docs.openlint.org/reference/openapi-rules',
       rules: {
         'foo-rule': {
           given: '$',
@@ -340,7 +340,7 @@ describe('Ruleset', () => {
           },
         },
         'bar-rule': {
-          documentationUrl: 'https://openlint.org/docs/reference/bar-rule.md',
+          documentationUrl: 'https://docs.openlint.org/reference/bar-rule',
           given: '$',
           then: {
             function() {
@@ -359,7 +359,7 @@ describe('Ruleset', () => {
    │  ├─ given
    │  │  └─ 0: $
    │  ├─ severity: 1
-   │  └─ documentationUrl: https://openlint.org/docs/reference/openapi-rules.md#foo-rule
+   │  └─ documentationUrl: https://docs.openlint.org/reference/openapi-rules#foo-rule
    └─ bar-rule
       ├─ name: bar-rule
       ├─ enabled: true
@@ -367,7 +367,7 @@ describe('Ruleset', () => {
       ├─ given
       │  └─ 0: $
       ├─ severity: 1
-      └─ documentationUrl: https://openlint.org/docs/reference/bar-rule.md
+      └─ documentationUrl: https://docs.openlint.org/reference/bar-rule
 `);
   });
 

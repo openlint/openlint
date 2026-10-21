@@ -15,7 +15,7 @@ import arazzoStepRequestBodyValidation from './functions/arazzoStepRequestBodyVa
 import arazzoStepValidation from './functions/arazzoStepValidation';
 
 export default {
-  documentationUrl: 'https://openlint.org/docs/reference/arazzo-rules.md',
+  documentationUrl: 'https://docs.openlint.org/reference/arazzo-rules',
   formats: [arazzo1_0],
   rules: {
     'arazzo-document-schema': {
