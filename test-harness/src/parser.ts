@@ -1,4 +1,4 @@
-import { IS_WINDOWS } from './consts';
+import { IS_WINDOWS } from './consts.ts';
 
 export interface IScenarioFile {
   id: string;

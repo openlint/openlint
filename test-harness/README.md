@@ -7,20 +7,25 @@
 
 ## Running the suite
 
-Run `yarn test.harness` from your terminal
+Run `yarn test.harness` from your terminal. The scenarios run on [`node:test`](https://nodejs.org/api/test.html), and the TypeScript sources are executed directly through Node's type stripping (Node 22.18+).
 
-### Running a selected tests
+### Running selected tests
 
-Test Harness uses Jest under the hood. You can use all CLI options that Jest supports: https://jestjs.io/docs/cli
-
-You can run one or multiple tests by passing a path to `test-harness` command.
-All scenarios are converted to `.js` files under the `./tests` directory.
-Hence you must use paths relative to the `./tests` directory, like in the following example:
+Pick scenarios by their title or file name with `--test-name-pattern`, which accepts a regular expression.
+It is a Node option, so it has to go before the file and `yarn test.harness` can't forward it:
 
 ```bash
-# path to scenario file: `test-harness/scenarios/require-module.scenario`
-yarn test.harness test-harness/tests/require-module
+# scenario file: `test-harness/scenarios/require-module.scenario`
+node --test --test-name-pattern="require-module" test-harness/src/scenarios.test.ts
 ```
+
+Or narrow down what gets loaded with the `SCENARIO` environment variable, which takes a glob relative to `test-harness/scenarios`:
+
+```bash
+SCENARIO='formats/*' yarn test.harness
+```
+
+The temporary directory of a failed scenario is kept under `.cache/test-harness`, so you can inspect its assets.
 
 ### Matching test files
 
@@ -138,7 +143,9 @@ OpenAPI 3.x detected
 
 ## Technical details
 
-* A RegExp is used to split the content
+* `src/scenarios.test.ts` finds all the scenarios when it starts, and registers one test per scenario
+* A RegExp is used to split the content of a scenario
 * Temporary files with the document and/or any specified assets are stored on your disk
-* Spectral gets spawned with the specified arguments and output is matched
+* OpenLint gets spawned with the specified arguments and the output and the exit code are matched
 * `{document}` and `{asset:<pattern>}` can be used in command, stdout or stderr, and is replaced with the full file path
+* Relative imports have to include the `.ts` extension, as Node does not resolve them otherwise. `yarn tsc -p test-harness` type checks the sources
