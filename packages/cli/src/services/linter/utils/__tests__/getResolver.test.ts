@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { join, relative } from '@stoplight/path';
 import { createHttpAndFileResolver } from '@openlint/openlint-ref-resolver';
 import { getResolver } from '../getResolver';

@@ -1,4 +1,4 @@
-import type { Mock, MockInstance } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi, type Mock, type MockInstance } from 'vitest';
 import { join, resolve } from '@stoplight/path';
 import nock from 'nock';
 import yargs from 'yargs';

@@ -1,4 +1,4 @@
-import type { Mock } from 'vitest';
+import { beforeEach, describe, expect, test, vi, type Mock } from 'vitest';
 import { falsy, pattern, truthy } from '@openlint/openlint-functions';
 import { DiagnosticSeverity } from '@stoplight/types';
 import { parse } from '@stoplight/yaml';

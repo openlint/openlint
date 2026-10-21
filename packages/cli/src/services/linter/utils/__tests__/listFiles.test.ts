@@ -1,4 +1,4 @@
-import type { Mock } from 'vitest';
+import { describe, expect, it, vi, type Mock } from 'vitest';
 import * as path from '@stoplight/path';
 import fg from 'fast-glob';
 import { listFiles } from '../listFiles';

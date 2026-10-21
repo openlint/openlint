@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { printValue } from '../printValue';
 
 describe('printValue util', () => {

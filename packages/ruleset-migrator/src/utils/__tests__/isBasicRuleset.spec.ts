@@ -1,3 +1,4 @@
+import { describe, expect, it, vi } from 'vitest';
 import { isBasicRuleset } from '../isBasicRuleset';
 
 describe('isBasicRuleset util', () => {

@@ -55,6 +55,7 @@
     "@types/validate-npm-package-name": "^3.0.3",
     "fetch-mock": "^12.6.0",
     "memfs": "^3.5.3",
-    "prettier": "^3.0.0"
+    "prettier": "^3.0.0",
+    "vitest": "^5.0.5"
   }
 }

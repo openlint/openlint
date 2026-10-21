@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { printPath, PrintStyle } from '../printPath';
 
 describe('printPath util', () => {

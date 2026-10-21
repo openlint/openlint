@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest';
 import arazzoStepValidation from '../arazzoStepValidation';
 import type { IFunctionResult } from '@openlint/openlint-core';
 import { ArazzoSpecification } from '../types/arazzoTypes';

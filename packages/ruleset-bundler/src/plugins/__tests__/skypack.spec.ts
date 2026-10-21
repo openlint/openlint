@@ -1,4 +1,4 @@
-import type { MockInstance } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi, type MockInstance } from 'vitest';
 import * as fs from 'fs';
 import { serveAssets } from '@openlint/openlint-test-utils';
 import { fetch } from '@openlint/openlint-runtime';

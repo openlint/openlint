@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { RulesetValidationError } from '@openlint/openlint-core';
 import testFunction from './__helpers__/tester';
 import length from '../length';

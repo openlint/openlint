@@ -1,4 +1,4 @@
-import type { MockInstance } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi, type MockInstance } from 'vitest';
 import type { JSONSchema6 as JSONSchema } from 'json-schema';
 import schema from '../schema';
 import { RulesetValidationError } from '@openlint/openlint-core';

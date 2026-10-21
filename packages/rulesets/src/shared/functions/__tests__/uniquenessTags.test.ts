@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest';
 import uniquenessTags from '../uniquenessTags';
 
 function runValidation(targetVal: Array<{ name: string }>) {

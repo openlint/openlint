@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { aas2, aas2_0, aas2_1, aas2_2, aas2_3, aas2_4, aas2_5, aas2_6, aas3, aas3_0, aas3_1 } from '../asyncapi';
 
 describe('AsyncAPI format', () => {

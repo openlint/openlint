@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { cloneDeep } from 'lodash';
 import { formatParserDiagnostics } from '../errorMessages';
 

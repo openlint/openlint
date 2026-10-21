@@ -1,3 +1,4 @@
+import { describe, expect, test, vi } from 'vitest';
 import arazzoStepOutputNamesValidation from '../arazzoStepOutputNamesValidation';
 import { DeepPartial } from '@stoplight/types';
 import type { IFunctionResult, RulesetFunctionContext } from '@openlint/openlint-core';

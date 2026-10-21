@@ -1,4 +1,4 @@
-import type { Mock } from 'vitest';
+import { describe, expect, it, vi, type Mock } from 'vitest';
 import { DiagnosticSeverity } from '@stoplight/types';
 import * as fs from 'fs';
 import * as process from 'process';

@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest';
 import typedEnum from '../typedEnum';
 import { Document, IFunctionResult } from '@openlint/openlint-core';
 import * as Parsers from '@openlint/openlint-parsers';

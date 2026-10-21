@@ -113,7 +113,7 @@ const browser = {
   },
   test: {
     name: 'browser',
-    globals: true,
+    globals: false,
     include: ['packages/*/src/**/__tests__/**/*.{test,spec}.ts'],
     exclude: [
       'packages/cli/**',
@@ -156,7 +156,7 @@ const node = {
     ],
   },
   test: {
-    globals: true,
+    globals: false,
     environment: 'node',
     setupFiles: ['./test-utils/matchers.ts'],
   },

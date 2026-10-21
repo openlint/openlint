@@ -1,3 +1,4 @@
+import { describe, expect, test, vi } from 'vitest';
 import type { IFunctionResult, RulesetFunctionContext } from '@openlint/openlint-core';
 import arazzoDocumentSchema from '../arazzoDocumentSchema';
 import { arazzo1_0 } from '@openlint/openlint-formats';

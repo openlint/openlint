@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, test } from 'vitest';
 import { DiagnosticSeverity } from '@stoplight/types';
 import { OpenLint } from '@openlint/openlint-core';
 import { prepareResults } from '../asyncApiDocumentSchema';
