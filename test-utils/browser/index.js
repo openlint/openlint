@@ -1,20 +1,19 @@
+import { afterEach, beforeEach, vi } from 'vitest';
 import { dirname, isURL } from '@stoplight/path';
 import * as fs from 'fs';
 import fetchMockLib from 'fetch-mock';
 
 let fetchMock;
-let fetchDesc;
 
 beforeEach(() => {
   fetchMock = fetchMockLib.createInstance();
   fetchMock.config.fetch = global.fetch;
-  fetchDesc = Object.getOwnPropertyDescriptor(global, 'fetch');
-  window.fetch = fetchMock.fetchHandler;
+  vi.stubGlobal('fetch', fetchMock.fetchHandler);
 });
 
 afterEach(() => {
   fetchMock.hardReset();
-  Object.defineProperty(window, 'fetch', fetchDesc);
+  vi.unstubAllGlobals();
 });
 
 export function serveAssets(mocks) {
