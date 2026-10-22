@@ -3,7 +3,6 @@ import type { JSONSchema6 as JSONSchema } from 'json-schema';
 import schema from '../schema';
 import { RulesetValidationError } from '@openlint/openlint-core';
 import testFunction from './__helpers__/tester';
-import '@openlint/openlint-test-utils/matchers';
 
 const runSchema = testFunction.bind(null, schema);
 
@@ -547,7 +546,7 @@ describe('Core Functions / Schema', () => {
         ],
       ],
     ])('given invalid %p options, should throw', async (opts, errors) => {
-      await expect(runSchema([], opts)).rejects.toThrowAggregateError(new AggregateError(errors));
+      await expect(runSchema([], opts)).rejects.toEqual(new AggregateError(errors));
     });
   });
 });

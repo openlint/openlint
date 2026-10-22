@@ -1,5 +1,4 @@
 import { describe, expect, it } from 'vitest';
-import '@openlint/openlint-test-utils/matchers';
 
 import { oas2 } from '@openlint/openlint-formats';
 import { pattern, truthy } from '@openlint/openlint-functions';
@@ -1369,7 +1368,7 @@ describe('Ruleset', () => {
               },
             },
           }),
-      ).toThrowAggregateError(
+      ).toThrow(
         new AggregateError([
           new RulesetValidationError('undefined-alias', 'Alias "PathItem-" does not exist', [
             'rules',
@@ -1399,7 +1398,7 @@ describe('Ruleset', () => {
               },
             },
           }),
-      ).toThrowAggregateError(
+      ).toThrow(
         new AggregateError([
           new RulesetValidationError(
             'generic-validation-error',
@@ -1438,7 +1437,7 @@ describe('Ruleset', () => {
               },
             },
           }),
-      ).toThrowAggregateError(
+      ).toThrow(
         new AggregateError([
           new RulesetValidationError('undefined-alias', 'Alias "PathItem" does not exist', [
             'rules',

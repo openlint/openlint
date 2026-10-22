@@ -45,7 +45,6 @@ const browser: TestProjectInlineConfiguration = {
   resolve: {
     alias: [
       { find: /^@openlint\/openlint-test-utils$/, replacement: resolve('test-utils/browser/index.js') },
-      { find: /^@openlint\/openlint-test-utils\/matchers$/, replacement: resolve('test-utils/matchers.ts') },
       { find: /^nimma\/fallbacks$/, replacement: resolve('node_modules/nimma/dist/legacy/cjs/fallbacks/index.js') },
       { find: /^nimma\/legacy$/, replacement: resolve('node_modules/nimma/dist/legacy/cjs/index.js') },
       { find: /^nimma$/, replacement: resolve('node_modules/nimma/dist/legacy/cjs/index.js') },
@@ -125,7 +124,6 @@ const browser: TestProjectInlineConfiguration = {
       '**/*.node.test.ts',
       '**/node_modules/**',
     ],
-    setupFiles: ['./__browser__/setup.ts'],
     browser: {
       enabled: true,
       headless: true,
@@ -164,7 +162,6 @@ const node: TestProjectInlineConfiguration = {
 const nodeTest = {
   globals: false,
   environment: 'node' as const,
-  setupFiles: ['./test-utils/matchers.ts'],
 };
 
 // these packages run against an in-memory fs, see test-utils/node/mock-fs.ts
@@ -189,7 +186,7 @@ export default defineConfig({
           ...nodeTest,
           name: 'node-fs',
           include: MEMFS_PACKAGES.map(name => `packages/${name}/src/**/__tests__/**/*.{test,spec}.ts`),
-          setupFiles: [...nodeTest.setupFiles, './test-utils/node/mock-fs.ts'],
+          setupFiles: ['./test-utils/node/mock-fs.ts'],
         },
       },
     ],
