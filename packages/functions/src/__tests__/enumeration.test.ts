@@ -1,5 +1,4 @@
 import { describe, expect, it } from 'vitest';
-import '@openlint/openlint-test-utils/matchers';
 
 import { RulesetValidationError } from '@openlint/openlint-core';
 import enumeration from '../enumeration';
@@ -81,7 +80,7 @@ describe('Core Functions / Enumeration', () => {
         ],
       ],
     ])('given invalid %p options, should throw', async (opts, errors) => {
-      await expect(runEnumeration('foo', opts)).rejects.toThrowAggregateError(new AggregateError(errors));
+      await expect(runEnumeration('foo', opts)).rejects.toThrow(new AggregateError(errors));
     });
   });
 });

@@ -4,7 +4,6 @@ import nock from 'nock';
 import yargs from 'yargs';
 import { DiagnosticSeverity } from '@stoplight/types';
 import { RulesetValidationError } from '@openlint/openlint-core';
-import '@openlint/openlint-test-utils/matchers';
 import * as process from 'process';
 
 import lintCommand from '../../commands/lint';
@@ -229,9 +228,7 @@ describe('Linter service', () => {
       });
 
       it('fails trying to extend an invalid relative ruleset', () => {
-        return expect(
-          run(`lint ${validCustomOas3SpecPath} -r ${invalidNestedRulesetPath}`),
-        ).rejects.toThrowAggregateError(
+        return expect(run(`lint ${validCustomOas3SpecPath} -r ${invalidNestedRulesetPath}`)).rejects.toStrictEqual(
           new AggregateError([
             new RulesetValidationError(
               'invalid-rule-definition',
@@ -261,7 +258,7 @@ describe('Linter service', () => {
       });
 
       it('outputs "invalid ruleset" error', () => {
-        return expect(run(`lint ${validOas3SpecPath} -r ${invalidRulesetPath}`)).rejects.toThrowAggregateError(
+        return expect(run(`lint ${validOas3SpecPath} -r ${invalidRulesetPath}`)).rejects.toStrictEqual(
           new AggregateError([
             new RulesetValidationError(
               'invalid-rule-definition',

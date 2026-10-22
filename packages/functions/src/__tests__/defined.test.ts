@@ -1,5 +1,4 @@
 import { describe, expect, it } from 'vitest';
-import '@openlint/openlint-test-utils/matchers';
 
 import defined from '../defined';
 import testFunction from './__helpers__/tester';
@@ -23,7 +22,7 @@ describe('Core Functions / Defined', () => {
 
   describe('validation', () => {
     it.each([{}, 2])('given invalid %p options, should throw', async opts => {
-      await expect(runDefined([], opts)).rejects.toThrowAggregateError(
+      await expect(runDefined([], opts)).rejects.toStrictEqual(
         new AggregateError([
           new RulesetValidationError('invalid-function-options', '"defined" function does not accept any options', [
             'rules',

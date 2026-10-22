@@ -6,8 +6,6 @@ import alphabetical from '../alphabetical';
 
 const runAlphabetical = testFunction.bind(null, alphabetical);
 
-import '@openlint/openlint-test-utils/matchers';
-
 describe('Core Functions / Alphabetical', () => {
   it('given falsy target, should return no error message', async () => {
     expect(await runAlphabetical(false)).toEqual([]);
@@ -158,7 +156,7 @@ describe('Core Functions / Alphabetical', () => {
         ),
       ],
     ])('given invalid %p options, should throw', async (opts, error) => {
-      await expect(runAlphabetical([], opts)).rejects.toThrowAggregateError(new AggregateError([error]));
+      await expect(runAlphabetical([], opts)).rejects.toThrow(new AggregateError([error]));
     });
   });
 });
