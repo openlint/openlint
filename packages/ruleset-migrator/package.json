@@ -1,6 +1,6 @@
 {
   "name": "@openlint/openlint-ruleset-migrator",
-  "version": "1.12.2",
+  "version": "0.0.1",
   "homepage": "https://github.com/openlint/openlint",
   "bugs": "https://github.com/openlint/openlint/issues",
   "author": "OpenLint <info@openlint.org>",
@@ -21,8 +21,8 @@
     "url": "https://github.com/openlint/openlint.git"
   },
   "dependencies": {
-    "@openlint/openlint-functions": "^1.9.1",
-    "@openlint/openlint-runtime": "^1.1.2",
+    "@openlint/openlint-functions": "0.0.1",
+    "@openlint/openlint-runtime": "0.0.1",
     "@stoplight/json": "~3.21.0",
     "@stoplight/ordered-object-literal": "~1.0.4",
     "@stoplight/path": "1.3.2",
@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "@openlint/openlint-core": "0.0.1",
-    "@openlint/openlint-rulesets": "*",
+    "@openlint/openlint-rulesets": "0.0.1",
     "fetch-mock": "^12.6.0",
     "json-schema-to-typescript": "^10.1.5",
     "memfs": "^3.5.3",

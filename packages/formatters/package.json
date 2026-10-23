@@ -1,6 +1,6 @@
 {
   "name": "@openlint/openlint-formatters",
-  "version": "1.6.0",
+  "version": "0.0.1",
   "homepage": "https://github.com/openlint/openlint",
   "bugs": "https://github.com/openlint/openlint/issues",
   "author": "OpenLint <info@openlint.org>",
@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@openlint/openlint-core": "0.0.1",
-    "@openlint/openlint-runtime": "^1.1.2",
+    "@openlint/openlint-runtime": "0.0.1",
     "@stoplight/path": "^1.3.2",
     "@stoplight/types": "^13.15.0",
     "@types/markdown-escape": "^1.1.3",
