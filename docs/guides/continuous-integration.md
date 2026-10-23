@@ -26,7 +26,7 @@ jobs:
       # Create a folder for results to live in
       - run: "[ -d lint-results ] || mkdir lint-results"
       - run:
-          name: Run Spectral Lint
+          name: Run OpenLint
           command: npx openlint lint openapi.yaml
             -o lint-results/junit.xml
             -f junit
@@ -43,11 +43,7 @@ Make sure to change `openapi.yaml` to point to whatever documents you want to li
 
 The `-f` (format) flag is used in the script to pick the JUnit output format. This is a standard test format that many CI servers understand, and means you should be able to see the errors in the Test interface.
 
-Learn more about [CircleCI Configuration](https://circleci.com/docs/2.0/config-intro/), or take a look at this [demo repository](https://github.com/philsturgeon/openlint-demo-circleci).
-
-## GitHub Action
-
-Spectral has a pre-built [Spectral GitHub Action](https://github.com/stoplightio/openlint-action) which should speed up implementing Spectral in your GitHub repository.
+Learn more about [CircleCI Configuration](https://circleci.com/docs/2.0/config-intro/).
 
 ## GitLab
 

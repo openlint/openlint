@@ -36,7 +36,7 @@ Find more [installation methods](https://docs.openlint.org/getting-started/insta
 **Lint**
 
 ```bash
-spectral lint petstore.yaml
+openlint lint petstore.yaml
 ```
 
 ## 📖 Documentation and Community
