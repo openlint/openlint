@@ -56,7 +56,7 @@ OpenLint, being a generic YAML/JSON linter, **needs a ruleset** to lint files. A
 To get started, run this command in your terminal to create a `.openlint.yaml` file that uses the OpenLint predefined rulesets based on OpenAPI, Arazzo or AsyncAPI:
 
 ```bash
-echo 'extends: ["spectral:oas", "spectral:asyncapi", "spectral:arazzo"]' > .openlint.yaml
+echo 'extends: ["openlint:openapi", "openlint:asyncapi", "openlint:arazzo"]' > .openlint.yaml
 ```
 
 If you would like to create your own rules, check out the [Custom Rulesets](https://docs.openlint.org/getting-started/rulesets) page.

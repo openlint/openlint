@@ -114,7 +114,7 @@ info:
   title: OpenLint
 paths: {}
 ====asset:ruleset====
-extends: spectral:oas
+extends: openlint:openapi
 rules:
   oas3-api-servers: error
 ====command====

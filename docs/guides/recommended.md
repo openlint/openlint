@@ -7,13 +7,13 @@ Rules by default are considered "recommended" (equivalent to a rule having `reco
 You can try this out with the core OpenAPI ruleset. If you simply extend the ruleset, by default you only get the recommended rules.
 
 ```yaml
-extends: [[spectral:oas, recommended]]
+extends: [[openlint:openapi, recommended]]
 ```
 
 Far more rules exist than just the recommended ones. There are other rules to help you create high-quality OpenAPI descriptions.
 
 ```yaml
-extends: [[spectral:oas, all]]
+extends: [[openlint:openapi, all]]
 ```
 
 You can do this with your rulesets, and initially set new rules as "not recommended" so that the most interested active API designers/developers use them at first. Then, eventually roll them out to everyone if they're well received.
@@ -23,21 +23,21 @@ You can do this with your rulesets, and initially set new rules as "not recommen
 This example shows the opposite of the "Enabling Specific Rules" example. Sometimes you might want to enable all rules by default, and disable a few.
 
 ```yaml
-extends: [[spectral:oas, all]]
+extends: [[openlint:openapi, all]]
 rules:
   operation-operationId-unique: off
 ```
 
-The example above runs all the rules defined in the `spectral:oas` ruleset (rather than the default behavior that runs only the recommended ones), with one exception; `operation-operationId-unique` is set to off.
+The example above runs all the rules defined in the `openlint:openapi` ruleset (rather than the default behavior that runs only the recommended ones), with one exception; `operation-operationId-unique` is set to off.
 
 ### Enabling Rules
 
 Sometimes you might want to apply a limited number of rules from another ruleset. To do this, use the `extends` property with `off` as the second argument. This avoids running any rules from the extended ruleset as they are disabled. Then you can choose which rules you would like to enable.
 
 ```yaml
-extends: [[spectral:oas, off]]
+extends: [[openlint:openapi, off]]
 rules:
   operation-operationId-unique: true
 ```
 
-The example above only runs the rule `operation-operationId-unique` that was enabled, since `off` was passed to disable all rules by default when extending the `spectral:oas` ruleset.
+The example above only runs the rule `operation-operationId-unique` that was enabled, since `off` was passed to disable all rules by default when extending the `openlint:openapi` ruleset.
