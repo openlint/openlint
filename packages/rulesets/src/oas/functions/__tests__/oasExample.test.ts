@@ -1,7 +1,7 @@
 import { oas3, oas3_0 } from '@openlint/openlint-formats';
 import { DeepPartial } from '@stoplight/types';
 import oasExample, { Options as ExampleOptions } from '../oasExample';
-import { IFunctionResult, RulesetFunctionContext } from '@openlint/openlint-core/src';
+import { IFunctionResult, RulesetFunctionContext } from '@openlint/openlint-core';
 
 const schemaOpts: ExampleOptions = {
   schemaField: '$',

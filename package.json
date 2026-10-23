@@ -95,7 +95,8 @@
     "ajv@^8.0.1": "8.20.0",
     "ajv@^8.12.0": "8.20.0",
     "ajv@^8.16.0": "8.20.0",
-    "ajv@^8.18.0": "8.20.0"
+    "ajv@^8.18.0": "8.20.0",
+    "@rollup/plugin-commonjs@~22.0.2": "patch:@rollup/plugin-commonjs@npm%3A22.0.2#./.yarn/patches/@rollup-plugin-commonjs-npm-22.0.2-56609c90a0.patch"
   },
   "devDependencies": {
     "@commitlint/cli": "^14.1.0",

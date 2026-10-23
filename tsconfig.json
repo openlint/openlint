@@ -24,9 +24,9 @@
       "nimma/fallbacks": ["node_modules/nimma/dist/cjs/fallbacks/"],
       "nimma/legacy": ["node_modules/nimma/dist/legacy/cjs/"]
     },
-    "moduleResolution": "node",
+    "moduleResolution": "node16",
     "target": "ES2019",
-    "module": "CommonJS",
+    "module": "node16",
     "esModuleInterop": true,
     "lib": ["es2022"],
     "strict": true,

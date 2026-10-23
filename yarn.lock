@@ -2222,7 +2222,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-commonjs@npm:~22.0.2":
+"@rollup/plugin-commonjs@npm:22.0.2":
   version: 22.0.2
   resolution: "@rollup/plugin-commonjs@npm:22.0.2"
   dependencies:
@@ -2236,6 +2236,23 @@ __metadata:
   peerDependencies:
     rollup: ^2.68.0
   checksum: 70098a4b91afe3f164f5d27cba65edf148c5ed146ee0e07a964b66940681553ac77391083114cdcf9427e7f2706bf0d61eab310b3a2caeab83b7452c0292fcae
+  languageName: node
+  linkType: hard
+
+"@rollup/plugin-commonjs@patch:@rollup/plugin-commonjs@npm%3A22.0.2#./.yarn/patches/@rollup-plugin-commonjs-npm-22.0.2-56609c90a0.patch::locator=root%40workspace%3A.":
+  version: 22.0.2
+  resolution: "@rollup/plugin-commonjs@patch:@rollup/plugin-commonjs@npm%3A22.0.2#./.yarn/patches/@rollup-plugin-commonjs-npm-22.0.2-56609c90a0.patch::version=22.0.2&hash=cb77cd&locator=root%40workspace%3A."
+  dependencies:
+    "@rollup/pluginutils": ^3.1.0
+    commondir: ^1.0.1
+    estree-walker: ^2.0.1
+    glob: ^7.1.6
+    is-reference: ^1.2.1
+    magic-string: ^0.25.7
+    resolve: ^1.17.0
+  peerDependencies:
+    rollup: ^2.68.0
+  checksum: 17c3722242128bd04456a96f23dcc136af221451db913e3ffe4faa93c2aad3a45f9304e2f1e29722b474cfa82b341c89a9e75f35e943a0f4775b83a9d183b76a
   languageName: node
   linkType: hard
 
