@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "skipLibCheck": true,
+    "types": ["node"]
+  },
+  "include": [
+    "packages/*/src/**/*.d.ts",
+    "packages/*/types/**/*.d.ts",
+    "packages/*/src/**/__tests__/**/*.ts",
+    "test-utils/**/*.ts",
+    "__mocks__/**/*.ts",
+    "__browser__/**/*.ts",
+    "vitest.config.ts"
+  ],
+  "exclude": ["node_modules", "**/__fixtures__/**"]
+}

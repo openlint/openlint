@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { serveAssets } from '@openlint/openlint-test-utils';
 import * as path from 'path';
 import * as fs from 'fs';
@@ -6,7 +7,7 @@ import { bundleAndLoadRuleset } from '../node';
 import { IO } from '../../types';
 import { DiagnosticSeverity } from '@stoplight/types';
 
-jest.unmock('fs');
+vi.unmock('fs');
 
 describe('bundleAndLoadRuleset node', () => {
   let io: IO;

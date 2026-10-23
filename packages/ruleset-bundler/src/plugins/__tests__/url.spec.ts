@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it } from 'vitest';
 import * as fs from 'fs';
 import { serveAssets, mockResponses } from '@openlint/openlint-test-utils';
 import { fetch } from '@openlint/openlint-runtime';

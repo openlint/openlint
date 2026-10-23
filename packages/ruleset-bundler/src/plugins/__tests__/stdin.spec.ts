@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { BundleOptions, bundleRuleset } from '../../index';
 import { stdin } from '../stdin';
 

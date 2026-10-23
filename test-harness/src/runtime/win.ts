@@ -1,10 +1,9 @@
 import Shell from 'node-powershell';
-import { isError } from 'lodash';
-import type { SpawnFn } from '@openlint/openlint-test-harness';
+import type { SpawnFn } from './types.ts';
 
-import { normalizeLineEndings, stripDeprecationWarnings } from '../utils';
+import { normalizeLineEndings, stripDeprecationWarnings } from '../utils.ts';
 
-export { normalizeLineEndings, applyReplacements } from '../utils';
+export { normalizeLineEndings, applyReplacements } from '../utils.ts';
 
 const r = /(.*)LASTEXITCODE=(.*)/s;
 
@@ -37,7 +36,9 @@ export const spawnNode: SpawnFn = async (command, env, cwd) => {
     };
   } catch (err) {
     return {
-      stderr: normalizeLineEndings(stripDeprecationWarnings(isError(err) ? err.message.replace(r, '$1') : String(err))),
+      stderr: normalizeLineEndings(
+        stripDeprecationWarnings(err instanceof Error ? err.message.replace(r, '$1') : String(err)),
+      ),
       stdout: '',
       status: 1,
     };

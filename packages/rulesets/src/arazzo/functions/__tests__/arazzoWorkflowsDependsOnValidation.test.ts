@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest';
 import arazzoWorkflowDependsOnValidation from '../arazzoWorkflowDependsOnValidation';
 import { IFunctionResult } from '@openlint/openlint-core';
 import { ArazzoSpecification } from '../types/arazzoTypes';

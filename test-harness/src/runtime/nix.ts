@@ -1,9 +1,9 @@
-import type { SpawnFn } from '@openlint/openlint-test-harness';
+import type { SpawnFn } from './types.ts';
 import * as child_process from 'child_process';
 import { Transform } from 'stream';
-import { normalizeLineEndings, stripDeprecationWarnings } from '../utils';
+import { normalizeLineEndings, stripDeprecationWarnings } from '../utils.ts';
 
-export { normalizeLineEndings, applyReplacements } from '../utils';
+export { normalizeLineEndings, applyReplacements } from '../utils.ts';
 
 const createStream = (): Transform =>
   new Transform({

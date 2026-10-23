@@ -1,3 +1,4 @@
+import { afterAll, afterEach } from 'vitest';
 import nock from 'nock';
 import * as nodeFs from 'fs';
 import { URL } from 'url';
@@ -7,7 +8,7 @@ import { fs as memFs } from 'memfs';
 const fs = new Proxy(nodeFs, {
   get(target, key) {
     if (target[key as keyof typeof target] !== memFs[key as keyof typeof memFs]) {
-      throw new Error('jest.mock is not correctly hooked up and memfs is not in use. Aborting for security reasons');
+      throw new Error('vi.mock("fs") is not correctly hooked up and memfs is not in use. Aborting for security reasons');
     }
 
     return Reflect.get(target, key, target);

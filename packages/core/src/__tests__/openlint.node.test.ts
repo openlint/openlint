@@ -1,3 +1,4 @@
+import { afterEach, describe, expect, test } from 'vitest';
 import { normalize } from '@stoplight/path';
 import { truthy, pattern } from '@openlint/openlint-functions';
 import { DiagnosticSeverity } from '@stoplight/types';

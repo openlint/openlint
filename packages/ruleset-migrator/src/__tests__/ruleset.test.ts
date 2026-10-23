@@ -1,3 +1,4 @@
+import { afterAll, describe, expect, it } from 'vitest';
 import { vol } from 'memfs';
 import * as path from '@stoplight/path';
 import { format as prettierFormat } from 'prettier/standalone';

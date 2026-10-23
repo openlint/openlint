@@ -32,6 +32,7 @@
     "tslib": "^2.8.1"
   },
   "devDependencies": {
-    "@openlint/openlint-parsers": "*"
+    "@openlint/openlint-parsers": "*",
+    "vitest": "^5.0.5"
   }
 }

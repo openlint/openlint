@@ -1,3 +1,4 @@
+import { describe, expect, it, test } from 'vitest';
 import { prepareResults } from '../results';
 import { DiagnosticSeverity, IPosition } from '@stoplight/types';
 

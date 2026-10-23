@@ -10,35 +10,11 @@ inputs:
 runs:
   using: composite
   steps:
-  - name: Compute commit SHAs to be used for caching purposes.
-    id: shas
-    run: |-
-      set -euo pipefail
-      previous="$(git rev-parse HEAD~1)"
-      current="$(git rev-parse HEAD)"
-      echo "previous=$previous" >> "$GITHUB_OUTPUT"
-      echo "current=$current" >> "$GITHUB_OUTPUT"
-    shell: bash
-  - name: restore_cache
-    uses: actions/cache@v4.3.0
-    with:
-      key: test-harness-${{ inputs.os }}-${{ inputs.node-version }}-${{ steps.shas.outputs.previous }}
-      path: |-
-        ./.cache/openlint-test-harness
-        ./test-harness/tests/
-      restore-keys: test-harness-${{ inputs.os }}-${{ inputs.node-version }}-
   - uses: "./.github/actions/build-binary"
     with:
       targets: ${{ inputs.os }}
       node-version: "${{ inputs.node-version }}"
       bytecode: 'false'
   - name: Run harness tests
-    run: yarn test.harness --maxWorkers=3
+    run: yarn test.harness
     shell: bash
-  - name: save_cache
-    uses: actions/cache@v4.3.0
-    with:
-      path: |-
-        ./.cache/openlint-test-harness
-        ./test-harness/tests/
-      key: test-harness-${{ inputs.os }}-${{ inputs.node-version }}-${{ steps.shas.outputs.current }}

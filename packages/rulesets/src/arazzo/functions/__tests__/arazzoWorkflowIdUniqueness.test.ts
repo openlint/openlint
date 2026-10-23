@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest';
 import { IFunctionResult } from '@openlint/openlint-core';
 import arazzoWorkflowIdUniqueness from '../arazzoWorkflowIdUniqueness';
 import { ArazzoSpecification } from '../types/arazzoTypes';

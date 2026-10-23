@@ -1,3 +1,4 @@
+import { describe, expect, test, vi } from 'vitest';
 import { DiagnosticSeverity } from '@stoplight/types';
 import { truthy } from '@openlint/openlint-functions';
 import * as Parsers from '@openlint/openlint-parsers';
@@ -12,7 +13,7 @@ describe('openlint', () => {
       test('will call the resolver with target', async () => {
         const customResolver = new Resolver();
 
-        const resolve = jest.spyOn(customResolver, 'resolve');
+        const resolve = vi.spyOn(customResolver, 'resolve');
 
         const s = new OpenLint({
           resolver: customResolver,

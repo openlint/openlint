@@ -1,11 +1,10 @@
+import { describe, expect, it } from 'vitest';
 import * as Parsers from '@openlint/openlint-parsers';
 import { Document, RulesetValidationError } from '@openlint/openlint-core';
 import testFunction from './__helpers__/tester';
 import alphabetical from '../alphabetical';
 
 const runAlphabetical = testFunction.bind(null, alphabetical);
-
-import '@openlint/openlint-test-utils/matchers';
 
 describe('Core Functions / Alphabetical', () => {
   it('given falsy target, should return no error message', async () => {
@@ -157,7 +156,7 @@ describe('Core Functions / Alphabetical', () => {
         ),
       ],
     ])('given invalid %p options, should throw', async (opts, error) => {
-      await expect(runAlphabetical([], opts)).rejects.toThrowAggregateError(new AggregateError([error]));
+      await expect(runAlphabetical([], opts)).rejects.toEqual(new AggregateError([error]));
     });
   });
 });

@@ -1,7 +1,7 @@
+import { describe, expect, it } from 'vitest';
 import { RulesetValidationError } from '@openlint/openlint-core';
 import testFunction from './__helpers__/tester';
 import length from '../length';
-import '@openlint/openlint-test-utils/matchers';
 
 const runLength = testFunction.bind(null, length);
 
@@ -126,7 +126,7 @@ describe('Core Functions / Length', () => {
         ],
       ],
     ])('given invalid %p options, should throw', async (opts, errors) => {
-      await expect(runLength('foo', opts)).rejects.toThrowAggregateError(new AggregateError(errors));
+      await expect(runLength('foo', opts)).rejects.toEqual(new AggregateError(errors));
     });
   });
 });

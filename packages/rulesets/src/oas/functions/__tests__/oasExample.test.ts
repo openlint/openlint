@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest';
 import { oas3, oas3_0 } from '@openlint/openlint-formats';
 import { DeepPartial } from '@stoplight/types';
 import oasExample, { Options as ExampleOptions } from '../oasExample';

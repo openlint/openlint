@@ -62,6 +62,7 @@
     "@types/minimatch": "^3.0.5",
     "@types/treeify": "^1.0.0",
     "nock": "^13.5.4",
-    "treeify": "^1.1.0"
+    "treeify": "^1.1.0",
+    "vitest": "^5.0.5"
   }
 }
