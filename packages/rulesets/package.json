@@ -19,10 +19,10 @@
   },
   "dependencies": {
     "@asyncapi/specs": "6.11.1",
-    "@openlint/openlint-core": "0.0.1",
-    "@openlint/openlint-formats": "0.0.1",
-    "@openlint/openlint-functions": "0.0.1",
-    "@openlint/openlint-runtime": "0.0.1",
+    "@openlint/openlint-core": "0.x",
+    "@openlint/openlint-formats": "0.x",
+    "@openlint/openlint-functions": "0.x",
+    "@openlint/openlint-runtime": "0.x",
     "@stoplight/better-ajv-errors": "1.0.3",
     "@stoplight/json": "^3.17.0",
     "@stoplight/types": "^13.6.0",
@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@openlint/openlint-parsers": "^1.0.0",
-    "@openlint/openlint-ref-resolver": "0.0.1",
+    "@openlint/openlint-ref-resolver": "0.x",
     "@stoplight/path": "^1.3.2",
     "gzip-size": "^6.0.0",
     "immer": "^9.0.6",

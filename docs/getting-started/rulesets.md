@@ -12,19 +12,25 @@ Rules take certain parameters and then call functions on parts of another YAML o
 
 The fastest way to create a ruleset is to use the `extends` property to leverage an existing ruleset.
 
-Spectral comes with three built-in rulesets:
+OpenLint provides three built-in rulesets:
+
+- `openlint:openapi` - [OpenAPI v2/v3 rules](./openapi.md)
+- `openlint:asyncapi` - [AsyncAPI v2/v3 rules](./asyncapi.md)
+- `openlint:arazzo` - [Arazzo v1 rules](./arazzo.md)
+
+The `openlint:` rulesets are still in development and will change a little as we mature, but the old `spectral:*` rulesets are there for backwards compatibility.
 
 - `spectral:oas` - [OpenAPI v2/v3 rules](./openapi.md)
 - `spectral:asyncapi` - [AsyncAPI v2/v3 rules](./asyncapi.md)
 - `spectral:arazzo` - [Arazzo v1 rules](./arazzo.md)
 
-To create a ruleset that extends both rulesets, open your terminal and run:
+To create a ruleset that extends one or more of these rulesets open your terminal and run:
 
 ```bash
-echo 'extends: ["spectral:oas", "spectral:asyncapi", "spectral:arazzo"]' > .spectral.yaml
+echo 'extends: ["openlint:openapi", "openlint:asyncapi", "openlint:arazzo"]' > .openlint.yaml
 ```
 
-The newly created ruleset file can then be used to lint any OpenAPI v2/v3 or AsyncAPI v2/v3 descriptions using the `openlint lint` command:
+Then OpenLint is ready to lint your documents.
 
 ```bash
 openlint lint myapifile.yaml

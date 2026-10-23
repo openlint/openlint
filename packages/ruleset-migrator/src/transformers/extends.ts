@@ -7,6 +7,9 @@ import { process } from '../index';
 import { isBasicRuleset } from '../utils/isBasicRuleset';
 
 const REPLACEMENTS = {
+  'openlint:openapi': 'oas',
+  'openlint:asyncapi': 'asyncapi',
+  'openlint:arazzo': 'arazzo',
   'spectral:oas': 'oas',
   'spectral:asyncapi': 'asyncapi',
   'spectral:arazzo': 'arazzo',
