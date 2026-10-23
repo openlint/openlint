@@ -1422,11 +1422,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-<<<<<<< HEAD
-"@openlint/openlint-formatters@0.0.2, @openlint/openlint-formatters@workspace:packages/formatters":
-=======
 "@openlint/openlint-formatters@0.x, @openlint/openlint-formatters@workspace:packages/formatters":
->>>>>>> efd11a42 (feat(rulesets): new core rulesets with no changes just yet)
   version: 0.0.0-use.local
   resolution: "@openlint/openlint-formatters@workspace:packages/formatters"
   dependencies:
