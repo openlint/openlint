@@ -34,8 +34,8 @@
     "prebuild": "node scripts/bundle-html-templates.mjs"
   },
   "dependencies": {
-    "@openlint/openlint-core": "0.0.1",
-    "@openlint/openlint-runtime": "0.0.1",
+    "@openlint/openlint-core": "0.x",
+    "@openlint/openlint-runtime": "0.x",
     "@stoplight/path": "^1.3.2",
     "@stoplight/types": "^13.15.0",
     "@types/markdown-escape": "^1.1.3",
