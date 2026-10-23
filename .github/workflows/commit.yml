@@ -100,8 +100,6 @@ jobs:
         node-version-file: .nvmrc
     - name: Cached dependencies
       uses: "./.github/actions/cached-dependencies"
-    - name: Install Chromium
-      run: yarn playwright install --with-deps chromium
     - name: Build
       run: yarn build
       shell: bash

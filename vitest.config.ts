@@ -128,7 +128,8 @@ export default defineConfig({
       enabled: true,
       headless: true,
       screenshotFailures: false,
-      provider: playwright(),
+      // CI uses the Chrome preinstalled on the runner instead of downloading Chromium
+      provider: playwright(process.env.CI ? { launchOptions: { channel: 'chrome' } } : {}),
       instances: [{ browser: 'chromium' }],
     },
   },
