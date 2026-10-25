@@ -66,8 +66,6 @@ describe('Output service', () => {
 
       expect(await writeOutput(output, '<stdout>')).toBeUndefined();
       expect(writeMock).toHaveBeenCalledWith(output, expect.any(Function));
-
-      writeMock.mockRestore();
     });
   });
 });

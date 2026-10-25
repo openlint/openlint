@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi, type MockInstance } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { join, resolve } from '@stoplight/path';
 import nock from 'nock';
 import yargs from 'yargs';
@@ -33,16 +33,12 @@ async function run(command: string): Promise<LinterResult['results']> {
 }
 
 describe('Linter service', () => {
-  let processCwdSpy: MockInstance;
-
   beforeEach(() => {
     vi.mocked(process.cwd).mockReturnValue(join(__dirname, '__fixtures__'));
-    processCwdSpy = vi.spyOn(globalThis.process, 'cwd').mockImplementation(process.cwd);
+    vi.spyOn(globalThis.process, 'cwd').mockImplementation(process.cwd);
   });
 
   afterEach(() => {
-    processCwdSpy.mockRestore();
-    vi.clearAllMocks();
     nock.cleanAll();
   });
 

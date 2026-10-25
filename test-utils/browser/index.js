@@ -13,7 +13,6 @@ beforeEach(() => {
 
 afterEach(() => {
   fetchMock.hardReset();
-  vi.unstubAllGlobals();
 });
 
 export function serveAssets(mocks) {

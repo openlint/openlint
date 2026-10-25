@@ -53,8 +53,6 @@ describe('lint', () => {
   });
 
   afterEach(() => {
-    process.stdin.isTTY = true;
-    vi.clearAllMocks();
     vi.resetAllMocks();
   });
 
@@ -64,7 +62,7 @@ describe('lint', () => {
 
   describe('when STDIN is present', () => {
     beforeEach(() => {
-      process.stdin.isTTY = false;
+      vi.spyOn(process.stdin, 'isTTY', 'get').mockReturnValue(false);
     });
 
     it('does not show help when documents are missing', async () => {

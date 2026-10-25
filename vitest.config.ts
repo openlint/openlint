@@ -113,6 +113,8 @@ const browser: TestProjectInlineConfiguration = {
   test: {
     name: 'browser',
     globals: false,
+    restoreMocks: true,
+    unstubGlobals: true,
     include: ['packages/*/src/**/__tests__/**/*.{test,spec}.ts'],
     exclude: [
       'packages/cli/**',
@@ -160,6 +162,8 @@ const node: TestProjectInlineConfiguration = {
 
 const nodeTest = {
   globals: false,
+  restoreMocks: true,
+  unstubGlobals: true,
   environment: 'node' as const,
 };
 

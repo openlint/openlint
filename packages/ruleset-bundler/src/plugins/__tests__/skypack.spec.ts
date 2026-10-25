@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi, type MockInstance } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import * as fs from 'fs';
 import { serveAssets } from '@openlint/openlint-test-utils';
 import { fetch } from '@openlint/openlint-runtime';
@@ -10,7 +10,6 @@ import { esmCdn } from '../skypack';
 
 describe('Skypack Plugin', () => {
   let io: IO;
-  let warnSpy: MockInstance;
 
   beforeEach(() => {
     io = {
@@ -18,13 +17,9 @@ describe('Skypack Plugin', () => {
       fetch,
     };
 
-    warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {
+    vi.spyOn(console, 'warn').mockImplementation(() => {
       /* no-op */
     });
-  });
-
-  afterEach(() => {
-    warnSpy.mockRestore();
   });
 
   describe.each<BundleOptions['target']>(['browser'])('given %s target', target => {

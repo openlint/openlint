@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi, type MockInstance } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import * as fs from 'fs';
 import { serveAssets } from '@openlint/openlint-test-utils';
 import * as runtime from '@openlint/openlint-runtime';
@@ -28,7 +28,6 @@ import { builtins } from '../builtins';
 
 describe('Builtins Plugin', () => {
   let io: IO;
-  let randomSpy: MockInstance;
 
   beforeEach(() => {
     io = {
@@ -36,15 +35,10 @@ describe('Builtins Plugin', () => {
       fetch: runtime.fetch,
     };
 
-    randomSpy = vi
-      .spyOn(Math, 'random')
+    vi.spyOn(Math, 'random')
       .mockReturnValueOnce(0.8229275205939697)
       .mockReturnValueOnce(0.7505242801973444)
       .mockReturnValueOnce(0.5647855410879519);
-  });
-
-  afterEach(() => {
-    randomSpy.mockRestore();
   });
 
   describe.each<BundleOptions['target']>(['browser', 'node', 'runtime'])('given %s target', target => {

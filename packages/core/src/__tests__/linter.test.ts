@@ -916,12 +916,12 @@ responses:: !!foo
   });
 
   describe('functional tests for the then statement', () => {
-    let fakeLintingFunction: Mock;
-    let fakeLintingFunction2: Mock;
+    let fakeLintingFunction: Mock<RulesetFunction>;
+    let fakeLintingFunction2: Mock<RulesetFunction>;
 
     beforeEach(() => {
-      fakeLintingFunction = vi.fn();
-      fakeLintingFunction2 = vi.fn();
+      fakeLintingFunction = vi.fn<RulesetFunction>();
+      fakeLintingFunction2 = vi.fn<RulesetFunction>();
       openlint.setRuleset({
         rules: {
           example: {
