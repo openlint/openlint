@@ -17,7 +17,7 @@ end
     });
 
     it('throws when fd cannot be accessed', () => {
-      return expect(readFileDescriptor(2147483647, { encoding: 'utf8' })).rejects.toThrow();
+      return expect(readFileDescriptor(2147483647, { encoding: 'utf8' })).rejects.toThrow(/^EBADF/);
     });
   });
 });

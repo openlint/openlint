@@ -8,12 +8,16 @@ import { OutputFormat } from '../config';
 import { formatOutput, writeOutput } from '../output';
 
 vi.mock('@openlint/openlint-formatters');
-vi.mock('fs', async () => ({
-  readFileSync: (await vi.importActual<typeof import('fs')>('fs')).readFileSync,
-  promises: {
-    writeFile: vi.fn().mockResolvedValue(void 0),
-  },
-}));
+vi.mock('fs', async importOriginal => {
+  const actual = await importOriginal<typeof import('fs')>();
+  return {
+    ...actual,
+    promises: {
+      ...actual.promises,
+      writeFile: vi.fn<typeof actual.promises.writeFile>().mockResolvedValue(undefined),
+    },
+  };
+});
 vi.mock('node:process');
 
 describe('Output service', () => {

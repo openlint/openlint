@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import yargs from 'yargs';
 import { DiagnosticSeverity } from '@stoplight/types';
 import { IRuleResult, Ruleset } from '@openlint/openlint-core';
@@ -47,13 +47,9 @@ describe('lint', () => {
   ];
 
   beforeEach(() => {
-    vi.mocked(lint).mockResolvedValueOnce({ results: results, resolvedRuleset: {} as Ruleset });
-    vi.mocked(formatOutput).mockReturnValueOnce('<formatted output>');
-    vi.mocked(writeOutput).mockResolvedValueOnce(undefined);
-  });
-
-  afterEach(() => {
-    vi.resetAllMocks();
+    vi.mocked(lint).mockResolvedValue({ results: results, resolvedRuleset: {} as Ruleset });
+    vi.mocked(formatOutput).mockReturnValue('<formatted output>');
+    vi.mocked(writeOutput).mockResolvedValue(undefined);
   });
 
   it('shows help when no document and no STDIN are present', () => {
@@ -158,8 +154,6 @@ describe('lint', () => {
   });
 
   it('writes formatted output to multiple files when using format and output flags', async () => {
-    vi.mocked(formatOutput).mockReturnValue('<formatted output>');
-
     await run(
       `lint --format html --format json --output.json foo.json --output.html foo.html ./__fixtures__/empty-oas2-document.json`,
     );
@@ -169,8 +163,6 @@ describe('lint', () => {
   });
 
   it('writes formatted output to multiple files and stdout when using format and output flags', async () => {
-    vi.mocked(formatOutput).mockReturnValue('<formatted output>');
-
     await run(`lint --format html --format json --output.json foo.json ./__fixtures__/empty-oas2-document.json`);
     expect(writeOutput).toBeCalledTimes(2);
     expect(writeOutput).nthCalledWith(1, '<formatted output>', '<stdout>');
@@ -209,7 +201,6 @@ describe('lint', () => {
 
   it('prints error message upon exception', async () => {
     const error = new Error('Failure');
-    vi.mocked(lint).mockReset();
     vi.mocked(lint).mockRejectedValueOnce(error);
     await run(`lint ./__fixtures__/empty-oas2-document.json`);
     expect(process.stderr.write).nthCalledWith(1, chalk.red('Error running OpenLint!\n'));
@@ -218,7 +209,6 @@ describe('lint', () => {
   });
 
   it('prints each error separately', async () => {
-    vi.mocked(lint).mockReset();
     vi.mocked(lint).mockRejectedValueOnce(
       new AggregateError([
         new Error('some unhandled exception'),
@@ -233,7 +223,6 @@ describe('lint', () => {
   });
 
   it('prefixes ruleset errors that carry source and range with file:line:col', async () => {
-    vi.mocked(lint).mockReset();
     const errorWithLocation = Object.assign(new Error('invalid severity'), {
       source: '/tmp/ruleset.yaml',
       range: { start: { line: 7, character: 14 }, end: { line: 7, character: 22 } },
@@ -253,7 +242,6 @@ describe('lint', () => {
   });
 
   it('given verbose flag, prints each error together with their stacks', async () => {
-    vi.mocked(lint).mockReset();
     vi.mocked(lint).mockRejectedValueOnce(
       new AggregateError([
         new Error('some unhandled exception'),
@@ -280,8 +268,6 @@ describe('lint', () => {
   });
 
   it('writes output for dashed formats via --output.<format> (#2926)', async () => {
-    vi.mocked(formatOutput).mockReturnValue('<formatted output>');
-
     await run(
       `lint --format github-actions --format code-climate --output.github-actions ga.txt --output.code-climate cc.json ./__fixtures__/empty-oas2-document.json`,
     );

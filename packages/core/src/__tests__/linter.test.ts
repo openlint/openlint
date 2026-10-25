@@ -113,7 +113,7 @@ describe('linter', () => {
         },
         foo: null,
       }),
-    ).rejects.toThrow();
+    ).rejects.toThrow("'foo' is not defined");
   });
 
   test('should return all properties matching 4xx response code', async () => {
