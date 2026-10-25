@@ -146,6 +146,6 @@ export default {
         target: 'node',
         plugins: [url(io), virtualFs(io)],
       }),
-    ).rejects.toThrowError(/Could not load https:\/\/esm.sh\/lodash/);
+    ).rejects.toThrow(/Could not load https:\/\/esm.sh\/lodash/);
   });
 });

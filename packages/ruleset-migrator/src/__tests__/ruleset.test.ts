@@ -411,7 +411,7 @@ export default {
             npmRegistry: 'https://unpkg.com/',
           },
         ),
-      ).rejects.toThrowError("'npmRegistry' option must not be used with commonjs output format.");
+      ).rejects.toThrow("'npmRegistry' option must not be used with commonjs output format.");
     });
   });
 });

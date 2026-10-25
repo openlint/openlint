@@ -8,7 +8,7 @@ vi.mock('fast-glob', () => ({ default: vi.fn(async () => []) }));
 describe('listFiles CLI util', () => {
   it('unixify paths', () => {
     listFiles(['.\\repro\\lib.yaml', './foo/*.json', '.\\src\\__tests__\\__fixtures__\\*.oas.json'], true);
-    expect(fg).toBeCalledWith(['./repro/lib.yaml', './foo/*.json', './src/__tests__/__fixtures__/*.oas.json'], {
+    expect(fg).toHaveBeenCalledWith(['./repro/lib.yaml', './foo/*.json', './src/__tests__/__fixtures__/*.oas.json'], {
       dot: true,
       absolute: true,
     });

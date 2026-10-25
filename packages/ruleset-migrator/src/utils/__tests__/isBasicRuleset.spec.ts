@@ -5,19 +5,19 @@ describe('isBasicRuleset util', () => {
   it.concurrent.each(['json', 'yaml', 'yml'])('given %s extension, should return true', async ext => {
     const fetch = vi.fn();
     await expect(isBasicRuleset(`/ruleset.${ext}`, fetch)).resolves.toBe(true);
-    expect(fetch).not.toBeCalled();
+    expect(fetch).not.toHaveBeenCalled();
   });
 
   it.concurrent.each(['js', 'mjs', 'cjs'])('given %s extension, should return false', async ext => {
     const fetch = vi.fn();
     await expect(isBasicRuleset(`/ruleset.${ext}`, fetch)).resolves.toBe(false);
-    expect(fetch).not.toBeCalled();
+    expect(fetch).not.toHaveBeenCalled();
   });
 
   it.concurrent('given an URL with query, should strip query prior to the lookup', async () => {
     const fetch = vi.fn();
     await expect(isBasicRuleset(`https://stoplight.io/ruleset.yaml?token=test`, fetch)).resolves.toBe(true);
-    expect(fetch).not.toBeCalled();
+    expect(fetch).not.toHaveBeenCalled();
   });
 
   it.concurrent.each([

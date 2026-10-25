@@ -56,7 +56,7 @@ describe('Output service', () => {
       const output = '{}';
       const outputFile = 'foo.json';
       expect(await writeOutput(output, outputFile)).toBeUndefined();
-      expect(fs.promises.writeFile).toBeCalledWith(outputFile, output);
+      expect(fs.promises.writeFile).toHaveBeenCalledWith(outputFile, output);
     });
 
     it('given <stdout>, print output to console', async () => {

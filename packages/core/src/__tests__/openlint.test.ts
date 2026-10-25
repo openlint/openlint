@@ -24,7 +24,7 @@ describe('openlint', () => {
         s.setRuleset(new Ruleset({ rules: {} }));
         await s.run(target);
 
-        expect(resolve).toBeCalledWith(target, {
+        expect(resolve).toHaveBeenCalledWith(target, {
           authority: undefined,
           parseResolveResult: expect.any(Function),
         });

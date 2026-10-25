@@ -68,7 +68,7 @@ describe('lint', () => {
 
     it('calls with lint with STDIN file descriptor', async () => {
       await run('lint');
-      expect(lint).toBeCalledWith([0], {
+      expect(lint).toHaveBeenCalledWith([0], {
         encoding: 'utf8',
         format: ['stylish'],
         output: { stylish: '<stdout>' },
@@ -82,7 +82,7 @@ describe('lint', () => {
   it('calls lint with document and default options', async () => {
     const doc = './__fixtures__/empty-oas2-document.json';
     await run(`lint ${doc}`);
-    expect(lint).toBeCalledWith([doc], {
+    expect(lint).toHaveBeenCalledWith([doc], {
       encoding: 'utf8',
       format: ['stylish'],
       output: { stylish: '<stdout>' },
@@ -95,7 +95,7 @@ describe('lint', () => {
   it('calls lint with document and custom encoding', async () => {
     const doc = './__fixtures__/empty-oas2-document.json';
     await run(`lint --encoding ascii ${doc}`);
-    expect(lint).toBeCalledWith([doc], {
+    expect(lint).toHaveBeenCalledWith([doc], {
       encoding: 'ascii',
       format: ['stylish'],
       output: { stylish: '<stdout>' },
@@ -108,7 +108,7 @@ describe('lint', () => {
   it('calls lint with document and custom encoding and format', async () => {
     const doc = './__fixtures__/empty-oas2-document.json';
     await run(`lint -f json --encoding ascii ${doc}`);
-    expect(lint).toBeCalledWith([doc], {
+    expect(lint).toHaveBeenCalledWith([doc], {
       encoding: 'ascii',
       format: ['json'],
       output: { json: '<stdout>' },
@@ -122,7 +122,7 @@ describe('lint', () => {
     const doc = './__fixtures__/empty-oas2-document.json';
     const ruleset = 'custom-ruleset.json';
     await run(`lint -r ${ruleset} ${doc}`);
-    expect(lint).toBeCalledWith(
+    expect(lint).toHaveBeenCalledWith(
       [doc],
       expect.objectContaining({
         ruleset,
@@ -135,7 +135,7 @@ describe('lint', () => {
     const ruleset = 'custom-ruleset.json';
     const ruleset2 = 'custom-ruleset-2.json';
     await run(`lint --r ${ruleset} -r ${ruleset2} ${doc}`);
-    expect(lint).toBeCalledWith(
+    expect(lint).toHaveBeenCalledWith(
       [doc],
       expect.objectContaining({
         ruleset: [ruleset, ruleset2],
@@ -145,26 +145,31 @@ describe('lint', () => {
 
   it.each(['json', 'stylish'])('calls formatOutput with %s format', async format => {
     await run(`lint -f ${format} ./__fixtures__/empty-oas2-document.json`);
-    expect(formatOutput).toBeCalledWith(results, format, { failSeverity: DiagnosticSeverity.Error }, expect.anything());
+    expect(formatOutput).toHaveBeenCalledWith(
+      results,
+      format,
+      { failSeverity: DiagnosticSeverity.Error },
+      expect.anything(),
+    );
   });
 
   it('writes formatted output to a file', async () => {
     await run(`lint -o foo.json ./__fixtures__/empty-oas2-document.json`);
-    expect(writeOutput).toBeCalledWith('<formatted output>', 'foo.json');
+    expect(writeOutput).toHaveBeenCalledWith('<formatted output>', 'foo.json');
   });
 
   it('writes formatted output to multiple files when using format and output flags', async () => {
     await run(
       `lint --format html --format json --output.json foo.json --output.html foo.html ./__fixtures__/empty-oas2-document.json`,
     );
-    expect(writeOutput).toBeCalledTimes(2);
+    expect(writeOutput).toHaveBeenCalledTimes(2);
     expect(writeOutput).nthCalledWith(1, '<formatted output>', 'foo.html');
     expect(writeOutput).nthCalledWith(2, '<formatted output>', 'foo.json');
   });
 
   it('writes formatted output to multiple files and stdout when using format and output flags', async () => {
     await run(`lint --format html --format json --output.json foo.json ./__fixtures__/empty-oas2-document.json`);
-    expect(writeOutput).toBeCalledTimes(2);
+    expect(writeOutput).toHaveBeenCalledTimes(2);
     expect(writeOutput).nthCalledWith(1, '<formatted output>', '<stdout>');
     expect(writeOutput).nthCalledWith(2, '<formatted output>', 'foo.json');
   });
@@ -271,7 +276,7 @@ describe('lint', () => {
     await run(
       `lint --format github-actions --format code-climate --output.github-actions ga.txt --output.code-climate cc.json ./__fixtures__/empty-oas2-document.json`,
     );
-    expect(writeOutput).toBeCalledTimes(2);
+    expect(writeOutput).toHaveBeenCalledTimes(2);
     expect(writeOutput).toHaveBeenCalledWith('<formatted output>', 'ga.txt');
     expect(writeOutput).toHaveBeenCalledWith('<formatted output>', 'cc.json');
   });
