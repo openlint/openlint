@@ -40,7 +40,6 @@ const injectDirname = (): Plugin => ({
 const resolve = (p: string) => path.join(__dirname, p);
 
 const browser: TestProjectInlineConfiguration = {
-  extends: false,
   plugins: [hoistRequires(), injectDirname(), nodePolyfills({ exclude: ['fs', 'module'] })],
   resolve: {
     alias: [
@@ -54,7 +53,6 @@ const browser: TestProjectInlineConfiguration = {
       { find: /^process$/, replacement: resolve('__mocks__/process.js') },
       { find: /^perf_hooks$/, replacement: resolve('__browser__/perf_hooks.js') },
       { find: /^module$/, replacement: resolve('__browser__/module.js') },
-      { find: /^fsevents$/, replacement: resolve('__browser__/fsevents.ts') },
       { find: /^@openlint\/openlint-([a-z-]+)$/, replacement: resolve('packages/$1/src/index.ts') },
     ],
   },
@@ -113,8 +111,6 @@ const browser: TestProjectInlineConfiguration = {
   test: {
     name: 'browser',
     globals: false,
-    restoreMocks: true,
-    unstubGlobals: true,
     include: ['packages/*/src/**/__tests__/**/*.{test,spec}.ts'],
     exclude: [
       'packages/cli/**',
@@ -124,7 +120,6 @@ const browser: TestProjectInlineConfiguration = {
       'packages/formatters/src/index.node.ts',
       'packages/ruleset-bundler/src/plugins/commonjs.ts',
       '**/*.node.test.ts',
-      '**/node_modules/**',
     ],
     browser: {
       enabled: true,
@@ -151,7 +146,6 @@ const workspaceAliases = Object.entries(paths).map(([find, [replacement]]) => {
 });
 
 const node: TestProjectInlineConfiguration = {
-  extends: false,
   resolve: {
     alias: [
       { find: /^@openlint\/openlint-test-utils$/, replacement: resolve('test-utils/node/index.ts') },
@@ -162,8 +156,6 @@ const node: TestProjectInlineConfiguration = {
 
 const nodeTest = {
   globals: false,
-  restoreMocks: true,
-  unstubGlobals: true,
   environment: 'node' as const,
 };
 
@@ -172,6 +164,8 @@ const MEMFS_PACKAGES = ['rulesets', 'ruleset-bundler'];
 
 export default defineConfig({
   test: {
+    restoreMocks: true,
+    unstubGlobals: true,
     projects: [
       browser,
       {
@@ -180,7 +174,7 @@ export default defineConfig({
           ...nodeTest,
           name: 'node',
           include: ['packages/*/src/**/__tests__/**/*.{test,spec}.ts'],
-          exclude: [...MEMFS_PACKAGES.map(name => `packages/${name}/**`), '**/node_modules/**'],
+          exclude: MEMFS_PACKAGES.map(name => `packages/${name}/**`),
         },
       },
       {
