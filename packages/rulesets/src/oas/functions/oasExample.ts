@@ -191,7 +191,8 @@ function cleanSchema(schema: Record<string, unknown>): void {
  * Modifies 'schema' (and all its sub-schemas) to make all
  * readOnly or writeOnly properties optional.
  * In this context, "sub-schemas" refers to all schemas reachable from 'schema'
- * (e.g. properties, additionalProperties, allOf/anyOf/oneOf, items, etc.), except "not" sub-schemas
+ * (e.g. properties, additionalProperties, allOf/anyOf/oneOf, not, items, etc.),
+ * except sub-schemas nested under an odd number of "not" keywords
  * @param schema the schema to be modified
  * @param readOnlyProperties make readOnly properties optional
  * @param writeOnlyProperties make writeOnly properties optional
@@ -202,7 +203,7 @@ function relaxRequired(
   writeOnlyProperties: boolean,
 ): void {
   if (readOnlyProperties || writeOnlyProperties) {
-    const notJsonPtrs: string[] = [];
+    const negated = new Map<string, boolean>();
     traverse(schema, {}, <traverse.Callback>((
       fragment,
       jsonPtr,
@@ -214,18 +215,12 @@ function relaxRequired(
     ) => {
       // "not" schemas are negative constraints: relaxing their "required" would
       // make them match (and therefore reject) documents they should not match.
+      // Each "not" flips the polarity, so "not: { not: ... }" is a positive constraint again.
       // parentKeyword is "not" only for the keyword itself, not for a property named "not".
-      if (parentKeyword === 'not') {
-        notJsonPtrs.push(jsonPtr);
-        return;
-      }
+      const isNegated = (parentJsonPtr !== void 0 && negated.get(parentJsonPtr) === true) !== (parentKeyword === 'not');
+      negated.set(jsonPtr, isNegated);
 
-      if (
-        parentJsonPtr !== void 0 &&
-        notJsonPtrs.some(notJsonPtr => parentJsonPtr === notJsonPtr || parentJsonPtr.startsWith(`${notJsonPtr}/`))
-      ) {
-        return;
-      }
+      if (isNegated) return;
 
       if ((fragment.readOnly === true && readOnlyProperties) || (fragment.writeOnly === true && writeOnlyProperties)) {
         if (parentKeyword == 'properties' && parent && hasRequiredProperties(parent)) {

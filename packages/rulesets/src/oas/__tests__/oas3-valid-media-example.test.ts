@@ -630,4 +630,63 @@ testRule('oas3-valid-media-example', [
     },
     errors: [],
   },
+
+  {
+    name: 'Relax required readOnly parameters inside "not" of "not" schemas on requests',
+    document: {
+      openapi: '3.0.3',
+      paths: {
+        '/foos': {
+          post: {
+            requestBody: {
+              content: {
+                'application/json': {
+                  schema: {
+                    $ref: '#/components/schemas/ManagedFooPrototype',
+                  },
+                  example: {
+                    kind: 'managed',
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+      components: {
+        schemas: {
+          FooID: {
+            type: 'object',
+            required: ['id'],
+            properties: {
+              id: {
+                type: 'string',
+                readOnly: true,
+              },
+            },
+          },
+          ManagedFooPrototype: {
+            type: 'object',
+            properties: {
+              kind: {
+                type: 'string',
+              },
+            },
+            not: {
+              required: ['kind'],
+              properties: {
+                kind: {
+                  enum: ['managed'],
+                },
+              },
+              not: {
+                $ref: '#/components/schemas/FooID',
+              },
+            },
+          },
+        },
+      },
+    },
+    errors: [],
+  },
 ]);

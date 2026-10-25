@@ -343,6 +343,153 @@ describe('oasExample', () => {
         const results = runRule(mediaType, mediaOpts, ['paths', '/foos', 'post', 'requestBody']);
         expect(results).toHaveLength(0);
       });
+
+      test('valid "example" object with readOnly property in "not" of "not" schema', () => {
+        const mediaType = {
+          schema: {
+            type: 'object',
+            required: ['name'],
+            properties: {
+              name: {
+                type: 'string',
+              },
+            },
+            not: {
+              not: {
+                type: 'object',
+                required: ['id'],
+                properties: {
+                  id: {
+                    type: 'string',
+                    readOnly: true,
+                  },
+                },
+              },
+            },
+          },
+          example: {
+            name: 'my-foo',
+          },
+        };
+
+        const results = runRule(mediaType, mediaOpts, ['paths', '/foos', 'post', 'requestBody']);
+        expect(results).toHaveLength(0);
+      });
+
+      test('valid "example" object with conditionally required readOnly property', () => {
+        const mediaType = {
+          schema: {
+            type: 'object',
+            properties: {
+              kind: {
+                type: 'string',
+              },
+              id: {
+                type: 'string',
+                readOnly: true,
+              },
+            },
+            not: {
+              required: ['kind'],
+              properties: {
+                kind: {
+                  enum: ['managed'],
+                },
+              },
+              not: {
+                required: ['id'],
+                properties: {
+                  id: {
+                    type: 'string',
+                    readOnly: true,
+                  },
+                },
+              },
+            },
+          },
+          example: {
+            kind: 'managed',
+          },
+        };
+
+        const results = runRule(mediaType, mediaOpts, ['paths', '/foos', 'post', 'requestBody']);
+        expect(results).toHaveLength(0);
+      });
+
+      test('valid "example" object with conditionally required writeOnly property', () => {
+        const mediaType = {
+          schema: {
+            type: 'object',
+            properties: {
+              auth: {
+                type: 'string',
+              },
+              password: {
+                type: 'string',
+                writeOnly: true,
+              },
+            },
+            not: {
+              required: ['auth'],
+              properties: {
+                auth: {
+                  enum: ['basic'],
+                },
+              },
+              not: {
+                required: ['password'],
+                properties: {
+                  password: {
+                    type: 'string',
+                    writeOnly: true,
+                  },
+                },
+              },
+            },
+          },
+          example: {
+            auth: 'basic',
+          },
+        };
+
+        const results = runRule(mediaType, mediaOpts, ['paths', '/foos', 'get', 'responses', '200']);
+        expect(results).toHaveLength(0);
+      });
+
+      test('valid "example" object with readOnly property in "not" of "not" of "not" schema', () => {
+        const mediaType = {
+          schema: {
+            type: 'object',
+            required: ['name'],
+            properties: {
+              name: {
+                type: 'string',
+              },
+            },
+            not: {
+              not: {
+                not: {
+                  type: 'object',
+                  required: ['id'],
+                  properties: {
+                    id: {
+                      type: 'string',
+                      readOnly: true,
+                    },
+                  },
+                },
+              },
+            },
+          },
+          example: {
+            name: 'my-foo',
+          },
+        };
+
+        const results = runRule(mediaType, mediaOpts, ['paths', '/foos', 'post', 'requestBody']);
+        expect(results).toHaveLength(0);
+      });
+
       test('scenario: "resolves to more than one schema"', () => {
         // This test data was adapted from https://github.com/stoplightio/spectral/issues/2140.
         const mediaType = {
