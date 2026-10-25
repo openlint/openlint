@@ -53,7 +53,7 @@ describe('Core Functions / Casing', () => {
         ]);
       });
 
-      it.each([valid, ...validWithDigits])('given valid %p input, should return no error message', async input => {
+      it.each([...valid, ...validWithDigits])('given valid %p input, should return no error message', async input => {
         expect(await runCasing(input, { type: CasingType.camel })).toEqual([]);
       });
 
@@ -84,7 +84,7 @@ describe('Core Functions / Casing', () => {
         ]);
       });
 
-      it.each([valid, ...validWithDigits])('given valid %p input, should return no error message', async input => {
+      it.each([...valid, ...validWithDigits])('given valid %p input, should return no error message', async input => {
         expect(await runCasing(input, { type: CasingType.pascal })).toEqual([]);
       });
 
