@@ -4,7 +4,7 @@ title: "OpenAPI Rules"
 
 Spectral has a built-in "oas" ruleset, with OAS being shorthand for the [OpenAPI Specification](https://openapis.org/specification).
 
-In your ruleset file you can add `extends: "spectral:oas"` and you'll get all of the following rules applied, depending on the appropriate OpenAPI version used (detected through [formats](../getting-started/rulesets.md#formats)).
+In your ruleset file you can add `extends: "openlint:openapi"` and you'll get all of the following rules applied, depending on the appropriate OpenAPI version used (detected through [formats](../getting-started/rulesets.md#formats)).
 
 `Recommended` indicates whether a rule is enabled by default. `Default severity when enabled` is the severity the rule reports when active.
 

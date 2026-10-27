@@ -19,9 +19,9 @@
     "node": "^22.0 || >= 24.0"
   },
   "dependencies": {
-    "@openlint/openlint-core": "0.0.1",
-    "@openlint/openlint-formats": "0.0.1",
-    "@openlint/openlint-runtime": "0.0.1",
+    "@openlint/openlint-core": "0.x",
+    "@openlint/openlint-formats": "0.x",
+    "@openlint/openlint-runtime": "0.x",
     "@stoplight/better-ajv-errors": "1.0.3",
     "@stoplight/json": "^3.17.1",
     "ajv": "^8.18.0",

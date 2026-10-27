@@ -26,7 +26,7 @@ Rules can have the following properties:
 - `given` (required): The part of the document the rule should be applied to. Uses the [JSONPath](https://goessner.net/articles/JsonPath/index.html) syntax.
 - `then` (required): Describes which function should be applied to the `given` part of the document. Can be used with a [core function](../reference/functions.md) or [custom function](./custom-functions.md).
 - `description` (optional): A short description of the rule.
-- `message` (optional): A message that's displayed in the `spectral lint` output. Can be customized to use placeholder values that are evaluated at runtime, such as `{{description}}` or `{{error}}`.
+- `message` (optional): A message that's displayed in the `openlint lint` output. Can be customized to use placeholder values that are evaluated at runtime, such as `{{description}}` or `{{error}}`.
 - `severity` (optional): The severity of the rule. Used to differentiate between rules that must be followed (`error`) and warnings or hints. Default value is `warn`.
 - `formats` (optional): The format that the rule should apply to. For example `oas3` for any OpenAPI v3.x descriptions. Can be applied at the ruleset and/or rule level. See [Formats](./custom-rulesets.md#formats) for more details.
 - `recommended` (optional): Use `recommended` when extending a ruleset so users can enforce all rules (`recommended` set to `false`) or only recommended rules (`recommended` set to `true`). Recommended can be used to slowly roll out a ruleset across API landscapes with a lot of legacy APIs. Default value is `true`. See [Recommended](./recommended.md) for more details.

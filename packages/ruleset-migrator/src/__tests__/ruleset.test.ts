@@ -61,6 +61,24 @@ describe('migrator', () => {
     });
   });
 
+  it.each([
+    ['openlint:openapi', 'oas'],
+    ['openlint:asyncapi', 'asyncapi'],
+    ['openlint:arazzo', 'arazzo'],
+  ])('should migrate the %s built-in ruleset alias', async (alias, rulesetName) => {
+    const rulesetFile = path.join(cwd, `${rulesetName}-alias.yaml`);
+    await vol.promises.writeFile(rulesetFile, `extends: ${alias}\n`);
+
+    const migratedRuleset = await migrateRuleset(rulesetFile, {
+      format: 'esm',
+      fs: vol as any,
+    });
+
+    expect(migratedRuleset).toMatch(
+      new RegExp(`import\\s*\\{\\s*${rulesetName}\\s*\\}\\s*from\\s*['"]@openlint/openlint-rulesets['"]`),
+    );
+  });
+
   it('should support subsequent migrations', async () => {
     await vol.promises.writeFile(
       path.join(cwd, 'ruleset-migration-1.json'),

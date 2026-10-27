@@ -114,7 +114,7 @@ If no `documentationUrl` is provided, no links are displayed, and users have to 
 If you wish to override a documentation URL of a particular rule, you can do so by specifying `documentationUrl`.
 
 ```yaml
-extends: spectral:oas
+extends: openlint:openapi
 rules:
   tag-description:
     description: Please provide a description for each tag.
@@ -132,7 +132,7 @@ rules:
 If you don't care about duplicate keys or invalid values (such as non-string mapping keys in YAML), you can tune their severity using the `parserOptions` setting.
 
 ```yaml
-extends: spectral:oas
+extends: openlint:openapi
 parserOptions:
   duplicateKeys: warn # error is the default value
   incompatibleValues: off # error is the default value

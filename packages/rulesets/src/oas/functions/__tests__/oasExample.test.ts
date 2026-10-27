@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
 import { oas3, oas3_0 } from '@openlint/openlint-formats';
-import { DeepPartial } from '@stoplight/types';
+import { DeepPartial, JsonPath } from '@stoplight/types';
 import oasExample, { Options as ExampleOptions } from '../oasExample';
 import { IFunctionResult, RulesetFunctionContext } from '@openlint/openlint-core';
 
@@ -25,9 +25,14 @@ const docFormats = {
  * @param context the spectral context object to pass to oasExample()
  * @returns an array of errors, or [] if no errors occurred
  */
-function runRule(testData: Record<string, unknown>, ruleOptions: ExampleOptions): IFunctionResult[] {
+
+function runRule(
+  testData: Record<string, unknown>,
+  ruleOptions: ExampleOptions,
+  path: JsonPath = [],
+): IFunctionResult[] {
   const context: DeepPartial<RulesetFunctionContext> = {
-    path: [],
+    path,
     documentInventory: {},
     document: docFormats,
   };
@@ -251,6 +256,241 @@ describe('oasExample', () => {
         const results = runRule(mediaType, mediaOpts);
         expect(results).toHaveLength(0);
       });
+      test('valid "example" object with readOnly property in "not" schema', () => {
+        // This test data is adapted from https://github.com/stoplightio/spectral/issues/3068.
+        // A "not" schema is a negative constraint: relaxing its "required" would
+        // make it match (and therefore reject) documents that should be valid.
+        const mediaType = {
+          schema: {
+            type: 'object',
+            required: ['name'],
+            properties: {
+              name: {
+                type: 'string',
+              },
+            },
+            not: {
+              type: 'object',
+              required: ['id'],
+              properties: {
+                id: {
+                  type: 'string',
+                  readOnly: true,
+                },
+              },
+            },
+          },
+          example: {
+            name: 'my-foo',
+          },
+        };
+
+        const results = runRule(mediaType, mediaOpts, ['paths', '/foos', 'post', 'requestBody']);
+        expect(results).toHaveLength(0);
+      });
+      test('valid "example" object with writeOnly property in "not" schema', () => {
+        const mediaType = {
+          schema: {
+            type: 'object',
+            required: ['name'],
+            properties: {
+              name: {
+                type: 'string',
+              },
+            },
+            not: {
+              type: 'object',
+              required: ['password'],
+              properties: {
+                password: {
+                  type: 'string',
+                  writeOnly: true,
+                },
+              },
+            },
+          },
+          example: {
+            name: 'my-foo',
+          },
+        };
+
+        const results = runRule(mediaType, mediaOpts, ['paths', '/foos', 'post', 'responses', '201']);
+        expect(results).toHaveLength(0);
+      });
+      test('valid "example" object with property named "not"', () => {
+        // "not" is only special as a schema keyword: a property named "not"
+        // must not stop readOnly relaxation in its own subtree.
+        const mediaType = {
+          schema: {
+            type: 'object',
+            properties: {
+              not: {
+                type: 'object',
+                required: ['id'],
+                properties: {
+                  id: {
+                    type: 'string',
+                    readOnly: true,
+                  },
+                },
+              },
+            },
+          },
+          example: {
+            not: {},
+          },
+        };
+
+        const results = runRule(mediaType, mediaOpts, ['paths', '/foos', 'post', 'requestBody']);
+        expect(results).toHaveLength(0);
+      });
+
+      test('valid "example" object with readOnly property in "not" of "not" schema', () => {
+        const mediaType = {
+          schema: {
+            type: 'object',
+            required: ['name'],
+            properties: {
+              name: {
+                type: 'string',
+              },
+            },
+            not: {
+              not: {
+                type: 'object',
+                required: ['id'],
+                properties: {
+                  id: {
+                    type: 'string',
+                    readOnly: true,
+                  },
+                },
+              },
+            },
+          },
+          example: {
+            name: 'my-foo',
+          },
+        };
+
+        const results = runRule(mediaType, mediaOpts, ['paths', '/foos', 'post', 'requestBody']);
+        expect(results).toHaveLength(0);
+      });
+
+      test('valid "example" object with conditionally required readOnly property', () => {
+        const mediaType = {
+          schema: {
+            type: 'object',
+            properties: {
+              kind: {
+                type: 'string',
+              },
+              id: {
+                type: 'string',
+                readOnly: true,
+              },
+            },
+            not: {
+              required: ['kind'],
+              properties: {
+                kind: {
+                  enum: ['managed'],
+                },
+              },
+              not: {
+                required: ['id'],
+                properties: {
+                  id: {
+                    type: 'string',
+                    readOnly: true,
+                  },
+                },
+              },
+            },
+          },
+          example: {
+            kind: 'managed',
+          },
+        };
+
+        const results = runRule(mediaType, mediaOpts, ['paths', '/foos', 'post', 'requestBody']);
+        expect(results).toHaveLength(0);
+      });
+
+      test('valid "example" object with conditionally required writeOnly property', () => {
+        const mediaType = {
+          schema: {
+            type: 'object',
+            properties: {
+              auth: {
+                type: 'string',
+              },
+              password: {
+                type: 'string',
+                writeOnly: true,
+              },
+            },
+            not: {
+              required: ['auth'],
+              properties: {
+                auth: {
+                  enum: ['basic'],
+                },
+              },
+              not: {
+                required: ['password'],
+                properties: {
+                  password: {
+                    type: 'string',
+                    writeOnly: true,
+                  },
+                },
+              },
+            },
+          },
+          example: {
+            auth: 'basic',
+          },
+        };
+
+        const results = runRule(mediaType, mediaOpts, ['paths', '/foos', 'get', 'responses', '200']);
+        expect(results).toHaveLength(0);
+      });
+
+      test('valid "example" object with readOnly property in "not" of "not" of "not" schema', () => {
+        const mediaType = {
+          schema: {
+            type: 'object',
+            required: ['name'],
+            properties: {
+              name: {
+                type: 'string',
+              },
+            },
+            not: {
+              not: {
+                not: {
+                  type: 'object',
+                  required: ['id'],
+                  properties: {
+                    id: {
+                      type: 'string',
+                      readOnly: true,
+                    },
+                  },
+                },
+              },
+            },
+          },
+          example: {
+            name: 'my-foo',
+          },
+        };
+
+        const results = runRule(mediaType, mediaOpts, ['paths', '/foos', 'post', 'requestBody']);
+        expect(results).toHaveLength(0);
+      });
+
       test('scenario: "resolves to more than one schema"', () => {
         // This test data was adapted from https://github.com/stoplightio/spectral/issues/2140.
         const mediaType = {
@@ -426,6 +666,41 @@ describe('oasExample', () => {
         expect(results).toHaveLength(1);
         expect(results[0].message).toBe(`"example" property must not have more than 8 characters`);
         expect(results[0].path?.join('.')).toBe('example');
+      });
+      test('"example" object matching "not" schema', () => {
+        const mediaType = {
+          schema: {
+            type: 'object',
+            required: ['name'],
+            properties: {
+              name: {
+                type: 'string',
+              },
+              id: {
+                type: 'string',
+                readOnly: true,
+              },
+            },
+            not: {
+              type: 'object',
+              required: ['id'],
+              properties: {
+                id: {
+                  type: 'string',
+                  readOnly: true,
+                },
+              },
+            },
+          },
+          example: {
+            name: 'my-foo',
+            id: '1',
+          },
+        };
+
+        const results = runRule(mediaType, mediaOpts, ['paths', '/foos', 'post', 'requestBody']);
+        expect(results).toHaveLength(1);
+        expect(results[0].path.join('.')).toBe('paths./foos.post.requestBody.example');
       });
       test('invalid "examples" string', () => {
         const mediaType = {

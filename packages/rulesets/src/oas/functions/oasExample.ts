@@ -191,7 +191,8 @@ function cleanSchema(schema: Record<string, unknown>): void {
  * Modifies 'schema' (and all its sub-schemas) to make all
  * readOnly or writeOnly properties optional.
  * In this context, "sub-schemas" refers to all schemas reachable from 'schema'
- * (e.g. properties, additionalProperties, allOf/anyOf/oneOf, not, items, etc.)
+ * (e.g. properties, additionalProperties, allOf/anyOf/oneOf, not, items, etc.),
+ * except sub-schemas nested under an odd number of "not" keywords
  * @param schema the schema to be modified
  * @param readOnlyProperties make readOnly properties optional
  * @param writeOnlyProperties make writeOnly properties optional
@@ -201,7 +202,8 @@ function relaxRequired(
   readOnlyProperties: boolean,
   writeOnlyProperties: boolean,
 ): void {
-  if (readOnlyProperties || writeOnlyProperties)
+  if (readOnlyProperties || writeOnlyProperties) {
+    const negated = new Map<string, boolean>();
     traverse(schema, {}, <traverse.Callback>((
       fragment,
       jsonPtr,
@@ -211,6 +213,15 @@ function relaxRequired(
       parent,
       propertyName,
     ) => {
+      // "not" schemas are negative constraints: relaxing their "required" would
+      // make them match (and therefore reject) documents they should not match.
+      // Each "not" flips the polarity, so "not: { not: ... }" is a positive constraint again.
+      // parentKeyword is "not" only for the keyword itself, not for a property named "not".
+      const isNegated = (parentJsonPtr !== void 0 && negated.get(parentJsonPtr) === true) !== (parentKeyword === 'not');
+      negated.set(jsonPtr, isNegated);
+
+      if (isNegated) return;
+
       if ((fragment.readOnly === true && readOnlyProperties) || (fragment.writeOnly === true && writeOnlyProperties)) {
         if (parentKeyword == 'properties' && parent && hasRequiredProperties(parent)) {
           parent.required = parent.required?.filter(p => p !== propertyName);
@@ -220,6 +231,7 @@ function relaxRequired(
         }
       }
     }));
+  }
 }
 
 export default createRulesetFunction<Record<string, unknown>, Options>(
