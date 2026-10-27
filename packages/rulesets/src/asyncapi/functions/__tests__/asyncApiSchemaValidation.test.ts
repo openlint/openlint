@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest';
 import asyncApiSchemaValidation from '../asyncApiSchemaValidation';
 
 function runPayloadValidation(targetVal: any, opts: { type: 'examples' | 'default' }) {

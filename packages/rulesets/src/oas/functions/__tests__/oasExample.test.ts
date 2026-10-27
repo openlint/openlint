@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest';
 import { oas3, oas3_0 } from '@openlint/openlint-formats';
 import { DeepPartial, JsonPath } from '@stoplight/types';
 import oasExample, { Options as ExampleOptions } from '../oasExample';

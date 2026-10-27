@@ -1,3 +1,4 @@
+import { describe, expect, test, vi } from 'vitest';
 import type { IFunctionResult, RulesetFunctionContext } from '@openlint/openlint-core';
 import arazzoDocumentSchema from '../arazzoDocumentSchema';
 import { arazzo1_0 } from '@openlint/openlint-formats';
@@ -10,8 +11,8 @@ function runSchema(target: unknown, context?: Partial<RulesetFunctionContext>): 
       formats: new Set([arazzo1_0]),
       source: '',
       diagnostics: [],
-      getRangeForJsonPath: jest.fn(), // Mocked function
-      trapAccess: jest.fn(), // Mocked function
+      getRangeForJsonPath: vi.fn(), // Mocked function
+      trapAccess: vi.fn(), // Mocked function
       data: target,
     },
     ...context,

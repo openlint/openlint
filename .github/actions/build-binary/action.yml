@@ -27,7 +27,7 @@ runs:
     shell: bash
   - name: Create the openlint Binary Windows
     if: ${{ inputs.targets == 'windows' }}
-    run: yarn workspace @openlint/openlint-cli pkg . --public --public-packages "*" --targets node${{ steps.node-major.outputs.major }}-windows --output binaries/openlint
+    run: yarn workspace openlint pkg . --public --public-packages "*" --targets node${{ steps.node-major.outputs.major }}-windows --output binaries/openlint
     env:
       PKG_CACHE_PATH: "/tmp/pkg-node-binaries"
     shell: powershell
@@ -40,9 +40,9 @@ runs:
 
       if [ "${{ inputs.bytecode }}" = true ]
       then
-        yarn workspace @openlint/openlint-cli pkg . --public --public-packages "*" --targets $TARGETS --output binaries/openlint
+        yarn workspace openlint pkg . --public --public-packages "*" --targets $TARGETS --output binaries/openlint
       else
-        yarn workspace @openlint/openlint-cli pkg . --no-bytecode --public --public-packages "*" --targets $TARGETS --output binaries/openlint
+        yarn workspace openlint pkg . --no-bytecode --public --public-packages "*" --targets $TARGETS --output binaries/openlint
       fi
 
       (cd packages/cli/binaries && ls . | sed -n -E 's/^(openlint)-(alpine|linux|macos)$/mv "\1-\2" "\1-\2"-$ARCH/p' | sh)

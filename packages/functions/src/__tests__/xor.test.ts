@@ -1,4 +1,4 @@
-import '@openlint/openlint-test-utils/matchers';
+import { describe, expect, it } from 'vitest';
 
 import { RulesetValidationError } from '@openlint/openlint-core';
 import testFunction from './__helpers__/tester';
@@ -200,7 +200,7 @@ describe('Core Functions / Xor', () => {
         ],
       ],
     ])('given invalid %p options, should throw', async (opts, errors) => {
-      await expect(runXor({}, opts)).rejects.toThrowAggregateError(new AggregateError(errors));
+      await expect(runXor({}, opts)).rejects.toThrow(new AggregateError(errors));
     });
   });
 });

@@ -76,7 +76,7 @@ If you would like to run this example, make sure that you have:
 
 ```yaml
 extends:
-  - spectral:oas
+  - openlint:openapi
 ```
 
 Here's a script that shows how to load an external API specification file, and an external YAML ruleset:
@@ -153,8 +153,8 @@ Here's an example script of how you could run Spectral in the browser:
 import { OpenLint } from "@openlint/openlint-core";
 import { bundleAndLoadRuleset } from "@openlint/openlint-ruleset-bundler/with-loader";
 
-// create a ruleset that extends the spectral:oas ruleset
-const myRuleset = `extends: spectral:oas
+// create a ruleset that extends the openlint:openapi ruleset
+const myRuleset = `extends: openlint:openapi
 rules: {}`;
 
 // try to load an external ruleset

@@ -19,7 +19,6 @@
       "@openlint/openlint-rulesets": ["packages/rulesets/src/index.ts"],
       
       "@openlint/openlint-test-utils": ["test-utils/index.ts"],
-      "@openlint/openlint-test-utils/matchers": ["test-utils/matchers.ts"],
 
       "nimma/fallbacks": ["node_modules/nimma/dist/cjs/fallbacks/"],
       "nimma/legacy": ["node_modules/nimma/dist/legacy/cjs/"]

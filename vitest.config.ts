@@ -1,7 +1,8 @@
 import * as path from 'node:path';
-import { defineConfig, type Plugin } from 'vitest/config';
+import { defineConfig, type Plugin, type TestProjectInlineConfiguration } from 'vitest/config';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
 import { playwright } from '@vitest/browser-playwright';
+import tsconfig from './tsconfig.json' with { type: 'json' };
 
 // the generated standalone validators call `require`, which does not exist in the browser
 const hoistRequires = (): Plugin => ({
@@ -38,12 +39,11 @@ const injectDirname = (): Plugin => ({
 
 const resolve = (p: string) => path.join(__dirname, p);
 
-export default defineConfig({
+const browser: TestProjectInlineConfiguration = {
   plugins: [hoistRequires(), injectDirname(), nodePolyfills({ exclude: ['fs', 'module'] })],
   resolve: {
     alias: [
       { find: /^@openlint\/openlint-test-utils$/, replacement: resolve('test-utils/browser/index.js') },
-      { find: /^@openlint\/openlint-test-utils\/matchers$/, replacement: resolve('test-utils/matchers.ts') },
       { find: /^nimma\/fallbacks$/, replacement: resolve('node_modules/nimma/dist/legacy/cjs/fallbacks/index.js') },
       { find: /^nimma\/legacy$/, replacement: resolve('node_modules/nimma/dist/legacy/cjs/index.js') },
       { find: /^nimma$/, replacement: resolve('node_modules/nimma/dist/legacy/cjs/index.js') },
@@ -53,7 +53,6 @@ export default defineConfig({
       { find: /^process$/, replacement: resolve('__mocks__/process.js') },
       { find: /^perf_hooks$/, replacement: resolve('__browser__/perf_hooks.js') },
       { find: /^module$/, replacement: resolve('__browser__/module.js') },
-      { find: /^fsevents$/, replacement: resolve('__browser__/fsevents.ts') },
       { find: /^@openlint\/openlint-([a-z-]+)$/, replacement: resolve('packages/$1/src/index.ts') },
     ],
   },
@@ -87,7 +86,6 @@ export default defineConfig({
       'json-schema-traverse',
       'nimma/legacy',
       'nimma/fallbacks',
-      'jest-mock',
       'jsonpath-plus',
       'expr-eval-fork',
       'ast-types',
@@ -111,7 +109,8 @@ export default defineConfig({
     ],
   },
   test: {
-    globals: true,
+    name: 'browser',
+    globals: false,
     include: ['packages/*/src/**/__tests__/**/*.{test,spec}.ts'],
     exclude: [
       'packages/cli/**',
@@ -120,10 +119,8 @@ export default defineConfig({
       'packages/formatters/src/sarif.ts',
       'packages/formatters/src/index.node.ts',
       'packages/ruleset-bundler/src/plugins/commonjs.ts',
-      '**/*.jest.test.ts',
-      '**/node_modules/**',
+      '**/*.node.test.ts',
     ],
-    setupFiles: ['./__browser__/setup.ts'],
     browser: {
       enabled: true,
       headless: true,
@@ -132,5 +129,63 @@ export default defineConfig({
       provider: playwright(process.env.CI ? { launchOptions: { channel: 'chrome' } } : {}),
       instances: [{ browser: 'chromium' }],
     },
+  },
+};
+
+const { paths } = tsconfig.compilerOptions;
+
+// the same workspace resolution as tsc has, so that the tests run against the sources
+const workspaceAliases = Object.entries(paths).map(([find, [replacement]]) => {
+  const escaped = find.replace(/[.*+?^${}()|[\]\\/]/g, '\\$&');
+  return find.endsWith('/*')
+    ? {
+        find: new RegExp(`^${escaped.slice(0, -2)}/(.*)$`),
+        replacement: resolve(replacement.replace(/\*$/, '')) + '$1',
+      }
+    : { find: new RegExp(`^${escaped}$`), replacement: resolve(replacement) };
+});
+
+const node: TestProjectInlineConfiguration = {
+  resolve: {
+    alias: [
+      { find: /^@openlint\/openlint-test-utils$/, replacement: resolve('test-utils/node/index.ts') },
+      ...workspaceAliases,
+    ],
+  },
+};
+
+const nodeTest = {
+  globals: false,
+  environment: 'node' as const,
+};
+
+// these packages run against an in-memory fs, see test-utils/node/mock-fs.ts
+const MEMFS_PACKAGES = ['rulesets', 'ruleset-bundler'];
+
+export default defineConfig({
+  test: {
+    restoreMocks: true,
+    unstubGlobals: true,
+    projects: [
+      browser,
+      {
+        ...node,
+        test: {
+          ...nodeTest,
+          name: 'node',
+          include: ['packages/*/src/**/__tests__/**/*.{test,spec}.ts'],
+          exclude: MEMFS_PACKAGES.map(name => `packages/${name}/**`),
+        },
+      },
+      {
+        ...node,
+        test: {
+          ...nodeTest,
+          name: 'node-fs',
+          include: MEMFS_PACKAGES.map(name => `packages/${name}/src/**/__tests__/**/*.{test,spec}.ts`),
+          setupFiles: ['./test-utils/node/mock-fs.ts'],
+        },
+      },
+    ],
   },
 });

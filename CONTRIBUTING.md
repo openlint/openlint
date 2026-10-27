@@ -35,7 +35,7 @@ Upon opening OpenLint folder under vscode, some workspace recommended extensions
 Please accept and install them as they will make your contributing journey nicer.
 
 - **[EditorConfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)**: Applies some minor file normalization when saving files
-- **[Jest runner](https://marketplace.visualstudio.com/items?itemName=firsttris.vscode-jest-runner)**: Provides you with easy way to troubleshoot and debug failing tests
+- **[Vitest](https://marketplace.visualstudio.com/items?itemName=vitest.explorer)**: Provides you with easy way to troubleshoot and debug failing tests
 - **[Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)**: Makes it easy to locally test and tweak your code in a Linux container based development environment.
 
 Most of the time, working natively from vscode will work fine. However, it may happen that the CI cringes because a test fails when ran in a Linux context. The repository contains a ready to use pre-configured Linux based development container for that exact purpose. Activate the vscode Command Palette (`Ctrl + Shift + P`), type `>reopen co` and select `Remote-Containers: Reopen in Container`. Bam! You're now in a Linux environment. And you terminal is now a native `bash`.
@@ -91,16 +91,15 @@ yarn lint.prettier
 
 ### Tests
 
-We run tests in the two environments that OpenLint supports - the browser, and Node.js. Browser tests are run in a headless Chromium browser via Vitest's browser mode, while Node.js tests are run via the Jest test runner.
+We run tests in the two environments that OpenLint supports - the browser, and Node.js. Both are run by Vitest, as two kinds of projects: `browser` runs the tests in a headless Chromium browser via Vitest's browser mode, while `node` and `node-fs` run them in Node.js (the latter swaps `fs` for an in-memory one, which `rulesets` and `ruleset-bundler` need).
 
 Tests should usually be written for both environments, but there are valid cases when you need to write separate tests for each test runner.
-To do so, just create a file with `*.browser.test.ts` suffix or `*.jest.test.ts`. A good example of Jest only tests are the tests covering OpenLint's CLI functionality - something that obviously is not relevant to the browser context.
+To do so, just create a file with `*.browser.test.ts` suffix or `*.node.test.ts`. A good example of Node.js only tests are the tests covering OpenLint's CLI functionality - something that obviously is not relevant to the browser context.
 
 #### Caveats
 
-Since Jest and Vitest are not fully compatible, one has to keep in mind that certain assertions or methods are not available.
-For example, `toMatchSnapshot` or `toMatchInlineSnapshot` are not available for use. `jest.mock` and similar are also missing.
-This is usually not a problem. Things like `fs` are usually mocked globally (we use aliases to accomplish this), thus you don't need to worry too much.
+A test that is not suffixed with `*.node.test.ts` runs in both environments, so it can't rely on Node.js specific modules or APIs.
+This is usually not a problem. Things like `fs` are usually mocked globally (we use aliases in the browser and `__mocks__/fs.ts` in Node.js to accomplish this), thus you don't need to worry too much.
 If you need to setup HTTP mocks or populate FS with some data, we have a dedicated util to do so.
 
 Example:
@@ -131,7 +130,7 @@ serveAssets({
 })
 ```
 
-This works both in Vitest & Jest.
+This works in both the browser and the Node.js run.
 
 #### Usage
 
@@ -141,10 +140,10 @@ Running all tests:
 yarn test
 ```
 
-Running Node.js (jest) tests:
+Running Node.js tests:
 
 ```bash
-yarn test.jest
+yarn test.node
 ```
 
 Running Browser (Vitest) tests (first run requires `yarn playwright install chromium`):
@@ -157,7 +156,7 @@ Running the harness tests (these must pass or the PR merge will be blocked):
 
 ```bash
 # make sure to build the code beforehand if you haven't done it. To do so execute
-yarn build && yarn workspace @openlint/openlint-cli build.binary
+yarn build && yarn workspace openlint build.binary
 
 # then
 yarn test.harness
@@ -172,7 +171,7 @@ yarn test.harness
 5. Build OpenLint: `yarn build`
 6. Run OpenLint from your local installation: `node ./packages/cli/dist/index.js lint [openapi_spec_file] --ruleset /path/to/ruleset.yaml`
 7. Create a new branch for your work: `git checkout -b [name_of_your_new_branch]`
-8. Make changes, add tests, and then run the tests: `yarn test` and `yarn workspace @openlint/openlint-cli build.binary && yarn test.harness`
+8. Make changes, add tests, and then run the tests: `yarn test` and `yarn workspace openlint build.binary && yarn test.harness`
 9. Update the documentation if appropriate. For example, if you added a new rule to an OpenAPI ruleset,
    add a description of the rule in `docs/reference/openapi-rules.md`.
 

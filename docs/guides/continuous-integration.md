@@ -2,56 +2,84 @@
 title: "Continuous Integration"
 ---
 
-Spectral CLI can be run anywhere that npm packages can be installed and run via CLI, which these days is pretty much any CI solution going.
+OpenLint runs in CI the do-it-yourself way: install Node.js and run the `openlint` package from npm. Any CI service that can run Node.js can run it.
 
-Here are some examples of Spectral in CI solutions.
+## What exists today
+
+|                                                                  | Status                                                                                                                                                               |
+| ---------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| npm package [`openlint`](https://www.npmjs.com/package/openlint) | Published. Needs Node.js 22, or 24 and later.                                                                                                                        |
+| Docker image                                                     | None published. The repository has a [`Dockerfile`](https://github.com/openlint/openlint/blob/main/Dockerfile) you can build yourself (see [Docker](#docker) below). |
+| GitHub Action                                                    | None. Run the npm package in a workflow step instead (see [GitHub Actions](#github-actions) below).                                                                  |
+| Plugins or orbs for other CI services                            | None. Each example below is plain configuration.                                                                                                                     |
+
+## Before you start: a ruleset
+
+OpenLint will not lint without a ruleset. Commit a `.openlint.yaml` (or `.openlint.json` or `.openlint.js`) to the root of your repository, or point to one with `--ruleset`. To start with the built-in OpenAPI rules:
+
+```yaml
+extends: ["spectral:oas"]
+```
+
+Without a ruleset, `openlint lint` prints "No ruleset has been found" and lints nothing. See [Rulesets](../getting-started/rulesets.md) for the other built-in rulesets.
+
+## The examples
+
+Every example lints `openapi.yaml`. Change it to the documents you want to lint.
+
+The examples use `-f junit -o <file>` to write the results in the JUnit format, which most CI services can show as test results. Drop those two options to print the results in the build log instead.
+
+## GitHub Actions
+
+Save this as `.github/workflows/openlint.yml`:
+
+```yaml
+name: OpenLint
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npx --yes openlint lint openapi.yaml
+```
 
 ## CircleCI
 
-Users of CircleCI can take this entire file and save it as `.circleci/config.yml`, or move the `lint` job into their existing config.
+Save this as `.circleci/config.yml`, or move the `lint` job into your existing config:
 
 ```yaml
 version: 2.1
 
-orbs:
-  node: circleci/node@4.1
-
 jobs:
   lint:
     docker:
-      - image: cimg/node:15.1
+      - image: cimg/node:lts
     steps:
-      # Checkout the code as the first step.
       - checkout
-      # Create a folder for results to live in
-      - run: "[ -d lint-results ] || mkdir lint-results"
+      - run: mkdir -p lint-results
       - run:
-          name: Run Spectral Lint
-          command: npx @openlint/openlint-cli lint openapi.yaml
-            -o lint-results/junit.xml
-            -f junit
+          name: Run OpenLint
+          command: npx --yes openlint lint openapi.yaml -f junit -o lint-results/junit.xml
       - store_test_results:
           path: lint-results
 
 workflows:
-  sample:
+  lint:
     jobs:
       - lint
 ```
 
-Make sure to change `openapi.yaml` to point to whatever documents you want to lint.
-
-The `-f` (format) flag is used in the script to pick the JUnit output format. This is a standard test format that many CI servers understand, and means you should be able to see the errors in the Test interface.
-
-Learn more about [CircleCI Configuration](https://circleci.com/docs/2.0/config-intro/), or take a look at this [demo repository](https://github.com/philsturgeon/openlint-demo-circleci).
-
-## GitHub Action
-
-Spectral has a pre-built [Spectral GitHub Action](https://github.com/stoplightio/openlint-action) which should speed up implementing Spectral in your GitHub repository.
+Learn more about [CircleCI configuration](https://circleci.com/docs/config-intro/).
 
 ## GitLab
 
-GitLab users can add the following to their `.gitlab-ci.yml` files:
+Add this to your `.gitlab-ci.yml`:
 
 ```yaml
 stages:
@@ -59,11 +87,9 @@ stages:
 
 lint:openlint:
   stage: lint
-  image:
-    name: openlint/openlint
-    entrypoint: [""]
+  image: node:24
   script:
-    - openlint lint -D -f junit -o openlint-report.xml openapi.yaml
+    - npx --yes openlint lint -D -f junit -o openlint-report.xml openapi.yaml
   artifacts:
     when: always
     expire_in: 2 weeks
@@ -71,6 +97,17 @@ lint:openlint:
       junit: $CI_PROJECT_DIR/openlint-report.xml
 ```
 
-Make sure to change `openapi.yaml` to point to whatever documents you want to lint.
+`-D` (`--display-only-failures`) leaves warnings and hints out of the report. With the JUnit report, the results show on the merge request page.
 
-The `-f` (format) flag is used in the script to pick the JUnit output format. This is a standard test format that many CI servers understand, and means you should be able to see the Spectral output on the merge request page.
+## Docker
+
+There is no published image, so build one from the repository's `Dockerfile`. It installs the `openlint` release named in `packages/cli/package.json`:
+
+```bash
+git clone https://github.com/openlint/openlint.git
+cd openlint
+docker build --build-arg NODE_VERSION=$(cat .nvmrc) -t openlint .
+docker run --rm -v "$(pwd):/work" -w /work openlint lint openapi.yaml
+```
+
+Push the image to your own registry if your CI jobs need to pull it.

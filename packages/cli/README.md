@@ -24,11 +24,11 @@
 **Install**
 
 ```bash
-npm install -g @openlint/openlint-cli
+npm install -g openlint
 
 # OR
 
-yarn global add @openlint/openlint-cli
+yarn global add openlint
 ```
 
 Find more [installation methods](https://docs.openlint.org/getting-started/installation) in our documentation.
@@ -36,7 +36,7 @@ Find more [installation methods](https://docs.openlint.org/getting-started/insta
 **Lint**
 
 ```bash
-spectral lint petstore.yaml
+openlint lint petstore.yaml
 ```
 
 ## 📖 Documentation and Community

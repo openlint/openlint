@@ -115,7 +115,7 @@ And the ruleset below:
 }
 ```
 
-Running `spectral lint my-document.yaml` results in the following output:
+Running `openlint lint my-document.yaml` results in the following output:
 
 ```
 /project/User.yaml
@@ -124,7 +124,7 @@ Running `spectral lint my-document.yaml` results in the following output:
 ✖ 1 problem (0 errors, 1 warning, 0 infos, 0 hints)
 ```
 
-While executing `spectral lint User.yaml` outputs:
+While executing `openlint lint User.yaml` outputs:
 
 ```
 No results with a severity of 'error' or higher found!

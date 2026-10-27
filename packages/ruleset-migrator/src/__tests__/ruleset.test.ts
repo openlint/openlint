@@ -1,3 +1,4 @@
+import { afterAll, describe, expect, it } from 'vitest';
 import { vol } from 'memfs';
 import * as path from '@stoplight/path';
 import { format as prettierFormat } from 'prettier/standalone';
@@ -58,6 +59,24 @@ describe('migrator', () => {
         ),
       ).toEqual(await vol.promises.readFile(path.join(dir, `output${ext}`), 'utf8'));
     });
+  });
+
+  it.each([
+    ['openlint:openapi', 'oas'],
+    ['openlint:asyncapi', 'asyncapi'],
+    ['openlint:arazzo', 'arazzo'],
+  ])('should migrate the %s built-in ruleset alias', async (alias, rulesetName) => {
+    const rulesetFile = path.join(cwd, `${rulesetName}-alias.yaml`);
+    await vol.promises.writeFile(rulesetFile, `extends: ${alias}\n`);
+
+    const migratedRuleset = await migrateRuleset(rulesetFile, {
+      format: 'esm',
+      fs: vol as any,
+    });
+
+    expect(migratedRuleset).toMatch(
+      new RegExp(`import\\s*\\{\\s*${rulesetName}\\s*\\}\\s*from\\s*['"]@openlint/openlint-rulesets['"]`),
+    );
   });
 
   it('should support subsequent migrations', async () => {
@@ -410,7 +429,7 @@ export default {
             npmRegistry: 'https://unpkg.com/',
           },
         ),
-      ).rejects.toThrowError("'npmRegistry' option must not be used with commonjs output format.");
+      ).rejects.toThrow("'npmRegistry' option must not be used with commonjs output format.");
     });
   });
 });

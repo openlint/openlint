@@ -1,4 +1,4 @@
-import '@openlint/openlint-test-utils/matchers';
+import { describe, expect, it } from 'vitest';
 
 import { assertValidRuleset, RulesetValidationError } from '../index';
 import invalidRuleset from './__fixtures__/invalid-ruleset';
@@ -40,7 +40,7 @@ describe('JS Ruleset Validation', () => {
   });
 
   it('given invalid ruleset, throws', () => {
-    expect(assertValidRuleset.bind(null, invalidRuleset)).toThrowAggregateError(
+    expect(assertValidRuleset.bind(null, invalidRuleset)).toThrow(
       new AggregateError([
         new RulesetValidationError(
           'invalid-rule-definition',
@@ -80,7 +80,7 @@ describe('JS Ruleset Validation', () => {
   it.each([false, 2, null, 'foo', '12.foo.com'])(
     'given invalid %s documentationUrl in a rule, throws',
     documentationUrl => {
-      expect(assertValidRuleset.bind(null, { documentationUrl, rules: {} })).toThrowAggregateError(
+      expect(assertValidRuleset.bind(null, { documentationUrl, rules: {} })).toThrow(
         new AggregateError([
           new RulesetValidationError('generic-validation-error', 'must be a valid URL', ['documentationUrl']),
         ]),
@@ -98,7 +98,7 @@ describe('JS Ruleset Validation', () => {
             },
           },
         }),
-      ).toThrowAggregateError(
+      ).toThrow(
         new AggregateError([
           new RulesetValidationError('invalid-rule-definition', 'must be a valid URL', [
             'rules',
@@ -186,20 +186,20 @@ describe('JS Ruleset Validation', () => {
     ).not.toThrow();
   });
 
-  it.each<[unknown, RulesetValidationError[]]>([
-    [
-      [[{ rules: {} }, 'test']],
-      [
+  it.for<{ _extends: unknown; errors: RulesetValidationError[] }>([
+    {
+      _extends: [[{ rules: {} }, 'test']],
+      errors: [
         new RulesetValidationError('invalid-extend-definition', 'allowed types are "off", "recommended" and "all"', [
           'extends',
           '0',
           '1',
         ]),
       ],
-    ],
-    [
-      [[{ rules: {} }, 'test'], 'foo'],
-      [
+    },
+    {
+      _extends: [[{ rules: {} }, 'test'], 'foo'],
+      errors: [
         new RulesetValidationError('invalid-extend-definition', 'must be a valid ruleset', ['extends', '1']),
         new RulesetValidationError('invalid-extend-definition', 'allowed types are "off", "recommended" and "all"', [
           'extends',
@@ -207,13 +207,13 @@ describe('JS Ruleset Validation', () => {
           '1',
         ]),
       ],
-    ],
-  ])('recognizes invalid array-ish extends syntax %p', (_extends, errors) => {
+    },
+  ])('recognizes invalid array-ish extends syntax $_extends', ({ _extends, errors }) => {
     expect(
       assertValidRuleset.bind(null, {
         extends: _extends,
       }),
-    ).toThrowAggregateError(new AggregateError(errors));
+    ).toThrow(new AggregateError(errors));
   });
 
   it('recognizes valid ruleset formats syntax', () => {
@@ -225,31 +225,33 @@ describe('JS Ruleset Validation', () => {
     ).not.toThrow();
   });
 
-  it.each([
-    [
-      [2, 'a'],
-      new AggregateError([
+  it.for([
+    {
+      formats: [2, 'a'],
+      error: new AggregateError([
         new RulesetValidationError('invalid-format', 'must be a valid format', ['formats', '0']),
         new RulesetValidationError('invalid-format', 'must be a valid format', ['formats', '1']),
       ]),
-    ],
-    [
-      2,
-      new AggregateError([
+    },
+    {
+      formats: 2,
+      error: new AggregateError([
         new RulesetValidationError('invalid-ruleset-definition', 'must be an array of formats', ['formats']),
       ]),
-    ],
-    [
-      [''],
-      new AggregateError([new RulesetValidationError('invalid-format', 'must be a valid format', ['formats', '0'])]),
-    ],
-  ])('recognizes invalid ruleset %p formats syntax', (formats, error) => {
+    },
+    {
+      formats: [''],
+      error: new AggregateError([
+        new RulesetValidationError('invalid-format', 'must be a valid format', ['formats', '0']),
+      ]),
+    },
+  ])('recognizes invalid ruleset $formats formats syntax', ({ formats, error }) => {
     expect(
       assertValidRuleset.bind(null, {
         formats,
         rules: {},
       }),
-    ).toThrowAggregateError(error);
+    ).toThrow(error);
   });
 
   it('recognizes valid rule formats syntax', () => {
@@ -269,25 +271,25 @@ describe('JS Ruleset Validation', () => {
     ).not.toThrow();
   });
 
-  it.each([
-    [
-      [2, 'a'],
-      new AggregateError([
+  it.for([
+    {
+      formats: [2, 'a'],
+      error: new AggregateError([
         new RulesetValidationError('invalid-format', 'must be a valid format', ['rules', 'rule', 'formats', '0']),
         new RulesetValidationError('invalid-format', 'must be a valid format', ['rules', 'rule', 'formats', '1']),
       ]),
-    ],
-    [
-      2,
-      new AggregateError([
+    },
+    {
+      formats: 2,
+      error: new AggregateError([
         new RulesetValidationError('invalid-rule-definition', 'must be an array of formats', [
           'rules',
           'rule',
           'formats',
         ]),
       ]),
-    ],
-  ])('recognizes invalid rule %p formats syntax', (formats, error) => {
+    },
+  ])('recognizes invalid rule $formats formats syntax', ({ formats, error }) => {
     expect(
       assertValidRuleset.bind(null, {
         rules: {
@@ -300,7 +302,7 @@ describe('JS Ruleset Validation', () => {
           },
         },
       }),
-    ).toThrowAggregateError(error);
+    ).toThrow(error);
   });
 
   describe('overrides validation', () => {
@@ -309,7 +311,7 @@ describe('JS Ruleset Validation', () => {
         assertValidRuleset.bind(null, {
           overrides: null,
         }),
-      ).toThrowAggregateError(
+      ).toThrow(
         new AggregateError([new RulesetValidationError('invalid-ruleset-definition', 'must be array', ['overrides'])]),
       );
     });
@@ -319,7 +321,7 @@ describe('JS Ruleset Validation', () => {
         assertValidRuleset.bind(null, {
           overrides: [],
         }),
-      ).toThrowAggregateError(
+      ).toThrow(
         new AggregateError([
           new RulesetValidationError('invalid-override-definition', 'must not be empty', ['overrides']),
         ]),
@@ -331,7 +333,7 @@ describe('JS Ruleset Validation', () => {
         assertValidRuleset.bind(null, {
           overrides: [2],
         }),
-      ).toThrowAggregateError(
+      ).toThrow(
         new AggregateError([
           new RulesetValidationError(
             'invalid-override-definition',
@@ -347,41 +349,41 @@ describe('JS Ruleset Validation', () => {
         rules: {},
       };
 
-      it.each<[Partial<RulesetDefinition>, RulesetValidationError]>([
-        [
-          { extends: [rulesetA] },
-          new RulesetValidationError(
+      it.for<{ ruleset: Partial<RulesetDefinition>; error: RulesetValidationError }>([
+        {
+          ruleset: { extends: [rulesetA] },
+          error: new RulesetValidationError(
             'invalid-override-definition',
             'must contain rules when JSON Pointers are defined',
             ['overrides', '0'],
           ),
-        ],
-        [
-          { formats: [formatB] },
-          new RulesetValidationError(
+        },
+        {
+          ruleset: { formats: [formatB] },
+          error: new RulesetValidationError(
             'invalid-override-definition',
             'must contain rules when JSON Pointers are defined',
             ['overrides', '0'],
           ),
-        ],
-        [
-          { rules: {}, formats: [formatB] },
-          new RulesetValidationError(
+        },
+        {
+          ruleset: { rules: {}, formats: [formatB] },
+          error: new RulesetValidationError(
             'invalid-override-definition',
             'must not override any other property than rules when JSON Pointers are defined',
             ['overrides', '0'],
           ),
-        ],
-        [
-          { rules: {}, extends: [rulesetA] },
-          new RulesetValidationError(
+        },
+        {
+          ruleset: { rules: {}, extends: [rulesetA] },
+          error: new RulesetValidationError(
             'invalid-override-definition',
             'must not override any other property than rules when JSON Pointers are defined',
             ['overrides', '0'],
           ),
-        ],
-        [
-          {
+        },
+        {
+          ruleset: {
             rules: {
               definition: {
                 given: '$',
@@ -391,13 +393,13 @@ describe('JS Ruleset Validation', () => {
               },
             },
           },
-          new RulesetValidationError(
+          error: new RulesetValidationError(
             'invalid-rule-definition',
             'the value has to be one of: 0, 1, 2, 3 or "error", "warn", "info", "hint", "off"',
             ['overrides', '0', 'rules', 'definition'],
           ),
-        ],
-      ])('given an override containing a pointer and %p, throws', (ruleset, error) => {
+        },
+      ])('given an override containing a pointer and $ruleset, throws', ({ ruleset, error }) => {
         expect(
           assertValidRuleset.bind(null, {
             overrides: [
@@ -407,7 +409,7 @@ describe('JS Ruleset Validation', () => {
               },
             ],
           }),
-        ).toThrowAggregateError(new AggregateError([error]));
+        ).toThrow(new AggregateError([error]));
       });
 
       it.each<RulesetOverridesDefinition>([
@@ -468,7 +470,7 @@ describe('JS Ruleset Validation', () => {
           rules: {},
           aliases: null,
         }),
-      ).toThrowAggregateError(
+      ).toThrow(
         new AggregateError([new RulesetValidationError('invalid-ruleset-definition', 'must be object', ['aliases'])]),
       );
     });
@@ -481,7 +483,7 @@ describe('JS Ruleset Validation', () => {
             alias: [value],
           },
         }),
-      ).toThrowAggregateError(
+      ).toThrow(
         new AggregateError([
           new RulesetValidationError(
             'invalid-alias-definition',
@@ -500,7 +502,7 @@ describe('JS Ruleset Validation', () => {
             [key]: ['$.foo'],
           },
         }),
-      ).toThrowAggregateError(
+      ).toThrow(
         new AggregateError([
           new RulesetValidationError(
             'invalid-alias-definition',
@@ -511,47 +513,47 @@ describe('JS Ruleset Validation', () => {
       );
     });
 
-    it.each<[unknown[], RulesetValidationError[]]>([
-      [
-        [''],
-        [
+    it.for<{ value: unknown[]; errors: RulesetValidationError[] }>([
+      {
+        value: [''],
+        errors: [
           new RulesetValidationError(
             'invalid-alias-definition',
             'must be a valid JSON Path expression or a reference to the existing Alias optionally paired with a JSON Path expression subset',
             ['aliases', 'PathItem', '0'],
           ),
         ],
-      ],
-      [
-        ['foo'],
-        [
+      },
+      {
+        value: ['foo'],
+        errors: [
           new RulesetValidationError(
             'invalid-alias-definition',
             'must be a valid JSON Path expression or a reference to the existing Alias optionally paired with a JSON Path expression subset',
             ['aliases', 'PathItem', '0'],
           ),
         ],
-      ],
-      [
-        [],
-        [
+      },
+      {
+        value: [],
+        errors: [
           new RulesetValidationError('invalid-alias-definition', 'must be a non-empty array of expressions', [
             'aliases',
             'PathItem',
           ]),
         ],
-      ],
-      [
-        [0],
-        [
+      },
+      {
+        value: [0],
+        errors: [
           new RulesetValidationError(
             'invalid-alias-definition',
             'must be a valid JSON Path expression or a reference to the existing Alias optionally paired with a JSON Path expression subset',
             ['aliases', 'PathItem', '0'],
           ),
         ],
-      ],
-    ])('given %s value used as an alias, throws', (value, errors) => {
+      },
+    ])('given $value value used as an alias, throws', ({ value, errors }) => {
       expect(
         assertValidRuleset.bind(null, {
           rules: {},
@@ -559,7 +561,7 @@ describe('JS Ruleset Validation', () => {
             PathItem: value,
           },
         }),
-      ).toThrowAggregateError(new AggregateError(errors));
+      ).toThrow(new AggregateError(errors));
     });
 
     describe('given scoped aliases', () => {
@@ -571,7 +573,7 @@ describe('JS Ruleset Validation', () => {
               alias: {},
             },
           }),
-        ).toThrowAggregateError(
+        ).toThrow(
           new AggregateError([
             new RulesetValidationError(
               'invalid-alias-definition',
@@ -646,7 +648,7 @@ describe('JS Ruleset Validation', () => {
               },
             },
           }),
-        ).toThrowAggregateError(
+        ).toThrow(
           new AggregateError([
             new RulesetValidationError('invalid-alias-definition', 'must be array', [
               'aliases',
@@ -667,7 +669,7 @@ describe('JS Ruleset Validation', () => {
               },
             },
           }),
-        ).toThrowAggregateError(
+        ).toThrow(
           new AggregateError([
             new RulesetValidationError(
               'invalid-alias-definition',
@@ -688,7 +690,7 @@ describe('JS Ruleset Validation', () => {
               },
             },
           }),
-        ).toThrowAggregateError(
+        ).toThrow(
           new AggregateError([
             new RulesetValidationError(
               'invalid-alias-definition',
@@ -718,7 +720,7 @@ describe('JS Ruleset Validation', () => {
               },
             },
           }),
-        ).toThrowAggregateError(
+        ).toThrow(
           new AggregateError([
             new RulesetValidationError('invalid-format', 'must be a valid format', [
               'aliases',
@@ -759,7 +761,7 @@ describe('JS Ruleset Validation', () => {
               },
             },
           }),
-        ).toThrowAggregateError(
+        ).toThrow(
           new AggregateError([
             new RulesetValidationError(
               'invalid-given-definition',
@@ -785,7 +787,7 @@ describe('JS Ruleset Validation', () => {
             },
           },
         }),
-      ).toThrowAggregateError(
+      ).toThrow(
         new AggregateError([
           new RulesetValidationError('undefined-function', 'Function is not defined', [
             'rules',
@@ -1078,7 +1080,7 @@ describe('JS Ruleset Validation', () => {
         assertValidRuleset.bind(null, {
           extends: [ruleset],
         }),
-      ).toThrowAggregateError(
+      ).toThrow(
         new AggregateError([
           new RulesetValidationError('undefined-alias', 'Alias "UndefinedAlias" does not exist', [
             'extends',
@@ -1165,20 +1167,20 @@ describe('JSON Ruleset Validation', () => {
     ).not.toThrow();
   });
 
-  it.each<[unknown, RulesetValidationError[]]>([
-    [
-      [['test', 'test']],
-      [
+  it.for<{ _extends: unknown; errors: RulesetValidationError[] }>([
+    {
+      _extends: [['test', 'test']],
+      errors: [
         new RulesetValidationError('invalid-extend-definition', 'allowed types are "off", "recommended" and "all"', [
           'extends',
           '0',
           '1',
         ]),
       ],
-    ],
-    [
-      [['bar', 'test'], {}],
-      [
+    },
+    {
+      _extends: [['bar', 'test'], {}],
+      errors: [
         new RulesetValidationError('invalid-extend-definition', 'must be string', ['extends', '1']),
         new RulesetValidationError('invalid-extend-definition', `allowed types are "off", "recommended" and "all"`, [
           'extends',
@@ -1186,8 +1188,8 @@ describe('JSON Ruleset Validation', () => {
           '1',
         ]),
       ],
-    ],
-  ])('recognizes invalid array-ish extends syntax %p', (_extends, errors) => {
+    },
+  ])('recognizes invalid array-ish extends syntax $_extends', ({ _extends, errors }) => {
     expect(
       assertValidRuleset.bind(
         null,
@@ -1196,7 +1198,7 @@ describe('JSON Ruleset Validation', () => {
         },
         'json',
       ),
-    ).toThrowAggregateError(new AggregateError(errors));
+    ).toThrow(new AggregateError(errors));
   });
 
   it('recognizes valid ruleset formats syntax', () => {
@@ -1212,17 +1214,23 @@ describe('JSON Ruleset Validation', () => {
     ).not.toThrow();
   });
 
-  it.each<[unknown, RulesetValidationError[]]>([
-    [
-      [2, null],
-      [
+  it.for<{ formats: unknown; errors: RulesetValidationError[] }>([
+    {
+      formats: [2, null],
+      errors: [
         new RulesetValidationError('invalid-format', 'must be a valid format', ['formats', '0']),
         new RulesetValidationError('invalid-format', 'must be a valid format', ['formats', '1']),
       ],
-    ],
-    [2, [new RulesetValidationError('invalid-ruleset-definition', 'must be an array of formats', ['formats'])]],
-    [[null], [new RulesetValidationError('invalid-format', 'must be a valid format', ['formats', '0'])]],
-  ])('recognizes invalid ruleset %p formats syntax', (formats, errors) => {
+    },
+    {
+      formats: 2,
+      errors: [new RulesetValidationError('invalid-ruleset-definition', 'must be an array of formats', ['formats'])],
+    },
+    {
+      formats: [null],
+      errors: [new RulesetValidationError('invalid-format', 'must be a valid format', ['formats', '0'])],
+    },
+  ])('recognizes invalid ruleset $formats formats syntax', ({ formats, errors }) => {
     expect(
       assertValidRuleset.bind(
         null,
@@ -1232,7 +1240,7 @@ describe('JSON Ruleset Validation', () => {
         },
         'json',
       ),
-    ).toThrowAggregateError(new AggregateError(errors));
+    ).toThrow(new AggregateError(errors));
   });
 
   it('recognizes valid rule formats syntax', () => {
@@ -1256,25 +1264,25 @@ describe('JSON Ruleset Validation', () => {
     ).not.toThrow();
   });
 
-  it.each<[unknown, RulesetValidationError[]]>([
-    [
-      [2, null],
-      [
+  it.for<{ formats: unknown; errors: RulesetValidationError[] }>([
+    {
+      formats: [2, null],
+      errors: [
         new RulesetValidationError('invalid-format', 'must be a valid format', ['rules', 'rule', 'formats', '0']),
         new RulesetValidationError('invalid-format', 'must be a valid format', ['rules', 'rule', 'formats', '1']),
       ],
-    ],
-    [
-      2,
-      [
+    },
+    {
+      formats: 2,
+      errors: [
         new RulesetValidationError('invalid-rule-definition', 'must be an array of formats', [
           'rules',
           'rule',
           'formats',
         ]),
       ],
-    ],
-  ])('recognizes invalid rule %p formats syntax', (formats, errors) => {
+    },
+  ])('recognizes invalid rule $formats formats syntax', ({ formats, errors }) => {
     expect(
       assertValidRuleset.bind(
         null,
@@ -1291,7 +1299,7 @@ describe('JSON Ruleset Validation', () => {
         },
         'json',
       ),
-    ).toThrowAggregateError(new AggregateError(errors));
+    ).toThrow(new AggregateError(errors));
   });
 });
 
@@ -1307,29 +1315,23 @@ describe('Ruleset Validation source context', () => {
       },
     };
 
-    let caught: AggregateError | undefined;
-    try {
-      assertValidRuleset(invalidRuleset, 'js', sourceContext);
-    } catch (e) {
-      caught = e as AggregateError;
-    }
-
-    expect(caught).toBeInstanceOf(AggregateError);
-
-    const severityError = (caught as AggregateError).errors.find(
-      (e: RulesetValidationError) => e.code === 'invalid-severity',
-    ) as RulesetValidationError;
-    expect(severityError.source).toBe('/tmp/ruleset.yaml');
-    expect(severityError.range).toEqual({
-      start: { line: 7, character: 14 },
-      end: { line: 7, character: 22 },
-    });
-
-    const otherError = (caught as AggregateError).errors.find(
-      (e: RulesetValidationError) => e.code !== 'invalid-severity',
-    ) as RulesetValidationError;
-    expect(otherError.source).toBe('/tmp/ruleset.yaml');
-    expect(otherError.range).toBeUndefined();
+    expect(() => assertValidRuleset(invalidRuleset, 'js', sourceContext)).toThrow(
+      expect.objectContaining({
+        name: 'AggregateError',
+        errors: expect.arrayContaining([
+          expect.objectContaining({
+            code: 'invalid-severity',
+            source: '/tmp/ruleset.yaml',
+            range: { start: { line: 7, character: 14 }, end: { line: 7, character: 22 } },
+          }),
+          expect.objectContaining({
+            code: 'invalid-rule-definition',
+            source: '/tmp/ruleset.yaml',
+            range: undefined,
+          }),
+        ]),
+      }),
+    );
   });
 
   it('attaches source to early-throw errors when sourceContext is provided', () => {
@@ -1357,17 +1359,13 @@ describe('Ruleset Validation source context', () => {
   });
 
   it('leaves range and source undefined when sourceContext is omitted', () => {
-    let caught: AggregateError | undefined;
-    try {
-      assertValidRuleset(invalidRuleset, 'js');
-    } catch (e) {
-      caught = e as AggregateError;
-    }
+    const withoutLocation = expect.objectContaining({ source: undefined, range: undefined });
 
-    expect(caught).toBeInstanceOf(AggregateError);
-    for (const e of (caught as AggregateError).errors as RulesetValidationError[]) {
-      expect(e.source).toBeUndefined();
-      expect(e.range).toBeUndefined();
-    }
+    expect(() => assertValidRuleset(invalidRuleset, 'js')).toThrow(
+      expect.objectContaining({
+        name: 'AggregateError',
+        errors: [withoutLocation, withoutLocation, withoutLocation],
+      }),
+    );
   });
 });

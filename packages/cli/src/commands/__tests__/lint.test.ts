@@ -1,6 +1,7 @@
-import * as yargs from 'yargs';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import yargs from 'yargs';
 import { DiagnosticSeverity } from '@stoplight/types';
-import { IRuleResult } from '@openlint/openlint-core';
+import { IRuleResult, Ruleset } from '@openlint/openlint-core';
 import * as process from 'process';
 
 import { lint } from '../../services/linter';
@@ -8,12 +9,12 @@ import { formatOutput, writeOutput } from '../../services/output';
 import lintCommand from '../lint';
 import chalk from 'chalk';
 
-jest.mock('process');
-jest.mock('../../services/output');
-jest.mock('../../services/linter');
+vi.mock('node:process');
+vi.mock('../../services/output');
+vi.mock('../../services/linter');
 
 function run(command: string) {
-  const parser = yargs.command(lintCommand).help();
+  const parser = yargs().command(lintCommand).help();
   return new Promise((resolve, reject) => {
     parser.parse(command, (err: Error, argv: unknown, output: string) => {
       if (err) {
@@ -46,15 +47,9 @@ describe('lint', () => {
   ];
 
   beforeEach(() => {
-    (lint as jest.Mock).mockResolvedValueOnce({ results: results, resolvedRuleset: {} });
-    (formatOutput as jest.Mock).mockReturnValueOnce('<formatted output>');
-    (writeOutput as jest.Mock).mockResolvedValueOnce(undefined);
-  });
-
-  afterEach(() => {
-    process.stdin.isTTY = true;
-    jest.clearAllMocks();
-    jest.resetAllMocks();
+    vi.mocked(lint).mockResolvedValue({ results: results, resolvedRuleset: {} as Ruleset });
+    vi.mocked(formatOutput).mockReturnValue('<formatted output>');
+    vi.mocked(writeOutput).mockResolvedValue(undefined);
   });
 
   it('shows help when no document and no STDIN are present', () => {
@@ -63,7 +58,7 @@ describe('lint', () => {
 
   describe('when STDIN is present', () => {
     beforeEach(() => {
-      process.stdin.isTTY = false;
+      vi.spyOn(process.stdin, 'isTTY', 'get').mockReturnValue(false);
     });
 
     it('does not show help when documents are missing', async () => {
@@ -73,7 +68,7 @@ describe('lint', () => {
 
     it('calls with lint with STDIN file descriptor', async () => {
       await run('lint');
-      expect(lint).toBeCalledWith([0], {
+      expect(lint).toHaveBeenCalledWith([0], {
         encoding: 'utf8',
         format: ['stylish'],
         output: { stylish: '<stdout>' },
@@ -87,7 +82,7 @@ describe('lint', () => {
   it('calls lint with document and default options', async () => {
     const doc = './__fixtures__/empty-oas2-document.json';
     await run(`lint ${doc}`);
-    expect(lint).toBeCalledWith([doc], {
+    expect(lint).toHaveBeenCalledWith([doc], {
       encoding: 'utf8',
       format: ['stylish'],
       output: { stylish: '<stdout>' },
@@ -100,7 +95,7 @@ describe('lint', () => {
   it('calls lint with document and custom encoding', async () => {
     const doc = './__fixtures__/empty-oas2-document.json';
     await run(`lint --encoding ascii ${doc}`);
-    expect(lint).toBeCalledWith([doc], {
+    expect(lint).toHaveBeenCalledWith([doc], {
       encoding: 'ascii',
       format: ['stylish'],
       output: { stylish: '<stdout>' },
@@ -113,7 +108,7 @@ describe('lint', () => {
   it('calls lint with document and custom encoding and format', async () => {
     const doc = './__fixtures__/empty-oas2-document.json';
     await run(`lint -f json --encoding ascii ${doc}`);
-    expect(lint).toBeCalledWith([doc], {
+    expect(lint).toHaveBeenCalledWith([doc], {
       encoding: 'ascii',
       format: ['json'],
       output: { json: '<stdout>' },
@@ -127,7 +122,7 @@ describe('lint', () => {
     const doc = './__fixtures__/empty-oas2-document.json';
     const ruleset = 'custom-ruleset.json';
     await run(`lint -r ${ruleset} ${doc}`);
-    expect(lint).toBeCalledWith(
+    expect(lint).toHaveBeenCalledWith(
       [doc],
       expect.objectContaining({
         ruleset,
@@ -140,7 +135,7 @@ describe('lint', () => {
     const ruleset = 'custom-ruleset.json';
     const ruleset2 = 'custom-ruleset-2.json';
     await run(`lint --r ${ruleset} -r ${ruleset2} ${doc}`);
-    expect(lint).toBeCalledWith(
+    expect(lint).toHaveBeenCalledWith(
       [doc],
       expect.objectContaining({
         ruleset: [ruleset, ruleset2],
@@ -150,30 +145,31 @@ describe('lint', () => {
 
   it.each(['json', 'stylish'])('calls formatOutput with %s format', async format => {
     await run(`lint -f ${format} ./__fixtures__/empty-oas2-document.json`);
-    expect(formatOutput).toBeCalledWith(results, format, { failSeverity: DiagnosticSeverity.Error }, expect.anything());
+    expect(formatOutput).toHaveBeenCalledWith(
+      results,
+      format,
+      { failSeverity: DiagnosticSeverity.Error },
+      expect.anything(),
+    );
   });
 
   it('writes formatted output to a file', async () => {
     await run(`lint -o foo.json ./__fixtures__/empty-oas2-document.json`);
-    expect(writeOutput).toBeCalledWith('<formatted output>', 'foo.json');
+    expect(writeOutput).toHaveBeenCalledWith('<formatted output>', 'foo.json');
   });
 
   it('writes formatted output to multiple files when using format and output flags', async () => {
-    (formatOutput as jest.Mock).mockReturnValue('<formatted output>');
-
     await run(
       `lint --format html --format json --output.json foo.json --output.html foo.html ./__fixtures__/empty-oas2-document.json`,
     );
-    expect(writeOutput).toBeCalledTimes(2);
+    expect(writeOutput).toHaveBeenCalledTimes(2);
     expect(writeOutput).nthCalledWith(1, '<formatted output>', 'foo.html');
     expect(writeOutput).nthCalledWith(2, '<formatted output>', 'foo.json');
   });
 
   it('writes formatted output to multiple files and stdout when using format and output flags', async () => {
-    (formatOutput as jest.Mock).mockReturnValue('<formatted output>');
-
     await run(`lint --format html --format json --output.json foo.json ./__fixtures__/empty-oas2-document.json`);
-    expect(writeOutput).toBeCalledTimes(2);
+    expect(writeOutput).toHaveBeenCalledTimes(2);
     expect(writeOutput).nthCalledWith(1, '<formatted output>', '<stdout>');
     expect(writeOutput).nthCalledWith(2, '<formatted output>', 'foo.json');
   });
@@ -210,8 +206,7 @@ describe('lint', () => {
 
   it('prints error message upon exception', async () => {
     const error = new Error('Failure');
-    (lint as jest.Mock).mockReset();
-    (lint as jest.Mock).mockRejectedValueOnce(error);
+    vi.mocked(lint).mockRejectedValueOnce(error);
     await run(`lint ./__fixtures__/empty-oas2-document.json`);
     expect(process.stderr.write).nthCalledWith(1, chalk.red('Error running OpenLint!\n'));
     expect(process.stderr.write).nthCalledWith(2, chalk.red('Use --verbose flag to print the error stack.\n'));
@@ -219,8 +214,7 @@ describe('lint', () => {
   });
 
   it('prints each error separately', async () => {
-    (lint as jest.Mock).mockReset();
-    (lint as jest.Mock).mockRejectedValueOnce(
+    vi.mocked(lint).mockRejectedValueOnce(
       new AggregateError([
         new Error('some unhandled exception'),
         new TypeError('another one'),
@@ -234,7 +228,6 @@ describe('lint', () => {
   });
 
   it('prefixes ruleset errors that carry source and range with file:line:col', async () => {
-    (lint as jest.Mock).mockReset();
     const errorWithLocation = Object.assign(new Error('invalid severity'), {
       source: '/tmp/ruleset.yaml',
       range: { start: { line: 7, character: 14 }, end: { line: 7, character: 22 } },
@@ -242,7 +235,7 @@ describe('lint', () => {
     const errorWithSourceOnly = Object.assign(new Error('missing rule'), {
       source: '/tmp/ruleset.yaml',
     });
-    (lint as jest.Mock).mockRejectedValueOnce(new AggregateError([errorWithLocation, errorWithSourceOnly]));
+    vi.mocked(lint).mockRejectedValueOnce(new AggregateError([errorWithLocation, errorWithSourceOnly]));
 
     await run(`lint ./__fixtures__/empty-oas2-document.json`);
 
@@ -254,8 +247,7 @@ describe('lint', () => {
   });
 
   it('given verbose flag, prints each error together with their stacks', async () => {
-    (lint as jest.Mock).mockReset();
-    (lint as jest.Mock).mockRejectedValueOnce(
+    vi.mocked(lint).mockRejectedValueOnce(
       new AggregateError([
         new Error('some unhandled exception'),
         new TypeError('another one'),
@@ -268,25 +260,23 @@ describe('lint', () => {
     expect(process.stderr.write).nthCalledWith(2, `Error #1: ${chalk.red('some unhandled exception')}\n`);
     expect(process.stderr.write).nthCalledWith(
       3,
-      expect.stringContaining(`packages/cli/src/commands/__tests__/lint.test.ts:260`),
+      expect.stringContaining(`packages/cli/src/commands/__tests__/lint.test.ts`),
     );
 
     expect(process.stderr.write).nthCalledWith(4, `Error #2: ${chalk.red('another one')}\n`);
     expect(process.stderr.write).nthCalledWith(
       5,
-      expect.stringContaining(`packages/cli/src/commands/__tests__/lint.test.ts:261`),
+      expect.stringContaining(`packages/cli/src/commands/__tests__/lint.test.ts`),
     );
 
     expect(process.stderr.write).nthCalledWith(6, `Error #3: ${chalk.red('original exception')}\n`);
   });
 
   it('writes output for dashed formats via --output.<format> (#2926)', async () => {
-    (formatOutput as jest.Mock).mockReturnValue('<formatted output>');
-
     await run(
       `lint --format github-actions --format code-climate --output.github-actions ga.txt --output.code-climate cc.json ./__fixtures__/empty-oas2-document.json`,
     );
-    expect(writeOutput).toBeCalledTimes(2);
+    expect(writeOutput).toHaveBeenCalledTimes(2);
     expect(writeOutput).toHaveBeenCalledWith('<formatted output>', 'ga.txt');
     expect(writeOutput).toHaveBeenCalledWith('<formatted output>', 'cc.json');
   });

@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, test } from 'vitest';
 import { Parser } from 'xml2js';
 import { junit } from '../junit';
 import { DiagnosticSeverity } from '@stoplight/types';

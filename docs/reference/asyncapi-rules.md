@@ -4,7 +4,7 @@ title: "AsyncAPI Rules"
 
 Spectral has a built-in "asyncapi" ruleset for the [AsyncAPI Specification](https://asyncapi.com).
 
-In your ruleset file you can add `extends: "spectral:asyncapi"` and you'll get all of the following rules applied.
+In your ruleset file you can add `extends: "openlint:asyncapi"` and you'll get all of the following rules applied.
 
 `Recommended` indicates whether a rule is enabled by default. `Default severity when enabled` is the severity the rule reports when active.
 

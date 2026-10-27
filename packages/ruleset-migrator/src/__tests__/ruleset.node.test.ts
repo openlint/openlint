@@ -1,3 +1,4 @@
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import * as path from '@stoplight/path';
 import * as fs from 'fs';
 import { migrateRuleset } from '../index';

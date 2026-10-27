@@ -1,4 +1,4 @@
-import '@openlint/openlint-test-utils/matchers';
+import { describe, expect, it } from 'vitest';
 
 import { RulesetValidationError } from '@openlint/openlint-core';
 import testFunction from './__helpers__/tester';
@@ -95,7 +95,7 @@ describe('Core Functions / UnreferencedReusableObject', () => {
         ],
       ],
     ])('given invalid %p options, should throw', async (opts, errors) => {
-      await expect(runUnreferencedReusableObject({}, opts)).rejects.toThrowAggregateError(new AggregateError(errors));
+      await expect(runUnreferencedReusableObject({}, opts)).rejects.toThrow(new AggregateError(errors));
     });
   });
 });

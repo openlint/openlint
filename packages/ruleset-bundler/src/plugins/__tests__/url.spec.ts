@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it } from 'vitest';
 import * as fs from 'fs';
 import { serveAssets, mockResponses } from '@openlint/openlint-test-utils';
 import { fetch } from '@openlint/openlint-runtime';
@@ -145,6 +146,6 @@ export default {
         target: 'node',
         plugins: [url(io), virtualFs(io)],
       }),
-    ).rejects.toThrowError(/Could not load https:\/\/esm.sh\/lodash/);
+    ).rejects.toThrow(/Could not load https:\/\/esm.sh\/lodash/);
   });
 });

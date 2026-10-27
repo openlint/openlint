@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { oas2, oas3, oas3_0, oas3_1, oas3_2 } from '../openapi';
 
 describe('OpenAPI format', () => {

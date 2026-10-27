@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { traverseObjUntilRef } from '..';
 
 describe('$ref utils', () => {
