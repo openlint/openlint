@@ -1,3 +1,4 @@
+import { describe, expect, test, vi } from 'vitest';
 import { IParsedResult, isParsedResult } from '../document';
 
 describe('isParsedResult util', () => {
@@ -29,7 +30,7 @@ describe('isParsedResult util', () => {
     ).toBe(false);
 
     const obj: IParsedResult = {
-      getLocationForJsonPath: jest.fn(),
+      getLocationForJsonPath: vi.fn(),
       parsed: {
         data: {},
         ast: {},

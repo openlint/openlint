@@ -1,9 +1,10 @@
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { vol } from 'memfs';
 import * as path from '@stoplight/path';
 import { migrateRuleset } from '..';
 
 // Mock requireResolve
-jest.mock('../requireResolve');
+vi.mock('../requireResolve');
 
 const cwd = '/test-browser-compat';
 
@@ -15,13 +16,13 @@ describe('Browser Compatibility Integration Tests', () => {
 
   afterEach(() => {
     vol.reset();
-    jest.resetModules();
+    vi.resetModules();
   });
 
   describe('requireResolve as undefined (standard browser environment)', () => {
     beforeEach(() => {
       // Simulate browser environment where requireResolve is undefined
-      jest.doMock('../requireResolve', () => ({
+      vi.doMock('../requireResolve', () => ({
         default: undefined,
       }));
     });
@@ -78,7 +79,7 @@ describe('Browser Compatibility Integration Tests', () => {
   describe('requireResolve as empty object (webpack issue)', () => {
     beforeEach(() => {
       // Simulate webpack/bundler returning empty object
-      jest.doMock('../requireResolve', () => ({
+      vi.doMock('../requireResolve', () => ({
         default: {},
       }));
     });
@@ -132,7 +133,7 @@ rules:
 
   describe('requireResolve as function (Node.js environment)', () => {
     beforeEach(() => {
-      const mockResolve = jest.fn((id: string) => {
+      const mockResolve = vi.fn((id: string) => {
         // Simulate Node.js require.resolve behavior
         if (id.startsWith('@openlint/openlint-')) {
           return path.join('/node_modules', id, 'index.js');
@@ -140,13 +141,13 @@ rules:
         return null;
       });
 
-      jest.doMock('../requireResolve', () => ({
+      vi.doMock('../requireResolve', () => ({
         default: mockResolve,
       }));
     });
 
     it('should call requireResolve when available', async () => {
-      const requireResolve = require('../requireResolve').default;
+      const requireResolve = (await import('../requireResolve')).default;
 
       vol.writeFileSync(
         path.join(cwd, 'ruleset.json'),
@@ -189,7 +190,7 @@ rules:
         }),
       );
 
-      jest.doMock('../requireResolve', () => ({
+      vi.doMock('../requireResolve', () => ({
         default: undefined, // Browser environment
       }));
 
@@ -222,8 +223,8 @@ rules:
           }),
         );
 
-        jest.resetModules();
-        jest.doMock('../requireResolve', () => ({
+        vi.resetModules();
+        vi.doMock('../requireResolve', () => ({
           default: value,
         }));
 
@@ -240,7 +241,7 @@ rules:
 
   describe('CommonJS format', () => {
     it('should work in browser mode with commonjs format', async () => {
-      jest.doMock('../requireResolve', () => ({
+      vi.doMock('../requireResolve', () => ({
         default: {},
       }));
 
@@ -266,7 +267,7 @@ rules:
 
   describe('Error handling', () => {
     it('should not mask other errors when requireResolve is unavailable', async () => {
-      jest.doMock('../requireResolve', () => ({
+      vi.doMock('../requireResolve', () => ({
         default: undefined,
       }));
 

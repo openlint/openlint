@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest';
 import { getRedundantProps } from '../getRedundantProps';
 
 describe('getRedundantProps', () => {

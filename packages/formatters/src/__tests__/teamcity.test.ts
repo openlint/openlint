@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest';
 import { DiagnosticSeverity } from '@stoplight/types';
 import { teamcity } from '../teamcity';
 

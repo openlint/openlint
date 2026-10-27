@@ -1,8 +1,8 @@
+import { beforeEach, describe, expect, it, vi, type MockInstance } from 'vitest';
 import type { JSONSchema6 as JSONSchema } from 'json-schema';
 import schema from '../schema';
 import { RulesetValidationError } from '@openlint/openlint-core';
 import testFunction from './__helpers__/tester';
-import '@openlint/openlint-test-utils/matchers';
 
 const runSchema = testFunction.bind(null, schema);
 
@@ -168,7 +168,7 @@ describe('Core Functions / Schema', () => {
   });
 
   describe('when schema defines unknown format', () => {
-    let warnSpy: jest.SpyInstance;
+    let warnSpy: MockInstance<typeof console.warn>;
 
     const schema = {
       type: 'string',
@@ -176,11 +176,7 @@ describe('Core Functions / Schema', () => {
     };
 
     beforeEach(() => {
-      warnSpy = jest.spyOn(console, 'warn');
-    });
-
-    afterEach(() => {
-      warnSpy.mockRestore();
+      warnSpy = vi.spyOn(console, 'warn');
     });
 
     it('does not log a warning in the console', async () => {
@@ -546,7 +542,7 @@ describe('Core Functions / Schema', () => {
         ],
       ],
     ])('given invalid %p options, should throw', async (opts, errors) => {
-      await expect(runSchema([], opts)).rejects.toThrowAggregateError(new AggregateError(errors));
+      await expect(runSchema([], opts)).rejects.toThrow(new AggregateError(errors));
     });
   });
 });

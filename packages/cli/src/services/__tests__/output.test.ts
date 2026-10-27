@@ -1,18 +1,24 @@
+import { describe, expect, it, vi } from 'vitest';
 import { DiagnosticSeverity } from '@stoplight/types';
 import * as fs from 'fs';
 import * as process from 'process';
+import { Ruleset } from '@openlint/openlint-core';
 import * as formatters from '@openlint/openlint-formatters';
 import { OutputFormat } from '../config';
 import { formatOutput, writeOutput } from '../output';
 
-jest.mock('@openlint/openlint-formatters');
-jest.mock('fs', () => ({
-  readFileSync: jest.requireActual('fs').readFileSync,
-  promises: {
-    writeFile: jest.fn().mockResolvedValue(void 0),
-  },
-}));
-jest.mock('process');
+vi.mock('@openlint/openlint-formatters');
+vi.mock('fs', async importOriginal => {
+  const actual = await importOriginal<typeof import('fs')>();
+  return {
+    ...actual,
+    promises: {
+      ...actual.promises,
+      writeFile: vi.fn<typeof actual.promises.writeFile>().mockResolvedValue(undefined),
+    },
+  };
+});
+vi.mock('node:process');
 
 describe('Output service', () => {
   describe('formatOutput', () => {
@@ -38,8 +44,10 @@ describe('Output service', () => {
       ];
 
       const output = `value for ${format}`;
-      (formatters[format] as jest.Mock).mockReturnValueOnce(output);
-      expect(formatOutput(results, format as OutputFormat, { failSeverity: DiagnosticSeverity.Error })).toEqual(output);
+      vi.mocked(formatters[format as keyof typeof formatters]).mockReturnValueOnce(output);
+      expect(
+        formatOutput(results, format as OutputFormat, { failSeverity: DiagnosticSeverity.Error }, {} as Ruleset),
+      ).toEqual(output);
     });
   });
 
@@ -48,12 +56,12 @@ describe('Output service', () => {
       const output = '{}';
       const outputFile = 'foo.json';
       expect(await writeOutput(output, outputFile)).toBeUndefined();
-      expect(fs.promises.writeFile).toBeCalledWith(outputFile, output);
+      expect(fs.promises.writeFile).toHaveBeenCalledWith(outputFile, output);
     });
 
     it('given <stdout>, print output to console', async () => {
       const output = '{}';
-      const writeMock = jest.spyOn(process.stdout, 'write').mockImplementation((chunk: any, callback?: any) => {
+      const writeMock = vi.spyOn(process.stdout, 'write').mockImplementation((chunk: any, callback?: any) => {
         if (typeof callback === 'function') {
           callback();
         }
@@ -62,8 +70,6 @@ describe('Output service', () => {
 
       expect(await writeOutput(output, '<stdout>')).toBeUndefined();
       expect(writeMock).toHaveBeenCalledWith(output, expect.any(Function));
-
-      writeMock.mockRestore();
     });
   });
 });

@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { join } from '@stoplight/path';
 import * as fs from 'fs';
 import { readFileDescriptor } from '../readFileDescriptor';
@@ -16,7 +17,7 @@ end
     });
 
     it('throws when fd cannot be accessed', () => {
-      return expect(readFileDescriptor(2147483647, { encoding: 'utf8' })).rejects.toThrow();
+      return expect(readFileDescriptor(2147483647, { encoding: 'utf8' })).rejects.toThrow(/^EBADF/);
     });
   });
 });

@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, test, vi, type Mock } from 'vitest';
 import { falsy, pattern, truthy } from '@openlint/openlint-functions';
 import { DiagnosticSeverity } from '@stoplight/types';
 import { parse } from '@stoplight/yaml';
@@ -5,6 +6,7 @@ import * as Parsers from '@openlint/openlint-parsers';
 import { Resolver } from '@openlint/openlint-ref-resolver';
 
 import { IParsedResult } from '../document';
+import type { RulesetFunction } from '../types';
 import { Document, OpenLint, Format, RulesetDefinition, Ruleset } from '..';
 import { normalize } from '@stoplight/path';
 import * as path from '@stoplight/path';
@@ -43,7 +45,7 @@ describe('linter', () => {
           message: '',
           given: '$.responses',
           then: {
-            function: jest.fn(),
+            function: vi.fn() as unknown as RulesetFunction,
           },
         },
       },
@@ -111,7 +113,7 @@ describe('linter', () => {
         },
         foo: null,
       }),
-    ).rejects.toThrow();
+    ).rejects.toThrow("'foo' is not defined");
   });
 
   test('should return all properties matching 4xx response code', async () => {
@@ -914,12 +916,12 @@ responses:: !!foo
   });
 
   describe('functional tests for the then statement', () => {
-    let fakeLintingFunction: jest.Mock;
-    let fakeLintingFunction2: jest.Mock;
+    let fakeLintingFunction: Mock<RulesetFunction>;
+    let fakeLintingFunction2: Mock<RulesetFunction>;
 
     beforeEach(() => {
-      fakeLintingFunction = jest.fn();
-      fakeLintingFunction2 = jest.fn();
+      fakeLintingFunction = vi.fn<RulesetFunction>();
+      fakeLintingFunction2 = vi.fn<RulesetFunction>();
       openlint.setRuleset({
         rules: {
           example: {
@@ -1249,7 +1251,7 @@ responses:: !!foo
           ast: {},
           lineMap: [],
         },
-        getLocationForJsonPath: jest.fn(),
+        getLocationForJsonPath: vi.fn(),
         source: 'foo',
       };
 
@@ -1693,7 +1695,7 @@ responses:: !!foo
 
   test.concurrent('should reset path provided in fn context', async () => {
     const openlint = new OpenLint();
-    const fn = jest.fn();
+    const fn = vi.fn();
 
     openlint.setRuleset({
       rules: {

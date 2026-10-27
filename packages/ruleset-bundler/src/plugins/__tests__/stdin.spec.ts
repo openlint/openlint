@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { BundleOptions, bundleRuleset } from '../../index';
 import { stdin } from '../stdin';
 
@@ -36,7 +37,7 @@ export { openlint as default };
           target,
           plugins: [stdin('export default { rules: {} }', '/openlint.json')],
         }),
-      ).rejects.toThrow();
+      ).rejects.toThrow('Could not resolve entry module');
     });
   });
 });

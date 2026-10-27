@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { getLintTargets } from '../getLintTargets';
 
 describe('getLintTargets', () => {

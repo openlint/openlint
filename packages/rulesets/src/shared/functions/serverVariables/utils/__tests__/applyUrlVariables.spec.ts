@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest';
 import { applyUrlVariables } from '../applyUrlVariables';
 
 describe('applyUrlVariables', () => {

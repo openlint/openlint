@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it } from 'vitest';
 import { Dictionary } from '@stoplight/types';
 import { Replacer } from '../replacer';
 

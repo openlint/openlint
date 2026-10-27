@@ -1,4 +1,4 @@
-import '@openlint/openlint-test-utils/matchers';
+import { describe, expect, it } from 'vitest';
 
 import { RulesetValidationError } from '@openlint/openlint-core';
 import falsy from '../falsy';
@@ -22,7 +22,7 @@ describe('Core Functions / Falsy', () => {
 
   describe('validation', () => {
     it.each([{}, 2])('given invalid %p options, should throw', async opts => {
-      await expect(runFalsy([], opts)).rejects.toThrowAggregateError(
+      await expect(runFalsy([], opts)).rejects.toStrictEqual(
         new AggregateError([
           new RulesetValidationError('invalid-function-options', '"falsy" function does not accept any options', [
             'rules',

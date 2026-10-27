@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { arazzo1_0 } from '../arazzo';
 
 describe('Arazzo format', () => {

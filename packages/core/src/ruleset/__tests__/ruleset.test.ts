@@ -1,4 +1,4 @@
-import '@openlint/openlint-test-utils/matchers';
+import { describe, expect, it } from 'vitest';
 
 import { oas2 } from '@openlint/openlint-formats';
 import { pattern, truthy } from '@openlint/openlint-functions';
@@ -317,7 +317,7 @@ describe('Ruleset', () => {
 
   describe('error handling', () => {
     it('given empty ruleset, should throw a user friendly error', () => {
-      expect(() => new Ruleset({})).toThrowError(
+      expect(() => new Ruleset({})).toThrow(
         new RulesetValidationError(
           'invalid-ruleset-definition',
           'Ruleset must have rules or extends or overrides defined',
@@ -1078,7 +1078,7 @@ describe('Ruleset', () => {
         it('given document with no source, should throw an error', async () => {
           const ruleset = await loadRuleset(import('./__fixtures__/overrides/hierarchy'), path.join(cwd, 'hierarchy'));
 
-          expect(ruleset.fromSource.bind(ruleset, null)).toThrowError(
+          expect(ruleset.fromSource.bind(ruleset, null)).toThrow(
             Error(
               'Document must have some source assigned. If you use OpenLint programmatically make sure to pass the source to Document',
             ),
@@ -1088,7 +1088,7 @@ describe('Ruleset', () => {
         it('given ruleset with no source, should throw an error', async () => {
           const ruleset = await loadRuleset(import('./__fixtures__/overrides/hierarchy'));
 
-          expect(ruleset.fromSource.bind(ruleset, path.join(cwd, 'v2/spec.json'))).toThrowError(
+          expect(ruleset.fromSource.bind(ruleset, path.join(cwd, 'v2/spec.json'))).toThrow(
             Error(
               'Ruleset must have some source assigned. If you use OpenLint programmatically make sure to pass the source to Ruleset',
             ),
@@ -1101,7 +1101,7 @@ describe('Ruleset', () => {
             path.join(cwd, 'new-definitions-error'),
           );
 
-          expect(ruleset.fromSource.bind(ruleset, path.join(cwd, 'v2/spec.json'))).toThrowError(
+          expect(ruleset.fromSource.bind(ruleset, path.join(cwd, 'v2/spec.json'))).toThrow(
             ReferenceError('Cannot extend non-existing rule: "new-definition"'),
           );
         });
@@ -1368,7 +1368,7 @@ describe('Ruleset', () => {
               },
             },
           }),
-      ).toThrowAggregateError(
+      ).toThrow(
         new AggregateError([
           new RulesetValidationError('undefined-alias', 'Alias "PathItem-" does not exist', [
             'rules',
@@ -1398,7 +1398,7 @@ describe('Ruleset', () => {
               },
             },
           }),
-      ).toThrowAggregateError(
+      ).toThrow(
         new AggregateError([
           new RulesetValidationError(
             'generic-validation-error',
@@ -1437,7 +1437,7 @@ describe('Ruleset', () => {
               },
             },
           }),
-      ).toThrowAggregateError(
+      ).toThrow(
         new AggregateError([
           new RulesetValidationError('undefined-alias', 'Alias "PathItem" does not exist', [
             'rules',
@@ -1586,7 +1586,7 @@ describe('Ruleset', () => {
           },
         });
 
-        expect(() => ruleset.rules['valid-header'].getGivenForFormats(new Formats([oas3]))).toThrowError(
+        expect(() => ruleset.rules['valid-header'].getGivenForFormats(new Formats([oas3]))).toThrow(
           Error(
             'Alias "HeaderObject" is circular. Resolution stack: HeaderObject -> HeaderObjects -> Components -> HeaderObject',
           ),
