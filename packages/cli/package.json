@@ -34,7 +34,7 @@
   "dependencies": {
     "@openlint/openlint-core": "0.x",
     "@openlint/openlint-formatters": "0.x",
-    "@openlint/openlint-parsers": "0.0.1",
+    "@openlint/openlint-parsers": "^1.0.0",
     "@openlint/openlint-ref-resolver": "0.x",
     "@openlint/openlint-ruleset-bundler": "0.x",
     "@openlint/openlint-ruleset-migrator": "0.x",
