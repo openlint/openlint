@@ -86,7 +86,7 @@ describe('Linter service', () => {
   it('demands some ruleset to be present', () => {
     vi.mocked(process.cwd).mockReturnValue(join(__dirname, '__fixtures__/resolver'));
     return expect(run(`lint stoplight-info-document.json`)).rejects.toThrow(
-      'No ruleset has been found. Please provide a ruleset using the --ruleset CLI argument, or make sure your ruleset file matches .openlint.js/yaml/json or .openlint.js/yaml/json',
+      'No ruleset has been found. Please provide a ruleset using the --ruleset CLI argument, or make sure your ruleset file matches .openlint.js/yaml/json or .spectral.js/yaml/json',
     );
   });
 
