@@ -1,6 +1,6 @@
 {
   "name": "@openlint/openlint-functions",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "sideEffects": false,
   "homepage": "https://github.com/openlint/openlint",
   "bugs": "https://github.com/openlint/openlint/issues",

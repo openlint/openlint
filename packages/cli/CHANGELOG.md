@@ -1,3 +1,17 @@
+## openlint [1.1.2](https://github.com/openlint/openlint/compare/openlint@1.1.1...openlint@1.1.2) (2026-10-27)
+
+
+### Bug Fixes
+
+* **cli:** use the latest parser v1.0.0 ([#35](https://github.com/openlint/openlint/issues/35)) ([ea33ffc](https://github.com/openlint/openlint/commit/ea33ffc06c848dbdb17a99a8975ebea6b11ba09f))
+
+## openlint [1.1.1](https://github.com/openlint/openlint/compare/openlint@1.1.0...openlint@1.1.1) (2026-10-27)
+
+
+### Bug Fixes
+
+* **cli:** use parser 1.0.0 ([#34](https://github.com/openlint/openlint/issues/34)) ([bf20c8d](https://github.com/openlint/openlint/commit/bf20c8d742a1395b0d9a48dd28869c2641aa9722))
+
 # openlint [1.1.0](https://github.com/openlint/openlint/compare/openlint@1.0.0...openlint@1.1.0) (2026-10-27)
 
 

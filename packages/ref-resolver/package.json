@@ -1,6 +1,6 @@
 {
   "name": "@openlint/openlint-ref-resolver",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "homepage": "https://github.com/openlint/openlint",
   "bugs": "https://github.com/openlint/openlint/issues",
   "author": "OpenLint <info@openlint.org>",

@@ -1,9 +1,9 @@
 diff --git a/node_modules/@semantic-release/github/index.js b/node_modules/@semantic-release/github/index.js
-index 2d1aa8b8..8d383a4b 100644
+index 2d1aa8b..8d383a4 100644
 --- a/node_modules/@semantic-release/github/index.js
 +++ b/node_modules/@semantic-release/github/index.js
 @@ -4,7 +4,6 @@ import { defaultTo, castArray } from "lodash-es";
-
+ 
  import verifyGitHub from "./lib/verify.js";
  import addChannelGitHub from "./lib/add-channel.js";
 -import publishGitHub from "./lib/publish.js";
@@ -13,7 +13,7 @@ index 2d1aa8b8..8d383a4b 100644
 @@ -52,19 +51,6 @@ export async function verifyConditions(
    verified = true;
  }
-
+ 
 -export async function publish(
 -  pluginConfig,
 -  context,
@@ -31,11 +31,11 @@ index 2d1aa8b8..8d383a4b 100644
    pluginConfig,
    context,
 diff --git a/node_modules/@semantic-release/github/lib/success.js b/node_modules/@semantic-release/github/lib/success.js
-index 48246f29..0aa0a549 100644
+index 48246f2..26df7d6 100644
 --- a/node_modules/@semantic-release/github/lib/success.js
 +++ b/node_modules/@semantic-release/github/lib/success.js
 @@ -16,7 +16,7 @@ const debug = debugFactory("semantic-release:github");
-
+ 
  export default async function success(pluginConfig, context, { Octokit }) {
    const {
 -    options: { repositoryUrl },
@@ -51,6 +51,39 @@ index 48246f29..0aa0a549 100644
 +    const pkgName = tagFormat.replace('@openlint/openlint-', '').replace('-${version}', '');
 +    const pkgNameRegexp = RegExp(`^[a-z]+\\(${pkgName}\\):`);
 +    const shas = commits.filter(({ subject }) => pkgNameRegexp.test(subject)).map(({ hash }) => hash);
-
+ 
      // Get associatedPRs
      const associatedPRs = await inChunks(shas, 100, async (chunk) => {
+@@ -173,13 +175,25 @@ export default async function success(pluginConfig, context, { Octokit }) {
+ 
+       // Get relatedIssues (or relatedPRs i.e. Issues/PRs that are closed by an associatedPR)
+       issues = await inChunks(uniqueParsedIssues, 100, async (chunk) => {
+-        const { repository } = await octokit.graphql(
+-          buildRelatedIssuesQuery(chunk.map((issue) => issue.number)),
+-          { owner, repo },
+-        );
+-        const responseRelatedIssues = Object.values(repository).map(
+-          (issue) => issue,
+-        );
++        let repository;
++        try {
++          ({ repository } = await octokit.graphql(
++            buildRelatedIssuesQuery(chunk.map((issue) => issue.number)),
++            { owner, repo },
++          ));
++        } catch (error) {
++          // Unknown issue numbers (e.g. from other repos) come back as NOT_FOUND with partial data
++          const notFoundOnly =
++            error.data?.repository &&
++            error.errors?.every((e) => e.type === "NOT_FOUND");
++          if (!notFoundOnly) throw error;
++          logger.log(
++            "Ignoring issues/PRs that do not exist: %s",
++            error.errors.map((e) => e.path?.[1]).join(", "),
++          );
++          repository = error.data.repository;
++        }
++        const responseRelatedIssues = Object.values(repository).filter(Boolean);
+         return buildIssuesOrPRsFromResponseNode(responseRelatedIssues);
+       });
+ 

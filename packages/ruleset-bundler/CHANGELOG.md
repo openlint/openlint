@@ -1,3 +1,10 @@
+## @openlint/openlint-ruleset-bundler [0.1.1](https://github.com/openlint/openlint/compare/@openlint/openlint-ruleset-bundler@0.1.0...@openlint/openlint-ruleset-bundler@0.1.1) (2026-10-27)
+
+
+### Bug Fixes
+
+* **cli:** use parser 1.0.0 ([#34](https://github.com/openlint/openlint/issues/34)) ([bf20c8d](https://github.com/openlint/openlint/commit/bf20c8d742a1395b0d9a48dd28869c2641aa9722))
+
 # @openlint/openlint-ruleset-bundler [0.1.0](https://github.com/openlint/openlint/compare/@openlint/openlint-ruleset-bundler@0.0.1...@openlint/openlint-ruleset-bundler@0.1.0) (2026-10-27)
 
 

@@ -1,3 +1,10 @@
+## @openlint/openlint-core [0.1.1](https://github.com/openlint/openlint/compare/@openlint/openlint-core@0.1.0...@openlint/openlint-core@0.1.1) (2026-10-27)
+
+
+### Bug Fixes
+
+* **cli:** use the latest parser v1.0.0 ([#35](https://github.com/openlint/openlint/issues/35)) ([ea33ffc](https://github.com/openlint/openlint/commit/ea33ffc06c848dbdb17a99a8975ebea6b11ba09f))
+
 # @openlint/openlint-core [0.1.0](https://github.com/openlint/openlint/compare/@openlint/openlint-core@0.0.1...@openlint/openlint-core@0.1.0) (2026-10-27)
 
 
