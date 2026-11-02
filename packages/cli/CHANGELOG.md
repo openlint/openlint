@@ -1,3 +1,10 @@
+## openlint [1.1.3](https://github.com/openlint/openlint/compare/openlint@1.1.2...openlint@1.1.3) (2026-11-02)
+
+
+### Bug Fixes
+
+* **cli:** error now shows .spectral.js/yaml/json supported ([#38](https://github.com/openlint/openlint/issues/38)) ([42d7c17](https://github.com/openlint/openlint/commit/42d7c1774e54486719c05c0aebafc502a91440b5))
+
 ## openlint [1.1.2](https://github.com/openlint/openlint/compare/openlint@1.1.1...openlint@1.1.2) (2026-10-27)
 
 
