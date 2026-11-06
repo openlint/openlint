@@ -38,7 +38,6 @@
   },
   "devDependencies": {
     "@openlint/openlint-core": "0.x",
-    "@openlint/openlint-rulesets": "0.x",
     "fetch-mock": "^12.6.0",
     "json-schema-to-typescript": "^10.1.5",
     "memfs": "^3.5.3",

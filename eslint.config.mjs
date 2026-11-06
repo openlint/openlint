@@ -10,8 +10,6 @@ export default tseslint.config(
     ignores: [
       '**/__fixtures__/**',
       'packages/*/dist/**',
-      'packages/rulesets/src/oas/schemas/validators.ts',
-      'packages/rulesets/src/arazzo/schemas/validators.ts',
       'packages/*/CHANGELOG.md',
       'packages/formatters/src/html/templates.ts',
     ],

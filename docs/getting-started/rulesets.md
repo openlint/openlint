@@ -12,21 +12,25 @@ Rules take certain parameters and then call functions on parts of another YAML o
 
 The fastest way to create a ruleset is to use the `extends` property to leverage an existing ruleset.
 
-OpenLint provides three built-in rulesets:
+OpenLint publishes dedicated packages for each ruleset:
 
-- `openlint:openapi` - [OpenAPI v2/v3 rules](./openapi.md)
-- `openlint:asyncapi` - [AsyncAPI v2/v3 rules](./asyncapi.md)
-- `openlint:arazzo` - [Arazzo v1 rules](./arazzo.md)
+- `@openlint/ruleset-openapi` - [OpenAPI v2/v3 rules](./openapi.md)
+- `@openlint/ruleset-asyncapi` - [AsyncAPI v2/v3 rules](./asyncapi.md)
+- `@openlint/ruleset-arazzo` - [Arazzo v1 rules](./arazzo.md)
 
-The `openlint:` rulesets are still in development and will change a little as we mature, but the old `spectral:*` rulesets are there for backwards compatibility.
+Install the package you need and use its package name in `extends`. The legacy `spectral:*` names remain available as compatibility spellings when their corresponding ruleset packages are installed.
 
-- `spectral:oas` - [OpenAPI v2/v3 rules](./openapi.md)
-- `spectral:asyncapi` - [AsyncAPI v2/v3 rules](./asyncapi.md)
-- `spectral:arazzo` - [Arazzo v1 rules](./arazzo.md)
+- `openlint:openapi` - OpenAPI v2/v3 rules (alias for `@openlint/ruleset-openapi`)
+- `openlint:asyncapi` - AsyncAPI v2/v3 rules (alias for `@openlint/ruleset-asyncapi`)
+- `openlint:arazzo` - Arazzo v1 rules (alias for `@openlint/ruleset-arazzo`)
+- `spectral:oas` - [Legacy OpenAPI v2/v3 rules](./openapi.md)
+- `spectral:asyncapi` - Legacy AsyncAPI v2/v3 rules from `@openlint/ruleset-spectral-asyncapi` (full compatibility ruleset)
+- `spectral:arazzo` - Legacy Arazzo v1 rules from `@openlint/ruleset-spectral-arazzo` (full compatibility ruleset)
 
 To create a ruleset that extends one or more of these rulesets open your terminal and run:
 
 ```bash
+npm install --save-dev @openlint/ruleset-openapi @openlint/ruleset-asyncapi @openlint/ruleset-arazzo
 echo 'extends: ["openlint:openapi", "openlint:asyncapi", "openlint:arazzo"]' > .openlint.yaml
 ```
 

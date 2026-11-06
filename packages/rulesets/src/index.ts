@@ -1,5 +1,3 @@
-import { default as oas } from './oas';
-import { default as asyncapi } from './asyncapi';
-import { default as arazzo } from './arazzo';
-
-export { oas, asyncapi, arazzo };
+export { oas } from '@openlint/ruleset-spectral-oas';
+export { asyncapi } from '@openlint/ruleset-spectral-asyncapi';
+export { arazzo } from '@openlint/ruleset-spectral-arazzo';

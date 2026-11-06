@@ -6,13 +6,13 @@ import { assertArray } from '../validation';
 import { process } from '../index';
 import { isBasicRuleset } from '../utils/isBasicRuleset';
 
-const REPLACEMENTS = {
-  'openlint:openapi': 'oas',
-  'openlint:asyncapi': 'asyncapi',
-  'openlint:arazzo': 'arazzo',
-  'spectral:oas': 'oas',
-  'spectral:asyncapi': 'asyncapi',
-  'spectral:arazzo': 'arazzo',
+const BUILTIN_RULESETS: Record<string, Readonly<{ packageName: string; exportName: string }>> = {
+  'openlint:openapi': { packageName: '@openlint/ruleset-openapi', exportName: 'oas' },
+  'openlint:asyncapi': { packageName: '@openlint/ruleset-asyncapi', exportName: 'asyncapi' },
+  'openlint:arazzo': { packageName: '@openlint/ruleset-arazzo', exportName: 'arazzo' },
+  'spectral:oas': { packageName: '@openlint/ruleset-spectral-oas', exportName: 'oas' },
+  'spectral:asyncapi': { packageName: '@openlint/ruleset-spectral-asyncapi', exportName: 'asyncapi' },
+  'spectral:arazzo': { packageName: '@openlint/ruleset-spectral-arazzo', exportName: 'arazzo' },
 };
 
 export { transformer as default };
@@ -21,8 +21,9 @@ async function processExtend(
   ctx: TransformerCtx,
   name: string,
 ): Promise<namedTypes.ObjectExpression | namedTypes.Identifier> {
-  if (name in REPLACEMENTS) {
-    return ctx.tree.addImport(REPLACEMENTS[name as keyof typeof REPLACEMENTS], '@openlint/openlint-rulesets');
+  const builtinRuleset = Object.hasOwn(BUILTIN_RULESETS, name) ? BUILTIN_RULESETS[name] : void 0;
+  if (builtinRuleset !== void 0) {
+    return ctx.tree.addImport(builtinRuleset.exportName, builtinRuleset.packageName);
   }
 
   const filepath = ctx.tree.resolveModule(name, ctx, 'ruleset');

@@ -25,7 +25,7 @@ rules:
 
 ```js
 // .openlint.js (CommonJS)
-const { oas: oas } = require("@openlint/openlint-rulesets");
+const { oas: oas } = require("@openlint/ruleset-spectral-oas");
 const { oas2: oas2, jsonSchemaLoose: jsonSchemaLoose } = require("@openlint/openlint-formats");
 const { pattern: pattern } = require("@openlint/openlint-functions");
 module.exports = {
@@ -49,7 +49,7 @@ module.exports = {
 
 ```js
 // .openlint.js (ES Module)
-import { oas } from "@openlint/openlint-rulesets";
+import { oas } from "@openlint/ruleset-spectral-oas";
 import { oas2, jsonSchemaLoose } from "@openlint/openlint-formats";
 import { pattern } from "@openlint/openlint-functions";
 export default {

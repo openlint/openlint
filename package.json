@@ -36,7 +36,7 @@
     "lint.fix": "yarn lint.prettier --write && yarn lint.eslint --fix",
     "lint.eslint": "eslint --cache --cache-location .cache/.eslintcache packages test-harness",
     "lint.tsc": "tsc -p tsconfig.test.json",
-    "lint.prettier": "prettier --ignore-path .prettierignore --ignore-unknown --check packages/core/src/ruleset/meta/*.json packages/rulesets/src/{asyncapi,oas,arazzo}/schemas/**/*.json docs/**/*.md README.md",
+    "lint.prettier": "prettier --ignore-path .prettierignore --ignore-unknown --check packages/core/src/ruleset/meta/*.json docs/**/*.md README.md",
     "pretest": "yarn workspaces foreach run pretest",
     "test": "yarn pretest && vitest run",
     "test.harness": "node --test test-harness/src/scenarios.test.ts",
@@ -153,9 +153,6 @@
       "prettier --write"
     ],
     "packages/core/src/ruleset/meta/*.json": [
-      "prettier --ignore-path .prettierignore --write"
-    ],
-    "packages/rulesets/src/{asyncapi,oas,arazzo}/schemas/**/*.json": [
       "prettier --ignore-path .prettierignore --write"
     ]
   },

@@ -114,15 +114,11 @@ If no `documentationUrl` is provided, no links are displayed, and users have to 
 If you wish to override a documentation URL of a particular rule, you can do so by specifying `documentationUrl`.
 
 ```yaml
-extends: openlint:openapi
+extends: "@openlint/ruleset-openapi"
 rules:
-  tag-description:
-    description: Please provide a description for each tag.
-    documentationUrl: https://www.example.com/docs/tag-description.md
-    given: $.tags[*]
-    then:
-      field: description
-      function: truthy
+  operation-success-response:
+    description: Please provide at least one success response.
+    documentationUrl: https://www.example.com/docs/operation-success-response.md
 ```
 
 ### Parsing Options
@@ -132,7 +128,7 @@ rules:
 If you don't care about duplicate keys or invalid values (such as non-string mapping keys in YAML), you can tune their severity using the `parserOptions` setting.
 
 ```yaml
-extends: openlint:openapi
+extends: "@openlint/ruleset-openapi"
 parserOptions:
   duplicateKeys: warn # error is the default value
   incompatibleValues: off # error is the default value
