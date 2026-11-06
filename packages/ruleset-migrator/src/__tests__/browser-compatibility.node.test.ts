@@ -31,7 +31,7 @@ describe('Browser Compatibility Integration Tests', () => {
       vol.writeFileSync(
         path.join(cwd, 'ruleset.json'),
         JSON.stringify({
-          extends: ['spectral:oas'],
+          extends: ['openlint:openapi'],
           rules: {
             'info-contact': 'error',
           },
@@ -44,7 +44,7 @@ describe('Browser Compatibility Integration Tests', () => {
       });
 
       expect(result).toContain('import');
-      expect(result).toContain('openlint-rulesets');
+      expect(result).toContain('@openlint/ruleset-openapi');
       expect(result).toContain('"extends"');
       // Test completed successfully
     });
@@ -53,7 +53,7 @@ describe('Browser Compatibility Integration Tests', () => {
       vol.writeFileSync(
         path.join(cwd, 'ruleset.json'),
         JSON.stringify({
-          extends: ['spectral:oas', 'spectral:asyncapi'],
+          extends: ['openlint:openapi', 'openlint:asyncapi'],
           rules: {
             'custom-rule': {
               given: '$.info',
@@ -70,7 +70,8 @@ describe('Browser Compatibility Integration Tests', () => {
         fs: vol as any,
       });
 
-      expect(result).toContain('openlint-rulesets');
+      expect(result).toContain('@openlint/ruleset-openapi');
+      expect(result).toContain('@openlint/ruleset-asyncapi');
       expect(result).toContain('openlint-functions');
       // Test passed without throwing
     });
@@ -200,7 +201,7 @@ rules:
       });
 
       expect(result).toContain('"local-rule"');
-      expect(result).toContain('openlint-rulesets');
+      expect(result).toContain('@openlint/ruleset-spectral-oas');
     });
 
     it('should handle all non-function requireResolve types', async () => {

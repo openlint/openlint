@@ -42,7 +42,7 @@ describe('Builtins Plugin', () => {
   });
 
   describe.each<BundleOptions['target']>(['browser', 'node', 'runtime'])('given %s target', target => {
-    it('should inline Spectral packages & expose it to the runtime', async () => {
+    it('should inline builtin packages & expose them to the runtime', async () => {
       serveAssets({
         '/tmp/input.js': `import { schema } from '@openlint/openlint-functions';
 import { oas } from '@openlint/openlint-rulesets';

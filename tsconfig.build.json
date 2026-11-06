@@ -27,13 +27,13 @@
       "path": "./packages/ruleset-migrator/tsconfig.build.json"
     },
     {
+      "path": "./packages/rulesets/tsconfig.build.json"
+    },
+    {
       "path": "./packages/parsers/tsconfig.build.json"
     },
     {
       "path": "./packages/ref-resolver/tsconfig.build.json"
-    },
-    {
-      "path": "./packages/rulesets/tsconfig.build.json"
     },
     {
       "path": "./packages/runtime/tsconfig.build.json"

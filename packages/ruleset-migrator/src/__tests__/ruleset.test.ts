@@ -6,7 +6,6 @@ import * as parserBabel from 'prettier/plugins/babel';
 import * as parserEstree from 'prettier/plugins/estree';
 import { Ruleset } from '@openlint/openlint-core';
 import * as functions from '@openlint/openlint-functions';
-import * as rulesets from '@openlint/openlint-rulesets';
 import { DiagnosticSeverity } from '@stoplight/types';
 import fetchMockLib, { FetchMock as FetchMockInstance } from 'fetch-mock';
 import { serveAssets } from '@openlint/openlint-test-utils';
@@ -62,21 +61,23 @@ describe('migrator', () => {
   });
 
   it.each([
-    ['openlint:openapi', 'oas'],
-    ['openlint:asyncapi', 'asyncapi'],
-    ['openlint:arazzo', 'arazzo'],
-  ])('should migrate the %s built-in ruleset alias', async (alias, rulesetName) => {
-    const rulesetFile = path.join(cwd, `${rulesetName}-alias.yaml`);
-    await vol.promises.writeFile(rulesetFile, `extends: ${alias}\n`);
+    ['openlint:openapi', '@openlint/ruleset-openapi', 'oas'],
+    ['openlint:asyncapi', '@openlint/ruleset-asyncapi', 'asyncapi'],
+    ['openlint:arazzo', '@openlint/ruleset-arazzo', 'arazzo'],
+    ['spectral:oas', '@openlint/ruleset-spectral-oas', 'oas'],
+    ['spectral:asyncapi', '@openlint/ruleset-spectral-asyncapi', 'asyncapi'],
+    ['spectral:arazzo', '@openlint/ruleset-spectral-arazzo', 'arazzo'],
+  ])('should map the %s ruleset name to its package', async (name, packageName, exportName) => {
+    const rulesetFile = path.join(cwd, `${exportName}-compatibility.yaml`);
+    await vol.promises.writeFile(rulesetFile, `extends: ${name}\n`);
 
     const migratedRuleset = await migrateRuleset(rulesetFile, {
       format: 'esm',
       fs: vol as any,
     });
 
-    expect(migratedRuleset).toMatch(
-      new RegExp(`import\\s*\\{\\s*${rulesetName}\\s*\\}\\s*from\\s*['"]@openlint/openlint-rulesets['"]`),
-    );
+    expect(migratedRuleset).toContain(`import {${exportName}} from "${packageName}";`);
+    expect(migratedRuleset).toContain(`"extends": ${exportName}`);
   });
 
   it('should support subsequent migrations', async () => {
@@ -93,7 +94,6 @@ describe('migrator', () => {
     await vol.promises.writeFile(
       path.join(cwd, 'ruleset-migration-2.json'),
       JSON.stringify({
-        extends: 'spectral:oas',
         rules: {
           'valid-type': {
             given: '$',
@@ -117,8 +117,6 @@ describe('migrator', () => {
       switch (id) {
         case '@openlint/openlint-functions':
           return functions;
-        case '@openlint/openlint-rulesets':
-          return rulesets;
         default:
           throw new ReferenceError(`${id} not found`);
       }
@@ -126,7 +124,7 @@ describe('migrator', () => {
 
     const ruleset = new Ruleset(_module.exports);
 
-    expect(Object.keys(ruleset.rules)).toEqual([...Object.keys(rulesets.oas.rules), 'valid-type']);
+    expect(Object.keys(ruleset.rules)).toEqual(['valid-type']);
 
     expect(ruleset.rules['valid-type'].severity).toEqual(DiagnosticSeverity.Error);
   });
@@ -232,7 +230,7 @@ export default {
         format: 'esm',
         fs: vol as any,
       }),
-    ).toEqual(`import {oas} from "@openlint/openlint-rulesets";
+    ).toEqual(`import {oas} from "@openlint/ruleset-spectral-oas";
 export default {
   "extends": [{
     "extends": [oas, {

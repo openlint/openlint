@@ -1,5 +1,5 @@
 import { truthy } from '@openlint/openlint-functions';
-import { oas } from '@openlint/openlint-rulesets';
+import { oas } from '@openlint/ruleset-spectral-oas';
 export default {
   extends: [oas],
   aliases: {
