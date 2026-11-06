@@ -2,39 +2,17 @@
 title: "OpenAPI Rules"
 ---
 
-Spectral has a built-in "oas" ruleset, with OAS being shorthand for the [OpenAPI Specification](https://openapis.org/specification).
+OpenLint includes a built-in [OpenAPI](https://openapis.org/specification) ruleset.
 
-In your ruleset file you can add `extends: "openlint:openapi"` and you'll get all of the following rules applied, depending on the appropriate OpenAPI version used (detected through [formats](../getting-started/rulesets.md#formats)).
+Add `extends: "openlint:openapi"` to apply the rules below for the detected OpenAPI version.
+
+The legacy `spectral:oas` package retains additional documentation-style rules, including rules not listed here.
 
 `Recommended` indicates whether a rule is enabled by default. `Default severity when enabled` is the severity the rule reports when active.
 
-## OpenAPI v2 & v3
+## OpenAPI v3.x & v2.0
 
 These rules apply to OpenAPI v2.0, v3.0, v3.1, and v3.2, although there are some differences.
-
-### contact-properties
-
-The [info-contact](#info-contact) rule will ask you to put in a contact object, and this rule will make sure it's full of the most useful properties: `name`, `url`, and `email`.
-
-Putting in the name of the developer/team/department/company responsible for the API, along with the support email and help-desk/GitHub Issues/whatever URL means people know where to go for help. This can mean more money in the bank, instead of developers just wandering off or complaining online.
-
-**Recommended:** No
-
-**Default severity when enabled:** warn
-
-**Good Example**
-
-```yaml
-openapi: "3.0.2"
-info:
-  title: Awesome API
-  description: A very well-defined API
-  version: "1.0"
-  contact:
-    name: A-Team
-    email: a-team@goarmy.com
-    url: goarmy.com/apis/support
-```
 
 ### duplicated-entry-in-enum
 
@@ -74,89 +52,6 @@ TheBadModel:
         - 2
         - 3
         - 2
-```
-
-### info-contact
-
-Info object should contain `contact` object.
-
-Hopefully, your API description document is so good that nobody ever needs to contact you with questions, but that is rarely the case. The contact object has a few different options for contact details.
-
-**Recommended:** Yes
-
-**Default severity when enabled:** warn
-
-**Good Example**
-
-```yaml
-openapi: "3.0.2"
-info:
-  title: Awesome API
-  version: "1.0"
-  contact:
-    name: A-Team
-    email: a-team@goarmy.com
-```
-
-### info-description
-
-OpenAPI object info `description` must be present and non-empty string.
-
-Examples can contain Markdown so you can really go to town with them, implementing getting started information like where to find authentication keys, and how to use them.
-
-**Recommended:** Yes
-
-**Default severity when enabled:** warn
-
-**Good Example**
-
-```yaml
-openapi: 3.0.0
-info:
-  version: "1.0.0"
-  title: Descriptive API
-  description: >+
-    Some description about the general point of this API, and why it exists when another similar but different API also exists.## AuthenticationThis API uses OAuth2 and tokens can be requested from [Dev Portal: Tokens](https://example.org/developers/tokens).
-
-```
-
-### info-license
-
-The `info` object should have a `license` key.
-
-It can be hard to pick a license, so if you don't have a lawyer around you can use [TLDRLegal](https://tldrlegal.com/) and [Choose a License](https://choosealicense.com/) to help give you an idea.
-
-How useful this is in court is not entirely known, but having a license is better than not having a license.
-
-**Recommended:** No
-
-**Default severity when enabled:** warn
-
-**Good Example**
-
-```yaml
-openapi: "3.0.2"
-info:
-  license:
-    name: MIT
-```
-
-### license-url
-
-Mentioning a license is only useful if people know what the license means, so add a link to the full text for those who need it.
-
-**Recommended:** No
-
-**Default severity when enabled:** warn
-
-**Good Example**
-
-```yaml
-openapi: "3.0.2"
-info:
-  license:
-    name: MIT
-    url: https://www.tldrlegal.com/l/mit
 ```
 
 ### no-\$ref-siblings
@@ -221,35 +116,11 @@ Why? Well, you _can_ reference tags arbitrarily in operations, and definition is
       - Invoice Items
 ```
 
-Defining tags allows you to add more information like a `description`. For more information see [tag-description](#tag-description).
+Defining tags allows you to add more information, such as a description.
 
 **Recommended:** No
 
 **Default severity when enabled:** warn
-
-### openapi-tags-alphabetical
-
-OpenAPI object should have alphabetical `tags`. This will be sorted by the `name` property.
-
-**Recommended:** No
-
-**Default severity when enabled:** warn
-
-**Bad Example**
-
-```yaml
-tags:
-  - name: "Badger"
-  - name: "Aardvark"
-```
-
-**Good Example**
-
-```yaml
-tags:
-  - name: "Aardvark"
-  - name: "Badger"
-```
 
 ### openapi-tags-uniqueness
 
@@ -364,14 +235,6 @@ Operation parameters are unique and non-repeating.
 
 **Default severity when enabled:** warn
 
-### operation-singular-tag
-
-Use just one tag for an operation, which is helpful for some documentation systems which use tags to avoid duplicate content.
-
-**Recommended:** No
-
-**Default severity when enabled:** warn
-
 ### operation-success-response
 
 Operation must have at least one `2xx` or `3xx` response. Any API operation (endpoint) can fail, but presumably, it is also meant to do something constructive at some point. If you forget to write out a success case for this API, then this rule will let you know.
@@ -390,14 +253,6 @@ paths:
         418:
           description: teapot
 ```
-
-### operation-tags
-
-Operation should have non-empty `tags` array.
-
-**Recommended:** Yes
-
-**Default severity when enabled:** warn
 
 ### operation-tag-defined
 
@@ -443,32 +298,6 @@ Path parameters are correct and valid.
 **Recommended:** Yes
 
 **Default severity when enabled:** error
-
-### tag-description
-
-Tags alone are not very descriptive. Give folks a bit more information to work with.
-
-```yaml
-tags:
-  - name: "Aardvark"
-    description: Funny-nosed pig-head raccoon.
-  - name: "Badger"
-    description: Angry short-legged omnivores.
-```
-
-If your tags are business objects then you can use the term to explain them a bit. An 'Account' could be a user account, company information, bank account, potential sales lead, or anything. What is clear to the folks writing the document is probably not as clear to others.
-
-```yaml
-tags:
-  - name: Invoice Items
-    description: |+
-      Giant long explanation about what this business concept is, because other people _might_ not have a clue!
-
-```
-
-**Recommended:** No
-
-**Default severity when enabled:** warn
 
 ### typed-enum
 

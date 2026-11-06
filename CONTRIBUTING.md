@@ -53,7 +53,6 @@ This repo is a monorepo.
 - `packages/parsers` is mostly used internally by packages/core. Our parsers live there. Do note that we mostly integrate `@stoplight/yaml` & `@stoplight/json` there.
 - `packages/ref-resolver` exposes an instance of json-ref-resolver
 - `packages/ruleset-migrator`
-- `packages/rulesets` is an array of rulesets backed by us. Currently the list of rulesets consists of OAS and AsyncAPI v2.
 - `packages/runtime` is a set of utilities you can use in your own custom functions.
 
 ### General Principles

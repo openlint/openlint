@@ -28,7 +28,7 @@ rules:
   operation-operationId-unique: off
 ```
 
-The example above runs all the rules defined in the `openlint:openapi` ruleset (rather than the default behavior that runs only the recommended ones), with one exception; `operation-operationId-unique` is set to off.
+The example above runs all the rules defined in the OpenAPI ruleset (rather than the default behavior that runs only the recommended ones), with one exception; `operation-operationId-unique` is set to off.
 
 ### Enabling Rules
 
@@ -40,4 +40,4 @@ rules:
   operation-operationId-unique: true
 ```
 
-The example above only runs the rule `operation-operationId-unique` that was enabled, since `off` was passed to disable all rules by default when extending the `openlint:openapi` ruleset.
+The example above only runs the rule `operation-operationId-unique` that was enabled, since `off` was passed to disable all rules by default when extending the OpenAPI ruleset.

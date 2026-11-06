@@ -4,7 +4,7 @@ title: "Arazzo Rules"
 
 Spectral has a built-in "arazzo" ruleset for the [Arazzo Specification](https://spec.openapis.org/arazzo/v1.0.0.html).
 
-In your ruleset file you can add `extends: "openlint:arazzo"` and you'll get all of the following rules applied.
+In your ruleset file, add `extends: "openlint:arazzo"` to apply all of the following rules.
 
 ### arazzo-document-schema
 

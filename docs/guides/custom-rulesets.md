@@ -116,13 +116,9 @@ If you wish to override a documentation URL of a particular rule, you can do so 
 ```yaml
 extends: openlint:openapi
 rules:
-  tag-description:
-    description: Please provide a description for each tag.
-    documentationUrl: https://www.example.com/docs/tag-description.md
-    given: $.tags[*]
-    then:
-      field: description
-      function: truthy
+  operation-success-response:
+    description: Please provide at least one success response.
+    documentationUrl: https://www.example.com/docs/operation-success-response.md
 ```
 
 ### Parsing Options
