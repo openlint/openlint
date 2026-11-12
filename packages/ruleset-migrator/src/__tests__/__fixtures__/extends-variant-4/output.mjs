@@ -1,4 +1,4 @@
-import { oas } from '@openlint/openlint-rulesets';
+import { oas } from '@openlint/ruleset-spectral-oas';
 export default {
   extends: [[oas, 'off']],
 };

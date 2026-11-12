@@ -12,17 +12,17 @@ Rules take certain parameters and then call functions on parts of another YAML o
 
 The fastest way to create a ruleset is to use the `extends` property to leverage an existing ruleset.
 
-OpenLint provides three built-in rulesets:
+OpenLint includes built-in rulesets for OpenAPI, AsyncAPI, and Arazzo:
 
 - `openlint:openapi` - [OpenAPI v2/v3 rules](./openapi.md)
 - `openlint:asyncapi` - [AsyncAPI v2/v3 rules](./asyncapi.md)
 - `openlint:arazzo` - [Arazzo v1 rules](./arazzo.md)
 
-The `openlint:` rulesets are still in development and will change a little as we mature, but the old `spectral:*` rulesets are there for backwards compatibility.
+The legacy `spectral:*` names remain available as compatibility spellings when their corresponding rulesets are available.
 
-- `spectral:oas` - [OpenAPI v2/v3 rules](./openapi.md)
-- `spectral:asyncapi` - [AsyncAPI v2/v3 rules](./asyncapi.md)
-- `spectral:arazzo` - [Arazzo v1 rules](./arazzo.md)
+- `spectral:oas` - [Legacy OpenAPI v2/v3 rules](./openapi.md)
+- `spectral:asyncapi` - Legacy AsyncAPI v2/v3 rules from `@openlint/ruleset-spectral-asyncapi` (full compatibility ruleset)
+- `spectral:arazzo` - Legacy Arazzo v1 rules from `@openlint/ruleset-spectral-arazzo` (full compatibility ruleset)
 
 To create a ruleset that extends one or more of these rulesets open your terminal and run:
 

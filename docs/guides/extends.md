@@ -40,7 +40,7 @@ If you're just looking to change the severity of the rule, there's a handy short
 
 ## Change Rule Severity
 
-Maybe you want to use the rules from the `openlint:openapi` ruleset, but instead of `operation-success-response` triggering an error you'd like it to trigger a warning instead.
+Maybe you want to use the rules from the OpenAPI ruleset, but instead of `operation-success-response` triggering an error you'd like it to trigger a warning instead.
 
 ```yaml
 extends: openlint:openapi
