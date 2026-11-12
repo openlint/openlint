@@ -1,3 +1,10 @@
+# openlint [1.2.0](https://github.com/openlint/openlint/compare/openlint@1.1.3...openlint@1.2.0) (2026-11-12)
+
+
+### Features
+
+* **rulesets:** spin out rulesets to packages ([#42](https://github.com/openlint/openlint/issues/42)) ([bb72244](https://github.com/openlint/openlint/commit/bb722446fc1793a42181c9b9a6185c1aff18efa1))
+
 ## openlint [1.1.3](https://github.com/openlint/openlint/compare/openlint@1.1.2...openlint@1.1.3) (2026-11-02)
 
 
