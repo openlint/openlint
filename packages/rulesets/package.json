@@ -18,8 +18,8 @@
     "url": "https://github.com/openlint/openlint.git"
   },
   "dependencies": {
-    "@openlint/ruleset-spectral-arazzo": "0.x",
-    "@openlint/ruleset-spectral-asyncapi": "0.x",
-    "@openlint/ruleset-spectral-oas": "0.x"
+    "@openlint/ruleset-spectral-arazzo": "^1.0.0",
+    "@openlint/ruleset-spectral-asyncapi": "^1.0.0",
+    "@openlint/ruleset-spectral-oas": "^1.0.0"
   }
 }
