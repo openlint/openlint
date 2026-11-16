@@ -1,5 +1,5 @@
 import { describe, expect, test, vi } from 'vitest';
-import { DiagnosticSeverity } from '@stoplight/types';
+import { DiagnosticSeverity, type IHttpService } from '@stoplight/types';
 import { truthy } from '@openlint/openlint-functions';
 import * as Parsers from '@openlint/openlint-parsers';
 import { Resolver } from '@openlint/openlint-ref-resolver';
@@ -90,5 +90,47 @@ describe('openlint', () => {
         ]);
       });
     });
+  });
+
+  test('lints nested HTTP service security schemes', async () => {
+    const service = {
+      id: 'service',
+      name: 'Example',
+      version: '1.0',
+      security: [
+        [
+          { id: 'first', key: 'first', type: 'apiKey', in: 'header', name: 'X-API-Key' },
+          { id: 'second', key: 'second', type: 'apiKey', in: 'header', name: '' },
+        ],
+        [{ id: 'third', key: 'third', type: 'apiKey', in: 'query', name: '' }],
+      ],
+    } satisfies IHttpService;
+    const linter = new OpenLint();
+    linter.setRuleset({
+      rules: {
+        'security-name': {
+          given: '$.security[*][*]',
+          message: 'Security schemes must have a name',
+          then: { field: 'name', function: truthy },
+        },
+      },
+    });
+
+    await expect(linter.run(service)).resolves.toEqual([
+      {
+        code: 'security-name',
+        message: 'Security schemes must have a name',
+        path: ['security', '0', '1', 'name'],
+        range: expect.any(Object),
+        severity: DiagnosticSeverity.Warning,
+      },
+      {
+        code: 'security-name',
+        message: 'Security schemes must have a name',
+        path: ['security', '1', '0', 'name'],
+        range: expect.any(Object),
+        severity: DiagnosticSeverity.Warning,
+      },
+    ]);
   });
 });
