@@ -1,8 +1,9 @@
 ---
-title: "Spectral Migration Guide"
+title: 'Spectral Migration Guide'
 ---
 
-Migrating from Spectral v6.0 is intended to be as painless as possible, and backwards compatibility should be maintained.
+Migrating from Spectral v6.0 is intended to be as painless as possible, and backwards compatibility should be
+maintained.
 
 You can continue using `.spectral.yaml` and `extends: "spectral:oas"` will continue to work as expected through v0.x
 
@@ -22,7 +23,8 @@ openlint lint openapi.yaml
 
 ### Try it quickly
 
-To try OpenLint without changing any code, alias the package in your `package.json` so the old import path resolves to OpenLint. The old `Spectral`, `ISpectralDiagnostic` and `ISpectralFullResult` names are still exported for this purpose:
+To try OpenLint without changing any code, alias the package in your `package.json` so the old import path resolves to
+OpenLint. The old `Spectral`, `ISpectralDiagnostic` and `ISpectralFullResult` names are still exported for this purpose:
 
 ```json
 {
@@ -32,7 +34,9 @@ To try OpenLint without changing any code, alias the package in your `package.js
 }
 ```
 
-Each `@stoplight/spectral-*` package you import has to be aliased this way (for example `@stoplight/spectral-functions` to `@openlint/openlint-functions`). Packages that depend on `@stoplight/spectral-*` indirectly are not rewritten automatically, so use your package manager's `overrides`/`resolutions` for those.
+Each `@stoplight/spectral-*` package you import has to be aliased this way (for example `@stoplight/spectral-functions`
+to `@openlint/openlint-functions`). Packages that depend on `@stoplight/spectral-*` indirectly are not rewritten
+automatically, so use your package manager's `overrides`/`resolutions` for those.
 
 ### Migrate
 
