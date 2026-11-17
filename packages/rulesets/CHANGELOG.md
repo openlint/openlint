@@ -1,3 +1,10 @@
+# @openlint/openlint-rulesets [0.3.0](https://github.com/openlint/openlint/compare/@openlint/openlint-rulesets@0.2.0...@openlint/openlint-rulesets@0.3.0) (2026-11-17)
+
+
+### Features
+
+* **rulesets:** pin spectral legacy to 1.0.0 ([#44](https://github.com/openlint/openlint/issues/44)) ([e2e66cb](https://github.com/openlint/openlint/commit/e2e66cbd723553581c35e41954e7666ed90a03f0))
+
 # @openlint/openlint-rulesets [0.2.0](https://github.com/openlint/openlint/compare/@openlint/openlint-rulesets@0.1.0...@openlint/openlint-rulesets@0.2.0) (2026-11-12)
 
 
