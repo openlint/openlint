@@ -1,5 +1,5 @@
 ---
-title: "Installation"
+title: 'Installation'
 ---
 
 You can install OpenLint using [npm](https://www.npmjs.com/).
@@ -18,7 +18,9 @@ npm install -g @openlint/openlint-core
 
 ## Executable Binaries
 
-If you don't have Node.js and/or npm/Yarn, use the standalone packages for [all major platforms](https://github.com/openlint/openlint/releases). The quickest way to install the appropriate package for your operating system is via this shell script:
+If you don't have Node.js and/or npm/Yarn, use the standalone packages for
+[all major platforms](https://github.com/openlint/openlint/releases). The quickest way to install the appropriate
+package for your operating system is via this shell script:
 
 ```bash
 curl -L https://raw.github.com/openlint/openlint/main/scripts/install.sh | sh
@@ -26,9 +28,10 @@ curl -L https://raw.github.com/openlint/openlint/main/scripts/install.sh | sh
 
 The binaries **don't autoupdate**, so you must run the command again to install new versions.
 
-{/* ## Docker
+{/\* ## Docker
 
-OpenLint is also available as a Docker image, which can be useful if you're contributing code to OpenLint, or you want to integrate it into your CI build, among other things.
+OpenLint is also available as a Docker image, which can be useful if you're contributing code to OpenLint, or you want
+to integrate it into your CI build, among other things.
 
 If the file you want to lint is on your computer, you'll need to mount the directory where the file resides as a volume:
 
@@ -47,9 +50,10 @@ validate_open-api:
   stage: validate
   image:
     name: openlint/openlint
-    entrypoint: [""]
+    entrypoint: ['']
   script:
     - openlint lint file.yaml
 ```
 
-For more details about `entrypoint: [""]` see [this issue on GitLab](https://gitlab.com/gitlab-org/gitlab-runner/-/issues/2692#note_50147081). */}
+For more details about `entrypoint: [""]` see
+[this issue on GitLab](https://gitlab.com/gitlab-org/gitlab-runner/-/issues/2692#note_50147081). \*/}

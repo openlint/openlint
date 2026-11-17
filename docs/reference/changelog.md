@@ -12,15 +12,15 @@ OpenLint is released as a set of npm packages. Here's where to find what changed
 
 Every package also has its own changelog, generated from commit messages at release time:
 
-| Package | Changelog |
-|---|---|
-| `openlint` (the CLI) | [packages/cli/CHANGELOG.md](https://github.com/openlint/openlint/blob/main/packages/cli/CHANGELOG.md) |
-| `@openlint/openlint-core` | [packages/core/CHANGELOG.md](https://github.com/openlint/openlint/blob/main/packages/core/CHANGELOG.md) |
-| `@openlint/openlint-functions` | [packages/functions/CHANGELOG.md](https://github.com/openlint/openlint/blob/main/packages/functions/CHANGELOG.md) |
-| `@openlint/openlint-formats` | [packages/formats/CHANGELOG.md](https://github.com/openlint/openlint/blob/main/packages/formats/CHANGELOG.md) |
+| Package                         | Changelog                                                                                                           |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `openlint` (the CLI)            | [packages/cli/CHANGELOG.md](https://github.com/openlint/openlint/blob/main/packages/cli/CHANGELOG.md)               |
+| `@openlint/openlint-core`       | [packages/core/CHANGELOG.md](https://github.com/openlint/openlint/blob/main/packages/core/CHANGELOG.md)             |
+| `@openlint/openlint-functions`  | [packages/functions/CHANGELOG.md](https://github.com/openlint/openlint/blob/main/packages/functions/CHANGELOG.md)   |
+| `@openlint/openlint-formats`    | [packages/formats/CHANGELOG.md](https://github.com/openlint/openlint/blob/main/packages/formats/CHANGELOG.md)       |
 | `@openlint/openlint-formatters` | [packages/formatters/CHANGELOG.md](https://github.com/openlint/openlint/blob/main/packages/formatters/CHANGELOG.md) |
-| `@openlint/openlint-parsers` | [packages/parsers/CHANGELOG.md](https://github.com/openlint/openlint/blob/main/packages/parsers/CHANGELOG.md) |
-| `@openlint/openlint-rulesets` | [packages/rulesets/CHANGELOG.md](https://github.com/openlint/openlint/blob/main/packages/rulesets/CHANGELOG.md) |
+| `@openlint/openlint-parsers`    | [packages/parsers/CHANGELOG.md](https://github.com/openlint/openlint/blob/main/packages/parsers/CHANGELOG.md)       |
+| `@openlint/openlint-rulesets`   | [packages/rulesets/CHANGELOG.md](https://github.com/openlint/openlint/blob/main/packages/rulesets/CHANGELOG.md)     |
 
 ## Rulesets
 

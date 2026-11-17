@@ -1,8 +1,9 @@
 ---
-title: "OpenLint in JavaScript"
+title: 'OpenLint in JavaScript'
 ---
 
-The OpenLint CLI is a thin wrapper around a JavaScript (TypeScript) API, which can be used independently to do all the same things outside of the CLI, such as linting YAML and JSON documents from a string or an object.
+The OpenLint CLI is a thin wrapper around a JavaScript (TypeScript) API, which can be used independently to do all the
+same things outside of the CLI, such as linting YAML and JSON documents from a string or an object.
 
 ## Prerequisites
 
@@ -30,10 +31,10 @@ Similar to using Spectral in the CLI, there are two things you'll need to run Sp
 As an example, here's a script of Spectral in action:
 
 ```js title="example-1.mjs" lineNumbers
-import openLintCore from "@openlint/openlint-core";
+import openLintCore from '@openlint/openlint-core';
 const { OpenLint, Document } = openLintCore;
-import Parsers from "@openlint/openlint-parsers"; // make sure to install the package if you intend to use default parsers!
-import { truthy } from "@openlint/openlint-functions"; // this has to be installed as well
+import Parsers from '@openlint/openlint-parsers'; // make sure to install the package if you intend to use default parsers!
+import { truthy } from '@openlint/openlint-functions'; // this has to be installed as well
 
 // this will be our API specification document
 const myDocument = new Document(
@@ -42,16 +43,16 @@ responses:
   '200':
     description: ''`,
   Parsers.Yaml,
-  "/my-file",
+  '/my-file',
 );
 
 const openlint = new OpenLint();
 openlint.setRuleset({
   // this will be our ruleset
   rules: {
-    "no-empty-description": {
-      given: "$..description",
-      message: "Description must not be empty",
+    'no-empty-description': {
+      given: '$..description',
+      message: 'Description must not be empty',
       then: {
         function: truthy,
       },
@@ -71,7 +72,8 @@ Let's look at some other examples and how to work with external files.
 
 If you would like to run this example, make sure that you have:
 
-- An OpenAPI description document in the same directory as your script named `openapi.yaml`. You can use [this OpenAPI description for the Plaid API](https://github.com/stoplightio/Public-APIs/blob/master/reference/plaid/openapi.yaml).
+- An OpenAPI description document in the same directory as your script named `openapi.yaml`. You can use
+  [this OpenAPI description for the Plaid API](https://github.com/stoplightio/Public-APIs/blob/master/reference/plaid/openapi.yaml).
 - A ruleset file named `.openlint.yaml` (or `.spectral.yaml`). It can have the following contents:
 
 ```yaml
@@ -82,29 +84,29 @@ extends:
 Here's a script that shows how to load an external API specification file, and an external YAML ruleset:
 
 ```js title="example-2.mjs" lineNumbers
-import * as fs from "node:fs";
-import { fileURLToPath } from "node:url";
-import * as path from "node:path";
-import { join } from "path";
-import { bundleAndLoadRuleset } from "@openlint/openlint-ruleset-bundler/with-loader";
-import Parsers from "@openlint/openlint-parsers"; // make sure to install the package if you intend to use default parsers!
-import openLintCore from "@openlint/openlint-core";
+import * as fs from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import * as path from 'node:path';
+import { join } from 'path';
+import { bundleAndLoadRuleset } from '@openlint/openlint-ruleset-bundler/with-loader';
+import Parsers from '@openlint/openlint-parsers'; // make sure to install the package if you intend to use default parsers!
+import openLintCore from '@openlint/openlint-core';
 const { OpenLint, Document } = openLintCore;
-import openLintRuntime from "@openlint/openlint-runtime";
+import openLintRuntime from '@openlint/openlint-runtime';
 const { fetch } = openLintRuntime;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const myDocument = new Document(
   // load an API specification file from your project's root directory. You can use the openapi.yaml example from here: https://github.com/stoplightio/Public-APIs/blob/master/reference/plaid/openapi.yaml
-  fs.readFileSync(join(__dirname, "openapi.yaml"), "utf-8").trim(),
+  fs.readFileSync(join(__dirname, 'openapi.yaml'), 'utf-8').trim(),
   Parsers.Yaml,
-  "openapi.yaml",
+  'openapi.yaml',
 );
 
 const openlint = new OpenLint();
 // load a ruleset file from your project's root directory.
-const rulesetFilepath = path.join(__dirname, ".openlint.yaml");
+const rulesetFilepath = path.join(__dirname, '.openlint.yaml');
 openlint.setRuleset(await bundleAndLoadRuleset(rulesetFilepath, { fs, fetch }));
 
 openlint.run(myDocument).then(console.log);
@@ -117,24 +119,25 @@ OpenLint Rulesets can be [written using JavaScript](./custom-rulesets.md#alterna
 To load a JavaScript ruleset, import it similar to how you would import a module:
 
 ```js lineNumbers
-import { OpenLint } from "@openlint/openlint-core";
-import ruleset from "./my-javascript-ruleset";
+import { OpenLint } from '@openlint/openlint-core';
+import ruleset from './my-javascript-ruleset';
 
 const openlint = new OpenLint();
 openlint.setRuleset(ruleset);
 ```
 
 The `@openlint/openlint-rulesets` package remains available for compatibility with existing JavaScript API consumers.
-Its `oas`, `asyncapi`, and `arazzo` exports retain the full legacy rulesets; new code can import the standalone rulesets directly.
+Its `oas`, `asyncapi`, and `arazzo` exports retain the full legacy rulesets; new code can import the standalone rulesets
+directly.
 
 ### Extend a Built-in Ruleset
 
-You can also pass a ruleset object directly to `setRuleset` and extend one of
-the published rulesets (`oas`, `asyncapi`, or `arazzo`):
+You can also pass a ruleset object directly to `setRuleset` and extend one of the published rulesets (`oas`, `asyncapi`,
+or `arazzo`):
 
 ```ts lineNumbers
-import { OpenLint, type RulesetDefinition } from "@openlint/openlint-core";
-import { oas } from "@openlint/ruleset-openapi";
+import { OpenLint, type RulesetDefinition } from '@openlint/openlint-core';
+import { oas } from '@openlint/ruleset-openapi';
 
 const ruleset: RulesetDefinition = {
   extends: [oas],
@@ -144,17 +147,16 @@ const openlint = new OpenLint();
 openlint.setRuleset(ruleset);
 ```
 
-`oas` is an actual ruleset object rather than a ruleset name, so this works
-without the YAML loading or bundling path. The same pattern works for
-`asyncapi` and `arazzo`.
+`oas` is an actual ruleset object rather than a ruleset name, so this works without the YAML loading or bundling path.
+The same pattern works for `asyncapi` and `arazzo`.
 
 ### Browser
 
 Here's an example script of how you could run Spectral in the browser:
 
 ```js title="example-3.mjs" lineNumbers
-import { OpenLint } from "@openlint/openlint-core";
-import { bundleAndLoadRuleset } from "@openlint/openlint-ruleset-bundler/with-loader";
+import { OpenLint } from '@openlint/openlint-core';
+import { bundleAndLoadRuleset } from '@openlint/openlint-ruleset-bundler/with-loader';
 
 // create a ruleset that extends the OpenLint OpenAPI package
 const myRuleset = `extends: openlint:openapi
@@ -164,7 +166,7 @@ rules: {}`;
 const fs = {
   promises: {
     async readFile(filepath) {
-      if (filepath === "/.openlint.yaml") {
+      if (filepath === '/.openlint.yaml') {
         return myRuleset;
       }
 
@@ -174,12 +176,14 @@ const fs = {
 };
 
 const openlint = new OpenLint();
-openlint.setRuleset(await bundleAndLoadRuleset("/.openlint.yaml", { fs, fetch }));
+openlint.setRuleset(await bundleAndLoadRuleset('/.openlint.yaml', { fs, fetch }));
 ```
 
 ### Load Multiple Rulesets
 
-If you'd like to use the `bundleAndLoadRuleset` method to load multiple rulesets, you'll have to create a new ruleset file, and use the [`extends`](../getting-started/rulesets.md#extending-rulesets) functionality to extend the rulesets you'd like to use.
+If you'd like to use the `bundleAndLoadRuleset` method to load multiple rulesets, you'll have to create a new ruleset
+file, and use the [`extends`](../getting-started/rulesets.md#extending-rulesets) functionality to extend the rulesets
+you'd like to use.
 
 ## Advanced
 
@@ -188,9 +192,9 @@ If you'd like to use the `bundleAndLoadRuleset` method to load multiple rulesets
 Spectral supports HTTP(S) proxies when fetching remote assets:
 
 ```js title="example-4.mjs" lineNumbers
-import { OpenLint } from "@openlint/openlint-core";
-import ProxyAgent from "proxy-agent";
-import { createHttpAndFileResolver } from "@openlint/openlint-ref-resolver";
+import { OpenLint } from '@openlint/openlint-core';
+import ProxyAgent from 'proxy-agent';
+import { createHttpAndFileResolver } from '@openlint/openlint-ref-resolver';
 
 // start OpenLint using a proxy
 const openlint = new OpenLint({
@@ -204,15 +208,17 @@ const openlint = new OpenLint({
 
 ### How to Use a Custom Resolver
 
-OpenLint lets you provide any custom `$ref` resolver. By default, HTTP(S) and file protocols are resolved, relatively to the document OpenLint lints against. You can also add support for additional protocols, or adjust the resolution. To achieve that, you need to create a custom json-ref-resolver instance.
+OpenLint lets you provide any custom `$ref` resolver. By default, HTTP(S) and file protocols are resolved, relatively to
+the document OpenLint lints against. You can also add support for additional protocols, or adjust the resolution. To
+achieve that, you need to create a custom json-ref-resolver instance.
 
 For example:
 
 ```js title="example-5.cjs" lineNumbers
-const path = require("path");
-const fs = require("fs");
-const { OpenLint } = require("@openlint/openlint-core");
-const { Resolver } = require("@stoplight/json-ref-resolver");
+const path = require('path');
+const fs = require('fs');
+const { OpenLint } = require('@openlint/openlint-core');
+const { Resolver } = require('@stoplight/json-ref-resolver');
 
 const customFileResolver = new Resolver({
   resolvers: {
@@ -221,7 +227,7 @@ const customFileResolver = new Resolver({
         return new Promise((resolve, reject) => {
           const basePath = process.cwd();
           const refPath = ref.path();
-          fs.readFile(path.join(basePath, refPath), "utf8", (err, data) => {
+          fs.readFile(path.join(basePath, refPath), 'utf8', (err, data) => {
             if (err) {
               reject(err);
             } else {
@@ -243,5 +249,5 @@ const openlint = new OpenLint({ resolver: customFileResolver });
 
 This custom resolver resolves all remote file refs relative to the current working directory.
 
-You can find more information about how to create custom resolvers in
-the [@stoplight/json-ref-resolver](https://github.com/stoplightio/json-ref-resolver) repository.
+You can find more information about how to create custom resolvers in the
+[@stoplight/json-ref-resolver](https://github.com/stoplightio/json-ref-resolver) repository.

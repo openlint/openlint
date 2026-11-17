@@ -9,7 +9,7 @@ runs:
   using: composite
   steps:
   - name: restore_cache
-    uses: actions/cache@v4.3.0
+    uses: actions/cache@v5.1.0
     with:
       # Fully determined by version/os/arch, so an exact hit is the only correct
       # hit -- a prefix fallback could restore a binary built for another arch.
@@ -30,7 +30,7 @@ runs:
     working-directory: "/tmp"
     shell: bash
   - name: save_cache
-    uses: actions/cache@v4.3.0
+    uses: actions/cache@v5.1.0
     with:
       path: "/tmp/ldid"
       key: ldid-binary-${{ inputs.version }}-${{ runner.os }}-${{ runner.arch }}

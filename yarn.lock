@@ -1540,9 +1540,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@openlint/openlint-rulesets@workspace:packages/rulesets"
   dependencies:
-    "@openlint/ruleset-spectral-arazzo": 0.x
-    "@openlint/ruleset-spectral-asyncapi": 0.x
-    "@openlint/ruleset-spectral-oas": 0.x
+    "@openlint/ruleset-spectral-arazzo": ^1.0.0
+    "@openlint/ruleset-spectral-asyncapi": ^1.0.0
+    "@openlint/ruleset-spectral-oas": ^1.0.0
   languageName: unknown
   linkType: soft
 
@@ -1620,25 +1620,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@openlint/ruleset-spectral-arazzo@npm:0.x":
-  version: 0.1.0
-  resolution: "@openlint/ruleset-spectral-arazzo@npm:0.1.0"
+"@openlint/ruleset-spectral-arazzo@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@openlint/ruleset-spectral-arazzo@npm:1.0.0"
   dependencies:
     "@openlint/openlint-core": 0.x
     "@openlint/openlint-formats": 0.x
     "@openlint/openlint-functions": 0.x
     "@stoplight/json": ^3.17.0
     "@stoplight/types": ^13.6.0
-    ajv: ^8.18.0
+    ajv: ^8.20.0
     leven: 3.1.0
     tslib: ^2.8.1
-  checksum: 345cd0753a02f1f54cc93a3729aab0533a688961e8d23e8cd3a68f58f2dbc514c6a3d4780aa4f5ecbde6020eb308ab106202134d44bcce9c3f4cf61b0fa66d6d
+  checksum: fec5b247dccf7a6dfcdf60ca2d23a0b94c7cdce9808ee714b8e756f4b87c290a3ed9c8f17784286204b0c76eba5a75f3c52a06570ca111e92c0163f926eea089
   languageName: node
   linkType: hard
 
-"@openlint/ruleset-spectral-asyncapi@npm:0.x":
-  version: 0.1.0
-  resolution: "@openlint/ruleset-spectral-asyncapi@npm:0.1.0"
+"@openlint/ruleset-spectral-asyncapi@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@openlint/ruleset-spectral-asyncapi@npm:1.0.0"
   dependencies:
     "@asyncapi/specs": 6.11.1
     "@openlint/openlint-core": 0.x
@@ -1655,13 +1655,13 @@ __metadata:
     leven: 3.1.0
     lodash: ^4.18.1
     tslib: ^2.8.1
-  checksum: 74cc12a663c8b4c398d6a8a7c5dfdfb078f87aee31ea42a499d6f9eb0b21a233b79c27deb09edfb904b5f35d7d5c094312ff0b299ef0af67e99d85217fa174d0
+  checksum: ba95bd69adcb88055393ab3449319abe0484f0024e760310ae7255dd32850337e44ec581a1cc4829841510b8e3a808ed7753b6346049db53725bdf30795e051c
   languageName: node
   linkType: hard
 
-"@openlint/ruleset-spectral-oas@npm:0.x":
-  version: 0.1.0
-  resolution: "@openlint/ruleset-spectral-oas@npm:0.1.0"
+"@openlint/ruleset-spectral-oas@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@openlint/ruleset-spectral-oas@npm:1.0.0"
   dependencies:
     "@openlint/openlint-core": 0.x
     "@openlint/openlint-formats": 0.x
@@ -1670,13 +1670,13 @@ __metadata:
     "@stoplight/better-ajv-errors": 1.0.3
     "@stoplight/json": ^3.17.0
     "@stoplight/types": ^13.6.0
-    ajv: ^8.18.0
+    ajv: ^8.20.0
     ajv-formats: ~2.1.1
     json-schema-traverse: ^1.0.0
     leven: 3.1.0
     lodash: ^4.18.1
     tslib: ^2.8.1
-  checksum: 5304cbae6a4c1ebfaa840d2636799a09611e64560b8b54c31bae42d4f7200690576bf89d464ed92248ef2d8badaf9d7ce909411043915906107fd2a88a1a11bd
+  checksum: 8465ba8a8a953b519cbb206321b5c6a0213c9f720cfc0838be0d769ee202b5d57c2f8a717b2c4e98024aa3095fefb27a11c89496554ac569f6840fd753b06f07
   languageName: node
   linkType: hard
 
@@ -3333,7 +3333,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ajv@npm:8.20.0":
+"ajv@npm:8.20.0, ajv@npm:^8.20.0":
   version: 8.20.0
   resolution: "ajv@npm:8.20.0"
   dependencies:
@@ -8824,9 +8824,9 @@ __metadata:
     "@openlint/ruleset-arazzo": 0.x
     "@openlint/ruleset-asyncapi": 0.x
     "@openlint/ruleset-openapi": 0.x
-    "@openlint/ruleset-spectral-arazzo": 0.x
-    "@openlint/ruleset-spectral-asyncapi": 0.x
-    "@openlint/ruleset-spectral-oas": 0.x
+    "@openlint/ruleset-spectral-arazzo": ^1.0.0
+    "@openlint/ruleset-spectral-asyncapi": ^1.0.0
+    "@openlint/ruleset-spectral-oas": ^1.0.0
     "@stoplight/json": ~3.21.0
     "@stoplight/path": 1.3.2
     "@stoplight/types": ^14.1.1
