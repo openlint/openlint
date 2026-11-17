@@ -45,7 +45,7 @@
     "@openlint/openlint-runtime": "0.x",
     "@rollup/plugin-commonjs": "~22.0.2",
     "@stoplight/path": "1.3.2",
-    "@stoplight/types": "^13.6.0",
+    "@stoplight/types": "^14.1.1",
     "@types/node": "*",
     "rollup": "^2.80.0",
     "tslib": "^2.8.1",

@@ -37,7 +37,7 @@
     "@openlint/openlint-core": "0.x",
     "@openlint/openlint-runtime": "0.x",
     "@stoplight/path": "^1.3.2",
-    "@stoplight/types": "^13.15.0",
+    "@stoplight/types": "^14.1.1",
     "@types/markdown-escape": "^1.1.3",
     "chalk": "^4.1.2",
     "cliui": "7.0.4",
