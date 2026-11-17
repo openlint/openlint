@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { Dictionary } from '@stoplight/types';
 import { Replacer } from '../replacer';
 
@@ -102,9 +102,14 @@ describe('Replacer Security Tests', () => {
   });
 
   it('should block dangerous patterns', () => {
+    const error = vi.spyOn(console, 'error').mockImplementation(() => {});
     const input = '#{process.mainModule.require("fs").writeFileSync("test.txt", "content")}';
     const result = replacer.print(input, {});
     expect(result).toBe('');
+    expect(error).toHaveBeenCalledWith(
+      'Disallowed expression detected:',
+      'process.mainModule.require("fs").writeFileSync("test.txt", "content")',
+    );
   });
 
   it('should evaluate safe expressions', () => {
@@ -114,8 +119,10 @@ describe('Replacer Security Tests', () => {
   });
 
   it('should handle invalid expressions gracefully', () => {
+    const error = vi.spyOn(console, 'error').mockImplementation(() => {});
     const input = '#{invalidFunction()}';
     const result = replacer.print(input, {});
     expect(result).toBe('');
+    expect(error).toHaveBeenCalledWith('Expression evaluation error:', expect.any(Error));
   });
 });
