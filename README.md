@@ -1,6 +1,6 @@
 # OpenLint
 
-The reference implementation of the [OpenLint specification](https://spec.openlint.org): a community fork of Spectral, stewarded in the open. Rules: [rules.openlint.org](https://rules.openlint.org) · Conformance: [conformance.openlint.org](https://conformance.openlint.org) · Community: [openlint.org](https://openlint.org), [office hours](https://openlint.org/meetings/) and [discussions](https://github.com/orgs/openlint/discussions).
+The reference implementation of the [OpenLint specification](https://spec.openlint.org): a community fork of Spectral, stewarded in the open. Rules: [rules.openlint.org](https://rules.openlint.org) · Conformance: [conformance.openlint.org](https://conformance.openlint.org) · Community: [openlint.org](https://openlint.org), [office hours](https://openlint.org/meetings/), [discussions](https://github.com/orgs/openlint/discussions) and [Slack](https://join.slack.com/t/openlintworkspace/shared_invite/zt-4hgoweggz-~h3UNfIyoy~pYUgQ_ivwow).
 
 - **Custom Rulesets**: Create custom rules to lint JSON or YAML objects
 - **Ready-to-use Rulesets**: Validate and lint **OpenAPI v2, v3.0, v3.1 & v3.2**, **AsyncAPI**, and **Arazzo v1** Documents
@@ -96,7 +96,7 @@ Once you've had a look through the getting started material, some of these guide
 
 ## ℹ️ Support
 
-If you need help using OpenLint or have any questions, you can use [GitHub Discussions](https://github.com/orgs/openlint/discussions), or come to the weekly [office hours](https://openlint.org/meetings/). Why not share your rulesets, or show off tools you've made that use OpenLint.
+If you need help using OpenLint or have any questions, you can use [GitHub Discussions](https://github.com/orgs/openlint/discussions), ask on [Slack](https://join.slack.com/t/openlintworkspace/shared_invite/zt-4hgoweggz-~h3UNfIyoy~pYUgQ_ivwow), or come to the weekly [office hours](https://openlint.org/meetings/). Why not share your rulesets, or show off tools you've made that use OpenLint.
 
 If you have a bug or feature request, [create an issue for it](https://github.com/openlint/openlint/issues).
 
