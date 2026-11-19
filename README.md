@@ -1,8 +1,10 @@
 # OpenLint
 
+The reference implementation of the [OpenLint specification](https://spec.openlint.org): a community fork of Spectral, stewarded in the open. Rules: [rules.openlint.org](https://rules.openlint.org) · Conformance: [conformance.openlint.org](https://conformance.openlint.org) · Community: [openlint.org](https://openlint.org), [office hours](https://openlint.org/meetings/), [discussions](https://github.com/orgs/openlint/discussions) and [Slack](https://join.slack.com/t/openlintworkspace/shared_invite/zt-4hgoweggz-~h3UNfIyoy~pYUgQ_ivwow).
+
 - **Custom Rulesets**: Create custom rules to lint JSON or YAML objects
 - **Ready-to-use Rulesets**: Validate and lint **OpenAPI v2, v3.0, v3.1 & v3.2**, **AsyncAPI**, and **Arazzo v1** Documents
-- **API Style Guides**: Automated [API Style Guides](https://stoplight.io/api-style-guides-guidelines-and-best-practices?utm_source=github.com&utm_medium=referral&utm_campaign=github_repo_openlint) using rulesets improve consistency across all your APIs
+- **API Style Guides**: Automated [API Style Guides](https://stoplight.io/api-style-guides-guidelines-and-best-practices) using rulesets improve consistency across all your APIs
 - **Ready-to-use Functions**: Built-in set of functions to help [create custom rules](https://docs.openlint.org/guides/custom-rulesets#adding-rules). Functions include pattern checks, parameter checks, alphabetical ordering, a specified number of characters, provided keys are present in an object, etc.
 - **Custom Functions**: Create custom functions for advanced use cases
 
@@ -41,10 +43,13 @@ There are also [additional installation options](https://docs.openlint.org/getti
 
 ### Docker
 
+There's no published image yet. Build one from the [Dockerfile](Dockerfile) in this repository:
+
 <!-- make sure to update the value of `--ruleset` according to the actual location of your ruleset -->
 
 ```bash
-docker run --rm -it -v $(pwd):/tmp stoplight/openlint lint --ruleset "/tmp/.spectral.yaml" "/tmp/file.yaml"
+docker build --build-arg NODE_VERSION=$(cat .nvmrc) -t openlint .
+docker run --rm -it -v $(pwd):/tmp openlint lint --ruleset "/tmp/.openlint.yaml" "/tmp/file.yaml"
 ```
 
 ## 💻 Usage
@@ -91,7 +96,7 @@ Once you've had a look through the getting started material, some of these guide
 
 ## ℹ️ Support
 
-If you need help using OpenLint or have any questions, you can use [GitHub Discussions](https://github.com/openlint/openlint/discussions). Why not share your rulesets, or show off tools you've made that use OpenLint.
+If you need help using OpenLint or have any questions, you can use [GitHub Discussions](https://github.com/orgs/openlint/discussions), ask on [Slack](https://join.slack.com/t/openlintworkspace/shared_invite/zt-4hgoweggz-~h3UNfIyoy~pYUgQ_ivwow), or come to the weekly [office hours](https://openlint.org/meetings/). Why not share your rulesets, or show off tools you've made that use OpenLint.
 
 If you have a bug or feature request, [create an issue for it](https://github.com/openlint/openlint/issues).
 
@@ -101,7 +106,7 @@ A few noteworthy style guides are:
 
 - [OWASP Top 10](https://apistylebook.stoplight.io/docs/owasp-top-10) - Set of rules to enforce [OWASP security guidelines](https://owasp.org/www-project-api-security/).
 - [URL Style Guidelines](https://apistylebook.stoplight.io/docs/url-guidelines) - Set of rules to help developers make better and consistent endpoints.
-- [Documentation](https://github.com/stoplightio/openlint-documentation) - Scan an OpenAPI description to make sure you're leveraging enough of its features to help documentation tools like Stoplight Elements, ReDoc, and Swagger UI build the best quality API Reference Documentation possible.
+- [Documentation](https://github.com/openlint/ruleset-documentation) - `@openlint/ruleset-documentation`, the opt-in ruleset that scans an OpenAPI description to make sure you're leveraging enough of its features to help documentation tools like Stoplight Elements, ReDoc, and Swagger UI build the best quality API Reference Documentation possible.
 
 There are also rulesets created by many companies to improve their APIs. You can use these as is to lint your OpenAPI descriptions, or use these as a reference to learn more about what rules you would want in your own ruleset:
 
